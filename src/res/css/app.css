@@ -179,14 +179,18 @@
 
 .spotdetailitem-order h2{
 	font-weight: bold;
-	float: left;
-	font-size:1em;
+	/*float: left;*/
+	font-size:1.2em;
 	margin-right: 10px;
 }
 
+.spotdetailitem-order h4{
+	font-size: 1em;
+}
+
 .spotdetailitem-order h3{
+	font-size: 1em;
 	font-weight: bold;
-	font-size:0.8em;
 }
 
 .spotdetailitem-order-cancel {
@@ -206,13 +210,13 @@
 	/*position: absolute; 
 	right: 0; 
 	width: 20%; */
-	text-align: right; 
-	padding-right: 5px;
+/*	text-align: right; 
+	padding-right: 5px;*/
 }
 
 .spotdetailitem-order .choices{
 	clear: both;
-	margin-left: 10px;
+	text-align: left;
 }
 
 .spotdetailitem-confirm {

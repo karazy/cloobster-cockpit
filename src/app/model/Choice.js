@@ -149,7 +149,9 @@ Ext.define('EatSense.model.Choice', {
 	*	Returns a raw json representation of this objects data.
 	*/
 	getRawJsonData: function() {
-		var rawJson = {};		
+		var rawJson = {},
+			optionsLength = this.options().getCount(),
+			index = 0;		
 		
 		rawJson.id = (this.phantom === true) ? this.get('genuineId') : this.get('id');
 		rawJson.text = this.get('text');
@@ -158,11 +160,13 @@ Ext.define('EatSense.model.Choice', {
 		rawJson.price = this.get('price');
 		rawJson.included = this.get('included');
 		rawJson.overridePrice = this.get('overridePrice');
+		// rawJson.active = this.get('active');
+		rawJson.parent = this.get('parent');
 		
 		rawJson.options = new Array(this.options().data.length);
-		for ( var int = 0; int < this.options().data.length; int++) {
-			rawJson.options[int] = this.options().getAt(int).getRawJsonData();
-		}		
+		for ( ; index < optionsLength; index++) {
+			rawJson.options[index] = this.options().getAt(index).getRawJsonData();
+		}
 		return rawJson;
 	},
 	/**
@@ -170,15 +174,19 @@ Ext.define('EatSense.model.Choice', {
 	*
 	*/	
 	setRawJsonData: function(rawData) {
+		var index = 0,
+			optionsLength = rawData.options.length,
+			option;
+
 		if(!rawData) {
 			return false;
 		}
-
-		for ( var int = 0; int < this.options().data.length; int++) {
-			if(!this.options().getAt(int).setRawJsonData(rawData.options[int])) {
+		
+		for ( ; index < optionsLength; index++) {
+			if(!this.options().getAt(index).setRawJsonData(rawData.options[index])) {
 				return false;
 			}
-		}	
+		}
 		
 		this.set('id', rawData.id);
 		this.set('text', rawData.text);
@@ -186,7 +194,9 @@ Ext.define('EatSense.model.Choice', {
 		this.set('minOccurence', rawData.minOccurence);
 		this.set('price', rawData.price);
 		this.set('included', rawData.included);
-		this.set('overridePrice', rawData.overridePrice);	
+		this.set('overridePrice', rawData.overridePrice);
+		// this.set('active', rawData.active);
+		this.set('parent', rawData.parent);
 
 		return true;			
 	}

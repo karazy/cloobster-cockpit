@@ -18,7 +18,7 @@ Karazy.config = (function() {
 		channelReconnectTimeout: 10000,
 		channelReconnectTries: 20,
 		heartbeatInterval: 10000,
-		debug: true
+		debug: false
 	};
 	
 })();

@@ -15,7 +15,7 @@
 			<arg line="build -p ${srcDir}/app.jsb3 -d ${srcDir}" />
 		</exec>
 		<echo message="Copy Sencha Touch library ..." />
-		<copy file="${srcDir}/lib/touch/sencha-touch.js" todir="${prodDir}/lib" overwrite="true"></copy>
+		<copy file="${srcDir}/lib/touch/sencha-touch.js" todir="${prodDir}/lib/touch" overwrite="true"></copy>
 		<move file="${srcDir}/app-all.js" todir="${prodDir}" overwrite="true"></move>
 		<echo message="Copy Karazy libraries ..." />
 		<copy todir="${prodDir}/lib/karazy" overwrite="true">

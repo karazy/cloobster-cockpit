@@ -780,30 +780,48 @@ Ext.define('EatSense.controller.Spot', {
 			return;
 		};
 
-		//update order status
-		order.set('status', Karazy.constants.Order.CANCELED);
-
-		//same approach as in eatSense App. Magic lies in getRawJsonData()
-		//still kind of a workaround
-		Ext.Ajax.request({				
-    	    url: Karazy.config.serviceUrl+'/b/businesses/'+loginCtr.getAccount().get('businessId')+'/orders/'+order.getId(),
-    	    method: 'PUT',    	    
-    	    jsonData: order.getRawJsonData(),
-    	    scope: this,
-    	    success: function(response) {
-    	    	console.log('order %s canceled', order.getId());
-    	    	me.updateCustomerTotal(orderStore.getData().items);
-    	    },
-    	    failure: function(response) {
-    	    	order.set('status', prevStatus);
-    	    		me.getApplication().handleServerError({
-						'error': {
-							'status': response.status,
-							'statusText': response.statusText
-						}, 
-						'forceLogout': {403: true}, 
-				});
-	   	    }
+		Ext.Msg.show({
+			title: Karazy.i18n.translate('hint'),
+			message: Karazy.i18n.translate('cancelOrderQuestion', order.getProduct().get('name')),
+			buttons: [{
+				text: Karazy.i18n.translate('yes'),
+				itemId: 'yes',
+				ui: 'action'
+			}, {
+				text: Karazy.i18n.translate('no'),
+				itemId: 'no',
+				ui: 'action'
+			}],
+			scope: this,
+			fn: function(btnId, value, opt) {
+				if(btnId == 'yes') {
+					//update order status
+					order.set('status', Karazy.constants.Order.CANCELED);
+					
+					//same approach as in Cloobster App. Magic lies in getRawJsonData()
+					//still kind of a workaround
+					Ext.Ajax.request({				
+			    	    url: Karazy.config.serviceUrl+'/b/businesses/'+loginCtr.getAccount().get('businessId')+'/orders/'+order.getId(),
+			    	    method: 'PUT',    	    
+			    	    jsonData: order.getRawJsonData(),
+			    	    scope: this,
+			    	    success: function(response) {
+			    	    	console.log('order %s canceled', order.getId());
+			    	    	me.updateCustomerTotal(orderStore.getData().items);
+			    	    },
+			    	    failure: function(response) {
+			    	    	order.set('status', prevStatus);
+		    	    		me.getApplication().handleServerError({
+								'error': {
+									'status': response.status,
+									'statusText': response.statusText
+								}, 
+								'forceLogout': {403: true}, 
+							});
+				   	    }
+					});
+				}
+			}
 		});
 	},
 	/**

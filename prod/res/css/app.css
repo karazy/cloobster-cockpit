@@ -92,12 +92,14 @@
 }
 
 .spotdetail-customer-name {
-	float: left;
-	margin-right: 3px;
+	/*float: left;
+	margin-right: 3px;*/
 }
 
 .spotdetail-customer-flag {
 	background-color: red;
+	float: left;
+	margin-right: 3px;
 }
 
 .spotdetail-toolbar-button {

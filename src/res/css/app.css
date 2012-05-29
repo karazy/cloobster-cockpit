@@ -92,8 +92,7 @@
 }
 
 .spotdetail-customer-name {
-	/*float: left;
-	margin-right: 3px;*/
+	word-break: break-word
 }
 
 .spotdetail-customer-flag {

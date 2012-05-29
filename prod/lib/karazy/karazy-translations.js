@@ -45,6 +45,7 @@ Karazy.translations = (function() {
 		"errorSpotDetailOrderCancel" : "Bestellung {0} konnte nicht storniert werden.",
 		"switchSpotButton" : "Tisch wechseln",
 		"switchSpotMessage": "{0} an {1} verschoben",
+		"cancelOrderQuestion" : "{0} stornieren?",
 		"cancelAllOrdersButton" : "Gast entfernen",
 		"confirmAllOrdersButton" : "Alle abgearbeitet",
 		"paidButton" : "Bezahlt",

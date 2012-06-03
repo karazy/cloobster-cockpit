@@ -68,12 +68,11 @@ Ext.define('EatSense.view.SpotDetail', {
 				xtype: 'list',
 				itemId: 'checkInList', 
 				itemTpl: new Ext.XTemplate(
-					// "<tpl if='status == \"ORDER_PLACED\" || status == \"PAYMENT_REQUEST\"'>"+
-					"<div style='background-color:red;'>"+
-						"<h2 class='spotdetail-customer-name {[values.status == \"ORDER_PLACED\" ? \"customer-highlight\" : \"\"]}'>{nickname}</h2>"+
-						"</div>"
-							// "<span class='spotdetail-customer-flag'>X</span>"+
-						// "</tpl>"
+						 "<tpl if='status == \"ORDER_PLACED\" || status == \"PAYMENT_REQUEST\"'>"+
+							 "<span class='spotdetail-customer-flag'>X</span>"+
+						 "</tpl>"+
+						"<h2 class='spotdetail-customer-name {[values.status == \"ORDER_PLACED\" ? \"customer-highlight\" : \"\"]}'>{nickname}</h2>"
+						
 						),
 				store: 'checkInStore',
 				ui: 'round'

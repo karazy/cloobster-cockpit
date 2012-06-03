@@ -114,7 +114,7 @@
 	position: relative;
 	margin: 5px;	
 	top: 10px;	
-	float: left;
+	/*float: left;*/
 }
 
 .spotdetail-status .order_placed{

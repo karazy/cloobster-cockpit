@@ -15,7 +15,7 @@ Ext.define('EatSense.view.Main', {
 			{
 			xtype: 'label',
 			itemId: 'info',
-			tpl: 'Logged in as <span>{login}</strong> at <strong>{business}</strong>'
+			tpl: 'Logged in as <span>{login}</strong> at <strong>{business}</strong> in Location'
 			},
 			{
 				xtype: 'spacer'

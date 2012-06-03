@@ -92,7 +92,7 @@ Ext.define('EatSense.view.SpotDetail', {
 				docked: 'top',
 				layout: {
 					type: 'hbox',
-					align: 'middle'
+					align: 'start'
 				},
 				height: 100,
 				items: [
@@ -132,30 +132,41 @@ Ext.define('EatSense.view.SpotDetail', {
 					]
 				},
 				{
-					xtype: 'label',
-					itemId: 'statusLabel',
-					cls: 'spotdetail-status',
-					tpl: new Ext.XTemplate('<p>Status:</p><p class="{[values.status.toLowerCase()]}">{[this.translateStatus(values.status)]}</p>',
-						{
-							translateStatus: function(status) {
-								return Karazy.i18n.translate(status);
+					xtype: 'panel',
+					layout: {
+						type: 'vbox',
+						pack: 'start',
+						align: 'start'
+					},
+					items: [
+					{
+						xtype: 'label',
+						itemId: 'statusLabel',
+						cls: 'spotdetail-status',
+						tpl: new Ext.XTemplate('<table width="100%"><td width="100px">Status:</td><td align="right" class="{[values.status.toLowerCase()]}">{[this.translateStatus(values.status)]}</td></table>',
+							{
+								translateStatus: function(status) {
+									return Karazy.i18n.translate(status);
+								}
 							}
-						}
-					)
-				},
-				{
-					xtype: 'label',
-					itemId: 'paymentLabel',
-					cls: 'spotdetail-status',
-					hidden: true,
-					tpl: new Ext.XTemplate('<p>'+Karazy.i18n.translate('paymentMethodLabel')+':</p><p class="payment">{paymentMethod}</p>',
-						{
-							translateStatus: function(status) {
-								return Karazy.i18n.translate(status);
+						)
+					},
+					{
+						xtype: 'label',
+						itemId: 'paymentLabel',
+						cls: 'spotdetail-status',
+						hidden: true,
+						tpl: new Ext.XTemplate('<table><td width="100px">'+Karazy.i18n.translate('paymentMethodLabel')+':</td><td class="payment">{paymentMethod}</td></table>',
+							{
+								translateStatus: function(status) {
+									return Karazy.i18n.translate(status);
+								}
 							}
-						}
-					)
-				},
+						)
+					}
+					]
+				}
+				,
 				{
 					xtype: 'button',
 					action: 'confirm-all',

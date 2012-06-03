@@ -95,6 +95,10 @@
 	word-break: break-word
 }
 
+.customer-highlight {
+	background-color: red;
+}
+
 .spotdetail-customer-flag {
 	background-color: red;
 	float: left;
@@ -159,6 +163,8 @@
 
 .spotdetailitem-customer-label {
 	background-color: white;
+	text-align: center;
+	font-weight: bold;
 }
 
 .spotdetailitem-flag {

@@ -92,8 +92,11 @@
 }
 
 .spotdetail-customer-name {
-	/*float: left;
-	margin-right: 3px;*/
+	word-break: break-word
+}
+
+.customer-highlight {
+	
 }
 
 .spotdetail-customer-flag {
@@ -111,7 +114,7 @@
 	position: relative;
 	margin: 5px;	
 	top: 10px;	
-	float: left;
+	/*float: left;*/
 }
 
 .spotdetail-status .order_placed{
@@ -160,6 +163,8 @@
 
 .spotdetailitem-customer-label {
 	background-color: white;
+	text-align: center;
+	font-weight: bold;
 }
 
 .spotdetailitem-flag {

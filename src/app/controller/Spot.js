@@ -102,7 +102,8 @@ Ext.define('EatSense.controller.Spot', {
 	*/
 	loadSpots: function() {
 		console.log('loadSpots');
-		var loginCtr = this.getApplication().getController('Login'),
+		var me = this,
+			loginCtr = this.getApplication().getController('Login'),
 			account = loginCtr.getAccount(),
 			info = this.getInfo();
 

@@ -34,7 +34,7 @@ Karazy.translations = (function() {
 		//spot
 		"errorSpotLoading" : "Laden der Daten fehlgeschlagen!",
 		//spot details
-		"spotDetailCustomerLabel" : "Kunden",
+		"spotDetailCustomerLabel" : "Gäste",
 		"errorSpotDetailCheckInLoading" : "Laden der eingecheckten Personen fehlgeschlagen!",
 		"errorSpotDetailOrderLoading" : "Laden der Bestellungen fehlgeschlagen!",
 		"errorSpotDetailOrderSave" : "Speichern der Bestellung fehlgeschlagen!",
@@ -47,7 +47,7 @@ Karazy.translations = (function() {
 		"switchSpotMessage": "{0} an {1} verschoben",
 		"cancelOrderQuestion" : "{0} stornieren?",
 		"cancelAllOrdersButton" : "Gast entfernen",
-		"confirmAllOrdersButton" : "Alle abgearbeitet",
+		"confirmAllOrdersButton" : "Alle annehmen",
 		"paidButton" : "Bezahlt",
 		"spotSelectionTitle" : "Tisch auswählen",
 		"switchSpotError" : "Server Fehler aufgetreten. Tischwechsel fehlgeschlagen!",
@@ -56,8 +56,8 @@ Karazy.translations = (function() {
 		"choiceValErrMin" : "Bitte mindestens {0} {1} auswählen.",
 		"choiceValErrMax" : "Bitte maximal  {0} {1} auswählen.",
 		//requests
-		"requestMsgboxTitle" : "Kundenwünsche",
-		"requestDismiss" : "Kundenwünsche löschen",
+		"requestMsgboxTitle" : "Gästewünsche",
+		"requestDismiss" : "Gästewünsche löschen",
 		//constants
 		"ORDER_PLACED" : "Neue Bestellung!",
 		"PLACED" : "Neu!",

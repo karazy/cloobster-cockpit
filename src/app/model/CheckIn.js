@@ -21,7 +21,9 @@ Ext.define('EatSense.model.CheckIn', {
 		{
 			name : 'checkInTime',
 			type : 'date',
-			dateFormat : 'time'
+			dateFormat : 'time',
+			//FR 20120704 fix because time gets send in a weird format
+			persist: false
 		},
 		{	//foreign key for checkIn. Don't send to server.
 			name: 'request_id',

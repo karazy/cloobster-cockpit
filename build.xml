@@ -1,41 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="CloobsterCockpit" default="cockpit-production" basedir=".">
-	<property name="srcDir" value="src/" />
-	<property name="prodDir" value="prod/" />
-		
-	<target name="createCockpitProduction">
-		<echo message="Executing createCockpitProduction task from build.xml" />
-		<exec executable="${sencha.cmd}" >
-			<arg line="create jsb -a ${srcDir}/index_pkg_ready.html -p ${srcDir}/app.jsb3" />
+<project name="CloobsterCockpit" default="production" basedir=".">
+	<property name="sdkDir">src</property>
+	<target name="production">
+		<exec executable="${sencha.cmd}" dir="${sdkDir}">
+			<arg line="app build production"/>
 		</exec>
-		<echo message="Disable debug mode" />
-		<replaceregexp file="${srcDir}/app.jsb3" match='"debug": true' replace='"debug": false' byline="true" />
-		<exec executable="${sencha.cmd}">
-			
-			<arg line="build -p ${srcDir}/app.jsb3 -d ${srcDir}" />
-		</exec>
-		<echo message="Copy Sencha Touch library ..." />
-		<copy file="${srcDir}/lib/touch/sencha-touch.js" todir="${prodDir}/lib/touch" overwrite="true"></copy>
-		<move file="${srcDir}/app-all.js" todir="${prodDir}" overwrite="true"></move>
-		<echo message="Copy Karazy libraries ..." />
-		<copy todir="${prodDir}/lib/karazy" overwrite="true">
-			<fileset dir="${srcDir}/lib/karazy">
-				<exclude name="**/*.iphone.*" />
-				<exclude name="**/*.phone.*" />
-				<exclude name="**/*.ignore.*" />
-			</fileset>
-		</copy>
-		<echo message="Copy Resources ..." />
-		<copy todir="${prodDir}/res" overwrite="true">
-			<fileset dir="${srcDir}/res">
-			</fileset>
-		</copy>
-	</target>
-
-	<target name="cleanUpBuildFiles">
-		<delete file="${srcDir}/all-classes.js"></delete>
-		<delete file="${srcDir}/app.jsb3"></delete>
 	</target>
 	
-	<target name="cockpit-production" depends="createCockpitProduction, cleanUpBuildFiles"/>
+	<target name="testing">
+		<exec executable="${sencha.cmd}" dir="${sdkDir}">
+			<arg line="app build testing"/>
+		</exec>
+	</target>
 </project>

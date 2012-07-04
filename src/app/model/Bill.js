@@ -20,7 +20,9 @@ Ext.define('EatSense.model.Bill', {
 		}, {
 			name : 'time',
 			type : 'date',
-			dateFormat : 'time'
+			dateFormat : 'time',
+			//FR 20120704 fix because time gets send in a weird format
+			persist: false
 		}, {
 			name: 'cleared',
 			type: 'boolean'

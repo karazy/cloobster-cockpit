@@ -13,7 +13,7 @@ Karazy.i18n = (function() {
 
 	for(precondition in requires) {
 		if(!requires[precondition]) {
-			console.log('Some functions of this class may need %s to properly work. Make sure inclusion order is correct.', precondition);
+			console.log('Some functions of Karazy.i18n may need %s to properly work. Make sure inclusion order is correct.', precondition);
 		}
 	}
 	

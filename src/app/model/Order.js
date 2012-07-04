@@ -17,7 +17,9 @@ Ext.define('EatSense.model.Order', {
 		}, {
 			name : 'orderTime',
 			type : 'date',
-			dateFormat: 'time'
+			dateFormat: 'time',
+			//FR 20120704 fix because time gets send in a weird format
+			persist: false
 		} ],
 		associations : {
 			type : 'hasOne',

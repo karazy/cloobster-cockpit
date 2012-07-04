@@ -242,7 +242,7 @@ Ext.define('EatSense.controller.Login', {
 
 		Ext.Ajax.setDefaultHeaders({});	
 		me.setAccount({});
-		me.resetAccountProxyHeaders();		
+		me.resetAccountProxyHeaders();
 	},
 	/**
 	*	Logout signed in user and show login screen.

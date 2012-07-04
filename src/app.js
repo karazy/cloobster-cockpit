@@ -21,6 +21,7 @@ Ext.application({
 		'Ext.dataview.List',
 		'Ext.Label',
 		'Ext.TitleBar',
+        'Ext.MessageBox',
 		//require custom types
 		'EatSense.data.proxy.CustomRestProxy',
 		'EatSense.data.proxy.OperationImprovement'],

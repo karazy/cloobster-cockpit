@@ -12,22 +12,22 @@ Ext.define('EatSense.view.CustomerRequestDialog', {
 		items: [
 		{
 				xtype: 'label',
-				html: Karazy.i18n.translate('requestMsgboxTitle'),
+				html: i10n.translate('requestMsgboxTitle'),
 				docked: 'top',
 				cls: 'spotdetailitem-customer-label'
 		},
 		// {
 		// 	xtype: 'titlebar',
 		// 	docked: 'top',
-		// 	title: Karazy.i18n.translate('requestMsgboxTitle')
+		// 	title: i10n.translate('requestMsgboxTitle')
 		// },
 		{
 			xtype: 'list',
 			store: 'requestStore',
 			itemTpl: new Ext.XTemplate('{[this.formatMessage(values)]}', {
 				formatMessage: function(values) {
-					if(values.type == Karazy.constants.Request.CALL_WAITER) {
-						return Karazy.i18n.translate(Karazy.constants.Request.CALL_WAITER, (values.CheckIn) ? values.CheckIn.nickname : "");
+					if(values.type == appConstants.Request.CALL_WAITER) {
+						return i10n.translate(appConstants.Request.CALL_WAITER, (values.CheckIn) ? values.CheckIn.nickname : "");
 					}
 				}
 			}),
@@ -44,7 +44,7 @@ Ext.define('EatSense.view.CustomerRequestDialog', {
 			items: [
 				{
 					action: 'dismiss',
-					text: Karazy.i18n.translate('requestDismiss'),
+					text: i10n.translate('requestDismiss'),
 					ui: 'action'
 				}
 			]

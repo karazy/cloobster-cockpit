@@ -77,7 +77,7 @@ Ext.define('EatSense.model.Product', {
 		if(amount) {
 			_amount = amount;
 		}
-		// _total = Karazy.util.roundPrice(_total*_amount);
+		// _total = appHelper.roundPrice(_total*_amount);
 		_total = _total*_amount;
 		this.set('price_calculated', _total);
 		return _total;

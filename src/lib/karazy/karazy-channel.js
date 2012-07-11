@@ -1,7 +1,8 @@
 /*Karazy namespace. Create if not exists.*/
 var Karazy = (Karazy) ? Karazy : {},
 	requires = {
-		'Karazy.util': Karazy.util
+		'Karazy.util': Karazy.util,
+		'Karazy.config': Karazy.config
 	};
 
 /**
@@ -38,8 +39,7 @@ Karazy.channel = (function() {
 		//token used for this channel
 		channelToken,
 		//timeout used when attempting to reconnect the channel
-		//Karazy.config.channelReconnectTimeout ||
-		channelReconnectTimeout =  10000,
+		channelReconnectTimeout = Karazy.config.channelReconnectTimeout ||  10000,
 		//a factor by which the intervall for requesting a new token increases over time to prevent mass channel creations
 		channelReconnectFactor = 1.3,
 		//the status for the connection
@@ -59,7 +59,7 @@ Karazy.channel = (function() {
 		console.log('channel opened');
 		connectionLost = false;	
 		timedOut = false;		
-		// channelReconnectTimeout = Karazy.config.channelReconnectTimeout;
+		channelReconnectTimeout = Karazy.config.channelReconnectTimeout;
 
 		setStatusHelper('ONLINE');
 		statusHandlerFunction.apply(executionScope, [{
@@ -189,8 +189,8 @@ Karazy.channel = (function() {
 				if(connectionStatus == 'ONLINE' || connectionStatus == 'DISCONNECTED') {
 					return;
 				}
-				//Karazy.config.channelReconnectTries
-				if(tries > 20) {
+
+				if(tries > Karazy.config.channelReconnectTries) {
 					console.log('Maximum tries reached. No more connection attempts.')
 					setStatusHelper('DISCONNECTED');	
 					if(Karazy.util.isFunction(statusHandlerFunction)) {

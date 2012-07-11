@@ -5,7 +5,7 @@
 Ext.define('EatSense.view.SpotDetail', {
 	extend: 'Ext.Panel',
 	xtype: 'spotdetail',
-	requires: ['EatSense.view.SpotDetailItem'],
+	requires: ['EatSense.view.SpotDetailItem', 'EatSense.util.Helper'],
 	config: {
 		modal: true,
 		hideOnMaskTap: 'true',
@@ -41,7 +41,7 @@ Ext.define('EatSense.view.SpotDetail', {
 					xtype: 'button',
 					action: 'close',
 					// baseCls: 'spotdetail-close',
-					text: Karazy.i18n.translate('close'),
+					text: i10n.translate('close'),
 					align: 'right'
 			}
 			]
@@ -61,7 +61,7 @@ Ext.define('EatSense.view.SpotDetail', {
 			width: 200,
 			items: [{
 				xtype: 'label',
-				html: Karazy.i18n.translate('spotDetailCustomerLabel'),
+				html: i10n.translate('spotDetailCustomerLabel'),
 				docked: 'top',
 				cls: 'spotdetailitem-customer-label'
 			},{
@@ -103,7 +103,7 @@ Ext.define('EatSense.view.SpotDetail', {
 						{
 							xtype: 'label',
 							itemId: 'title',					
-							html: '<p>'+Karazy.i18n.translate('statistic')+'</p>'
+							html: '<p>'+i10n.translate('statistic')+'</p>'
 						},
 						{
 							xtype: 'label',
@@ -123,7 +123,8 @@ Ext.define('EatSense.view.SpotDetail', {
 							tpl: new Ext.XTemplate('<p>Total: {[this.formatPrice(values.total)]}</p>',
 								{
 									formatPrice: function(price) {
-										return Karazy.util.formatPrice(price);
+										return EatSense.util.Helper.formatPrice(price);
+										// return appHelper.formatPrice(price);
 									}
 								}
 							)
@@ -145,7 +146,7 @@ Ext.define('EatSense.view.SpotDetail', {
 						tpl: new Ext.XTemplate('<table width="100%"><td width="100px">Status:</td><td align="right" class="{[values.status.toLowerCase()]}">{[this.translateStatus(values.status)]}</td></table>',
 							{
 								translateStatus: function(status) {
-									return Karazy.i18n.translate(status);
+									return i10n.translate(status);
 								}
 							}
 						)
@@ -155,10 +156,10 @@ Ext.define('EatSense.view.SpotDetail', {
 						itemId: 'paymentLabel',
 						cls: 'spotdetail-status',
 						hidden: true,
-						tpl: new Ext.XTemplate('<table><td width="100px">'+Karazy.i18n.translate('paymentMethodLabel')+':</td><td class="payment">{paymentMethod}</td></table>',
+						tpl: new Ext.XTemplate('<table><td width="100px">'+i10n.translate('paymentMethodLabel')+':</td><td class="payment">{paymentMethod}</td></table>',
 							{
 								translateStatus: function(status) {
-									return Karazy.i18n.translate(status);
+									return i10n.translate(status);
 								}
 							}
 						)
@@ -170,7 +171,7 @@ Ext.define('EatSense.view.SpotDetail', {
 					xtype: 'button',
 					action: 'confirm-all',
 					disabled: true,
-					text: Karazy.i18n.translate('confirmAllOrdersButton'),
+					text: i10n.translate('confirmAllOrdersButton'),
 					ui: 'action',
 					// cls: 'spotdetail-toolbar-button',
 					right: 5,
@@ -199,17 +200,17 @@ Ext.define('EatSense.view.SpotDetail', {
 				},
 				items: [
 				{
-					text: Karazy.i18n.translate('paidButton'),
+					text: i10n.translate('paidButton'),
 					action: 'paid',
 					disabled: true
 				},
 				{
-					text: Karazy.i18n.translate('switchSpotButton'),
+					text: i10n.translate('switchSpotButton'),
 					action: 'switch-spot',
 					disabled: true
 				},
 				{
-					text: Karazy.i18n.translate('cancelAllOrdersButton'),
+					text: i10n.translate('cancelAllOrdersButton'),
 					action: 'cancel-all',
 					disabled: true
 					// iconCls: 'cancel-all'

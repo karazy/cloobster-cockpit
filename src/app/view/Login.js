@@ -46,7 +46,7 @@ Ext.define('EatSense.view.Login', {
 					value : 0,
 					labelWidth: '40%',
 					width: '100%',
-					label : Karazy.i18n.translate('savePasswordToggle'),
+					label : i10n.translate('savePasswordToggle'),
 				},
 				{
 					xtype: 'button',

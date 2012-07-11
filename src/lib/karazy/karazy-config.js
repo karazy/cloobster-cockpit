@@ -13,7 +13,7 @@ Karazy.config = (function() {
 		msgboxHideLongTimeout: 1500,
 		currencyFormat: 'EURO',
 		version: 0.1,
-		disableCaching: true,
+		disableCaching: false,
 		language: 'DE',
 		channelReconnectTimeout: 10000,
 		channelReconnectTries: 20,

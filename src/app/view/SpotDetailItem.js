@@ -34,7 +34,7 @@ Ext.define('EatSense.view.SpotDetailItem', {
 						"</tpl>" +
 					"</tpl>" +
 					"<tpl if='comment!=\"\"'>" +
-					"<p>"+Karazy.i18n.translate('comment')+": {comment}</p>" +
+					"<p>"+i10n.translate('comment')+": {comment}</p>" +
 					"</tpl>" +
 				"</div>" 
 				, {
@@ -53,7 +53,7 @@ Ext.define('EatSense.view.SpotDetailItem', {
 					return result;
 				},
 				formatPrice: function(price) {
-					return Karazy.util.formatPrice(price);
+					return appHelper.formatPrice(price);
 				}
 			})
 		},
@@ -158,23 +158,23 @@ Ext.define('EatSense.view.SpotDetailItem', {
 		// this.getName().setHtml(newRecord.raw.product.name);
 		this.getName().getTpl().overwrite(this.getName().element, newRecord.getData(true));
 
-		if(newRecord.get('status') == Karazy.constants.Order.PLACED) {
-			this.getFlag().setHtml(Karazy.i18n.translate('PLACED'));
+		if(newRecord.get('status') == appConstants.Order.PLACED) {
+			this.getFlag().setHtml(i10n.translate('PLACED'));
 			this.getFlag().show();			
 			this.getConfirmButton().enable();
 			this.getCancelButton().enable();
-		} else if(newRecord.get('status') == Karazy.constants.Order.RECEIVED) {
+		} else if(newRecord.get('status') == appConstants.Order.RECEIVED) {
 			this.getFlag().hide();		
 			this.getConfirmButton().disable();
 			this.getCancelButton().enable();
-		} else if(newRecord.get('status') == Karazy.constants.Order.CANCELED) {
+		} else if(newRecord.get('status') == appConstants.Order.CANCELED) {
 			// this.getName().addCls('spotdetailitem-order-cancel');
 			this.getFlag().hide();
 			this.getConfirmButton().disable();
 			this.getCancelButton().disable();
 		}
 
-		(newRecord.get('status') == Karazy.constants.Order.CANCELED) ? 
+		(newRecord.get('status') == appConstants.Order.CANCELED) ? 
 			this.getName().addCls('spotdetailitem-order-cancel') : this.getName().removeCls('spotdetailitem-order-cancel');
 
 		//overrides the default updateRecord, so we need to call ist (perhabs we can remove this call completely?!)

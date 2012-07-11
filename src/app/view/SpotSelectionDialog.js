@@ -13,7 +13,7 @@ Ext.define('EatSense.view.SpotSelectionDialog', {
 		{
 			xtype: 'titlebar',
 			docked: 'top',
-			title: Karazy.i18n.translate('spotSelectionTitle')
+			title: i10n.translate('spotSelectionTitle')
 		},
 		{
 			xtype: 'list',

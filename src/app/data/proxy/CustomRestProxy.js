@@ -1,7 +1,7 @@
 Ext.define('EatSense.data.proxy.CustomRestProxy', {
 	override: 'Ext.data.proxy.Rest',
 	  buildUrl: function(request) {		
-	        var  me = this, _serviceUrl = Karazy.config.serviceUrl, 
+	        var  me = this, _serviceUrl = appConfig.serviceUrl, 
 	        	url = me.getUrl(request),
 	        	params = request.getParams() || {},
 	        	defaultHeaders = Ext.Ajax.getDefaultHeaders() || {};

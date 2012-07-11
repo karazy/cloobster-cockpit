@@ -15,7 +15,7 @@ Ext.define('EatSense.view.SpotItem', {
 		},
 
 		 cls: 'di-cls',
-		 baseCls: 'di-baseCls'
+		 baseCls: 'di-baseCls',
 	},
 
 	applySpot: function(config) {
@@ -25,13 +25,13 @@ Ext.define('EatSense.view.SpotItem', {
 		
 		button.getTpl().overwrite(button.element, this.getRecord().getData());
 
-			if(status == Karazy.constants.ORDER_PLACED  
-				|| status == Karazy.constants.PAYMENT_REQUEST){
+			if(status == appConstants.ORDER_PLACED  
+				|| status == appConstants.PAYMENT_REQUEST){
 				button.addCls('spotitem-placed');
 				button.removeCls('spotitem-checkedin');
 				button.removeCls('spotitem-request');
 			}
-			else if (status == Karazy.constants.Request.CALL_WAITER) {
+			else if (status == appConstants.Request.CALL_WAITER) {
 				button.addCls('spotitem-request');
 				button.removeCls('spotitem-checkedin');
 				button.removeCls('spotitem-placed');
@@ -68,13 +68,13 @@ Ext.define('EatSense.view.SpotItem', {
 				status = newRecord.get('status');
 
 			if(this.getSpot()) {						
-				if(status == Karazy.constants.ORDER_PLACED  
-					|| status == Karazy.constants.PAYMENT_REQUEST){
+				if(status == appConstants.ORDER_PLACED  
+					|| status == appConstants.PAYMENT_REQUEST){
 					button.addCls('spotitem-placed');
 					button.removeCls('spotitem-checkedin');
 					button.removeCls('spotitem-request');
 				}
-				else if (status == Karazy.constants.Request.CALL_WAITER) {
+				else if (status == appConstants.Request.CALL_WAITER) {
 					button.addCls('spotitem-request');
 					button.removeCls('spotitem-checkedin');
 					button.removeCls('spotitem-placed');

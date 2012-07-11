@@ -5,6 +5,7 @@
 */
 Ext.define('EatSense.controller.Message', {
 	extend: 'Ext.app.Controller',
+	requires: ['EatSense.util.Channel'],
 	config: {
 		refs: 
 		{
@@ -66,7 +67,7 @@ Ext.define('EatSense.controller.Message', {
 		if(message.type == 'channel') {
 			console.log('received service message ' + message.action);
 			if(message.action == 'connected') {
-				Karazy.channel.connectedReceived();
+				appChannel.connectedReceived();
 			}
 		}
 		else {
@@ -83,7 +84,7 @@ Ext.define('EatSense.controller.Message', {
 	* @param connectionCallback
 	*	
 	*/
-	requestNewToken: function(successCallback, connectionCallback) {
+	requestNewToken: function(successCallback, connectionCallback, scope) {
 		var me = this,
 			account = this.getApplication().getController('Login').getAccount(),
 			login = account.get('login'),
@@ -92,7 +93,7 @@ Ext.define('EatSense.controller.Message', {
 		account.set('clientId', clientId);
 		console.log('requestNewToken: clientId ' + clientId);
 		Ext.Ajax.request({
-		    url: Karazy.config.serviceUrl+'/accounts/'+login+'/tokens',		    
+		    url: appConfig.serviceUrl+'/accounts/'+login+'/tokens',		    
 		    method: 'POST',
 		    params: {
 		    	'businessId' :  account.get('businessId'),
@@ -100,7 +101,11 @@ Ext.define('EatSense.controller.Message', {
 		    },
 		    success: function(response){
 		       	token = response.responseText;
-		       	successCallback(token);
+		       	if(scope) {
+		       		successCallback.apply(scope, [token]);
+		       	} else {
+		       		successCallback(token);	
+		       	}		       	
 		       	connectionCallback();
 		    }, 
 		    failure: function(response) {
@@ -126,7 +131,7 @@ Ext.define('EatSense.controller.Message', {
 		
 		console.log('checkOnline: clientId ' + clientId);
 		Ext.Ajax.request({
-		    url: Karazy.config.serviceUrl+'/accounts/channels',		    
+		    url: appConfig.serviceUrl+'/accounts/channels',		    
 		    method: 'GET',
 		    params: {
 		    	'businessId' :  account.get('businessId'),
@@ -151,7 +156,7 @@ Ext.define('EatSense.controller.Message', {
 	openChannel: function() {
 		var		me = this;
 
-		Karazy.channel.setup({
+		appChannel.setup({
 			messageHandler: me.processMessages,
 			requestTokenHandler: me.requestNewToken,
 			statusHandler: me.handleStatus,
@@ -166,7 +171,7 @@ Ext.define('EatSense.controller.Message', {
 	*/
 	refreshAll: function(start) {
 		var me = this,
-			heartbeatInterval = Karazy.config.heartbeatInterval || 10000,
+			heartbeatInterval = appConfig.heartbeatInterval || 10000,
 			interval;
 
 		if(start === true && !me.getPollingActive()) {

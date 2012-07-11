@@ -1,5 +1,5 @@
 Ext.define('EatSense.view.Main', {
-	extend: 'Ext.TabPanel',
+	extend: 'Ext.tab.Panel',
 	xtype: 'main',
 	requires: ['EatSense.view.Spot'],
 	config: {
@@ -37,7 +37,7 @@ Ext.define('EatSense.view.Main', {
 			xtype: 'panel',
 			layout: 'fit',					
 			docked: 'bottom',
-			hidden: !Karazy.config.debug,	
+			hidden: !appConfig.debug,	
 			height: 150,			
 			items: [
 			{

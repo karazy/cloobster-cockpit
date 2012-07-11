@@ -10,7 +10,7 @@ Ext.define('EatSense.view.ChooseBusiness', {
 		items: [
 		{
 			xtype: 'label',
-			html: '<h1>'+Karazy.i18n.translate('chooseStore')+'</h1>',
+			html: '<h1>'+i10n.translate('chooseStore')+'</h1>',
 			docked: 'top'
 		},
 		{
@@ -24,7 +24,7 @@ Ext.define('EatSense.view.ChooseBusiness', {
 			xtype: 'button',
 			action: 'cancel',
 			docked: 'bottom',
-			text: Karazy.i18n.translate('cancel'),
+			text: i10n.translate('cancel'),
 		}]
 	}
 });

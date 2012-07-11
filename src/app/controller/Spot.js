@@ -119,7 +119,7 @@ Ext.define('EatSense.controller.Spot', {
 						'error': operation.error, 
 						'forceLogout': true, 
 						'hideMessage':false
-						// 'message': Karazy.i18n.translate('errorSpotLoading')
+						// 'message': i10n.translate('errorSpotLoading')
 					});
 			 	}				
 			 },
@@ -179,7 +179,7 @@ Ext.define('EatSense.controller.Spot', {
 						'error': operation.error, 
 						'forceLogout': {403: true},
 						'hideMessage':false
-						// 'message': Karazy.i18n.translate('errorSpotDetailCheckInLoading')
+						// 'message': i10n.translate('errorSpotDetailCheckInLoading')
 					});
 			 	}				
 			 },
@@ -220,7 +220,7 @@ Ext.define('EatSense.controller.Spot', {
 		this.refreshActiveCustomerOrders();
 		this.refreshActiveCustomerPayment();
 
-		// if(me.getActiveCustomer().get('status') == Karazy.constants.PAYMENT_REQUEST) {
+		// if(me.getActiveCustomer().get('status') == appConstants.PAYMENT_REQUEST) {
 		// 	paidButton.enable();
 		// 	billStore.load({
 		// 		params: {
@@ -278,7 +278,7 @@ Ext.define('EatSense.controller.Spot', {
 						'error': operation.error, 
 						'forceLogout': {403: true},
 						'hideMessage':false
-						// 'message': Karazy.i18n.translate('errorSpotDetailCheckInLoading')
+						// 'message': i10n.translate('errorSpotDetailCheckInLoading')
 					});
 			 	}				
 			 }
@@ -312,7 +312,7 @@ Ext.define('EatSense.controller.Spot', {
 						'error': operation.error, 
 						'forceLogout': {403: true}, 
 						'hideMessage':false
-						// 'message': Karazy.i18n.translate('errorSpotDetailOrderLoading')
+						// 'message': i10n.translate('errorSpotDetailOrderLoading')
 					});
 			 	}				
 			 }
@@ -332,7 +332,7 @@ Ext.define('EatSense.controller.Spot', {
 			return;
 		}
 
-		if(me.getActiveCustomer().get('status') == Karazy.constants.PAYMENT_REQUEST) {
+		if(me.getActiveCustomer().get('status') == appConstants.PAYMENT_REQUEST) {
 			paidButton.enable();
 			billStore.load({
 				params: {
@@ -433,16 +433,16 @@ Ext.define('EatSense.controller.Spot', {
 							me.updateCustomerStatusPanel(updatedCheckIn);
 							if(action == 'confirm-orders') {
 								orders.queryBy(function(order){
-									if(order.get('status') == Karazy.constants.Order.PLACED) {
+									if(order.get('status') == appConstants.Order.PLACED) {
 										return true;
 									}
 								}).each(function(order) {
-									order.set('status', Karazy.constants.Order.RECEIVED);
+									order.set('status', appConstants.Order.RECEIVED);
 								});
 							}
 						}
 					} else {
-						Ext.Msg.alert(Karazy.i18n.translate('error'), Karazy.i18n.translate('errorGeneralCommunication'), Ext.emptyFn);
+						Ext.Msg.alert(i10n.translate('error'), i10n.translate('errorGeneralCommunication'), Ext.emptyFn);
 					}
 				} else if (action == "delete") {
 					dirtyCheckIn = store.getById(updatedCheckIn.get('id'));
@@ -592,11 +592,11 @@ Ext.define('EatSense.controller.Spot', {
 			//if orders exist calculate total sum 
 			try {
 				Ext.each(orders, function(o) {
-					if(o.get('status') != Karazy.constants.Order.CANCELED) {
+					if(o.get('status') != appConstants.Order.CANCELED) {
 						sum += o.calculate();
 					}					
 				});
-				sum = Karazy.util.roundPrice(sum);
+				sum = appHelper.roundPrice(sum);
 			} catch(e) {
 				console.log('failed calculating total price ' + e);
 			}
@@ -640,14 +640,14 @@ Ext.define('EatSense.controller.Spot', {
 				order = button.getParent().getRecord(),
 				prevStatus = order.get('status');
 
-		if(order.get('status') == Karazy.constants.Order.RECEIVED) {
+		if(order.get('status') == appConstants.Order.RECEIVED) {
 			console.log('order already confirmed')
 			//you can confirm an order only once
 			return;
 		};
 
 		//update order status
-		order.set('status', Karazy.constants.Order.RECEIVED);
+		order.set('status', appConstants.Order.RECEIVED);
 		order.getData(true);
 
 		//persist changes
@@ -659,15 +659,15 @@ Ext.define('EatSense.controller.Spot', {
 		// 		console.log('order confirmed');
 		// 	},
 		// 	failure: function(record, operation) {
-		// 		order.set('status', Karazy.constants.Order.PLACED);
-		// 		Ext.Msg.alert(Karazy.i18n.translate('error'), Karazy.i18n.translate('errorSpotDetailOrderSave'), Ext.emptyFn);
+		// 		order.set('status', appConstants.Order.PLACED);
+		// 		Ext.Msg.alert(i10n.translate('error'), i10n.translate('errorSpotDetailOrderSave'), Ext.emptyFn);
 		// 	}
 		// });
 
 		//same approach as in eatSense App. Magic lies in getRawJsonData()
 		//still kind of a workaround
 		Ext.Ajax.request({				
-    	    url: Karazy.config.serviceUrl+'/b/businesses/'+loginCtr.getAccount().get('businessId')+'/orders/'+order.getId(),
+    	    url: appConfig.serviceUrl+'/b/businesses/'+loginCtr.getAccount().get('businessId')+'/orders/'+order.getId(),
     	    method: 'PUT',    	    
     	    jsonData: order.getRawJsonData(),
     	    scope: this,
@@ -683,7 +683,7 @@ Ext.define('EatSense.controller.Spot', {
 						}, 
 						'forceLogout': {403: true}, 
 						'hideMessage':false
-						// 'message': Karazy.i18n.translate('errorSpotDetailOrderSave')
+						// 'message': i10n.translate('errorSpotDetailOrderSave')
 				});
 	   	    }
 		});
@@ -711,14 +711,14 @@ Ext.define('EatSense.controller.Spot', {
 
 		//check if all orders are processed
 		unprocessedOrders = orderStore.queryBy(function(record, id) {
-			if(record.get('status') == Karazy.constants.Order.PLACED) {
+			if(record.get('status') == appConstants.Order.PLACED) {
 				return true;
 			}
 
 		});
 
 		if(unprocessedOrders.getCount() > 0 ) {
-			Ext.Msg.alert(Karazy.i18n.translate('hint'), Karazy.i18n.translate('processOrdersFirst'), Ext.emptyFn);
+			Ext.Msg.alert(i10n.translate('hint'), i10n.translate('processOrdersFirst'), Ext.emptyFn);
 		} else {
 			bill.set('cleared', true);
 			bill.save({
@@ -757,7 +757,7 @@ Ext.define('EatSense.controller.Spot', {
 					me.getApplication().handleServerError({
 						'error': operation.error,
 						'forceLogout': {403: true}
-						// 'message': Karazy.i18n.translate('errorSpotDetailOrderSave')
+						// 'message': i10n.translate('errorSpotDetailOrderSave')
 					});
 				}
 			});			
@@ -775,21 +775,21 @@ Ext.define('EatSense.controller.Spot', {
 				order = button.getParent().getRecord(),
 				prevStatus = order.get('status');
 
-		if(order.get('status') == Karazy.constants.Order.CANCELED) {
+		if(order.get('status') == appConstants.Order.CANCELED) {
 			console.log('order already canceled')
 			//you can cancel an order only once
 			return;
 		};
 
 		Ext.Msg.show({
-			title: Karazy.i18n.translate('hint'),
-			message: Karazy.i18n.translate('cancelOrderQuestion', order.getProduct().get('name')),
+			title: i10n.translate('hint'),
+			message: i10n.translate('cancelOrderQuestion', order.getProduct().get('name')),
 			buttons: [{
-				text: Karazy.i18n.translate('yes'),
+				text: i10n.translate('yes'),
 				itemId: 'yes',
 				ui: 'action'
 			}, {
-				text: Karazy.i18n.translate('no'),
+				text: i10n.translate('no'),
 				itemId: 'no',
 				ui: 'action'
 			}],
@@ -797,12 +797,12 @@ Ext.define('EatSense.controller.Spot', {
 			fn: function(btnId, value, opt) {
 				if(btnId == 'yes') {
 					//update order status
-					order.set('status', Karazy.constants.Order.CANCELED);
+					order.set('status', appConstants.Order.CANCELED);
 					
 					//same approach as in Cloobster App. Magic lies in getRawJsonData()
 					//still kind of a workaround
 					Ext.Ajax.request({				
-			    	    url: Karazy.config.serviceUrl+'/b/businesses/'+loginCtr.getAccount().get('businessId')+'/orders/'+order.getId(),
+			    	    url: appConfig.serviceUrl+'/b/businesses/'+loginCtr.getAccount().get('businessId')+'/orders/'+order.getId(),
 			    	    method: 'PUT',    	    
 			    	    jsonData: order.getRawJsonData(),
 			    	    scope: this,
@@ -844,8 +844,8 @@ Ext.define('EatSense.controller.Spot', {
 		}
 
 		Ext.Msg.show({
-			title: Karazy.i18n.translate('hint'),
-			message: Karazy.i18n.translate('cancelAllOrders'),
+			title: i10n.translate('hint'),
+			message: i10n.translate('cancelAllOrders'),
 			buttons: [{
 				text: 'Ja',
 				itemId: 'yes',
@@ -915,24 +915,24 @@ Ext.define('EatSense.controller.Spot', {
 
 				//check if all orders are processed
 		unprocessedOrders = orderStore.queryBy(function(record, id) {
-			if(record.get('status') == Karazy.constants.Order.PLACED) {
+			if(record.get('status') == appConstants.Order.PLACED) {
 				return true;
 			}
 		});
 
 		if(unprocessedOrders.getCount() > 0) {
 			Ext.Ajax.request({				
-	    	    url: Karazy.config.serviceUrl+'/b/businesses/'+loginCtr.getAccount().get('businessId')+'/checkins/'+this.getActiveCustomer().getId()+'/cart',
+	    	    url: appConfig.serviceUrl+'/b/businesses/'+loginCtr.getAccount().get('businessId')+'/checkins/'+this.getActiveCustomer().getId()+'/cart',
 	    	    method: 'PUT',
 	    	    jsonData: {}, //empty object needed, otherwise 411 gets thrown
 	    	    success: function(response) {
 	    	    	console.log('all orders confirmed');
 	    	    	orderStore.queryBy(function(order){
-						if(order.get('status') == Karazy.constants.Order.PLACED) {
+						if(order.get('status') == appConstants.Order.PLACED) {
 							return true;
 						}
 					}).each(function(order) {
-						order.set('status', Karazy.constants.Order.RECEIVED);
+						order.set('status', appConstants.Order.RECEIVED);
 					});
 	    	    },
 	    	    failure: function(response) {
@@ -1007,14 +1007,14 @@ Ext.define('EatSense.controller.Spot', {
 
 			//show success message to give user the illusion of success ;)
 			Ext.Msg.show({
-				title : Karazy.i18n.translate('hint'),
-				message : Karazy.i18n.translate('switchSpotMessage', cusomerNickname, spotName),
+				title : i10n.translate('hint'),
+				message : i10n.translate('switchSpotMessage', cusomerNickname, spotName),
 				buttons : []
 			});
 			
 			Ext.defer((function() {
 				Ext.Msg.hide();
-			}), Karazy.config.msgboxHideLongTimeout, this);
+			}), appConfig.msgboxHideLongTimeout, this);
 
 		}
 

@@ -46,12 +46,12 @@ Ext.define('EatSense.model.Choice', {
 
 		if(minOccurence == 1 && maxOccurence == 1 && counter != 1) {
 			//radio button mandatory field
-			validationError += Karazy.i18n.translate('choiceValErrMandatory', this.get('text')) + "<br/>";
+			validationError += i10n.translate('choiceValErrMandatory', this.get('text')) + "<br/>";
 		}
 		else if(counter < minOccurence) {
-			validationError += Karazy.i18n.translate('choiceValErrMin', minOccurence, this.get('text')) + "<br/>";
+			validationError += i10n.translate('choiceValErrMin', minOccurence, this.get('text')) + "<br/>";
 		}else if(counter > maxOccurence && maxOccurence > 0) {
-			validationError += Karazy.i18n.translate('choiceValErrMin', maxOccurence, this.get('text')) + "<br/>";
+			validationError += i10n.translate('choiceValErrMin', maxOccurence, this.get('text')) + "<br/>";
 		}
 		return (validationError.toString().length == 0) ? true : false;
 	},

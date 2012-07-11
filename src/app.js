@@ -1,9 +1,7 @@
-Karazy.i18n.setLang('DE');
-
 Ext.Loader.setConfig({
 	enabled : true,
     //WORKAORUND related to Android 3x Bug and Webview URL handling
-    disableCaching: Karazy.config.disableCaching
+    disableCaching: false//EatSense.util.Configuration.disableCaching
 });
 
 Ext.Loader.setPath('EatSense', 'app');
@@ -22,6 +20,13 @@ Ext.application({
 		'Ext.Label',
 		'Ext.TitleBar',
         'Ext.MessageBox',
+        //util
+        'EatSense.util.Constants',
+        'EatSense.util.Configuration',
+        'EatSense.util.Helper',
+        'EatSense.util.Translations',
+        'EatSense.util.Localization',
+        'EatSense.util.Channel',
 		//require custom types
 		'EatSense.data.proxy.CustomRestProxy',
 		'EatSense.data.proxy.OperationImprovement'],
@@ -39,7 +44,7 @@ Ext.application({
 	launch : function() {
 		console.log('launch cockpit ...');
 
-    if(Karazy.config.debug) {        
+    if(appConfig.debug) {        
         (function() {
             var exLog = console.log,
                 debugConsole,
@@ -89,7 +94,7 @@ Ext.application({
         if(error && typeof error.status == 'number') {
             console.log('handle error: '+ error.status + ' ' + error.statusText);
             if(!hideMessage) {
-                Karazy.util.toggleAlertActive(true);
+                appHelper.toggleAlertActive(true);
             }
             switch(error.status) {
                 case 403:
@@ -97,11 +102,11 @@ Ext.application({
                     if(typeof message == "object" && message[403]) {
                         errMsg = message[403];
                     } else {
-                        errMsg = (typeof message == "string") ? message : Karazy.i18n.translate('errorPermission');
+                        errMsg = (typeof message == "string") ? message : i10n.translate('errorPermission');
                     }
                     
                     if(forceLogout && (forceLogout[403] === true || forceLogout === true)) {
-                        this.fireEvent('statusChanged', Karazy.constants.FORCE_LOGOUT);
+                        this.fireEvent('statusChanged', appConstants.FORCE_LOGOUT);
                     }
                     break;
                 case 404:
@@ -109,10 +114,10 @@ Ext.application({
                     if(typeof message == "object" && message[404]) {
                         errMsg =  message[404];
                     } else {
-                        errMsg = (typeof message == "string") ? message : Karazy.i18n.translate('errorResource');
+                        errMsg = (typeof message == "string") ? message : i10n.translate('errorResource');
                     }
                     if(forceLogout && (forceLogout[404] === true || forceLogout === true)) {
-                        this.fireEvent('statusChanged', Karazy.constants.FORCE_LOGOUT);
+                        this.fireEvent('statusChanged', appConstants.FORCE_LOGOUT);
                     }
                     break;
                 case 0:
@@ -120,10 +125,10 @@ Ext.application({
                     if(typeof message == "object" && message[0]) {
                         errMsg = message[0];
                     } else {
-                        errMsg = (typeof message == "string") ? message : Karazy.i18n.translate('errorCommunication');
+                        errMsg = (typeof message == "string") ? message : i10n.translate('errorCommunication');
                     }
                     if(forceLogout && (forceLogout[0] === true || forceLogout === true)) {
-                        this.fireEvent('statusChanged', Karazy.constants.FORCE_LOGOUT);
+                        this.fireEvent('statusChanged', appConstants.FORCE_LOGOUT);
                     }
                     break;
                 default:
@@ -132,20 +137,20 @@ Ext.application({
                     } else {
                         try {
                         	nestedError = Ext.JSON.decode(error.responseText);
-                        	errMsg = Karazy.i18n.translate(nestedError.errorKey,nestedError.substitutions);                        
+                        	errMsg = i10n.translate(nestedError.errorKey,nestedError.substitutions);                        
                         } catch (e) {
-                            errMsg = (typeof message == "string") ? message : Karazy.i18n.translate('errorMsg');
+                            errMsg = (typeof message == "string") ? message : i10n.translate('errorMsg');
                         }
                     }
                     if(forceLogout && (forceLogout[500] === true || forceLogout === true)) {
-                        this.fireEvent('statusChanged', Karazy.constants.FORCE_LOGOUT);
+                        this.fireEvent('statusChanged', appConstants.FORCE_LOGOUT);
                     }                                         
                     break;
             }
         }
         if(!hideMessage) {
-            Ext.Msg.alert(Karazy.i18n.translate('errorTitle'), errMsg, function() {
-                Karazy.util.toggleAlertActive(false);
+            Ext.Msg.alert(i10n.translate('errorTitle'), errMsg, function() {
+                appHelper.toggleAlertActive(false);
             }); 
         }
     }

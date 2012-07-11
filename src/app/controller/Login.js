@@ -131,16 +131,16 @@ Ext.define('EatSense.controller.Login', {
 						if(operation.error) {
 							//not authorized
 							if(operation.error.status == "401" || operation.error.status == "403") {
-								errorMessage = Karazy.i18n.translate('restoreCredentialsErr');
+								errorMessage = i10n.translate('restoreCredentialsErr');
 								//login data not valid. delete
 								accountLocalStore.removeAll();
 								accountLocalStore.sync();
 							} else if (operation.error.status == "404") {
-								errorMessage = Karazy.i18n.translate('resourceNotAvailable');
+								errorMessage = i10n.translate('resourceNotAvailable');
 							}
 						} 
 
-						(!errorMessage || errorMessage == "") ?	errorMessage = Karazy.i18n.translate('restoreCredentialsErr') : errorMessage;
+						(!errorMessage || errorMessage == "") ?	errorMessage = i10n.translate('restoreCredentialsErr') : errorMessage;
 
 
 						me.getApplication().handleServerError({
@@ -181,7 +181,7 @@ Ext.define('EatSense.controller.Login', {
 
 		if(Ext.String.trim(login).length == 0 || Ext.String.trim(password).length == 0) {
 			
-			Ext.Msg.alert(Karazy.i18n.translate('error'), Karazy.i18n.translate('needCredentials')); 
+			Ext.Msg.alert(i10n.translate('error'), i10n.translate('needCredentials')); 
 			return;
 		}
 
@@ -212,13 +212,13 @@ Ext.define('EatSense.controller.Login', {
 				if(operation.error) {
 					//not authorized
 					if(operation.error.status == "401" || operation.error.status == "403") {
-						errorMessage = Karazy.i18n.translate('wrongCredentials');
+						errorMessage = i10n.translate('wrongCredentials');
 					} else if (operation.error.status == "404") {
-						errorMessage = Karazy.i18n.translate('resourceNotAvailable');
+						errorMessage = i10n.translate('resourceNotAvailable');
 					}
 				} 
 
-				(!errorMessage || errorMessage == "") ?	errorMessage = Karazy.i18n.translate('wrongCredentials') : errorMessage;			
+				(!errorMessage || errorMessage == "") ?	errorMessage = i10n.translate('wrongCredentials') : errorMessage;			
 
 				me.getApplication().handleServerError({
 					'error': operation.error, 
@@ -261,7 +261,7 @@ Ext.define('EatSense.controller.Login', {
 		}
 
 
-		Karazy.channel.closeChannel();
+		appChannel.closeChannel();
 		//remove all stored credentials
 		accountLocalStore.removeAll();
 		accountLocalStore.sync();
@@ -283,14 +283,14 @@ Ext.define('EatSense.controller.Login', {
 		var 	me = this;
 
 			Ext.Msg.show({
-				title: Karazy.i18n.translate('hint'),
-				message: Karazy.i18n.translate('logoutQuestion'),
+				title: i10n.translate('hint'),
+				message: i10n.translate('logoutQuestion'),
 				buttons: [{
-					text: Karazy.i18n.translate('yes'),
+					text: i10n.translate('yes'),
 					itemId: 'yes',
 					ui: 'action'
 				}, {
-					text:  Karazy.i18n.translate('no'),
+					text:  i10n.translate('no'),
 					itemId: 'no',
 					ui: 'action'
 				}],
@@ -325,7 +325,7 @@ Ext.define('EatSense.controller.Login', {
 
 			 		if(!records || records.length == 0) {
 			 			loginPanel.setActiveItem(0);
-			 			Ext.Msg.alert(Karazy.i18n.translate('error'), Karazy.i18n.translate('noBusinessAssigned'), Ext.emptyFn);
+			 			Ext.Msg.alert(i10n.translate('error'), i10n.translate('noBusinessAssigned'), Ext.emptyFn);
 			 		}
 
 			 		if(records.length > 1) {
@@ -343,7 +343,7 @@ Ext.define('EatSense.controller.Login', {
 							'forceLogout': false, 
 							'hideMessage':false
 						}); 
-			 		// Ext.Msg.alert(Karazy.i18n.translate('error'), Karazy.i18n.translate('errorSpotLoading'), Ext.emptyFn);
+			 		// Ext.Msg.alert(i10n.translate('error'), i10n.translate('errorSpotLoading'), Ext.emptyFn);
 			 	}				
 			 },
 			 scope: this
@@ -389,7 +389,7 @@ Ext.define('EatSense.controller.Login', {
 	* Currently only a forceLogout is handled.
 	*/
 	handleStatusChange: function(status) {
-		if(status == Karazy.constants.FORCE_LOGOUT) {
+		if(status == appConstants.FORCE_LOGOUT) {
 			this.logout();
 		}
 	}

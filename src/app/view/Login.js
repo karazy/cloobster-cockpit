@@ -5,36 +5,46 @@ Ext.define('EatSense.view.Login', {
 	config: {
 		fullscreen: true,
 		centered: true,
-		width: 500,
-		height: 400,
+		width: 400,
+		height: 320,
+		// top: '20%',
+		// left: '20%',
+		// right: '20%',
+		// bottom: '20%',
 		layout: {
 			type: 'card',
 			animation: 'fade'
 		},
 		activeItem: 0,
-		// height:200,
 		floatingCls: 'loginbox',
-		// cls: 'loginbox',
 		items: [
 		{
 			xtype: 'panel',
-			padding: '15',
+			padding: '5',
 			layout: {
 				type: 'vbox',
 				align: 'middle',
 				pack: 'center'
 			},
 			items: [
-					{
+				{
+					xtype : 'image',
+					src : 'res/images/logo_cloobster.png',
+					style : 'background-repeat:no-repeat; background-position:center center;',
+					height : 60,
+					width : 185,
+					cls: 'loginbox-field'
+				},	
+				{
 					xtype: 'textfield',
-					label: 'Benutzername',
+					label: i10n.translate('login.field.user'),
 					labelWidth: '40%',
 					width: '100%',
 					name: 'login',
 					cls: 'loginbox-field'
 				}, {
 					xtype: 'passwordfield',
-					label: 'Passwort',
+					label: i10n.translate('login.field.password'),
 					labelWidth: '40%',
 					width: '100%',
 					name: 'password',
@@ -46,12 +56,15 @@ Ext.define('EatSense.view.Login', {
 					value : 0,
 					labelWidth: '40%',
 					width: '100%',
+					margin: '0 0 0.5em 0',
 					label : i10n.translate('savePasswordToggle'),
 				},
 				{
 					xtype: 'button',
 					text: 'Login',
-					action: 'login'
+					action: 'login',
+					ui: 'action',
+					width: '100%'
 				}
 			]
 		},

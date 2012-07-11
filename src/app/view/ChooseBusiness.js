@@ -4,8 +4,6 @@ Ext.define('EatSense.view.ChooseBusiness', {
 	config: {
 		layout: {
 			type: 'fit',
-			// align: 'middle',
-			// pack: 'center'
 		},
 		items: [
 		{
@@ -18,7 +16,6 @@ Ext.define('EatSense.view.ChooseBusiness', {
 			ui: 'round',
 			store: 'businessStore',
 			itemTpl: '<h2>{name}</h2>',
-			// flex: 3
 		},
 		{
 			xtype: 'button',

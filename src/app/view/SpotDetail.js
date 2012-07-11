@@ -172,7 +172,6 @@ Ext.define('EatSense.view.SpotDetail', {
 					disabled: true,
 					text: i10n.translate('confirmAllOrdersButton'),
 					ui: 'action',
-					// cls: 'spotdetail-toolbar-button',
 					right: 5,
 					bottom: 5
 				}]
@@ -212,9 +211,6 @@ Ext.define('EatSense.view.SpotDetail', {
 					text: i10n.translate('cancelAllOrdersButton'),
 					action: 'cancel-all',
 					disabled: true
-					// iconCls: 'cancel-all'
-					// icon: '../app/res/images/into_cart.png',
-					// iconAlign: 'centered',
 				}
 				]				
 			}

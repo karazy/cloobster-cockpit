@@ -6,6 +6,7 @@ Ext.define('EatSense.util.Configuration', {
 		msgboxHideLongTimeout: 1500,
 		currencyFormat: 'EURO',
 		version: 0.1,
+		//true means caching is disabled
 		disableCaching: true,
 		language: 'DE',
 		channelReconnectTimeout: 10000,

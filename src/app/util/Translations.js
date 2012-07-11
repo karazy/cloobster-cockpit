@@ -27,6 +27,8 @@ Ext.define('EatSense.util.Translations',{
 		"noBusinessAssigned" : "Dein Benutzer ist keinem Betrieb zugewiesen.",
 		"restoreCredentialsErr" : "Login mit gespeicherten Daten fehlgeschlagen.",
 		"chooseStore" : "Filiale auswählen",
+		"login.field.user" : "Benutzername",
+		"login.field.password" : "Passwort",
 		//spot
 		"errorSpotLoading" : "Laden der Daten fehlgeschlagen!",
 		//spot details

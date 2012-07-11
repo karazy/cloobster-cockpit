@@ -13,7 +13,6 @@ Ext.define('EatSense.controller.Spot', {
 			spotcard: 'spotcard',
 			mainview: 'main',
 			info: 'toolbar[docked=bottom] #info',
-			//<spot-detail>
 			spotDetail: {
 		        selector: 'spotdetail',
 		        xtype: 'spotdetail',
@@ -35,7 +34,6 @@ Ext.define('EatSense.controller.Spot', {
 		    	autoCreate: true
 		    },
 		    switchSpotList: 'spotselection list',
-		    //</spot-detail>
 		},
 
 		control : {
@@ -94,7 +92,7 @@ Ext.define('EatSense.controller.Spot', {
 		messageCtr.on('eatSense.refresh-all', this.loadSpots, this);
 	},
 
-	// <LOAD AND SHOW DATA>
+	// start load and show data
 	/**
 	*	Loads all spots and refreshes spot view.
 	*	Called after a successful login or credentials restore.
@@ -219,29 +217,6 @@ Ext.define('EatSense.controller.Spot', {
 
 		this.refreshActiveCustomerOrders();
 		this.refreshActiveCustomerPayment();
-
-		// if(me.getActiveCustomer().get('status') == appConstants.PAYMENT_REQUEST) {
-		// 	paidButton.enable();
-		// 	billStore.load({
-		// 		params: {
-		// 			pathId: restaurantId,
-		// 			checkInId: record.get('id'),
-		// 		},
-		// 		 callback: function(records, operation, success) {
-		// 		 	if(success && records.length == 1) { 
-		// 		 		me.setActiveBill(records[0]);
-		// 		 		me.updateCustomerPaymentMethod(records[0].getPaymentMethod().get('name'));
-		// 		 	} else {				 		
-		// 	    		me.updateCustomerPaymentMethod();
-		// 		 	}				
-		// 		 },
-		// 		 scope: this
-		// 	});
-		// } else {
-		// 	//make sure to hide payment method label
-		// 	me.updateCustomerPaymentMethod();
-		// 	paidButton.disable();
-		// }
 	},
 	/**
 	* @private
@@ -268,17 +243,11 @@ Ext.define('EatSense.controller.Spot', {
 			 			me.refreshActiveCustomerOrders();
 						me.refreshActiveCustomerPayment();
 			 		}
-			 		// me.getSpotDetailCustomerList().select(me.getActiveCustomer());
-			 		// me.setActiveCustomer(me.getSpotDetailCustomerList().getSelection()[0]);
-			 		// if(records.length > 0) {			 			
-			 		// 	me.getSpotDetailCustomerList().select(0);
-			 		// }
 			 	} else {
 			 		me.getApplication().handleServerError({
 						'error': operation.error, 
 						'forceLogout': {403: true},
 						'hideMessage':false
-						// 'message': i10n.translate('errorSpotDetailCheckInLoading')
 					});
 			 	}				
 			 }
@@ -355,9 +324,9 @@ Ext.define('EatSense.controller.Spot', {
 			paidButton.disable();
 		}
 	},
-	// </LOAD AND SHOW DATA>
+	// end load and show data
 
-	//<PUSH MESSAGE HANDLERS>
+	// start push message handlers
 
 	/**
 	*	Takes a spot and refreshes the associated item in view.
@@ -551,9 +520,9 @@ Ext.define('EatSense.controller.Spot', {
 		}
 	},
 
-	// </PUSH MESSAGE HANDLERS>
+	// end push message handlers
 
-	//<VIEW UPDATE METHODS>
+	// start view update methods
 
 	/**
 	*	Updates the status panel of selected customer in spotdetail view.
@@ -624,9 +593,9 @@ Ext.define('EatSense.controller.Spot', {
 			paymentLabel.hide();
 		}
 	},
-	//</VIEW UPDATE METHODS>
+	// end view update methods
 
-	// <ACTIONS>
+	// start actions
 
 	/**
 	*	Marks a single order as confirmed. This indicates that the business received 
@@ -1022,9 +991,9 @@ Ext.define('EatSense.controller.Spot', {
 		//prevent list selection
 		return false;
 	},
-	// </ACTIONS>
+	// end actions
 
-	// <MISC VIEW ACTIONS>
+	// start misc actions
 	/**
 	*	Close spot detail.
 	*
@@ -1060,6 +1029,6 @@ Ext.define('EatSense.controller.Spot', {
 		messageCtr.un('eatSense.refresh-all', this.refreshActiveSpotCheckIns, this);
 	}
 
-	// </MISC VIEW ACTIONS>
+	// end misc actions
 
 })

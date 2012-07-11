@@ -1,7 +1,7 @@
 Ext.Loader.setConfig({
 	enabled : true,
     //WORKAORUND related to Android 3x Bug and Webview URL handling
-    disableCaching: false//EatSense.util.Configuration.disableCaching
+    disableCaching: true //EatSense.util.Configuration.disableCaching
 });
 
 Ext.Loader.setPath('EatSense', 'app');
@@ -35,6 +35,7 @@ Ext.application({
 		57: 'res/images/icon.png',
    		72: 'res/images/icon-72.png',
    		114: 'res/images/icon-114.png'
+        // '144': 'resources/icons/Icon~ipad@2x.png'
 	},
 	glossOnIcon: false,
 
@@ -42,33 +43,10 @@ Ext.application({
 		
 	},
 	launch : function() {
-	console.log('launch cockpit ...');
+    // Destroy the #appLoadingIndicator element
+    Ext.fly('appLoadingIndicator').destroy();
 
-    console.log('checking for updates');
-    //check for appcache updates
-    if (window.applicationCache) {
-        applicationCache.addEventListener('updateready', function() {
-            Ext.Msg.show({
-                title: i10n.translate('update.ready'),
-                message: i10n.translate('update.ready.message'),
-                buttons: [{
-                    text: i10n.translate('yes'),
-                    itemId: 'yes',
-                    ui: 'action'
-                }, {
-                    text: i10n.translate('no'),
-                    itemId: 'no',
-                    ui: 'action'
-                }],
-                scope: this,
-                fn: function(btnId) { 
-                    if(btnId == 'yes') {
-                        window.location.reload();    
-                    }
-                }
-            });
-        });
-    }
+	console.log('launch cockpit ...');
 
     if(appConfig.debug) {        
         (function() {
@@ -83,7 +61,7 @@ Ext.application({
                     debugConsole.setHtml(debugConsole.getHtml() + '<br/>' + Ext.Date.format(date, 'Y-m-d H:i:s') + ' -> ' + msg);
                     debugConsole.getScrollable().getScroller().scrollToEnd();
                 }                
-            }
+            };
         })();
         console.log('Debug mode active!');
     }
@@ -94,6 +72,29 @@ Ext.application({
 	   	//if it fails will display the login mask
 	   	loginCtr.restoreCredentials();
 	},
+    onUpdated: function() {
+        console.log('update found');
+        Ext.Msg.show({
+            title: i10n.translate('update.ready'),
+            message: i10n.translate('update.ready.message'),
+            buttons: [{
+                text: i10n.translate('yes'),
+                itemId: 'yes',
+                ui: 'action'
+            }, {
+                text: i10n.translate('no'),
+                itemId: 'no',
+                ui: 'action'
+            }],
+            scope: this,
+            fn: function(btnId) { 
+                if(btnId == 'yes') {
+                    window.location.reload();    
+                }
+            }
+        });
+    },
+
     //Global utility methods
     /**
     *   Gloabl handler that can be used to handle errors occuring from server requests.

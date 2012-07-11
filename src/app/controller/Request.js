@@ -127,8 +127,6 @@ Ext.define('EatSense.controller.Request',{
 		requestStore.removeAll();
 		requestStore.sync();
 		requestStore.setSyncRemovedRecords(false);
-
-		// this.getCustomerRequestDialog().hide();
 	},
 	/**
 	*	Deletes a single customer request.

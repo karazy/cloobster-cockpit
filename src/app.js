@@ -42,7 +42,33 @@ Ext.application({
 		
 	},
 	launch : function() {
-		console.log('launch cockpit ...');
+	console.log('launch cockpit ...');
+
+    console.log('checking for updates');
+    //check for appcache updates
+    if (window.applicationCache) {
+        applicationCache.addEventListener('updateready', function() {
+            Ext.Msg.show({
+                title: i10n.translate('update.ready'),
+                message: i10n.translate('update.ready.message'),
+                buttons: [{
+                    text: i10n.translate('yes'),
+                    itemId: 'yes',
+                    ui: 'action'
+                }, {
+                    text: i10n.translate('no'),
+                    itemId: 'no',
+                    ui: 'action'
+                }],
+                scope: this,
+                fn: function(btnId) { 
+                    if(btnId == 'yes') {
+                        window.location.reload();    
+                    }
+                }
+            });
+        });
+    }
 
     if(appConfig.debug) {        
         (function() {

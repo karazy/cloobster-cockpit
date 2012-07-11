@@ -15,6 +15,8 @@ Ext.define('EatSense.util.Translations',{
 		"yes" : "Ja",
 		"no" : "Nein",
 		"comment" : "Kommentar",
+		"update.ready" : "Update",
+		"update.ready.message" : "Ein Update ist verfgübar.<br/>Anwendung neu laden?",
 		//tabbar
 		"spotsTitle" : "Tische",
 		//login

@@ -35,6 +35,14 @@ Ext.define('EatSense.util.Channel', {
 	//true when the listener for window event pageshow has been connected
 	pageshowListenerRegistered : null,
 
+	self : null,
+
+	constructor: function() {
+		console.log('Channel constructor');
+		this.self = this;
+
+	},
+
 	onOpen: function() {
 		if(this.connectionStatus == 'ONLINE') {
 			console.log('channel opened already received');
@@ -199,10 +207,10 @@ Ext.define('EatSense.util.Channel', {
 				me.channelReconnectTimeout = (me.channelReconnectTimeout > 300000) ? me.channelReconnectTimeout : me.channelReconnectTimeout * me.channelReconnectFactor;
 				// setupChannel(channelToken);
 				
-				me.requestTokenHandlerFunction.apply(me.executionScope, [me.setupChannel, function() {
+				me.requestTokenHandlerFunction.apply(me.executionScope, [function(token) {me.setupChannel(token)}, function() {
 					console.log('repeatedConnectionTry: Next reconnect try in '+me.channelReconnectTimeout);					
 					window.setTimeout(connect, me.channelReconnectTimeout);
-				}, me]);
+				}]);
 		};
 		connect();
 	},
@@ -218,15 +226,20 @@ Ext.define('EatSense.util.Channel', {
 	*	Token for channel generation
 	*/
 	setupChannel: function(token) {
+		var me = this;
+
 			if(!token) {
 				return;
 			}
 			
 			var handler = new Object();
-			handler.onopen = this.onOpen;
-			handler.onmessage = this.onMessage;
-			handler.onerror = this.onError;
-			handler.onclose = this.onClose;
+			handler.onopen =  function() {
+				me.onOpen();
+			};
+
+			handler.onmessage = function(data) {me.onMessage(data)};
+			handler.onerror = function(error) {me.onError(error)};
+			handler.onclose = function() {me.onClose()};
 
 			console.log('setupChannel: token ' + token);
 

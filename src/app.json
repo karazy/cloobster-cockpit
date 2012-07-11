@@ -35,30 +35,6 @@
         {
             "path": "sdk/sencha-touch.js"
         },
-        // {
-        //     "path" : "lib/karazy/karazy-translations.js",
-        //     "update": "full"
-        // },
-        // {
-        //     "path" : "lib/karazy/karazy-config.js",
-        //     "update": "full"
-        // },
-        // {
-        //     "path" : "lib/karazy/karazy-constants.js",
-        //     "update": "full"
-        // },
-        // {
-        //     "path" : "lib/karazy/karazy-util.js",
-        //     "update": "full"
-        // },
-        // {
-        //     "path" : "lib/karazy/karazy-i18n.js",
-        //     "update": "full"
-        // },
-        // {
-        //     "path" : "lib/karazy/karazy-channel.js",
-        //     "update": "full"
-        // },
         {
             "path": "app.js",
             "bundle": true,  /* Indicates that all class dependencies are concatenated into this file when build */
@@ -120,8 +96,7 @@
        // "resources/images",
        // "resources/icons",
        // "resources/startup",
-        "res/images",
-        "lib/karazy"
+        "res/images"
     ],
 
     /**
@@ -142,7 +117,7 @@
      */
     "buildPaths": {
         "testing": "../build/testing",
-        "production": "../prod",
+        "production": "../build/production",
         "package": "../build/package",
         "native": "../build/native"
     },

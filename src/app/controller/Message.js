@@ -84,7 +84,7 @@ Ext.define('EatSense.controller.Message', {
 	* @param connectionCallback
 	*	
 	*/
-	requestNewToken: function(successCallback, connectionCallback, scope) {
+	requestNewToken: function(successCallback, connectionCallback) {
 		var me = this,
 			account = this.getApplication().getController('Login').getAccount(),
 			login = account.get('login'),
@@ -101,11 +101,7 @@ Ext.define('EatSense.controller.Message', {
 		    },
 		    success: function(response){
 		       	token = response.responseText;
-		       	if(scope) {
-		       		successCallback.apply(scope, [token]);
-		       	} else {
-		       		successCallback(token);	
-		       	}		       	
+		       	successCallback(token);	
 		       	connectionCallback();
 		    }, 
 		    failure: function(response) {

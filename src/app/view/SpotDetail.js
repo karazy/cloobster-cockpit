@@ -5,7 +5,7 @@
 Ext.define('EatSense.view.SpotDetail', {
 	extend: 'Ext.Panel',
 	xtype: 'spotdetail',
-	requires: ['EatSense.view.SpotDetailItem', 'EatSense.util.Helper'],
+	requires: ['EatSense.view.SpotDetailItem'],
 	config: {
 		modal: true,
 		hideOnMaskTap: 'true',
@@ -123,8 +123,7 @@ Ext.define('EatSense.view.SpotDetail', {
 							tpl: new Ext.XTemplate('<p>Total: {[this.formatPrice(values.total)]}</p>',
 								{
 									formatPrice: function(price) {
-										return EatSense.util.Helper.formatPrice(price);
-										// return appHelper.formatPrice(price);
+										return appHelper.formatPrice(price);
 									}
 								}
 							)

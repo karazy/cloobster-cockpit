@@ -5,9 +5,10 @@ Ext.define('EatSense.model.Business', {
 	extend: 'Ext.data.Model', 
 		config: {
 			fields: [
-			{name: 'id'},
-			{name: 'name'},
-			{name: 'description'}
+				{name: 'id'},
+				{name: 'name'},
+				{name: 'description'},
+				{name: 'trash'}
 			],
 			proxy: {
 				type: 'rest',

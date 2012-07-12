@@ -15,11 +15,14 @@ Ext.define('EatSense.view.ChooseBusiness', {
 			xtype: 'list',
 			ui: 'round',
 			store: 'businessStore',
-			itemTpl: '<h2>{name}</h2>',
+			itemTpl: new Ext.XTemplate(
+				"<h2>{name} <tpl if='trash'>(" + i10n.translate('business.status.deleted') + ")</tpl></h2>"
+			),
 		},
 		{
 			xtype: 'button',
 			action: 'cancel',
+			ui: 'action',
 			docked: 'bottom',
 			text: i10n.translate('cancel'),
 		}]

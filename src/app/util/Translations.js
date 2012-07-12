@@ -29,6 +29,7 @@ Ext.define('EatSense.util.Translations',{
 		"chooseStore" : "Filiale auswählen",
 		"login.field.user" : "Benutzername",
 		"login.field.password" : "Passwort",
+		"business.status.deleted" : "inaktiv",
 		//spot
 		"errorSpotLoading" : "Laden der Daten fehlgeschlagen!",
 		//spot details

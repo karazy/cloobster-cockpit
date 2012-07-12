@@ -32,10 +32,10 @@ Ext.application({
 		'EatSense.data.proxy.OperationImprovement'],
 	icon: {
 		//used on iOS devices for homescreen
-		57: 'res/images/icon.png',
-   		72: 'res/images/icon-72.png',
-   		114: 'res/images/icon-114.png'
-        // '144': 'resources/icons/Icon~ipad@2x.png'
+		'57': 'res/images/icon-57.png',
+   		'72': 'res/images/icon-72.png',
+   		'114': 'res/images/icon-114.png',
+        '144': 'res/images/icon-144.png'
 	},
 	glossOnIcon: false,
 

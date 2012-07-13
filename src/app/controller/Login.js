@@ -30,7 +30,9 @@ Ext.define('EatSense.controller.Login', {
 			cancelLoginButton: 'choosebusiness button[action=cancel]',			
 		},		
 		//Logged in user
-		account : {}
+		account : {},
+		//business active
+		business: {}
 	},
 
 	init: function() {
@@ -365,6 +367,7 @@ Ext.define('EatSense.controller.Login', {
 
 		account.set('businessId', business.get('id'));
 		account.set('business', business.get('name'));
+
 		
 		//set pathId in default Ajax headers to avoid setting it with every request
 		Ext.Ajax.getDefaultHeaders().pathId = account.get('businessId');
@@ -375,6 +378,11 @@ Ext.define('EatSense.controller.Login', {
 		Ext.create('EatSense.view.Main');
 		spotCtr.loadSpots();
 
+		if(business.get('trash') == true) {
+			//activate readonly mode
+			this.fireEvent('eatSense.read-only');
+		};
+
 		messageCtr.openChannel();		
 	},
 	/**
@@ -382,7 +390,9 @@ Ext.define('EatSense.controller.Login', {
 	*	
 	*/
 	chooseBusiness: function(dv, index, target, record) {
-		this.setBusinessId(record);
+		this.setBusiness(record);
+
+		this.setBusinessId(record);		
 	},
 	/**
 	* Handle status changes for this application.

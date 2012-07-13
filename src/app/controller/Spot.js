@@ -34,6 +34,7 @@ Ext.define('EatSense.controller.Spot', {
 		    	autoCreate: true
 		    },
 		    switchSpotList: 'spotselection list',
+		    spotDetailItem: 'spotdetailitem'
 		},
 
 		control : {
@@ -53,7 +54,8 @@ Ext.define('EatSense.controller.Spot', {
 		 		tap: 'closeSpotDetail'
 		 	},
 		 	spotDetail: {
-		 		hide: 'hideSpotDetail'
+		 		hide: 'hideSpotDetail',
+		 		show: 'showSpotDetail'
 		 	},
 		 	paidSpotDetailButton: {
 		 		tap: 'confirmPayment'
@@ -72,6 +74,9 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	dismissRequestsButton : {
 		 		tap: 'deleteCustomerRequests'
+		 	},
+		 	spotdetailitem : {
+		 		show: 'showSpotDetailItem'
 		 	}
 		},
 
@@ -80,16 +85,27 @@ Ext.define('EatSense.controller.Spot', {
 		//active customer in detail spot view
 		activeCustomer: null,
 		//active bill of active Customer
-		activeBill : null
+		activeBill : null,
+		//
+		readOnly: false
 	},
 
 	init: function() {
 		console.log('initializing Spot Controller');
 		//add listeners for message events
-		var messageCtr = this.getApplication().getController('Message');
+		var messageCtr = this.getApplication().getController('Message'),
+			loginCtr = this.getApplication().getController('Login');
+		
 		messageCtr.on('eatSense.spot', this.updateSpotIncremental, this);
 		//refresh all is only active when psuh communication is out of order
 		messageCtr.on('eatSense.refresh-all', this.loadSpots, this);
+
+		messageCtr.on('eatSense.business', this.updateBusinessIncremental, this);
+
+		loginCtr.on('eatSense.read-only', this.activateReadOnlyMode, this);
+
+
+
 	},
 
 	// start load and show data
@@ -433,7 +449,8 @@ Ext.define('EatSense.controller.Spot', {
 								}
 								
 							} else {
-								me.getSpotDetail().fireEvent('eatSense.customer-update', false);
+								var disb = false || me.getReadOnly();
+								me.getSpotDetail().fireEvent('eatSense.customer-update', disb);
 								orders.removeAll();
 								me.setActiveCustomer(null);
 								me.updateCustomerStatusPanel();
@@ -518,6 +535,18 @@ Ext.define('EatSense.controller.Spot', {
 				me.updateCustomerTotal(store.getData().items);
 			}
 		}
+	},
+	/**
+	* Updates the business.
+	* 
+	*/
+	updateBusinessIncremental: function(action, updatedBusiness) {
+
+		//activate read-only mode because the business has been marked for deletion
+		if(action == 'delete') {
+			this.activateReadOnlyMode();
+		}
+
 	},
 
 	// end push message handlers
@@ -713,7 +742,7 @@ Ext.define('EatSense.controller.Spot', {
 							me.updateCustomerStatusPanel();
 							me.updateCustomerTotal();
 							me.updateCustomerPaymentMethod();
-							me.getSpotDetail().fireEvent('eatSense.customer-update', false);
+							me.getSpotDetail().fireEvent('eatSense.customer-update', false || me.getReadOnly());
 						}
 						me.setActiveBill(null);	
 						//update requests
@@ -1027,6 +1056,44 @@ Ext.define('EatSense.controller.Spot', {
 		messageCtr.un('eatSense.refresh-all', this.refreshActiveCustomerOrders(), this);
 		messageCtr.un('eatSense.refresh-all', this.refreshActiveCustomerPayment, this);
 		messageCtr.un('eatSense.refresh-all', this.refreshActiveSpotCheckIns, this);
+	},
+
+	showSpotDetail: function(spotdetail) {
+
+		var readOnly = this.getReadOnly();
+
+		
+		// this.getCancelOrderButton().setDisabled(readOnly);
+		this.getPaidSpotDetailButton().setDisabled(readOnly);
+		this.getConfirmAllButton().setDisabled(readOnly);
+		this.getCancelAllButton().setDisabled(readOnly);
+		this.getSwitchSpotButton().setDisabled(readOnly);
+	},
+
+	showSpotDetailItem: function(item) {
+
+		var readOnly = this.getReadOnly();
+
+		item.down('button').setDisabled(readOnly);
+
+	},
+
+	/**
+	* Activated for deleted businesses so that only the current state can be viewed.
+	* But no actions are allowed.
+	*/
+	activateReadOnlyMode: function() {
+
+		this.setReadOnly(true);
+		
+
+
+		/*
+	in request controller
+	 - gästwünsche löschen
+	 - gastwunsch löschen
+	
+		*/
 	}
 
 	// end misc actions

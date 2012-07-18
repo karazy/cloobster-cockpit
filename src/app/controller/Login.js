@@ -254,6 +254,8 @@ Ext.define('EatSense.controller.Login', {
 	logout: function() {
 		console.log('Logout Controller -> logout');
 		var 	accountLocalStore = Ext.data.StoreManager.lookup('cockpitStateStore'),
+				spotStore = Ext.data.StoreManager.lookup('spotStore'),
+				checkInStore = Ext.data.StoreManager.lookup('checkInStore'),
 				spotDetail = this.getApplication().getController('Spot').getSpotDetail(),
 				business = this.getBusiness();
 		
@@ -266,6 +268,9 @@ Ext.define('EatSense.controller.Login', {
 		if(business.get('trash')) {
 			this.fireEvent('eatSense.unlock');
 		};
+
+		spotStore.removeAll();
+		checkInStore.removeAll();
 
 
 		appChannel.closeChannel();

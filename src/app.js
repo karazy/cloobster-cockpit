@@ -29,7 +29,8 @@ Ext.application({
         'EatSense.util.Channel',
 		//require custom types
 		'EatSense.data.proxy.CustomRestProxy',
-		'EatSense.data.proxy.OperationImprovement'],
+		'EatSense.data.proxy.OperationImprovement',
+        'EatSense.data.LockButton'],
 	icon: {
 		//used on iOS devices for homescreen
 		'57': 'res/images/icon-57.png',

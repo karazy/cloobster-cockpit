@@ -299,3 +299,15 @@
 	margin: 0px 0.5em;
 	background-color: red;
 }
+
+.locked-button .x-button-icon {
+	-webkit-mask-image: url('/cockpit/res/images/lock_closed.png');
+	background-color: black;
+	-webkit-mask-size: 20px;
+	-webkit-mask-repeat: no-repeat;
+	height: 20px;
+	width: 20px;
+	margin-right: 3px;
+	display: block !important;
+
+}

@@ -55,7 +55,7 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	spotDetail: {
 		 		hide: 'hideSpotDetail',
-		 		show: 'showSpotDetail'
+		 		// show: 'showSpotDetail'
 		 	},
 		 	paidSpotDetailButton: {
 		 		tap: 'confirmPayment'
@@ -75,8 +75,8 @@ Ext.define('EatSense.controller.Spot', {
 		 	dismissRequestsButton : {
 		 		tap: 'deleteCustomerRequests'
 		 	},
-		 	spotdetailitem : {
-		 		show: 'showSpotDetailItem'
+		 	spotDetailItem : {
+		 		updatedata: 'showSpotDetailItem'
 		 	}
 		},
 
@@ -229,7 +229,7 @@ Ext.define('EatSense.controller.Spot', {
 		}
 
 		me.setActiveCustomer(record);
-		me.getSpotDetail().fireEvent('eatSense.customer-update', true);
+		me.getSpotDetail().fireEvent('eatSense.customer-update', false || me.getReadOnly());
 
 		this.refreshActiveCustomerOrders();
 		this.refreshActiveCustomerPayment();
@@ -318,7 +318,7 @@ Ext.define('EatSense.controller.Spot', {
 		}
 
 		if(me.getActiveCustomer().get('status') == appConstants.PAYMENT_REQUEST) {
-			paidButton.enable();
+			paidButton.setDisabled(false || me.getReadOnly());
 			billStore.load({
 				params: {
 					// pathId: restaurantId,
@@ -449,8 +449,7 @@ Ext.define('EatSense.controller.Spot', {
 								}
 								
 							} else {
-								var disb = false || me.getReadOnly();
-								me.getSpotDetail().fireEvent('eatSense.customer-update', disb);
+								me.getSpotDetail().fireEvent('eatSense.customer-update', true || me.getReadOnly());
 								orders.removeAll();
 								me.setActiveCustomer(null);
 								me.updateCustomerStatusPanel();
@@ -492,7 +491,7 @@ Ext.define('EatSense.controller.Spot', {
 
 				if(action == 'new') {
 					this.setActiveBill(bill);
-					paidButton.enable();
+					paidButton.setDisabled(false || me.getReadOnly());
 					me.updateCustomerPaymentMethod(bill.getPaymentMethod().get('name'));
 				} else if (action == 'update') {
 					//currently no action needed. update occurs when a bill is cleared
@@ -544,8 +543,11 @@ Ext.define('EatSense.controller.Spot', {
 
 		//activate read-only mode because the business has been marked for deletion
 		if(action == 'delete') {
-			this.activateReadOnlyMode();
+			this.activateReadOnlyMode();			
 		}
+		//set readonly in Request
+
+		this.getSpotDetail().fireEvent('eatSense.customer-update', this.getReadOnly());
 
 	},
 
@@ -742,7 +744,7 @@ Ext.define('EatSense.controller.Spot', {
 							me.updateCustomerStatusPanel();
 							me.updateCustomerTotal();
 							me.updateCustomerPaymentMethod();
-							me.getSpotDetail().fireEvent('eatSense.customer-update', false || me.getReadOnly());
+							me.getSpotDetail().fireEvent('eatSense.customer-update', true || me.getReadOnly());
 						}
 						me.setActiveBill(null);	
 						//update requests
@@ -886,7 +888,7 @@ Ext.define('EatSense.controller.Spot', {
 										me.updateCustomerStatusPanel();
 										me.updateCustomerTotal();
 										me.updateCustomerPaymentMethod();
-										me.getSpotDetail().fireEvent('eatSense.customer-update', false);
+										me.getSpotDetail().fireEvent('eatSense.customer-update', true || me.getReadOnly());
 									}
 								}
 							}					
@@ -1048,7 +1050,7 @@ Ext.define('EatSense.controller.Spot', {
 		this.setActiveSpot(null);
 		this.setActiveCustomer(null);
 		this.setActiveBill(null);
-		this.getSpotDetail().fireEvent('eatSense.customer-update', false);		
+		this.getSpotDetail().fireEvent('eatSense.customer-update', false || this.getReadOnly());		
 
 		messageCtr.un('eatSense.checkin', this.updateSpotDetailCheckInIncremental, this);
 		messageCtr.un('eatSense.order', this.updateSpotDetailOrderIncremental, this);
@@ -1057,7 +1059,7 @@ Ext.define('EatSense.controller.Spot', {
 		messageCtr.un('eatSense.refresh-all', this.refreshActiveCustomerPayment, this);
 		messageCtr.un('eatSense.refresh-all', this.refreshActiveSpotCheckIns, this);
 	},
-
+	//TODO remove
 	showSpotDetail: function(spotdetail) {
 
 		var readOnly = this.getReadOnly();
@@ -1069,12 +1071,13 @@ Ext.define('EatSense.controller.Spot', {
 		this.getCancelAllButton().setDisabled(readOnly);
 		this.getSwitchSpotButton().setDisabled(readOnly);
 	},
-
+	//TODO remove
 	showSpotDetailItem: function(item) {
 
 		var readOnly = this.getReadOnly();
 
-		item.down('button').setDisabled(readOnly);
+		// item.down('button').setDisabled(readOnly);
+		console.log('showSpotDetailItem');
 
 	},
 
@@ -1083,11 +1086,15 @@ Ext.define('EatSense.controller.Spot', {
 	* But no actions are allowed.
 	*/
 	activateReadOnlyMode: function() {
+		console.log('activateReadOnlyMode');
+		var lockedButtons = this.getSpotDetail().query('lockbutton');
 
-		this.setReadOnly(true);
+		Ext.Array.each(lockedButtons, function(button) {
+			button.lock();
+		});
 		
-
-
+		// this.setReadOnly(true);
+		// this.getLockedButtons();
 		/*
 	in request controller
 	 - gästwünsche löschen

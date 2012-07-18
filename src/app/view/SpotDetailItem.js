@@ -7,7 +7,8 @@ Ext.define('EatSense.view.SpotDetailItem', {
 	xtype: 'spotdetailitem',
 	requires: [
         'Ext.Label',
-        'Ext.Button'
+        'Ext.Button',
+        'EatSense.data.LockButton'
     ],
 	config: {
 		//flag showing if an order is new
@@ -100,7 +101,7 @@ Ext.define('EatSense.view.SpotDetailItem', {
 	},
 
 	applyCancelButton: function(config) {
-		var button = Ext.factory(config, Ext.Button, this.getCancelButton());
+		var button = Ext.factory(config, EatSense.data.LockButton, this.getCancelButton());
 		return button;
 	},
 
@@ -115,7 +116,7 @@ Ext.define('EatSense.view.SpotDetailItem', {
 	},
 
 	applyConfirmButton: function(config) {
-		var button = Ext.factory(config, Ext.Button, this.getConfirmButton());
+		var button = Ext.factory(config, EatSense.data.LockButton, this.getConfirmButton());
 		return button;
 	},
 

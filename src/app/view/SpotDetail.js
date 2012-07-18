@@ -19,13 +19,19 @@ Ext.define('EatSense.view.SpotDetail', {
 		//this should be initially hidden
 		hidden: true,
 		listeners: {
+			/**
+			* Toggles enabled/disabled status of buttons.
+			* true for disabled
+			*/
 			'eatSense.customer-update': function(active) {
 				//enable/disable action buttons depending on customer status
 				try {
-					this.down('button[action=switch-spot]').setDisabled(!active);
-					this.down('button[action=paid]').setDisabled(!active);			
-					this.down('button[action=cancel-all]').setDisabled(!active);
-					this.down('button[action=confirm-all]').setDisabled(!active);
+					var nestedButtons = null;
+					console.log('customer-update event. active state: ' + active);
+					this.down('button[action=switch-spot]').setDisabled(active);
+					this.down('button[action=paid]').setDisabled(active);			
+					this.down('button[action=cancel-all]').setDisabled(active);
+					this.down('button[action=confirm-all]').setDisabled(active);
 				} catch(e) {
 					console.log(e);
 				}
@@ -167,7 +173,7 @@ Ext.define('EatSense.view.SpotDetail', {
 				}
 				,
 				{
-					xtype: 'button',
+					xtype: 'lockbutton',
 					action: 'confirm-all',
 					disabled: true,
 					text: i10n.translate('confirmAllOrdersButton'),
@@ -194,7 +200,8 @@ Ext.define('EatSense.view.SpotDetail', {
 				},
 				defaults: {
 					ui: 'action',
-					cls: 'spotdetail-toolbar-button'
+					cls: 'spotdetail-toolbar-button',
+					xtype: 'lockbutton',
 				},
 				items: [
 				{

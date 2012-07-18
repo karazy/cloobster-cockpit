@@ -254,13 +254,18 @@ Ext.define('EatSense.controller.Login', {
 	logout: function() {
 		console.log('Logout Controller -> logout');
 		var 	accountLocalStore = Ext.data.StoreManager.lookup('cockpitStateStore'),
-				spotDetail = this.getApplication().getController('Spot').getSpotDetail();
+				spotDetail = this.getApplication().getController('Spot').getSpotDetail(),
+				business = this.getBusiness();
 		
 		//make sure to close spot detail if it is still open
 		if(!spotDetail.isHidden()) {
 			console.log('hide spot detail');
 			spotDetail.hide();
-		}
+		};
+
+		if(business.get('trash')) {
+			this.fireEvent('eatSense.unlock');
+		};
 
 
 		appChannel.closeChannel();

@@ -102,7 +102,8 @@ Ext.define('EatSense.controller.Spot', {
 
 		messageCtr.on('eatSense.business', this.updateBusinessIncremental, this);
 
-		loginCtr.on('eatSense.read-only', this.activateReadOnlyMode, this);
+		loginCtr.on('eatSense.read-only', this.lockActions, this);
+		loginCtr.on('eatSense.unlock', this.unlockActions, this);
 
 
 
@@ -119,9 +120,14 @@ Ext.define('EatSense.controller.Spot', {
 		var me = this,
 			loginCtr = this.getApplication().getController('Login'),
 			account = loginCtr.getAccount(),
-			info = this.getInfo();
+			info = this.getInfo()
+			statusInfo = i10n.translate('spot.bar.bottom.status', [account.data.login, account.data.business]);
 
-		info.getTpl().overwrite(info.element, account.data);
+		if(loginCtr.getBusiness().get('trash')) {
+			statusInfo += " " + i10n.translate('spot.bar.bottom.status.locked');
+		};
+		
+		info.setHtml(statusInfo);
 
 		this.getSpotsview().getStore().load({
 			 params: {
@@ -543,7 +549,7 @@ Ext.define('EatSense.controller.Spot', {
 
 		//activate read-only mode because the business has been marked for deletion
 		if(action == 'delete') {
-			this.activateReadOnlyMode();			
+			this.lockActions();			
 		}
 		//set readonly in Request
 
@@ -1085,22 +1091,27 @@ Ext.define('EatSense.controller.Spot', {
 	* Activated for deleted businesses so that only the current state can be viewed.
 	* But no actions are allowed.
 	*/
-	activateReadOnlyMode: function() {
+	lockActions: function() {
 		console.log('activateReadOnlyMode');
 		var lockedButtons = this.getSpotDetail().query('lockbutton');
 
 		Ext.Array.each(lockedButtons, function(button) {
 			button.lock();
 		});
-		
-		// this.setReadOnly(true);
-		// this.getLockedButtons();
-		/*
-	in request controller
-	 - gästwünsche löschen
-	 - gastwunsch löschen
-	
-		*/
+
+		Ext.Msg.alert(i10n.translate('spot.locked'));
+	},
+	/**
+	* Activated for deleted businesses so that only the current state can be viewed.
+	* But no actions are allowed.
+	*/
+	unlockActions: function() {
+		console.log('unlock actions');
+		var lockedButtons = this.getSpotDetail().query('lockbutton');
+
+		Ext.Array.each(lockedButtons, function(button) {
+			button.unlock();
+		});
 	}
 
 	// end misc actions

@@ -32,6 +32,9 @@ Ext.define('EatSense.util.Translations',{
 		"business.status.deleted" : "inaktiv",
 		//spot
 		"errorSpotLoading" : "Laden der Daten fehlgeschlagen!",
+		"spot.bar.bottom.status" : "<span>{0}</strong> eingeloggt bei <strong>{1}</strong>",
+		"spot.bar.bottom.status.locked" : "(Gelöscht)",
+		"spot.locked" : "Dieses Restaurant wurde gelöscht.<br/>Es können keine Aktionen mehr durchgeführt werden.",
 		//spot details
 		"spotDetailCustomerLabel" : "Gäste",
 		"errorSpotDetailCheckInLoading" : "Laden der eingecheckten Personen fehlgeschlagen!",

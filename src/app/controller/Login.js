@@ -377,7 +377,8 @@ Ext.define('EatSense.controller.Login', {
 
 		account.set('businessId', business.get('id'));
 		account.set('business', business.get('name'));
-
+		
+		me.setBusiness(business);
 		
 		//set pathId in default Ajax headers to avoid setting it with every request
 		Ext.Ajax.getDefaultHeaders().pathId = account.get('businessId');
@@ -399,9 +400,7 @@ Ext.define('EatSense.controller.Login', {
 	*	Event handler for choose business list tap.
 	*	
 	*/
-	chooseBusiness: function(dv, index, target, record) {
-		this.setBusiness(record);
-
+	chooseBusiness: function(dv, index, target, record) {		
 		this.setBusinessId(record);		
 	},
 	/**

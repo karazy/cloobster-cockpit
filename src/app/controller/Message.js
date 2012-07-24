@@ -88,15 +88,16 @@ Ext.define('EatSense.controller.Message', {
 		var me = this,
 			account = this.getApplication().getController('Login').getAccount(),
 			login = account.get('login'),
-			clientId = login + new Date().getTime();
+			clientId = login + new Date().getTime(),
+			businessId = account.get('businessId');
 		
 		account.set('clientId', clientId);
 		console.log('requestNewToken: clientId ' + clientId);
+		//TODO Refactor to:  /b/businesses/{businessId}/channels
 		Ext.Ajax.request({
-		    url: appConfig.serviceUrl+'/accounts/'+login+'/tokens',		    
+		    url: appConfig.serviceUrl+'/b/businesses/'+businessId+'/channels',	    
 		    method: 'POST',
 		    params: {
-		    	'businessId' :  account.get('businessId'),
 		    	'clientId' : clientId
 		    },
 		    success: function(response){

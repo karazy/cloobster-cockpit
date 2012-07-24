@@ -9,8 +9,8 @@ Ext.define('EatSense.model.Account', {
 			name: 'email'
 		},
 		{
-			name: 'passwordHash'
-		}, 
+			name: 'accessToken'
+		},
 		{
 			name: 'role'
 		}, 
@@ -21,9 +21,9 @@ Ext.define('EatSense.model.Account', {
 		{
 			name: 'business'
 		},
-		{
+		{	//channel token
 			name: 'token'
-		}	
+		}
 		],
 		proxy : {
 			type : 'rest',

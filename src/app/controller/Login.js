@@ -89,19 +89,22 @@ Ext.define('EatSense.controller.Login', {
 			accountLocalStore = Ext.data.StoreManager.lookup('cockpitStateStore'),
 			spotCtr = this.getApplication().getController('Spot'),
 			messageCtr = this.getApplication().getController('Message'),
-			account;
+			account,
+			token;
 
 	   	 try {
 	   			accountLocalStore.load();	   	
 		   	 if(accountLocalStore.getCount() == 1) {
-		   		 console.log('app state found');
-		   		 account = accountLocalStore.first();
-		   		 this.setAccount(account);
+		   		console.log('app state found');
+		   		account = accountLocalStore.first();
+		   		this.setAccount(account);
+
+		   		//save token
+		   		token = account.get('accessToken');
 
 		   		 //Set default headers so that always credentials are send
 				Ext.Ajax.setDefaultHeaders({
-					'login': account.get('login'),
-					'passwordHash': account.get('passwordHash'),
+					'X-Auth': account.get('accessToken'),
 					'pathId' : account.get('businessId')
 				});
 
@@ -112,19 +115,23 @@ Ext.define('EatSense.controller.Login', {
 
 						//generate clientId for channel
 						account.set('clientId', account.get('login') + new Date().getTime());
+						account.set('accessToken', token);
 
-						//ToDo check if business still exists
-
-						Ext.create('EatSense.view.Main');
-						spotCtr.loadSpots();
-						//TODO temporary
-						// messageCtr.refreshAll(true);
-						messageCtr.openChannel();
+						EatSense.model.Business.load(account.get('businessId'), {
+							success: function(record) {
+								me.setBusiness(record);
+								Ext.create('EatSense.view.Main');
+								spotCtr.loadSpots();
+								//TODO temporary
+								// messageCtr.refreshAll(true);
+								messageCtr.openChannel();
+							}
+						});
 					},
 					failure: function(record, operation) {					
 						//error verifying credentials, maybe account changed on server or server ist not aaccessible
 						me.resetDefaultAjaxHeaders();
-						me.resetAccountProxyHeaders();
+						// me.resetAccountProxyHeaders();
 
 						Ext.create('EatSense.view.Login');
 
@@ -174,12 +181,12 @@ Ext.define('EatSense.controller.Login', {
 	login: function() {
 		console.log('login');
 
-		var 	me = this,
-				login = this.getLoginField().getValue(),
-				password = this.getPasswordField().getValue(),				
-				spotCtr = this.getApplication().getController('Spot'),
-				me = this,
-				errorMessage;
+		var me = this,
+			login = this.getLoginField().getValue(),
+			password = this.getPasswordField().getValue(),				
+			spotCtr = this.getApplication().getController('Spot'),
+			me = this,
+			errorMessage;
 
 		if(Ext.String.trim(login).length == 0 || Ext.String.trim(password).length == 0) {
 			
@@ -187,48 +194,59 @@ Ext.define('EatSense.controller.Login', {
 			return;
 		}
 
-		EatSense.model.Account.getProxy().setHeaders({
+		// EatSense.model.Account.getProxy().setHeaders({
+		// 		//provide credentials, they will be added to request header
+		// 		'login': login,
+		// 		'password': password
+		// });
+
+		Ext.Ajax.request({
+    	    url: appConfig.serviceUrl+'/accounts/tokens',
+    	    method: 'POST',
+    	    headers: {
 				//provide credentials, they will be added to request header
 				'login': login,
 				'password': password
-		});
-
-		EatSense.model.Account.load(login, {
-			success: function(record, operation){
-				me.setAccount(record);
+			},
+    	    scope: this,
+    	    success: function(response) {
+    	    	me.setAccount(Ext.create('EatSense.model.Account', Ext.decode(response.responseText)));
 				//generate clientId for channel
 				me.getAccount().set('clientId', me.getAccount().get('login') + new Date().getTime());
 
 				//Set default headers so that always credentials are send
 				Ext.Ajax.setDefaultHeaders({
-					'login': login,
-					'passwordHash': record.get('passwordHash'),
-				});				
+					'X-Auth': me.getAccount().get('accessToken')
+				});
 
-				me.resetAccountProxyHeaders();
-				me.showBusinesses();				
-			},
-			failure: function(record, operation){
-				me.resetAccountProxyHeaders();
+				// me.resetAccountProxyHeaders();
+				me.showBusinesses();
+    	    },
+    	    failure: function(response) {
+    	    	// me.resetAccountProxyHeaders();
 				me.resetDefaultAjaxHeaders();
-				if(operation.error) {
+
+				if(response.status) {
 					//not authorized
-					if(operation.error.status == "401" || operation.error.status == "403") {
+					if(response.status == "401" || response.status == "403") {
 						errorMessage = i10n.translate('wrongCredentials');
-					} else if (operation.error.status == "404") {
+					} else if (response.status == "404") {
 						errorMessage = i10n.translate('resourceNotAvailable');
 					}
-				} 
+				};
 
-				(!errorMessage || errorMessage == "") ?	errorMessage = i10n.translate('wrongCredentials') : errorMessage;			
+				(!errorMessage || errorMessage == "") ?	errorMessage = i10n.translate('wrongCredentials') : errorMessage;
 
-				me.getApplication().handleServerError({
-					'error': operation.error, 
-					'forceLogout': false, 
-					'hideMessage':false, 
-					'message': errorMessage
+    	    	me.getApplication().handleServerError({
+						'error': {
+							'status': response.status,
+							'statusText': response.statusText
+						}, 
+						'forceLogout': false, 
+						'hideMessage':false,
+						'message': errorMessage
 				});
-			}
+	   	    }
 		});
 	},
 	/**
@@ -236,15 +254,15 @@ Ext.define('EatSense.controller.Login', {
 	*
 	*/
 	cancelLogin: function() {
-		var		me = this,
-				loginPanel = this.getLoginPanel();
+		var	me = this,
+			loginPanel = this.getLoginPanel();
 
 		loginPanel.setActiveItem(0);
 		me.resetLoginFields();
 
-		Ext.Ajax.setDefaultHeaders({});	
+		me.resetDefaultAjaxHeaders();
 		me.setAccount({});
-		me.resetAccountProxyHeaders();
+		// me.resetAccountProxyHeaders();
 	},
 	/**
 	*	Logout signed in user and show login screen.
@@ -278,7 +296,7 @@ Ext.define('EatSense.controller.Login', {
 		accountLocalStore.removeAll();
 		accountLocalStore.sync();
 
-		Ext.Ajax.setDefaultHeaders({});	
+		this.resetDefaultAjaxHeaders();
 
 		//TODO remove in a more reliable way!
 		//remove main view				
@@ -320,11 +338,11 @@ Ext.define('EatSense.controller.Login', {
 	*/
 	showBusinesses: function() {
 		console.log('showBusinesses');
-		var 	me = this,
-				businessStore = Ext.StoreManager.lookup('businessStore'),
-				account = this.getAccount(),
-				spotCtr = this.getApplication().getController('Spot'),
-				loginPanel = this.getLoginPanel();
+		var me = this,
+			businessStore = Ext.StoreManager.lookup('businessStore'),
+			account = this.getAccount(),
+			spotCtr = this.getApplication().getController('Spot'),
+			loginPanel = this.getLoginPanel();
 
 		Ext.create('EatSense.view.ChooseBusiness');
 
@@ -355,7 +373,6 @@ Ext.define('EatSense.controller.Login', {
 							'forceLogout': false, 
 							'hideMessage':false
 						}); 
-			 		// Ext.Msg.alert(i10n.translate('error'), i10n.translate('errorSpotLoading'), Ext.emptyFn);
 			 	}				
 			 },
 			 scope: this
@@ -377,7 +394,7 @@ Ext.define('EatSense.controller.Login', {
 
 		account.set('businessId', business.get('id'));
 		account.set('business', business.get('name'));
-		
+
 		me.setBusiness(business);
 		
 		//set pathId in default Ajax headers to avoid setting it with every request

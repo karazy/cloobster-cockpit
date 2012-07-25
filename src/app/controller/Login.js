@@ -347,9 +347,9 @@ Ext.define('EatSense.controller.Login', {
 		Ext.create('EatSense.view.ChooseBusiness');
 
 		this.getBusinessList().getStore().load({
-			params: {
-				pathId: account.get('login')
-			},
+			// params: {
+			// 	pathId: account.get('login')
+			// },
 			callback: function(records, operation, success) {
 			 	if(success) {
 

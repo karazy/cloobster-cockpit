@@ -33,7 +33,7 @@ Ext.define('EatSense.data.LockButton', {
 
 	/**
 	* @override
-	* Overrides default onTp. First checks if button is locked.
+	* Overrides default onTap. First checks if button is locked.
 	* Only calls original onTap if locked = false
 	*/
 	onTap: function(me, e) {

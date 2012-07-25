@@ -13,7 +13,7 @@ Ext.define('EatSense.model.Business', {
 			proxy: {
 				type: 'rest',
 				enablePagingParams: false,
-				url: '/accounts/{pathId}/businesses'
+				url: '/b/businesses/'
 			}
 		}	
 });

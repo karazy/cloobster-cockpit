@@ -13,6 +13,7 @@
 	border-color: black;
 	border-radius: 5px;
 	background-color: grey;
+	word-break: break-word;
 }
 
 .spot div {

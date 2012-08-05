@@ -1,6 +1,6 @@
 Ext.define('EatSense.view.Spot', {
 	extend: 'Ext.Panel',
-	requires: ['EatSense.view.SpotItem', 'EatSense.view.SpotDetail'],
+	requires: ['EatSense.view.SpotItem', 'EatSense.view.SpotDetail', 'Ext.Audio'],
 	xtype: 'spotcard',
 	config: {
 		id: 'spotcard',
@@ -16,7 +16,13 @@ Ext.define('EatSense.view.Spot', {
 				itemCls: 'spot',
 				useComponents: true,
 				defaultType: 'spotitem',
-			}							
+			},
+			{
+				itemId: 'notificationSound',
+            	xtype : 'audio',
+            	hidden: true,
+            	url   : 'res/sounds/simple.mp3'
+        	}					
 		]
 	}
 

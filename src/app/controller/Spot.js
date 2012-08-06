@@ -26,7 +26,7 @@ Ext.define('EatSense.controller.Spot', {
 		    paidSpotDetailButton: 'spotdetail button[action=paid]',
 		    cancelAllButton: 'spotdetail button[action=cancel-all]',    
 		    confirmAllButton: 'spotdetail button[action=confirm-all]',
-		    switchSpotButton: 'spotdetail button[action=switch-spot]', 
+		    switchSpotButton: 'spotdetail button[action=switch-spot]', 		    
 		    spotDetailStatistic: 'spotdetail #statistics',
 		    spotSelectionDialog: {
 		    	selector: 'spotselection',
@@ -34,7 +34,10 @@ Ext.define('EatSense.controller.Spot', {
 		    	autoCreate: true
 		    },
 		    switchSpotList: 'spotselection list',
-		    spotDetailItem: 'spotdetailitem'
+		    spotDetailItem: 'spotdetailitem',
+		    filterNoneButton: 'spotcard button[action=filter-none]',
+		    filterActiveButton: 'spotcard button[action=filter-active]',
+		    filterRadios: 'spotcard radiofield[name=filter]'
 		},
 
 		control : {
@@ -76,6 +79,15 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	spotDetailItem : {
 		 		updatedata: 'showSpotDetailItem'
+		 	},
+		 	filterActiveButton : {
+		 		tap: 'filterSpots'
+		 	},
+		 	filterNoneButton : {
+		 		tap: 'filterSpots'
+		 	},
+		 	filterRadios : {
+		 		check: 'filterSpotsRadio'
 		 	}
 		},
 
@@ -1099,7 +1111,41 @@ Ext.define('EatSense.controller.Spot', {
 				item.remove(button);
 			});			
 		}
-	} 
+	},
+	/**
+	* Filters spots based on 
+	*/
+	filterSpots: function(button) {
+		var store = this.getSpotsview().getStore();
+
+		if(button.action == 'filter-none') {
+			store.clearFilter();
+		} else if(button.action == 'filter-active') {
+			store.filterBy(function(spot) {
+				if(spot.get('status') == appConstants.ORDER_PLACED ||
+					spot.get('status') == appConstants.PAYMENT_REQUEST ||
+					spot.get('status') == appConstants.Request.CALL_WAITER) {
+					return true;
+				}
+			});
+		}
+	},
+
+	filterSpotsRadio: function(radio) {
+		var store = this.getSpotsview().getStore();
+		
+		if(radio.getSubmitValue() == 'none') {
+			store.clearFilter();
+		} else if(radio.getSubmitValue() == 'active') {
+			store.filterBy(function(spot) {
+				if(spot.get('status') == appConstants.ORDER_PLACED ||
+					spot.get('status') == appConstants.PAYMENT_REQUEST ||
+					spot.get('status') == appConstants.Request.CALL_WAITER) {
+					return true;
+				}
+			});
+		}
+	}
 
 	// end misc actions
 

@@ -31,6 +31,16 @@
 
 }
 
+.spot-filter-panel {
+/*	-webkit-box-shadow: 0em 0em 0em 0.3 #888;
+	box-shadow: 0em 0em 0em 0.3 #888;*/
+}
+
+.spot-filter-label {
+	text-align: center;
+	font-size: 1.5em;
+}
+
 .spotitem-pressed {
 	background-color: rgb(100,100,100) !important;
 }
@@ -63,7 +73,6 @@
 }
 
 .spotitem-pay {
-
 }
 
 .loginbox {

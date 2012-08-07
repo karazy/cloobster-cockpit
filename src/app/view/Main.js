@@ -16,6 +16,10 @@ Ext.define('EatSense.view.Main', {
 			xtype: 'label',
 			itemId: 'info'
 			},
+			{	
+				text: i10n.translate('spot.filter.title'),
+				action: 'show-filter'
+			},
 			{
 				xtype: 'spacer'
 			},

@@ -90,7 +90,8 @@ Ext.define('EatSense.view.SpotItem', {
 				}
 				
 				button.getTpl().overwrite(this.getSpot().element, newRecord.getData());
-		}		
+		}
+		//this.callParent([newRecord]);	
 	}
 
 

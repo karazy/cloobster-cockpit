@@ -35,9 +35,9 @@ Ext.define('EatSense.controller.Spot', {
 		    },
 		    switchSpotList: 'spotselection list',
 		    spotDetailItem: 'spotdetailitem',
-		    filterNoneButton: 'spotcard button[action=filter-none]',
-		    filterActiveButton: 'spotcard button[action=filter-active]',
-		    filterRadios: 'spotcard radiofield[name=filter]'
+		    filterRadios: 'radiofield[name=filter]',
+		    showFilterButton: 'main button[action=show-filter]',
+		    filterPanel: 'spotcard #filterPanel'
 		},
 
 		control : {
@@ -80,14 +80,11 @@ Ext.define('EatSense.controller.Spot', {
 		 	spotDetailItem : {
 		 		updatedata: 'showSpotDetailItem'
 		 	},
-		 	filterActiveButton : {
-		 		tap: 'filterSpots'
-		 	},
-		 	filterNoneButton : {
-		 		tap: 'filterSpots'
-		 	},
 		 	filterRadios : {
 		 		check: 'filterSpotsRadio'
+		 	},
+		 	showFilterButton : {
+		 		tap : 'showFilterPanel'
 		 	}
 		},
 
@@ -129,7 +126,9 @@ Ext.define('EatSense.controller.Spot', {
 		var me = this,
 			loginCtr = this.getApplication().getController('Login'),
 			account = loginCtr.getAccount(),
-			info = this.getInfo()
+			info = this.getInfo(),
+			spotStore = Ext.StoreManager.lookup('spotStore'),
+			spotsViewStore = Ext.create('Ext.data.Store',{ model: 'EatSense.model.Spot'}),
 			statusInfo = i10n.translate('spot.bar.bottom.status', [account.data.login, account.data.business]);
 
 		if(loginCtr.getBusiness().get('trash')) {
@@ -138,7 +137,7 @@ Ext.define('EatSense.controller.Spot', {
 
 		info.setHtml(statusInfo);
 
-		this.getSpotsview().getStore().load({
+		spotStore.load({
 			 params: {
 			 	pathId : account.get('businessId'),
 			 },
@@ -150,7 +149,10 @@ Ext.define('EatSense.controller.Spot', {
 						'hideMessage':false
 						// 'message': i10n.translate('errorSpotLoading')
 					});
-			 	}				
+			 	} else {
+			 		spotsViewStore.setData(records);
+			 		me.getSpotsview().setStore(spotsViewStore);
+			 	}			
 			 },
 			 scope: this
 		});	
@@ -370,15 +372,12 @@ Ext.define('EatSense.controller.Spot', {
 		//load corresponding spot
 		var 	dirtySpot, 
 				index, 
-				spotStore = this.getSpotsview().getStore();
-				// spotData = updatedSpot.getData();
+				spotStore = Ext.StoreManager.lookup('spotStore');
 		
-		//don't use getById, because barcode is the id
-		index = spotStore.findExact('id', updatedSpot.id);
+		//use getById because this ignores Filters!
+		dirtySpot = spotStore.getById(updatedSpot.id);
 
-		if(index > -1) {
-			dirtySpot = spotStore.getAt(index);		
-
+		if(dirtySpot) {
 			if(updatedSpot.status) {
 				dirtySpot.set('status', updatedSpot.status);
 			} else if(updatedSpot.checkInCount === 0) {
@@ -1113,27 +1112,12 @@ Ext.define('EatSense.controller.Spot', {
 		}
 	},
 	/**
-	* Filters spots based on 
+	* Filter spots based on checked radio button value.
 	*/
-	filterSpots: function(button) {
-		var store = this.getSpotsview().getStore();
-
-		if(button.action == 'filter-none') {
-			store.clearFilter();
-		} else if(button.action == 'filter-active') {
-			store.filterBy(function(spot) {
-				if(spot.get('status') == appConstants.ORDER_PLACED ||
-					spot.get('status') == appConstants.PAYMENT_REQUEST ||
-					spot.get('status') == appConstants.Request.CALL_WAITER) {
-					return true;
-				}
-			});
-		}
-	},
-
 	filterSpotsRadio: function(radio) {
-		var store = this.getSpotsview().getStore();
-		
+		var store = this.getSpotsview().getStore(),
+			panel = this.getFilterPanel();
+
 		if(radio.getSubmitValue() == 'none') {
 			store.clearFilter();
 		} else if(radio.getSubmitValue() == 'active') {
@@ -1144,7 +1128,15 @@ Ext.define('EatSense.controller.Spot', {
 					return true;
 				}
 			});
-		}
+		};
+
+		panel.hide();
+	},
+
+	showFilterPanel: function(button) {
+		var panel = this.getFilterPanel();
+
+		panel.showBy(button);
 	}
 
 	// end misc actions

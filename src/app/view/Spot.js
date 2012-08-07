@@ -18,37 +18,44 @@ Ext.define('EatSense.view.Spot', {
 				defaultType: 'spotitem',
 			},
 			{
-				xtype: 'toolbar',
-				docked: 'right',
-				width: 300,
+				xtype: 'panel',
+				// docked: 'right',
+				cls: 'spot-filter-panel',
+				itemId: 'filterPanel',
+				// margin: '0 5 0 0',
+				modal: true,
+				hideOnMaskTap: true,
+				padding: 5,
+				width: 200,
+				height: 200,
+				hidden: true,
 				items: [
 				{
-					text: i10n.translate('spot.filter.active'),
-					action: 'filter-active',
-					ui: 'action'
-				},
-				{
-					text: i10n.translate('spot.filter.none'),
-					action: 'filter-none',
-					ui: 'action'
+					xtype: 'label',
+					html: i10n.translate('spot.filter.title'),
+					cls: 'spot-filter-label'
 				},
 				{
 					 xtype: 'fieldset',
+					 defaults: {
+					 	labelWidth: '100px',
+					 	xtype: 'radiofield'
+					 },
 					 items: [
 						{
-				            xtype: 'radiofield',
+				            // xtype: 'radiofield',
 				            name : 'filter',
 				            label: i10n.translate('spot.filter.none'),
 				            value: 'none',
-				            labelWidth: '80%',
+				            // labelWidth: '90%',
 				            checked: true
 				        },
 				        {
-				            xtype: 'radiofield',
+				            // xtype: 'radiofield',
 				            name : 'filter',
 				            label: i10n.translate('spot.filter.active'),
 				            value: 'active',
-				            labelWidth: '80%'
+				            // labelWidth: '90%'
 				        }
 					 ]
 				}

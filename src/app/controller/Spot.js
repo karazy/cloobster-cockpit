@@ -84,7 +84,9 @@ Ext.define('EatSense.controller.Spot', {
 		//active customer in detail spot view
 		activeCustomer: null,
 		//active bill of active Customer
-		activeBill : null
+		activeBill : null,
+
+		notificationSound : null
 	},
 
 	init: function() {
@@ -142,7 +144,22 @@ Ext.define('EatSense.controller.Spot', {
 			 },
 			 scope: this
 		});	
+		me.initNotificationSound();
 	},
+
+	initNotificationSound: function() {
+		var contentEl = this.getMainview().getContentEl(),
+			audioEle = new Audio();
+			audioEle.src = 'res/sounds/simple.mp3';
+			this.getMainview().setHtml(audioEle);
+			this.setNotificationSound(audioEle),
+			me = this;
+			// audioEle.addEventListener('onended', function() {
+			// 	audioEle = null;
+			// 	me.initNotificationSound();
+			// });
+			//audioEle.play();
+	},	
 
 	/**
 	*	Gets called when user taps on a spot. Shows whats going on at a particular spot.
@@ -363,7 +380,8 @@ Ext.define('EatSense.controller.Spot', {
 		
 		//don't use getById, because barcode is the id
 		index = spotStore.findExact('id', updatedSpot.id);
-
+		this.getNotificationSound().load();
+		this.getNotificationSound().play();
 		if(index > -1) {
 			dirtySpot = spotStore.getAt(index);		
 

@@ -15,15 +15,16 @@ Ext.define('EatSense.view.SpotItem', {
 		},
 
 		 cls: 'di-cls',
-		 baseCls: 'di-baseCls',
+		 baseCls: 'di-baseCls',		 
 	},
 
 	applySpot: function(config) {
 		var button = Ext.factory(config, Ext.Button, this.getSpot()),
 			status = this.getRecord().get('status'),
 			checkInCount = this.getRecord().get('checkInCount');
-		
-		button.getTpl().overwrite(button.element, this.getRecord().getData());
+			//this is a hack because getParent().getRecord() doesn't work flawless
+			button.oRec = this.getRecord();
+			button.getTpl().overwrite(button.element, this.getRecord().getData());
 
 			if(status == appConstants.ORDER_PLACED  
 				|| status == appConstants.PAYMENT_REQUEST){
@@ -67,7 +68,10 @@ Ext.define('EatSense.view.SpotItem', {
 		var 	button = this.getSpot(),
 				status = newRecord.get('status');
 
-			if(this.getSpot()) {						
+			
+			if(this.getSpot()) {
+				//this is a hack because getParent().getRecord() doesn't work flawless
+				button.oRec = newRecord;					
 				if(status == appConstants.ORDER_PLACED  
 					|| status == appConstants.PAYMENT_REQUEST){
 					button.addCls('spotitem-placed');

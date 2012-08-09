@@ -144,7 +144,7 @@ Ext.define('EatSense.controller.Spot', {
 			 			tab.setArea(area);
 			 			tabPanel.add(tab);
 			 			if(index == 0) {
-							// spotStore.filter('areaId' , area.get('id'));
+							spotStore.filter('areaId' , area.get('id'));
 			 			}
 			 			console.log("add tab " + area.get('name'));
 			 		});
@@ -165,7 +165,6 @@ Ext.define('EatSense.controller.Spot', {
 			account = loginCtr.getAccount(),
 			info = this.getInfo(),
 			spotStore = Ext.StoreManager.lookup('spotStore'),
-			// spotsViewStore = Ext.create('Ext.data.Store',{ model: 'EatSense.model.Spot'}),
 			statusInfo = i10n.translate('spot.bar.bottom.status', [account.data.login, account.data.business]);
 
 		if(loginCtr.getBusiness().get('trash')) {
@@ -175,21 +174,14 @@ Ext.define('EatSense.controller.Spot', {
 		info.setHtml(statusInfo);
 
 		spotStore.load({
-			 // params: {
-			 // 	pathId : account.get('businessId'),
-			 // },
 			 callback: function(records, operation, success) {
 			 	if(!success) {
 			 		me.getApplication().handleServerError({
 						'error': operation.error, 
 						'forceLogout': true, 
 						'hideMessage':false
-						// 'message': i10n.translate('errorSpotLoading')
 					});
-			 	} else {
-			 		// spotsViewStore.setData(records);
-			 		// me.getSpotsview().setStore(spotsViewStore);
-			 	}			
+			 	}		
 			 },
 			 scope: this
 		});	
@@ -203,9 +195,9 @@ Ext.define('EatSense.controller.Spot', {
 				spotStore.getData().removeFilters(['areaId']);	
 			};
 
-			// spotStore.filter('areaId' , newTab.getArea().get('id'));
+			spotStore.filter('areaId' , newTab.getArea().get('id'));
 			//Bug? Call filter again, because sometimes it isn't filtered directly.
-			// spotStore.filter();
+			spotStore.filter();
 			newTab.down('dataview').refresh();
 		}
 	},
@@ -223,7 +215,9 @@ Ext.define('EatSense.controller.Spot', {
 			requestCtr = this.getApplication().getController('Request'),
 			detail = me.getSpotDetail(),
 			checkInList = detail.down('#checkInList'),
-			data = button.getParent().getRecord(),
+			//see SpotItem for details why button.oRec is called
+			// data = button.getParent().getRecord(),			
+			data = button.oRec,
 			checkInStore = Ext.StoreManager.lookup('checkInStore'),
 			restaurantId = loginCtr.getAccount().get('businessId'),
 			titlebar = detail.down('titlebar'),
@@ -236,9 +230,6 @@ Ext.define('EatSense.controller.Spot', {
 		messageCtr.on('eatSense.request', requestCtr.processCustomerRequest, requestCtr);
 		//refresh all is only active when psuh communication is out of order
 		messageCtr.on('eatSense.refresh-all', this.refreshActiveSpotCheckIns, this);
-		// messageCtr.on('eatSense.refresh-all', this.refreshActiveCustomerOrders, this);
-		// messageCtr.on('eatSense.refresh-all', this.refreshActiveCustomerPayment, this);
-		
 		
 		
 		me.setActiveSpot(data);		
@@ -424,10 +415,14 @@ Ext.define('EatSense.controller.Spot', {
 		//load corresponding spot
 		var 	dirtySpot, 
 				index, 
-				spotStore = Ext.StoreManager.lookup('spotStore');
+				spotStore = Ext.StoreManager.lookup('spotStore'),
+				filters = spotStore.getFilters();
 		
 		//use getById because this ignores Filters!
+		spotStore.clearFilter(true);
 		dirtySpot = spotStore.getById(updatedSpot.id);
+		spotStore.setFilters(filters);
+		spotStore.filter();
 
 		if(dirtySpot) {
 			if(updatedSpot.status) {

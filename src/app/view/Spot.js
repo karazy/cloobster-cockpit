@@ -3,15 +3,17 @@ Ext.define('EatSense.view.Spot', {
 	requires: ['EatSense.view.SpotItem', 'EatSense.view.SpotDetail'],
 	xtype: 'spotcard',
 	config: {
-		id: 'spotcard',
+		// id: 'spotcard',
 		title: i10n.translate('spotsTitle'),
 		fullscreen: true,
 		layout: 'fit',
+		//holds data of assigned area
+		area: null,
 		items: [		
 			{
 				xtype: 'dataview',
 				itemId: 'spotsview',
-				store: 'spotStore',
+				// store: 'spotStore',
 				baseCls: 'dv-baseCls',
 				itemCls: 'spot',
 				useComponents: true,
@@ -19,10 +21,8 @@ Ext.define('EatSense.view.Spot', {
 			},
 			{
 				xtype: 'panel',
-				// docked: 'right',
 				cls: 'spot-filter-panel',
 				itemId: 'filterPanel',
-				// margin: '0 5 0 0',
 				modal: true,
 				hideOnMaskTap: true,
 				padding: 5,
@@ -43,19 +43,15 @@ Ext.define('EatSense.view.Spot', {
 					 },
 					 items: [
 						{
-				            // xtype: 'radiofield',
 				            name : 'filter',
 				            label: i10n.translate('spot.filter.none'),
 				            value: 'none',
-				            // labelWidth: '90%',
 				            checked: true
 				        },
 				        {
-				            // xtype: 'radiofield',
 				            name : 'filter',
 				            label: i10n.translate('spot.filter.active'),
 				            value: 'active',
-				            // labelWidth: '90%'
 				        }
 					 ]
 				}

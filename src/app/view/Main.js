@@ -4,10 +4,11 @@ Ext.define('EatSense.view.Main', {
 	requires: ['EatSense.view.Spot'],
 	config: {
 		fullscreen: true,
+		tabBarPosition: 'top',
 		items: [
-		{
-			xtype: 'spotcard'
-		}, 
+		// {
+		// 	xtype: 'spotcard'
+		// }, 
 		{
 			xtype: 'toolbar',
 			docked: 'bottom',

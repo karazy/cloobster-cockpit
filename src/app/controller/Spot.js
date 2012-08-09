@@ -10,7 +10,7 @@ Ext.define('EatSense.controller.Spot', {
 		refs: {
 			spotitem: 'spotitem button',
 			spotsview: '#spotsview',
-			spotcard: 'spotcard',
+			spotcard: 'spotcard[name="default"]',
 			mainview: 'main',
 			info: 'toolbar[docked=bottom] #info',
 			spotDetail: {
@@ -37,7 +37,7 @@ Ext.define('EatSense.controller.Spot', {
 		    spotDetailItem: 'spotdetailitem',
 		    filterRadios: 'radiofield[name=filter]',
 		    showFilterButton: 'main button[action=show-filter]',
-		    filterPanel: 'spotcard #filterPanel'
+		    filterPanel: 'spotcard[name="default"] #filterPanel'
 		},
 
 		control : {
@@ -85,6 +85,9 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	showFilterButton : {
 		 		tap : 'showFilterPanel'
+		 	},
+		 	mainview: {
+		 		activeitemchange: 'areaChanged'
 		 	}
 		},
 
@@ -117,6 +120,42 @@ Ext.define('EatSense.controller.Spot', {
 
 	// start load and show data
 	/**
+	* Load all available areas and create tabs dynamically
+	*/
+	loadAreas: function() {
+		var me = this,
+			areaStore = Ext.StoreManager.lookup('areaStore'),
+			spotStore = Ext.StoreManager.lookup('spotStore'),
+			tabPanel = this.getMainview(),
+			tab;
+
+		areaStore.load({
+			callback: function(records, operation, success) {
+			 	if(!success) {
+			 		me.getApplication().handleServerError({
+						'error': operation.error, 
+						'forceLogout': true, 
+						'hideMessage':false
+
+					});
+			 	} else {
+			 		//Create a custom tab for each service area
+			 		areaStore.each(function(area, index) {
+			 			tab = Ext.create('EatSense.view.Spot');
+			 			tab.setTitle(area.get('name'));
+			 			tab.setArea(area);
+			 			tabPanel.add(tab);
+			 			if(index == 0) {
+							spotStore.filter({ 'areaId' : area.get('id')});
+			 			}
+			 			console.log("add tab " + area.get('name'));
+			 		});
+			 	}			
+			 }
+		});
+	},
+
+	/**
 	*	Loads all spots and refreshes spot view.
 	*	Called after a successful login or credentials restore.
 	*	If spot loading fails user will be logged out.
@@ -138,9 +177,9 @@ Ext.define('EatSense.controller.Spot', {
 		info.setHtml(statusInfo);
 
 		spotStore.load({
-			 params: {
-			 	pathId : account.get('businessId'),
-			 },
+			 // params: {
+			 // 	pathId : account.get('businessId'),
+			 // },
 			 callback: function(records, operation, success) {
 			 	if(!success) {
 			 		me.getApplication().handleServerError({
@@ -150,12 +189,22 @@ Ext.define('EatSense.controller.Spot', {
 						// 'message': i10n.translate('errorSpotLoading')
 					});
 			 	} else {
-			 		spotsViewStore.setData(records);
-			 		me.getSpotsview().setStore(spotsViewStore);
+			 		// spotsViewStore.setData(records);
+			 		// me.getSpotsview().setStore(spotsViewStore);
 			 	}			
 			 },
 			 scope: this
 		});	
+	},
+
+	areaChanged: function(container, newTab, oldTab) {
+		var spotStore = Ext.StoreManager.lookup('spotStore');
+
+		if(!oldTab || newTab.getId() != oldTab.getId()) {
+			spotStore.clearFilter();
+			spotStore.filter( 'areaId' , newTab.getArea().get('id'));
+			newTab.down('#spotsview').setStore(spotStore);
+		}
 	},
 
 	/**

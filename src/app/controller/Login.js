@@ -122,6 +122,7 @@ Ext.define('EatSense.controller.Login', {
 								me.setBusiness(record);
 								Ext.create('EatSense.view.Main');
 								spotCtr.loadSpots();
+								spotCtr.loadAreas();
 								//TODO temporary
 								// messageCtr.refreshAll(true);
 								messageCtr.openChannel();
@@ -405,6 +406,7 @@ Ext.define('EatSense.controller.Login', {
 		Ext.Viewport.remove(Ext.Viewport.down('login'));
 		Ext.create('EatSense.view.Main');
 		spotCtr.loadSpots();
+		spotCtr.loadAreas();
 
 		if(business.get('trash') == true) {
 			//activate readonly mode

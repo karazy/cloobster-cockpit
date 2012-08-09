@@ -204,9 +204,11 @@ Ext.define('EatSense.controller.Spot', {
 		if(!oldTab || newTab.getId() != oldTab.getId()) {
 			if(spotStore.getFilters().length > 0) {
 				spotStore.getData().removeFilters(['areaId']);	
-			}
+			};
 
-			spotStore.filter( 'areaId' , newTab.getArea().get('id'));
+			spotStore.filter('areaId' , newTab.getArea().get('id'));
+			//Bug? Call filter again, because sometimes it isn't filtered directly.
+			spotStore.filter();
 		}
 	},
 
@@ -1171,25 +1173,31 @@ Ext.define('EatSense.controller.Spot', {
 			panel = this.getFilterPanel();
 
 		if(radio.getSubmitValue() == 'none') {
+			console.log('apply filter none');
 			//only remove the active filter. clearFilter() would also remove the areaId filter
-			store.getData().removeFilters([this.filterFn]);
+			store.getData().removeFilters([this.spotActiveFilterFn]);
 			//actually removeFilters calls filter() on the store but this had no effect
 			store.filter();
 		} else if(radio.getSubmitValue() == 'active') {
-			store.filterBy(this.filterFn);
+			console.log('apply filter active');
+			store.filterBy(this.spotActiveFilterFn);
 		};
 
 		panel.hide();
 	},
-
-	filterFn: function(spot) {
+	/**
+	* Returns true for spots with status ORDER_PLACED, PAYMENT_REQUEST or CALL_WAITER.
+	* False otherwise.
+	* @param spot
+	*	spot to filter
+	*/
+	spotActiveFilterFn: function(spot) {
 		if(spot.get('status') == appConstants.ORDER_PLACED ||
 			spot.get('status') == appConstants.PAYMENT_REQUEST ||
 			spot.get('status') == appConstants.Request.CALL_WAITER) {
 			return true;
 		}
 	},
-
 	showFilterPanel: function(button) {
 		var panel = this.getFilterPanel();
 

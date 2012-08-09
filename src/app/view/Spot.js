@@ -15,7 +15,10 @@ Ext.define('EatSense.view.Spot', {
 				baseCls: 'dv-baseCls',
 				itemCls: 'spot',
 				useComponents: true,
-				defaultType: 'spotitem'			
+				defaultType: 'spotitem',
+				listeners: {
+					itemtap: function() {console.log('itemtap')}
+				}	
 			}						
 		]
 	}

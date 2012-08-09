@@ -9,10 +9,10 @@ Ext.define('EatSense.controller.Spot', {
 	config: {
 		refs: {
 			spotitem: 'spotitem button',
-			spotsview: '#spotsview',
+			// spotsview: '#spotsview',
 			// spotcard: 'spotcard[name="default"]',
 			mainview: 'main',
-			spotTab: 'tab',
+			// spotTab: 'tab',
 			info: 'toolbar[docked=bottom] #info',
 			spotDetail: {
 		        selector: 'spotdetail',
@@ -114,9 +114,6 @@ Ext.define('EatSense.controller.Spot', {
 
 		loginCtr.on('eatSense.read-only', this.lockActions, this);
 		loginCtr.on('eatSense.unlock', this.unlockActions, this);
-
-
-
 	},
 
 	// start load and show data
@@ -147,7 +144,7 @@ Ext.define('EatSense.controller.Spot', {
 			 			tab.setArea(area);
 			 			tabPanel.add(tab);
 			 			if(index == 0) {
-							spotStore.filter('areaId' , area.get('id'));
+							// spotStore.filter('areaId' , area.get('id'));
 			 			}
 			 			console.log("add tab " + area.get('name'));
 			 		});
@@ -168,7 +165,7 @@ Ext.define('EatSense.controller.Spot', {
 			account = loginCtr.getAccount(),
 			info = this.getInfo(),
 			spotStore = Ext.StoreManager.lookup('spotStore'),
-			spotsViewStore = Ext.create('Ext.data.Store',{ model: 'EatSense.model.Spot'}),
+			// spotsViewStore = Ext.create('Ext.data.Store',{ model: 'EatSense.model.Spot'}),
 			statusInfo = i10n.translate('spot.bar.bottom.status', [account.data.login, account.data.business]);
 
 		if(loginCtr.getBusiness().get('trash')) {
@@ -206,9 +203,10 @@ Ext.define('EatSense.controller.Spot', {
 				spotStore.getData().removeFilters(['areaId']);	
 			};
 
-			spotStore.filter('areaId' , newTab.getArea().get('id'));
+			// spotStore.filter('areaId' , newTab.getArea().get('id'));
 			//Bug? Call filter again, because sometimes it isn't filtered directly.
-			spotStore.filter();
+			// spotStore.filter();
+			newTab.down('dataview').refresh();
 		}
 	},
 
@@ -1169,7 +1167,7 @@ Ext.define('EatSense.controller.Spot', {
 	* Filter spots based on checked radio button value.
 	*/
 	filterSpotsRadio: function(radio) {
-		var store = this.getSpotsview().getStore(),
+		var store = Ext.StoreManager.lookup('spotStore'),
 			panel = this.getFilterPanel();
 
 		if(radio.getSubmitValue() == 'none') {

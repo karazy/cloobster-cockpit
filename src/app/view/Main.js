@@ -1,14 +1,15 @@
 Ext.define('EatSense.view.Main', {
 	extend: 'Ext.tab.Panel',
 	xtype: 'main',
-	requires: ['EatSense.view.Spot'],
+	requires: ['EatSense.view.Spot', 'Ext.tab.Panel', 'Ext.form.FieldSet', 'Ext.field.Radio'],
 	config: {
-		fullscreen: true,
-		tabBarPosition: 'top',
+		fullscreen: true,	
+		layout: {
+           type: 'card',
+           //override default tabpanel animation setting
+           animation: null
+        },	
 		items: [
-		// {
-		// 	xtype: 'spotcard'
-		// }, 
 		{
 			xtype: 'toolbar',
 			docked: 'bottom',
@@ -37,6 +38,45 @@ Ext.define('EatSense.view.Main', {
     			action: 'logout'
 			}]
 		},
+		{
+			xtype: 'panel',
+			cls: 'spot-filter-panel',
+			itemId: 'filterPanel',
+			modal: true,
+			hideOnMaskTap: true,
+			padding: 5,
+			width: 200,
+			height: 200,
+			hidden: true,
+			items: [
+			{
+				xtype: 'label',
+				html: i10n.translate('spot.filter.title'),
+				cls: 'spot-filter-label'
+			},
+			{
+				 xtype: 'fieldset',
+				 defaults: {
+				 	labelWidth: '100px',
+				 	xtype: 'radiofield'
+				 },
+				 items: [
+					{
+			            name : 'filter',
+			            label: i10n.translate('spot.filter.none'),
+			            value: 'none',
+			            checked: true
+			        },
+			        {
+			            name : 'filter',
+			            label: i10n.translate('spot.filter.active'),
+			            value: 'active',
+			        }
+				 ]
+			}
+
+			]
+			},
 		{
 			xtype: 'panel',
 			layout: 'fit',					

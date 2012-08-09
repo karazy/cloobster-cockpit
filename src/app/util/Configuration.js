@@ -7,12 +7,12 @@ Ext.define('EatSense.util.Configuration', {
 		currencyFormat: 'EURO',
 		version: 0.1,
 		//true means caching is disabled
-		disableCaching: true,
+		disableCaching: false,
 		language: 'DE',
 		channelReconnectTimeout: 10000,
 		channelReconnectTries: 20,
 		heartbeatInterval: 10000,
-		debug: false,
+		debug: true,
 		eventPrefix: 'cloobster'
 	}
 })

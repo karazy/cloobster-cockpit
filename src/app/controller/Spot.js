@@ -10,8 +10,9 @@ Ext.define('EatSense.controller.Spot', {
 		refs: {
 			spotitem: 'spotitem button',
 			spotsview: '#spotsview',
-			spotcard: 'spotcard[name="default"]',
+			// spotcard: 'spotcard[name="default"]',
 			mainview: 'main',
+			spotTab: 'tab',
 			info: 'toolbar[docked=bottom] #info',
 			spotDetail: {
 		        selector: 'spotdetail',
@@ -37,7 +38,7 @@ Ext.define('EatSense.controller.Spot', {
 		    spotDetailItem: 'spotdetailitem',
 		    filterRadios: 'radiofield[name=filter]',
 		    showFilterButton: 'main button[action=show-filter]',
-		    filterPanel: 'spotcard[name="default"] #filterPanel'
+		    filterPanel: 'main #filterPanel'
 		},
 
 		control : {
@@ -87,8 +88,8 @@ Ext.define('EatSense.controller.Spot', {
 		 		tap : 'showFilterPanel'
 		 	},
 		 	mainview: {
-		 		activeitemchange: 'areaChanged'
-		 	}
+		 		activeitemchange: 'areaChanged'		 		
+		 	},
 		},
 
 		//the active spot, when spot detail view is visible
@@ -146,7 +147,7 @@ Ext.define('EatSense.controller.Spot', {
 			 			tab.setArea(area);
 			 			tabPanel.add(tab);
 			 			if(index == 0) {
-							spotStore.filter({ 'areaId' : area.get('id')});
+							spotStore.filter('areaId' , area.get('id'));
 			 			}
 			 			console.log("add tab " + area.get('name'));
 			 		});
@@ -199,11 +200,13 @@ Ext.define('EatSense.controller.Spot', {
 
 	areaChanged: function(container, newTab, oldTab) {
 		var spotStore = Ext.StoreManager.lookup('spotStore');
-
+		console.log('tab changed');
 		if(!oldTab || newTab.getId() != oldTab.getId()) {
-			spotStore.clearFilter();
+			if(spotStore.getFilters().length > 0) {
+				spotStore.getData().removeFilters(['areaId']);	
+			}
+
 			spotStore.filter( 'areaId' , newTab.getArea().get('id'));
-			newTab.down('#spotsview').setStore(spotStore);
 		}
 	},
 
@@ -1168,18 +1171,23 @@ Ext.define('EatSense.controller.Spot', {
 			panel = this.getFilterPanel();
 
 		if(radio.getSubmitValue() == 'none') {
-			store.clearFilter();
+			//only remove the active filter. clearFilter() would also remove the areaId filter
+			store.getData().removeFilters([this.filterFn]);
+			//actually removeFilters calls filter() on the store but this had no effect
+			store.filter();
 		} else if(radio.getSubmitValue() == 'active') {
-			store.filterBy(function(spot) {
-				if(spot.get('status') == appConstants.ORDER_PLACED ||
-					spot.get('status') == appConstants.PAYMENT_REQUEST ||
-					spot.get('status') == appConstants.Request.CALL_WAITER) {
-					return true;
-				}
-			});
+			store.filterBy(this.filterFn);
 		};
 
 		panel.hide();
+	},
+
+	filterFn: function(spot) {
+		if(spot.get('status') == appConstants.ORDER_PLACED ||
+			spot.get('status') == appConstants.PAYMENT_REQUEST ||
+			spot.get('status') == appConstants.Request.CALL_WAITER) {
+			return true;
+		}
 	},
 
 	showFilterPanel: function(button) {

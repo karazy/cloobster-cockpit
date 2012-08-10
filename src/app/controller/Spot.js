@@ -145,7 +145,7 @@ Ext.define('EatSense.controller.Spot', {
 					    	root : 'data',
 					    	property: 'areaId',
 					    	value: area.get('id'),
-					    	exactMatch: false
+					    	exactMatch: true
 						});
 
 			 			tab = Ext.create('EatSense.view.Spot', {

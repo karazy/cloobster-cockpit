@@ -463,7 +463,13 @@ Ext.define('EatSense.controller.Spot', {
 			};
 		});
 	},
-
+	/**
+	* Set badge text based on status.
+	* @param tab
+	*	Tab to set badge text
+	* @param status
+	*	Status to check.
+	*/
 	setTabBadgeText: function(tab, status) {
 		var tabBadgeText = "",
 			activeStatusValues = [appConstants.Request.CALL_WAITER, appConstants.PAYMENT_REQUEST, appConstants.ORDER_PLACED];
@@ -472,7 +478,6 @@ Ext.define('EatSense.controller.Spot', {
 				tab.tab.setBadgeText(i10n.translate('area.request.new.badge'));
 			}			
 	},
-
 	/**
 	*	Updates spotdetail view when a checkIn change at this spot occurs.
 	*

@@ -97,7 +97,9 @@ Ext.define('EatSense.controller.Spot', {
 		//active customer in detail spot view
 		activeCustomer: null,
 		//active bill of active Customer
-		activeBill : null
+		activeBill : null,
+		//when not null, than contains the active areaFilter
+		areaFilter : null
 	},
 
 	init: function() {
@@ -125,7 +127,8 @@ Ext.define('EatSense.controller.Spot', {
 			areaStore = Ext.StoreManager.lookup('areaStore'),
 			spotStore = Ext.StoreManager.lookup('spotStore'),
 			tabPanel = this.getMainview(),
-			tab;
+			tab,
+			areaFilter;
 
 		areaStore.load({
 			callback: function(records, operation, success) {
@@ -138,14 +141,23 @@ Ext.define('EatSense.controller.Spot', {
 			 	} else {
 			 		//Create a custom tab for each service area
 			 		areaStore.each(function(area, index) {
+			 			areaFilter	= new Ext.util.Filter({
+					    	root : 'data',
+					    	property: 'areaId',
+					    	value: area.get('id'),
+					    	exactMatch: false
+						});
+
 			 			tab = Ext.create('EatSense.view.Spot', {
 			 				title: area.get('name'),
-			 				'area': area
+			 				'area': area,
+			 				'areaFilter' : areaFilter
 			 			});
+
 			 			tabPanel.add(tab);
 			 			if(index == 0) {
-							spotStore.filter('areaId' , area.get('id'));
-			 			}
+							spotStore.filter(tab.getAreaFilter());
+			 			};
 			 			console.log("add tab " + area.get('name'));
 			 		});
 
@@ -1133,11 +1145,11 @@ Ext.define('EatSense.controller.Spot', {
 		var spotStore = Ext.StoreManager.lookup('spotStore');
 		console.log('tab changed');
 		if(!oldTab || newTab.getId() != oldTab.getId()) {
-			if(spotStore.getFilters().length > 0) {
-				spotStore.getData().removeFilters(['areaId']);	
+			if(spotStore.getFilters().length > 0 && oldTab.getAreaFilter()) {
+				spotStore.getData().removeFilters([oldTab.getAreaFilter()]);	
 			};
 
-			spotStore.filter('areaId' , newTab.getArea().get('id'));
+			spotStore.filter(newTab.getAreaFilter());
 			//Bug? Call filter again, because sometimes it isn't filtered directly.
 			spotStore.filter();
 			newTab.down('dataview').refresh();

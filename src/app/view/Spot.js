@@ -8,7 +8,7 @@ Ext.define('EatSense.view.Spot', {
 		//holds data of assigned area
 		area: null,
 		//Counts spot requests! Each spot which has at least one request increases the counter by 1.
-		// requestCount : '',
+		areaFilter : null,
 		items: [		
 			{
 				xtype: 'dataview',

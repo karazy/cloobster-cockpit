@@ -19,6 +19,8 @@ Ext.define('EatSense.util.Translations',{
 		"update.ready.message" : "Ein Update ist verfgübar.<br/>Anwendung neu laden?",
 		//tabbar
 		"spotsTitle" : "Tische",
+		//toolbar
+		"toolbar.bottom.status" : "Verbindung",
 		//login
 		"needCredentials" : "Bitte Benutzernamen und Passwort eingeben.",
 		"wrongCredentials" : "Benutzername und/oder Passwort falsch.",
@@ -30,6 +32,8 @@ Ext.define('EatSense.util.Translations',{
 		"login.field.user" : "Benutzername",
 		"login.field.password" : "Passwort",
 		"business.status.deleted" : "inaktiv",
+		//area
+		"area.request.new.badge" : "Neu",
 		//spot
 		"errorSpotLoading" : "Laden der Daten fehlgeschlagen!",
 		"spot.bar.bottom.status" : "<span>{0}</strong> eingeloggt bei <strong>{1}</strong>",

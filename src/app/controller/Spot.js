@@ -138,9 +138,10 @@ Ext.define('EatSense.controller.Spot', {
 			 	} else {
 			 		//Create a custom tab for each service area
 			 		areaStore.each(function(area, index) {
-			 			tab = Ext.create('EatSense.view.Spot');
-			 			tab.setTitle(area.get('name'));
-			 			tab.setArea(area);
+			 			tab = Ext.create('EatSense.view.Spot', {
+			 				title: area.get('name'),
+			 				'area': area
+			 			});
 			 			tabPanel.add(tab);
 			 			if(index == 0) {
 							spotStore.filter('areaId' , area.get('id'));
@@ -186,6 +187,7 @@ Ext.define('EatSense.controller.Spot', {
 			 	} else {
 			 		spotStore.clearFilter(true);					
 			 		spotStore.each(function(spot) {
+			 			//sets badge text depending on status
 			 			me.updateTabBadgeText(spot);
 			 		});
 			 		spotStore.setFilters(filters);
@@ -194,21 +196,6 @@ Ext.define('EatSense.controller.Spot', {
 			 },
 			 scope: this
 		});	
-	},
-
-	areaChanged: function(container, newTab, oldTab) {
-		var spotStore = Ext.StoreManager.lookup('spotStore');
-		console.log('tab changed');
-		if(!oldTab || newTab.getId() != oldTab.getId()) {
-			if(spotStore.getFilters().length > 0) {
-				spotStore.getData().removeFilters(['areaId']);	
-			};
-
-			spotStore.filter('areaId' , newTab.getArea().get('id'));
-			//Bug? Call filter again, because sometimes it isn't filtered directly.
-			spotStore.filter();
-			newTab.down('dataview').refresh();
-		}
 	},
 
 	/**
@@ -438,18 +425,20 @@ Ext.define('EatSense.controller.Spot', {
 				dirtySpot.set('status', updatedSpot.status);
 			} else if(updatedSpot.checkInCount === 0) {
 				dirtySpot.set('status', '');
-			}
+			};
 
 			if(updatedSpot.checkInCount || typeof updatedSpot.checkInCount == "number") {
 				dirtySpot.set('checkInCount', updatedSpot.checkInCount);
-			}
+			};
 
 			this.updateTabBadgeText(dirtySpot);
 
-		}
+		};
 	},
-
-	updateTabBadgeText: function(updatedSpot) {		
+	/**
+	* Searches the corresponding tab for this spot and updates the badge text.
+	*/
+	updateTabBadgeText: function(updatedSpot) {	
 		var me = this,
 			dirtySpot,
 			tabs = this.getMainview().query('spotcard'),
@@ -463,11 +452,13 @@ Ext.define('EatSense.controller.Spot', {
 			return;
 		};
 
-		console.log('updateTabBadgeIncremental spot '+ updatedSpot.get('id') + ' status: ' + status);
+		console.log('updateTabBadgeIncremental spot '+ updatedSpot.get('id') + ' name ' + updatedSpot.get('name') + ' status: ' + status);
 
 		Ext.Array.each(tabs, function(tab, index) {
-			if(tab.getArea().getId() == areaId) {
-				me.setTabBadgeText(tab.tab, status);
+			//don't applay new flag if tab to update is active
+			//this.getMainview().getActiveItem() != tab && 
+			if(me.getMainview().getActiveItem() != tab &&tab.getArea().getId() == areaId) {
+				me.setTabBadgeText(tab, status);
 				return false;
 			};
 		});
@@ -478,9 +469,8 @@ Ext.define('EatSense.controller.Spot', {
 			activeStatusValues = [appConstants.Request.CALL_WAITER, appConstants.PAYMENT_REQUEST, appConstants.ORDER_PLACED];
 				
 			if(activeStatusValues.indexOf(status) != -1) {
-				tabBadgeText = "!";
-			};
-			tab.setBadgeText(tabBadgeText);
+				tab.tab.setBadgeText(i10n.translate('area.request.new.badge'));
+			}			
 	},
 
 	/**
@@ -1130,6 +1120,25 @@ Ext.define('EatSense.controller.Spot', {
 		//prevent list selection
 		return false;
 	},
+	/**
+	* Handler for a tab change when switching areas. Filters the store so that
+	* only spots of this area are shown.
+	*/
+	areaChanged: function(container, newTab, oldTab) {
+		var spotStore = Ext.StoreManager.lookup('spotStore');
+		console.log('tab changed');
+		if(!oldTab || newTab.getId() != oldTab.getId()) {
+			if(spotStore.getFilters().length > 0) {
+				spotStore.getData().removeFilters(['areaId']);	
+			};
+
+			spotStore.filter('areaId' , newTab.getArea().get('id'));
+			//Bug? Call filter again, because sometimes it isn't filtered directly.
+			spotStore.filter();
+			newTab.down('dataview').refresh();
+			newTab.tab.setBadgeText("");
+		}
+	},
 	// end actions
 
 	// start misc actions
@@ -1226,6 +1235,7 @@ Ext.define('EatSense.controller.Spot', {
 		panel.hide();
 	},
 	/**
+	* Filter method.
 	* Returns true for spots with status ORDER_PLACED, PAYMENT_REQUEST or CALL_WAITER.
 	* False otherwise.
 	* @param spot
@@ -1238,6 +1248,9 @@ Ext.define('EatSense.controller.Spot', {
 			return true;
 		}
 	},
+	/**
+	* Shows the filter panel next to filter button.
+	*/
 	showFilterPanel: function(button) {
 		var panel = this.getFilterPanel();
 

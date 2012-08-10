@@ -121,7 +121,6 @@ Ext.define('EatSense.controller.Login', {
 							success: function(record) {
 								me.setBusiness(record);
 								Ext.create('EatSense.view.Main');
-								// spotCtr.loadSpots();
 								spotCtr.loadAreas();
 								//TODO temporary
 								// messageCtr.refreshAll(true);
@@ -388,10 +387,10 @@ Ext.define('EatSense.controller.Login', {
 	*	the business
 	*/
 	setBusinessId: function(business) {
-		var 	me = this,
-				account = this.getAccount(),
-				spotCtr = this.getApplication().getController('Spot'),
-				messageCtr = this.getApplication().getController('Message'); 
+		var me = this,
+			account = this.getAccount(),
+			spotCtr = this.getApplication().getController('Spot'),
+			messageCtr = this.getApplication().getController('Message'); 
 
 		account.set('businessId', business.get('id'));
 		account.set('business', business.get('name'));
@@ -405,7 +404,6 @@ Ext.define('EatSense.controller.Login', {
 
 		Ext.Viewport.remove(Ext.Viewport.down('login'));
 		Ext.create('EatSense.view.Main');
-		// spotCtr.loadSpots();
 		spotCtr.loadAreas();
 
 		if(business.get('trash') == true) {

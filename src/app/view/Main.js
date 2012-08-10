@@ -8,7 +8,7 @@ Ext.define('EatSense.view.Main', {
            type: 'card',
            //override default tabpanel animation setting
            animation: null
-        },	
+        },
 		items: [
 		{
 			xtype: 'toolbar',
@@ -29,7 +29,7 @@ Ext.define('EatSense.view.Main', {
 				xtype: 'label',
 				itemId: 'connectionStatus',
 				cls: 'status-indicator',
-				tpl: '<span>Status:</span><span class="{0}"></span>'
+				tpl: '<span>'+i10n.translate('toolbar.bottom.status')+'</span><span class="{0}"></span>'
 			},
 			{
 				xtype: 'button',

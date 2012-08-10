@@ -70,7 +70,7 @@ Ext.define('EatSense.view.SpotItem', {
 
 			
 			if(this.getSpot()) {
-				//this is a hack because getParent().getRecord() doesn't work flawless
+				//this is a hack because getParent().getRecord() doesn't work when view is filtered and neither does itemtap work
 				button.oRec = newRecord;					
 				if(status == appConstants.ORDER_PLACED  
 					|| status == appConstants.PAYMENT_REQUEST){

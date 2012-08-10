@@ -121,7 +121,7 @@ Ext.define('EatSense.controller.Login', {
 							success: function(record) {
 								me.setBusiness(record);
 								Ext.create('EatSense.view.Main');
-								spotCtr.loadSpots();
+								// spotCtr.loadSpots();
 								spotCtr.loadAreas();
 								//TODO temporary
 								// messageCtr.refreshAll(true);
@@ -405,7 +405,7 @@ Ext.define('EatSense.controller.Login', {
 
 		Ext.Viewport.remove(Ext.Viewport.down('login'));
 		Ext.create('EatSense.view.Main');
-		spotCtr.loadSpots();
+		// spotCtr.loadSpots();
 		spotCtr.loadAreas();
 
 		if(business.get('trash') == true) {

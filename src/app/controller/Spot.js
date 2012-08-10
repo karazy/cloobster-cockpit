@@ -107,7 +107,7 @@ Ext.define('EatSense.controller.Spot', {
 			loginCtr = this.getApplication().getController('Login');
 		
 		messageCtr.on('eatSense.spot', this.updateSpotIncremental, this);
-		//refresh all is only active when psuh communication is out of order
+		//refresh all is only active when push communication is out of order
 		messageCtr.on('eatSense.refresh-all', this.loadSpots, this);
 
 		messageCtr.on('eatSense.business', this.updateBusinessIncremental, this);
@@ -118,7 +118,7 @@ Ext.define('EatSense.controller.Spot', {
 
 	// start load and show data
 	/**
-	* Load all available areas and create tabs dynamically
+	* Load all available areas and create tabs dynamically.
 	*/
 	loadAreas: function() {
 		var me = this,
@@ -134,7 +134,6 @@ Ext.define('EatSense.controller.Spot', {
 						'error': operation.error, 
 						'forceLogout': true, 
 						'hideMessage':false
-
 					});
 			 	} else {
 			 		//Create a custom tab for each service area
@@ -148,6 +147,8 @@ Ext.define('EatSense.controller.Spot', {
 			 			}
 			 			console.log("add tab " + area.get('name'));
 			 		});
+
+			 		me.loadSpots();
 			 	}			
 			 }
 		});
@@ -165,7 +166,8 @@ Ext.define('EatSense.controller.Spot', {
 			account = loginCtr.getAccount(),
 			info = this.getInfo(),
 			spotStore = Ext.StoreManager.lookup('spotStore'),
-			statusInfo = i10n.translate('spot.bar.bottom.status', [account.data.login, account.data.business]);
+			statusInfo = i10n.translate('spot.bar.bottom.status', [account.data.login, account.data.business]),
+			filters = spotStore.getFilters();
 
 		if(loginCtr.getBusiness().get('trash')) {
 			statusInfo += " " + i10n.translate('spot.bar.bottom.status.locked');
@@ -181,7 +183,14 @@ Ext.define('EatSense.controller.Spot', {
 						'forceLogout': true, 
 						'hideMessage':false
 					});
-			 	}		
+			 	} else {
+			 		spotStore.clearFilter(true);					
+			 		spotStore.each(function(spot) {
+			 			me.updateTabBadgeText(spot);
+			 		});
+			 		spotStore.setFilters(filters);
+					spotStore.filter();
+			 	}
 			 },
 			 scope: this
 		});	
@@ -413,10 +422,10 @@ Ext.define('EatSense.controller.Spot', {
 	updateSpotIncremental: function(action, updatedSpot) {
 		console.log('updateSpotIncremental');
 		//load corresponding spot
-		var 	dirtySpot, 
-				index, 
-				spotStore = Ext.StoreManager.lookup('spotStore'),
-				filters = spotStore.getFilters();
+		var dirtySpot, 
+			index, 
+			spotStore = Ext.StoreManager.lookup('spotStore'),
+			filters = spotStore.getFilters();
 		
 		//use getById because this ignores Filters!
 		spotStore.clearFilter(true);
@@ -434,8 +443,46 @@ Ext.define('EatSense.controller.Spot', {
 			if(updatedSpot.checkInCount || typeof updatedSpot.checkInCount == "number") {
 				dirtySpot.set('checkInCount', updatedSpot.checkInCount);
 			}
+
+			this.updateTabBadgeText(dirtySpot);
+
 		}
 	},
+
+	updateTabBadgeText: function(updatedSpot) {		
+		var me = this,
+			dirtySpot,
+			tabs = this.getMainview().query('spotcard'),
+			status = updatedSpot.get('status'),
+			areaId = updatedSpot.get('areaId'),
+			tabBadgeText,
+			activeStatusValues = [appConstants.Request.CALL_WAITER, appConstants.PAYMENT_REQUEST, appConstants.ORDER_PLACED];
+
+		if(!updatedSpot || !areaId) {
+			console.log('Spot withouth areaId!');
+			return;
+		};
+
+		console.log('updateTabBadgeIncremental spot '+ updatedSpot.get('id') + ' status: ' + status);
+
+		Ext.Array.each(tabs, function(tab, index) {
+			if(tab.getArea().getId() == areaId) {
+				me.setTabBadgeText(tab.tab, status);
+				return false;
+			};
+		});
+	},
+
+	setTabBadgeText: function(tab, status) {
+		var tabBadgeText = "",
+			activeStatusValues = [appConstants.Request.CALL_WAITER, appConstants.PAYMENT_REQUEST, appConstants.ORDER_PLACED];
+				
+			if(activeStatusValues.indexOf(status) != -1) {
+				tabBadgeText = "!";
+			};
+			tab.setBadgeText(tabBadgeText);
+	},
+
 	/**
 	*	Updates spotdetail view when a checkIn change at this spot occurs.
 	*
@@ -1116,7 +1163,7 @@ Ext.define('EatSense.controller.Spot', {
 		messageCtr.un('eatSense.checkin', this.updateSpotDetailCheckInIncremental, this);
 		messageCtr.un('eatSense.order', this.updateSpotDetailOrderIncremental, this);
 		messageCtr.un('eatSense.request', requestCtr.updateSpotDetailOrderIncremental, requestCtr);
-		messageCtr.un('eatSense.refresh-all', this.refreshActiveCustomerOrders(), this);
+		messageCtr.un('eatSense.refresh-all', this.refreshActiveCustomerOrders, this);
 		messageCtr.un('eatSense.refresh-all', this.refreshActiveCustomerPayment, this);
 		messageCtr.un('eatSense.refresh-all', this.refreshActiveSpotCheckIns, this);
 	},

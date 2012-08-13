@@ -3,7 +3,7 @@
 */
 Ext.define('EatSense.controller.Login', {
 	extend: 'Ext.app.Controller',
-	requires: ['EatSense.model.Account', 'Ext.data.proxy.LocalStorage'],
+	requires: ['EatSense.model.Account', 'Ext.data.proxy.LocalStorage', 'EatSense.model.AppState'],
 	config: {
 		control: {
 			loginButton: {
@@ -29,6 +29,10 @@ Ext.define('EatSense.controller.Login', {
 			businessList: 'choosebusiness list',
 			cancelLoginButton: 'choosebusiness button[action=cancel]',			
 		},		
+		/**
+      	* Contains information to resume application state after the app was closed.
+      	*/
+      	appState : null,
 		//Logged in user
 		account : {},
 		//business active
@@ -63,8 +67,8 @@ Ext.define('EatSense.controller.Login', {
 	 		var 	accountLocalStore = Ext.data.StoreManager.lookup('cockpitStateStore');
 
 			if(me.getSavePassword().getValue() === 1) {
-				me.getAccount().setDirty();
-				accountLocalStore.add(me.getAccount());
+				me.getAppState().setDirty();
+				accountLocalStore.add(me.getAppState());
 				accountLocalStore.sync();
 			} else {
 				accountLocalStore.removeAll();
@@ -89,32 +93,39 @@ Ext.define('EatSense.controller.Login', {
 			accountLocalStore = Ext.data.StoreManager.lookup('cockpitStateStore'),
 			spotCtr = this.getApplication().getController('Spot'),
 			messageCtr = this.getApplication().getController('Message'),
-			account,
+			account = null,
+			appState = Ext.create('EatSense.model.AppState', {id: '1'}),
 			token;
+
+		this.setAppState(appState);
 
 	   	 try {
 	   			accountLocalStore.load();	   	
 		   	 if(accountLocalStore.getCount() == 1) {
 		   		console.log('app state found');
-		   		account = accountLocalStore.first();
-		   		this.setAccount(account);
+		   		appState = this.getAppState();
+
+		   		this.setAppState(accountLocalStore.first());
+		   		//this.setAccount(account);
 
 		   		//save token
-		   		token = account.get('accessToken');
+		   		token = appState.get('accessToken');
 
 		   		 //Set default headers so that always credentials are send
 				Ext.Ajax.setDefaultHeaders({
-					'X-Auth': account.get('accessToken'),
-					'pathId' : account.get('businessId')
+					'X-Auth': appState.get('accessToken'),
+					'pathId' : appState.get('businessId')
 				});
 
 				//check if saved credentials are valid
-				EatSense.model.Account.load(account.get('login'), {
-					success: function(record, operation){
+				//account.get('login')
+				EatSense.model.Account.load('login', {
+					success: function(record, operation) {
 						//credentials are valid, proceed
-
+						account = record;
+						me.setAccount(record);
 						//generate clientId for channel
-						account.set('clientId', account.get('login') + new Date().getTime());
+						account.set('clientId', record.get('login') + new Date().getTime());
 						account.set('accessToken', token);
 
 						EatSense.model.Business.load(account.get('businessId'), {
@@ -163,11 +174,13 @@ Ext.define('EatSense.controller.Login', {
 		   	 } else {
 		   	 	//more than one local account exists. That should not happen!
 		   	 	accountLocalStore.removeAll();
+		   	 	accountLocalStore.sync();
 		   	 	Ext.create('EatSense.view.Login');	
 		   	 }
 	   	  } catch (e) {
 	   	 	console.log('Failed restoring cockpit state.');
 	   		accountLocalStore.removeAll();	
+	   		accountLocalStore.sync();
 	   	 	Ext.create('EatSense.view.Login');	   		
 	   	 }
 	},
@@ -194,12 +207,6 @@ Ext.define('EatSense.controller.Login', {
 			return;
 		}
 
-		// EatSense.model.Account.getProxy().setHeaders({
-		// 		//provide credentials, they will be added to request header
-		// 		'login': login,
-		// 		'password': password
-		// });
-
 		Ext.Ajax.request({
     	    url: appConfig.serviceUrl+'/accounts/tokens',
     	    method: 'POST',
@@ -218,6 +225,8 @@ Ext.define('EatSense.controller.Login', {
 				Ext.Ajax.setDefaultHeaders({
 					'X-Auth': me.getAccount().get('accessToken')
 				});
+
+				me.getAppState().set('accessToken', me.getAccount().get('accessToken'));
 
 				// me.resetAccountProxyHeaders();
 				me.showBusinesses();
@@ -389,6 +398,7 @@ Ext.define('EatSense.controller.Login', {
 	setBusinessId: function(business) {
 		var me = this,
 			account = this.getAccount(),
+			appState = this.getAppState(),
 			spotCtr = this.getApplication().getController('Spot'),
 			messageCtr = this.getApplication().getController('Message'); 
 
@@ -396,6 +406,8 @@ Ext.define('EatSense.controller.Login', {
 		account.set('business', business.get('name'));
 
 		me.setBusiness(business);
+
+		appState.set('businessId', business.get('id'));
 		
 		//set pathId in default Ajax headers to avoid setting it with every request
 		Ext.Ajax.getDefaultHeaders().pathId = account.get('businessId');

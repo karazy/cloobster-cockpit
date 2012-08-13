@@ -1,12 +1,12 @@
 Ext.define('EatSense.store.AppState', {
 	extend : 'Ext.data.Store',
-	requires : [ 'EatSense.model.Account' ],
+	requires : [ 'EatSense.model.AppState' ],
 	config : {
 		storeId : 'cockpitStateStore',
-		model : 'EatSense.model.Account',
+		model : 'EatSense.model.AppState',
 		proxy : {
 			type : 'localstorage',
-			id: 'eatSense_cockpit_store'
+			id: 'cloobster_cockpit'
 		}
 	}
 });

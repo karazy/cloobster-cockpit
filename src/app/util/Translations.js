@@ -39,9 +39,9 @@ Ext.define('EatSense.util.Translations',{
 		"spot.bar.bottom.status" : "<span>{0}</strong> eingeloggt bei <strong>{1}</strong>",
 		"spot.bar.bottom.status.locked" : "(Gelöscht)",
 		"spot.locked" : "Dieses Restaurant wurde gelöscht.<br/>Es können keine Aktionen mehr durchgeführt werden.",
-		"spot.filter.none" : "Alle",
-		"spot.filter.active" : "Aktiv",
-		"spot.filter.title" : "Filter",
+		"spot.filter.none" : "Alle Spots",
+		"spot.filter.active" : "Aktive Spots",
+		"spot.filter.title" : "Ansicht",
 		//spot details
 		"spotDetailCustomerLabel" : "Gäste",
 		"errorSpotDetailCheckInLoading" : "Laden der eingecheckten Personen fehlgeschlagen!",

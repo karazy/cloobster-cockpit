@@ -45,7 +45,7 @@ Ext.define('EatSense.view.Main', {
 			modal: true,
 			hideOnMaskTap: true,
 			padding: 5,
-			width: 200,
+			// width: 220,
 			height: 200,
 			hidden: true,
 			items: [
@@ -57,7 +57,7 @@ Ext.define('EatSense.view.Main', {
 			{
 				 xtype: 'fieldset',
 				 defaults: {
-				 	labelWidth: '100px',
+				 	labelWidth: '120px',
 				 	xtype: 'radiofield'
 				 },
 				 items: [

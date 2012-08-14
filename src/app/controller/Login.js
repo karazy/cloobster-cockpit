@@ -143,19 +143,16 @@ Ext.define('EatSense.controller.Login', {
 					failure: function(record, operation) {					
 						//error verifying credentials, maybe account changed on server or server ist not aaccessible
 						me.resetDefaultAjaxHeaders();
-						// me.resetAccountProxyHeaders();
-
+						//show login screen
 						Ext.create('EatSense.view.Login');
 
-						me.getLoginField().setValue(account.get('login'));
 
 						if(operation.error) {
 							//not authorized
 							if(operation.error.status == "401" || operation.error.status == "403") {
 								errorMessage = i10n.translate('restoreCredentialsErr');
 								//login data not valid. delete
-								appStateStore.removeAll();
-								appStateStore.sync();
+								me.clearAppState();
 							} else if (operation.error.status == "404") {
 								errorMessage = i10n.translate('resourceNotAvailable');
 							}
@@ -174,14 +171,12 @@ Ext.define('EatSense.controller.Login', {
 				});							   			   		 	   		
 		   	 } else {
 		   	 	//more than one local account exists. That should not happen!
-		   	 	appStateStore.removeAll();
-		   	 	appStateStore.sync();
+		   	 	me.clearAppState();
 		   	 	Ext.create('EatSense.view.Login');	
 		   	 }
 	   	  } catch (e) {
 	   	 	console.log('Failed restoring cockpit state.');
-	   		appStateStore.removeAll();	
-	   		appStateStore.sync();
+	   		me.clearAppState();
 	   	 	Ext.create('EatSense.view.Login');	   		
 	   	 }
 	},
@@ -277,11 +272,10 @@ Ext.define('EatSense.controller.Login', {
 	*/
 	logout: function() {
 		console.log('Logout Controller -> logout');
-		var 	accountLocalStore = Ext.data.StoreManager.lookup('cockpitStateStore'),
-				spotStore = Ext.data.StoreManager.lookup('spotStore'),
-				checkInStore = Ext.data.StoreManager.lookup('checkInStore'),
-				spotDetail = this.getApplication().getController('Spot').getSpotDetail(),
-				business = this.getBusiness();
+		var spotStore = Ext.data.StoreManager.lookup('spotStore'),
+			checkInStore = Ext.data.StoreManager.lookup('checkInStore'),
+			spotDetail = this.getApplication().getController('Spot').getSpotDetail(),
+			business = this.getBusiness();
 		
 		//make sure to close spot detail if it is still open
 		if(!spotDetail.isHidden()) {
@@ -299,8 +293,7 @@ Ext.define('EatSense.controller.Login', {
 
 		appChannel.closeChannel();
 		//remove all stored credentials
-		accountLocalStore.removeAll();
-		accountLocalStore.sync();
+		this.clearAppState();
 
 		this.resetDefaultAjaxHeaders();
 
@@ -437,7 +430,14 @@ Ext.define('EatSense.controller.Login', {
 		if(status == appConstants.FORCE_LOGOUT) {
 			this.logout();
 		}
+	},
+	/**
+	*
+	*/
+	clearAppState: function() {
+		var appStateStore = Ext.StoreManager.lookup('cockpitStateStore');
+
+		appStateStore.removeAll();
+		appStateStore.sync();
 	}
-
-
 });

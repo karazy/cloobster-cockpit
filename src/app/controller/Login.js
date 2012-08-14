@@ -95,6 +95,7 @@ Ext.define('EatSense.controller.Login', {
 			spotCtr = this.getApplication().getController('Spot'),
 			messageCtr = this.getApplication().getController('Message'),
 			account = null,
+			businessId,
 			//create appState and force use of id=1 so that only one element gets stored
 			appState = Ext.create('EatSense.model.AppState', {id: '1'}),
 			token;
@@ -111,6 +112,7 @@ Ext.define('EatSense.controller.Login', {
 
 		   		//save token
 		   		token = appState.get('accessToken');
+		   		businessId = appState.get('businessId');
 
 		   		 //Set default headers so that always credentials are send
 				Ext.Ajax.setDefaultHeaders({
@@ -129,9 +131,9 @@ Ext.define('EatSense.controller.Login', {
 						account.set('clientId', record.get('login') + new Date().getTime());
 						account.set('accessToken', token);
 						//restore businessId on Account
-						account.set('businessId', me.getAppState().get('businessId'));
+						account.set('businessId', businessId);
 
-						EatSense.model.Business.load(account.get('businessId'), {
+						EatSense.model.Business.load(businessId, {
 							success: function(record) {
 								me.setBusiness(record);
 								Ext.create('EatSense.view.Main');

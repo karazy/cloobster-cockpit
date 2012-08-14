@@ -179,7 +179,7 @@ Ext.define('EatSense.controller.Spot', {
 			account = loginCtr.getAccount(),
 			info = this.getInfo(),
 			spotStore = Ext.StoreManager.lookup('spotStore'),
-			statusInfo = i10n.translate('spot.bar.bottom.status', [account.data.login, account.data.business]),
+			statusInfo = i10n.translate('spot.bar.bottom.status', [account.data.login || account.data.email, account.data.business]),
 			filters = spotStore.getFilters();
 
 		if(loginCtr.getBusiness().get('trash')) {

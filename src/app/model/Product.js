@@ -58,10 +58,6 @@ Ext.define('EatSense.model.Product', {
 	            }
 	        }],
 	},
-	
-	validate: function() {
-		
-	},
 		/**
 	 * Calculates total cost of this product including choices, returns it and
 	 * stores it in priceCalculated.
@@ -101,7 +97,8 @@ Ext.define('EatSense.model.Product', {
 		
 		for( ; index < choicesCount; index++) {
 			rawJson.choices[index] = this.choices().getAt(index).getRawJsonData();
-		}		
+		};
+
 		return rawJson;
 	},
 	/**

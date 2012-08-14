@@ -782,9 +782,9 @@ Ext.define('EatSense.controller.Spot', {
 
 		//same approach as in eatSense App. Magic lies in getRawJsonData()
 		//still kind of a workaround
-		Ext.Ajax.request({				
+		Ext.Ajax.request({			
     	    url: appConfig.serviceUrl+'/b/businesses/'+loginCtr.getAccount().get('businessId')+'/orders/'+order.getId(),
-    	    method: 'PUT',    	    
+    	    method: 'PUT',
     	    jsonData: order.getRawJsonData(),
     	    scope: this,
     	    success: function(response) {
@@ -899,7 +899,7 @@ Ext.define('EatSense.controller.Spot', {
 
 		Ext.Msg.show({
 			title: i10n.translate('hint'),
-			message: i10n.translate('cancelOrderQuestion', order.getProduct().get('name')),
+			message: i10n.translate('cancelOrderQuestion', order.get('product_name')),
 			buttons: [{
 				text: i10n.translate('yes'),
 				itemId: 'yes',

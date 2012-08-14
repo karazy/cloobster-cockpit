@@ -333,7 +333,7 @@ Ext.define('EatSense.controller.Spot', {
 						'forceLogout': {403: true},
 						'hideMessage':false
 					});
-			 	}				
+			 	}		
 			 }
 		});
 	},
@@ -1145,8 +1145,8 @@ Ext.define('EatSense.controller.Spot', {
 		var spotStore = Ext.StoreManager.lookup('spotStore');
 		console.log('tab changed');
 		if(!oldTab || newTab.getId() != oldTab.getId()) {
-			if(spotStore.getFilters().length > 0 && oldTab.getAreaFilter()) {
-				spotStore.getData().removeFilters([oldTab.getAreaFilter()]);	
+			if(spotStore.getFilters().length > 0 && oldTab && oldTab.getAreaFilter()) {
+				spotStore.getData().removeFilters([oldTab.getAreaFilter()]);
 			};
 
 			spotStore.filter(newTab.getAreaFilter());

@@ -64,15 +64,16 @@ Ext.define('EatSense.controller.Login', {
 	 	*	Save application state by using localstorage when getSavePassword is checked.
 	 	*/
 	 	this.saveAppState = function() {
-	 		var 	accountLocalStore = Ext.data.StoreManager.lookup('cockpitStateStore');
+	 		var 	appStateStore = Ext.data.StoreManager.lookup('cockpitStateStore');
 
 			if(me.getSavePassword().getValue() === 1) {
+				//set dirty so that store.sync does its work
 				me.getAppState().setDirty();
-				accountLocalStore.add(me.getAppState());
-				accountLocalStore.sync();
+				appStateStore.add(me.getAppState());
+				appStateStore.sync();
 			} else {
-				accountLocalStore.removeAll();
-				accountLocalStore.sync();
+				appStateStore.removeAll();
+				appStateStore.sync();
 			};
 	 	};
 	 	/*
@@ -90,23 +91,23 @@ Ext.define('EatSense.controller.Login', {
 	restoreCredentials: function() {
 		console.log('restoreCredentials');
 		var me = this,
-			accountLocalStore = Ext.data.StoreManager.lookup('cockpitStateStore'),
+			appStateStore = Ext.data.StoreManager.lookup('cockpitStateStore'),
 			spotCtr = this.getApplication().getController('Spot'),
 			messageCtr = this.getApplication().getController('Message'),
 			account = null,
+			//create appState and force use of id=1 so that only one element gets stored
 			appState = Ext.create('EatSense.model.AppState', {id: '1'}),
 			token;
 
 		this.setAppState(appState);
 
 	   	 try {
-	   			accountLocalStore.load();	   	
-		   	 if(accountLocalStore.getCount() == 1) {
-		   		console.log('app state found');
-		   		appState = this.getAppState();
+	   			appStateStore.load();	   	
+		   	 if(appStateStore.getCount() == 1) {
+		   		console.log('app state found');		   		
 
-		   		this.setAppState(accountLocalStore.first());
-		   		//this.setAccount(account);
+		   		this.setAppState(appStateStore.first());
+		   		appState = this.getAppState();
 
 		   		//save token
 		   		token = appState.get('accessToken');
@@ -127,14 +128,14 @@ Ext.define('EatSense.controller.Login', {
 						//generate clientId for channel
 						account.set('clientId', record.get('login') + new Date().getTime());
 						account.set('accessToken', token);
+						//restore businessId on Account
+						account.set('businessId', me.getAppState().get('businessId'));
 
 						EatSense.model.Business.load(account.get('businessId'), {
 							success: function(record) {
 								me.setBusiness(record);
 								Ext.create('EatSense.view.Main');
 								spotCtr.loadAreas();
-								//TODO temporary
-								// messageCtr.refreshAll(true);
 								messageCtr.openChannel();
 							}
 						});
@@ -153,8 +154,8 @@ Ext.define('EatSense.controller.Login', {
 							if(operation.error.status == "401" || operation.error.status == "403") {
 								errorMessage = i10n.translate('restoreCredentialsErr');
 								//login data not valid. delete
-								accountLocalStore.removeAll();
-								accountLocalStore.sync();
+								appStateStore.removeAll();
+								appStateStore.sync();
 							} else if (operation.error.status == "404") {
 								errorMessage = i10n.translate('resourceNotAvailable');
 							}
@@ -173,14 +174,14 @@ Ext.define('EatSense.controller.Login', {
 				});							   			   		 	   		
 		   	 } else {
 		   	 	//more than one local account exists. That should not happen!
-		   	 	accountLocalStore.removeAll();
-		   	 	accountLocalStore.sync();
+		   	 	appStateStore.removeAll();
+		   	 	appStateStore.sync();
 		   	 	Ext.create('EatSense.view.Login');	
 		   	 }
 	   	  } catch (e) {
 	   	 	console.log('Failed restoring cockpit state.');
-	   		accountLocalStore.removeAll();	
-	   		accountLocalStore.sync();
+	   		appStateStore.removeAll();	
+	   		appStateStore.sync();
 	   	 	Ext.create('EatSense.view.Login');	   		
 	   	 }
 	},
@@ -206,7 +207,7 @@ Ext.define('EatSense.controller.Login', {
 			Ext.Msg.alert(i10n.translate('error'), i10n.translate('needCredentials')); 
 			return;
 		}
-
+		//Generate a token via a POST. Getting the account in response is a covenient shortcut, compared to explicitly loading the account
 		Ext.Ajax.request({
     	    url: appConfig.serviceUrl+'/accounts/tokens',
     	    method: 'POST',
@@ -227,12 +228,9 @@ Ext.define('EatSense.controller.Login', {
 				});
 
 				me.getAppState().set('accessToken', me.getAccount().get('accessToken'));
-
-				// me.resetAccountProxyHeaders();
 				me.showBusinesses();
     	    },
     	    failure: function(response) {
-    	    	// me.resetAccountProxyHeaders();
 				me.resetDefaultAjaxHeaders();
 
 				if(response.status) {
@@ -271,7 +269,6 @@ Ext.define('EatSense.controller.Login', {
 
 		me.resetDefaultAjaxHeaders();
 		me.setAccount({});
-		// me.resetAccountProxyHeaders();
 	},
 	/**
 	*	Logout signed in user and show login screen.

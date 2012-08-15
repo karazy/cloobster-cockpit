@@ -899,7 +899,7 @@ Ext.define('EatSense.controller.Spot', {
 
 		Ext.Msg.show({
 			title: i10n.translate('hint'),
-			message: i10n.translate('cancelOrderQuestion', order.get('product_name')),
+			message: i10n.translate('cancelOrderQuestion', order.get('productName')),
 			buttons: [{
 				text: i10n.translate('yes'),
 				itemId: 'yes',

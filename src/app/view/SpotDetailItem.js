@@ -19,7 +19,7 @@ Ext.define('EatSense.view.SpotDetailItem', {
 		name: {
 			cls: 'spotdetailitem-order',	
 			tpl: new Ext.XTemplate(
-				"<h2>{amount} x {product_name} - {[this.formatPrice(values.product_price_calculated)]}</h2>" +
+				"<h2>{amount} x {productName} - {[this.formatPrice(values.price_calculated)]}</h2>" +
 				"<h4>Uhrzeit: {[values.orderTime.toLocaleTimeString()]}</h4>"+
 				"<div class='choices'>"+
 					"<tpl for='choices'>" +				

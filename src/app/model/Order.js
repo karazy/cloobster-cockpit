@@ -24,19 +24,19 @@ Ext.define('EatSense.model.Order', {
 			persist: false
 		},
 		{
-			name: 'product_name'
+			name: 'productName'
 		},
 		{
-			name: 'product_price'
+			name: 'productPrice'
 		},		
 		{
-			name: 'product_id'
+			name: 'productId'
 		},
 		{
-			name: 'product_longDesc'
+			name: 'productLongDesc'
 		},
 		{
-			name: 'product_shortDesc'
+			name: 'productShortDesc'
 		},
 		{//dont change, gets set automatically
 			name: 'price_calculated',
@@ -98,14 +98,14 @@ Ext.define('EatSense.model.Order', {
 	 * 
 	 */
 	calculate: function() {
-		var _total = this.get('product_price'), _amount = this.get('amount');
+		var _total = this.get('productPrice'), _amount = this.get('amount');
 		this.choices().each(function(choice, index) {
 			_total += choice.calculate();
 		});
 
 		// _total = appHelper.roundPrice(_total*_amount);
 		_total = _total*_amount;
-		this.set('price_calculated', _total);
+	//	this.set('price_calculated', _total);
 		
 		return (this.get('status') == appConstants.Order.CANCELED) ? 0 : _total;
 	},
@@ -143,11 +143,11 @@ Ext.define('EatSense.model.Order', {
 		rawJson.status = this.get('status');
 		rawJson.amount = this.get('amount');
 		rawJson.comment = this.get('comment');
-		rawJson.product_name = this.get('product_name');
-		rawJson.product_id = this.get('product_id');
-		rawJson.product_price = this.get('product_price');
-		rawJson.product_shortDesc = this.get('product_shortDesc');
-		rawJson.product_longDesc = this.get('product_longDesc');
+		rawJson.productName = this.get('productName');
+		rawJson.productId = this.get('productId');
+		rawJson.productPrice = this.get('productPrice');
+		rawJson.productShortDesc = this.get('productShortDesc');
+		rawJson.productLongDesc = this.get('productLongDesc');
 		rawJson.orderTime = this.get('orderTime').getTime();
 
 		rawJson.choices = new Array(this.choices().data.length);
@@ -194,20 +194,13 @@ Ext.define('EatSense.model.Order', {
 		this.set('amount', rawData.amount);
 		this.set('comment', rawData.comment);
 		this.set('orderTime', rawData.orderTime);
-		this.set('product_name', rawData.product_name);
-		this.set('product_id', rawData.product_id);
-		this.set('product_price', rawData.product_price);
-		this.set('product_shortDesc', rawData.product_shortDesc);
-		this.set('product_longDesc', rawData.product_longDesc);
+		this.set('productName', rawData.productName);
+		this.set('productId', rawData.productId);
+		this.set('productPrice', rawData.productPrice);
+		this.set('productShortDesc', rawData.productShortDesc);
+		this.set('productLongDesc', rawData.productLongDesc);
 
 		return true;	
-	},
-	/**
-	*	Returns a html representation of this order.
-	*	This method is necessary becase of the very complex object relations.
-	*/
-	getHtmlRepresentation: function() {
-
 	}
 
 });

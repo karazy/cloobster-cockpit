@@ -22,7 +22,7 @@ Ext.define('EatSense.model.Product', {
 			name : 'price',
 			type : 'number'
 		}, { //dont change, gets set automatically
-			name: 'price_calculated',
+			name: 'priceCalculated',
 			persist: false,
 			type: 'number'
 		}],
@@ -58,7 +58,7 @@ Ext.define('EatSense.model.Product', {
 	            }
 	        }],
 	},
-		/**
+	/**
 	 * Calculates total cost of this product including choices, returns it and
 	 * stores it in priceCalculated.
 	 * @param amount
@@ -75,7 +75,7 @@ Ext.define('EatSense.model.Product', {
 		}
 		// _total = appHelper.roundPrice(_total*_amount);
 		_total = _total*_amount;
-		this.set('price_calculated', _total);
+		this.set('priceCalculated', _total);
 		return _total;
 	},
 	/**

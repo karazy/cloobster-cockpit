@@ -39,15 +39,11 @@ Ext.define('EatSense.model.Order', {
 			name: 'productShortDesc'
 		},
 		{//dont change, gets set automatically
-			name: 'price_calculated',
+			name: 'priceCalculated',
 			type: 'number',
 			persist: false
 		}
 		],
-		// associations : {
-		// 	type : 'hasOne',
-		// 	model : 'EatSense.model.Product',
-		// },
 		associations: [{
             type: 'hasMany',
             model: 'EatSense.model.Choice',
@@ -93,19 +89,18 @@ Ext.define('EatSense.model.Order', {
 	/**
 	 * Calculates total cost of this order including choices, returns it and
 	 * stores it in priceCalculated.
-	 * @param amount
-	 * 		How often this product is ordered.
-	 * 
 	 */
 	calculate: function() {
-		var _total = this.get('productPrice'), _amount = this.get('amount');
+
+		var _total = this.get('productPrice'), _amount = parseFloat(this.get('amount'));
 		this.choices().each(function(choice, index) {
 			_total += choice.calculate();
 		});
 
 		// _total = appHelper.roundPrice(_total*_amount);
 		_total = _total*_amount;
-	//	this.set('price_calculated', _total);
+
+		this.set('priceCalculated', _total);
 		
 		return (this.get('status') == appConstants.Order.CANCELED) ? 0 : _total;
 	},

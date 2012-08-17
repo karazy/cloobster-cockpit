@@ -6,10 +6,10 @@ Ext.define('EatSense.model.AppState', {
 	extend : 'Ext.data.Model',
 	config : 
 		{
-		fields : [ 
+		fields : [
 			{
 				name : 'id'
-			}, 
+			},
 			{
 				name : 'accessToken',
 				type : 'string'

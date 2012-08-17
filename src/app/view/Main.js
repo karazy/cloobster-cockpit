@@ -71,6 +71,16 @@ Ext.define('EatSense.view.Main', {
 			            name : 'filter',
 			            label: i10n.translate('spot.filter.active'),
 			            value: 'active',
+			        },
+			        {
+			        	name: 'filter',
+			        	label: i10n.translate('spot.filter.requests.asc'),
+			        	value: 'requests-asc'
+			        },
+			        {
+			        	name: 'filter',
+			        	label: i10n.translate('spot.filter.requests.desc'),
+			        	value: 'requests-desc'
 			        }
 				 ]
 			}

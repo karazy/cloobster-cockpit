@@ -11,7 +11,7 @@ Ext.application({
 	controllers : ['Login','Spot', 'Message', 'Request'],
 	models : ['AppState', 'Account', 'Area', 'Spot', 'Business', 'CheckIn', 'Order', 'Product', 'Choice', 'Option', 'Bill', 'PaymentMethod', 'Request'],
 	views : ['Login', 'ChooseBusiness', 'Main'], 
-	stores : ['Account', 'AppState', 'Area',  'Spot', 'Business', 'CheckIn', 'Order', 'Bill', 'Request' ],
+	stores : ['Account', 'AppState', 'Area',  'Spot', 'Business', 'CheckIn', 'Order', 'Bill', 'Request', 'DefaultRequest' ],
 	requires: [
 		//require most common types
 		'Ext.Container',

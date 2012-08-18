@@ -10,7 +10,8 @@ Ext.define('EatSense.controller.Spot', {
 		refs: {
 			spotitem: 'spotitem button',
 			// spotsview: '#spotsview',
-			// spotcard: 'spotcard[name="default"]',
+			spotcard: 'spotcard',
+			viewCarousel: 'spotcard carousel',
 			mainview: 'main',
 			// spotTab: 'tab',
 			info: 'toolbar[docked=bottom] #info',
@@ -38,7 +39,8 @@ Ext.define('EatSense.controller.Spot', {
 		    spotDetailItem: 'spotdetailitem',
 		    filterRadios: 'radiofield[name=filter]',
 		    showFilterButton: 'main button[action=show-filter]',
-		    filterPanel: 'main #filterPanel'
+		    filterPanel: 'main #filterPanel',
+		    requestDataview: 'spotcard #requestDataview'
 		},
 
 		control : {
@@ -90,6 +92,9 @@ Ext.define('EatSense.controller.Spot', {
 		 	mainview: {
 		 		activeitemchange: 'areaChanged'		 		
 		 	},
+		 	// viewCarousel: {
+		 	// 	activeitemchange: ''
+		 	// }
 		},
 
 		//the active spot, when spot detail view is visible
@@ -126,6 +131,7 @@ Ext.define('EatSense.controller.Spot', {
 		var me = this,
 			areaStore = Ext.StoreManager.lookup('areaStore'),
 			spotStore = Ext.StoreManager.lookup('spotStore'),
+			defRequestStore = Ext.StoreManager.lookup('defRequestStore'),
 			tabPanel = this.getMainview(),
 			tab,
 			areaFilter;
@@ -157,13 +163,41 @@ Ext.define('EatSense.controller.Spot', {
 			 			tabPanel.add(tab);
 			 			if(index == 0) {
 							spotStore.filter(tab.getAreaFilter());
+							defRequestStore.filter(tab.getAreaFilter());
 			 			};
 			 			console.log("add tab " + area.get('name'));
 			 		});
 
 			 		me.loadSpots();
+			 		me.loadRequests();
 			 	}			
 			 }
+		});
+
+	},
+
+	loadRequests: function() {
+		var store = Ext.StoreManager.lookup('defRequestStore');
+
+		//set initial sort order
+		store.sort('receivedTime' , 'DESC');
+
+		store.load({
+			params: {
+				// 'areaId' : 
+				'types': ['ORDER', 'BILL']
+			},
+			callback: function(records, operation, success) {
+				if(success) {
+					
+				} else {
+					me.getApplication().handleServerError({
+						'error': operation.error, 
+						'forceLogout': {403: true},
+						'hideMessage':false
+					});
+				}
+			}
 		});
 	},
 
@@ -1143,14 +1177,20 @@ Ext.define('EatSense.controller.Spot', {
 	* only spots of this area are shown.
 	*/
 	areaChanged: function(container, newTab, oldTab) {
-		var spotStore = Ext.StoreManager.lookup('spotStore');
+		var spotStore = Ext.StoreManager.lookup('spotStore'),
+			defRequestStore = Ext.StoreManager.lookup('defRequestStore');
+
 		console.log('tab changed');
 		if(!oldTab || newTab.getId() != oldTab.getId()) {
 			if(spotStore.getFilters().length > 0 && oldTab && oldTab.getAreaFilter()) {
 				spotStore.getData().removeFilters([oldTab.getAreaFilter()]);
 			};
+			if(defRequestStore.getFilters().length > 0 && oldTab && oldTab.getAreaFilter()) {
+				defRequestStore.getData().removeFilters([oldTab.getAreaFilter()]);
+			};
 
 			spotStore.filter(newTab.getAreaFilter());
+			defRequestStore.filter(newTab.getAreaFilter());
 			//Bug? Call filter again, because sometimes it isn't filtered directly.
 			spotStore.filter();
 			newTab.down('dataview').refresh();
@@ -1245,13 +1285,43 @@ Ext.define('EatSense.controller.Spot', {
 			store.getData().removeFilters([this.spotActiveFilterFn]);
 			//actually removeFilters calls filter() on the store but this had no effect
 			store.filter();
+			this.showSpotView();
 		} else if(radio.getSubmitValue() == 'active') {
 			console.log('apply filter active');
 			store.filterBy(this.spotActiveFilterFn);
+			this.showSpotView();
+		} else if(radio.getSubmitValue() == 'requests-asc') {
+			this.showRequestView('ASC');
+		} else if(radio.getSubmitValue() == 'requests-desc') {
+			this.showRequestView('DESC');
 		};
 
 		panel.hide();
 	},
+
+	showSpotView: function() {
+		var carousel = this.getViewCarousel();
+
+		//switch to request view
+		carousel.setActiveItem(0);
+	},
+
+	/**
+	*
+	*/
+	showRequestView: function(sortOrder) {
+		var me = this,
+			carousel = this.getViewCarousel(),
+			requestDataview = this.getRequestDataview();
+
+		//switch to request view
+		carousel.setActiveItem(1);
+
+		//Set sort order for requests.
+		requestDataview.getStore().sort('receivedTime' , sortOrder);
+	},
+
+
 	/**
 	* Filter method.
 	* Returns true for spots with status ORDER_PLACED, PAYMENT_REQUEST or CALL_WAITER.

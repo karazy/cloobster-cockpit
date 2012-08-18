@@ -46,7 +46,7 @@ Ext.define('EatSense.view.Main', {
 			hideOnMaskTap: true,
 			padding: 5,
 			// width: 220,
-			height: 200,
+			// height: 200,
 			hidden: true,
 			items: [
 			{
@@ -57,7 +57,7 @@ Ext.define('EatSense.view.Main', {
 			{
 				 xtype: 'fieldset',
 				 defaults: {
-				 	labelWidth: '120px',
+				 	labelWidth: '75%',
 				 	xtype: 'radiofield'
 				 },
 				 items: [
@@ -92,7 +92,7 @@ Ext.define('EatSense.view.Main', {
 			layout: 'fit',					
 			docked: 'bottom',
 			hidden: !appConfig.debug,	
-			height: 150,			
+			height: 150,		
 			items: [
 			{
 				xtype: 'titlebar',

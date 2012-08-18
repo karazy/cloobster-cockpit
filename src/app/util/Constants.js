@@ -16,6 +16,7 @@ Ext.define('EatSense.util.Constants', {
 			COMPLETE : 'COMPLETE'			
 		},
 		Request : {
+			CUSTOM : 'CUSTOM',
 			CALL_WAITER : 'CALL_WAITER'
 		},
 		//regular expressions for different currencies

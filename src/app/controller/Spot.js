@@ -45,7 +45,7 @@ Ext.define('EatSense.controller.Spot', {
 
 		control : {
 			spotitem: {
-		 		tap:  'showSpotDetails'
+		 		tap:  'spotItemTapped'
 		 	},
 		 	spotDetailCustomerList: {
 		 		select: 'showCustomerDetail'
@@ -92,6 +92,9 @@ Ext.define('EatSense.controller.Spot', {
 		 	mainview: {
 		 		activeitemchange: 'areaChanged'		 		
 		 	},
+		 	requestDataview : {
+		 		itemtap : 'requestItemTapped'
+		 	}
 		 	// viewCarousel: {
 		 	// 	activeitemchange: ''
 		 	// }
@@ -121,6 +124,10 @@ Ext.define('EatSense.controller.Spot', {
 
 		loginCtr.on('eatSense.read-only', this.lockActions, this);
 		loginCtr.on('eatSense.unlock', this.unlockActions, this);
+
+		//fill request store
+		messageCtr.on('eatSense.request', this.updateRequestsIncremental, this);
+		// messageCtr.on('eatSense.bill', this.updateRequestsIncremental, this);
 	},
 
 	// start load and show data
@@ -246,11 +253,22 @@ Ext.define('EatSense.controller.Spot', {
 	},
 
 	/**
-	*	Gets called when user taps on a spot. Shows whats going on at a particular spot.
-	*   Like incoming orders, payment requests ...
+	* Event handler for SpotItem tap.
 	*
 	*/
-	showSpotDetails: function(button, eventObj, eOpts) {
+	spotItemTapped: function(button, eventObj, eOpts) {
+		this.showSpotDetails(button.oRec);
+	},
+
+	/**
+	*	Gets called when user taps on a spot. Shows whats going on at a particular spot.
+	*   Like incoming orders, payment requests ...
+	* @param spot
+	*	Spot to show details for.
+	* @param checkInId
+	*	if existing checkInId to select
+	*/
+	showSpotDetails: function(spot, checkInId) {
 		console.log('showSpotDetails');
 		var	me = this,
 			loginCtr = this.getApplication().getController('Login'),
@@ -260,11 +278,12 @@ Ext.define('EatSense.controller.Spot', {
 			checkInList = detail.down('#checkInList'),
 			//see SpotItem for details why button.oRec is called
 			// data = button.getParent().getRecord(),			
-			data = button.oRec,
+			data = spot,
 			checkInStore = Ext.StoreManager.lookup('checkInStore'),
 			restaurantId = loginCtr.getAccount().get('businessId'),
 			titlebar = detail.down('titlebar'),
-			requestStore = Ext.StoreManager.lookup('requestStore');
+			requestStore = Ext.StoreManager.lookup('requestStore'),
+			checkInToSelect;
 
 		//add listeners for channel messages
 		messageCtr.on('eatSense.checkin', this.updateSpotDetailCheckInIncremental, this);
@@ -287,9 +306,18 @@ Ext.define('EatSense.controller.Spot', {
 			 callback: function(records, operation, success) {
 			 	if(success) { 		
 			 		requestCtr.loadRequests();
-			 		if(records.length > 0) {			 			
-			 			//selects the first customer. select event of list gets fired and calls showCustomerDetail	 	
-			 			me.getSpotDetailCustomerList().select(0);
+			 		if(records.length > 0) {
+			 			if(!checkInId) {
+			 				//selects the first customer. select event of list gets fired and calls showCustomerDetail	 	
+			 				me.getSpotDetailCustomerList().select(0);
+			 			} else {
+			 				checkInToSelect = checkInStore.getById(checkInId);
+			 				if(checkInToSelect) {
+			 					me.getSpotDetailCustomerList().select(checkInToSelect);
+			 				} else {
+			 					me.getSpotDetailCustomerList().select(0);
+			 				}
+			 			}	
 			 		}
 			 	} else {
 			 		me.getApplication().handleServerError({
@@ -618,6 +646,21 @@ Ext.define('EatSense.controller.Spot', {
 				} 
 			}
 		}
+	},
+	/**
+	* Update the request list with incoming request from a channel message.
+	*
+	*/
+	updateRequestsIncremental: function(action, newRequest) {
+		var defRequestStore = Ext.StoreManager.lookup('defRequestStore'),
+			request = Ext.create('EatSense.model.Request', newRequest);
+			//check if this request belongs to displayed area
+
+			if(request.get('areaId'))
+
+			if(request.get('type') == 'ORDER' || request.get('type') == 'BILL') {
+				defRequestStore.add(request);
+			};
 	},
 	/**
 	*	Updates spotdetail view when a new/changed bill arrives.
@@ -1193,10 +1236,30 @@ Ext.define('EatSense.controller.Spot', {
 			defRequestStore.filter(newTab.getAreaFilter());
 			//Bug? Call filter again, because sometimes it isn't filtered directly.
 			spotStore.filter();
+			defRequestStore.filter();
 			newTab.down('dataview').refresh();
 			newTab.tab.setBadgeText("");
 		}
 	},
+
+	/**
+	* Event handler for itemTap on RequestItem.
+	*
+	*/
+	requestItemTapped : function(dataview, index, item, record) {
+		var spotStore = Ext.StoreManager.lookup('spotStore'),
+			spotToShow;
+
+		spotToShow = spotStore.getById(record.get('spotId'));
+
+		if(spotToShow) {
+			this.showSpotDetails(spotToShow, record.get('checkInId'));
+		} else {
+			//handle error
+		}
+
+	},
+
 	// end actions
 
 	// start misc actions

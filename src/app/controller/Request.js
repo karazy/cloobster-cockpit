@@ -1,6 +1,6 @@
 /**
-*	Handles customer requests like "Call Waiter".
-*	
+*	Handles special customer requests like "Call Waiter".
+*	Deals not with general requests like ORDER or BILL
 */
 Ext.define('EatSense.controller.Request',{
 	extend: 'Ext.app.Controller',
@@ -10,10 +10,9 @@ Ext.define('EatSense.controller.Request',{
 			customerRequestDialog: {
 		    	selector: 'customerrequest',
 		    	xtype: 'customerrequest',
-		    	// autoCreate: true
 		    },
 			dismissRequestsButton: 'customerrequest button[action=dismiss]',
-			customerRequestList: 'customerrequest list'
+			customerRequestList: 'customerrequest list',
 		},
 		control: {
 			dismissRequestsButton : {

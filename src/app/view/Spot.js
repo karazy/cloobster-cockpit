@@ -30,8 +30,6 @@ Ext.define('EatSense.view.Spot', {
 						xtype: 'dataview',
 						itemId: 'requestDataview',
 						useComponents: true,
-						// width: 400,
-						// height: 400,
 						defaultType: 'requestitem',
 						// store: {
 						// 	model: 'EatSense.model.Request',

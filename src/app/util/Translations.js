@@ -72,7 +72,9 @@ Ext.define('EatSense.util.Translations',{
 		"requestDismiss" : "Gästewünsche löschen",
 		"spot.filterbar.spotview" : "Spotansicht",
 		"request.sort.title" : "Sortierung",
-		"request.item.elapsedtime" : "vor {0} Minuten",
+		"request.item.elapsedtime.mm" : "vor {0} Minuten",
+		"request.item.elapsedtime.hhmm" : "vor {0}:{1} Stunden",
+		"request.item.elapsedtime.dd" : "vor mehr als einem Tag",
 		"request.item.paymentrequest" : "möchte bezahlen",
 		"request.item.orderplaced" : "hat bestellt",
 		//constants

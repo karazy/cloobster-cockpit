@@ -108,8 +108,11 @@ Ext.define('EatSense.view.RequestItem', {
 	updateRecord: function(newRecord, oldRecord) {
 		var passedTime = "",
 			substractedTime,
-			time = new Date(),
-			elapsedTimeFormatted;
+			hoursPassed,
+			minutesPassed,
+			// time = new Date(),
+			elapsedTimeFormatted,
+			dayPassed = false;
 
 		if(newRecord) {
 
@@ -119,13 +122,30 @@ Ext.define('EatSense.view.RequestItem', {
 				this.getType().setHtml(i10n.translate('request.item.paymentrequest'));
 			};
 
-			time.setTime(newRecord.get('receivedTime'));
-			substractedTime = Math.abs(Date.now() - time);
+			// time.setTime(newRecord.get('receivedTime'));
+			substractedTime = Math.abs(Date.now() - newRecord.get('receivedTime').getTime());
 			//convert to minutes
 			substractedTime = substractedTime/60000;
 			elapsedTimeFormatted = Math.round(substractedTime, 0);
-			elapsedTimeFormatted += "";
-			this.getRequestTime().setHtml(i10n.translate('request.item.elapsedtime', elapsedTimeFormatted));	
+			//more then one hour has passed
+			if(elapsedTimeFormatted > 60) {
+				hoursPassed =  Math.floor(elapsedTimeFormatted/60);
+				minutesPassed = elapsedTimeFormatted - (hoursPassed * 60);
+			}
+			//more then one day has passed
+			if(hoursPassed > 24) {
+				dayPassed = true;
+			}
+
+			if(dayPassed) {
+				this.getRequestTime().setHtml(i10n.translate('request.item.elapsedtime.dd'));	
+			} else if(hoursPassed && minutesPassed) {
+				this.getRequestTime().setHtml(i10n.translate('request.item.elapsedtime.hhmm', hoursPassed, minutesPassed));	
+			} 
+			else {
+				this.getRequestTime().setHtml(i10n.translate('request.item.elapsedtime.mm', elapsedTimeFormatted));		
+			}
+			
 		}
 
 		this.callParent([newRecord, oldRecord]);

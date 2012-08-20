@@ -7,7 +7,7 @@ Ext.define('EatSense.store.DefaultRequest', {
 		sorters: [
 		{
 			property: 'receivedTime',
-			direction: 'DESC'
+			direction: 'ASC'
 		}]
 	}			
 });

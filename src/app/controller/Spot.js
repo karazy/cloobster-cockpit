@@ -1415,25 +1415,30 @@ Ext.define('EatSense.controller.Spot', {
 	},
 
 	showSpotView: function() {
-		var carousel = this.getMainview().getActiveItem();
-
+		var container = this.getMainview().getActiveItem();
+		
+		container.getLayout().setAnimation({
+			type : 'slide',
+			direction : 'right'
+		});
 		//switch to request view
-		carousel.setActiveItem(0);
+		container.setActiveItem(0);
 	},
 
 	/**
 	*
 	*/
-	showRequestView: function(sortOrder) {
+	showRequestView: function() {
 		var me = this,
-			carousel = this.getMainview().getActiveItem(),
+			container = this.getMainview().getActiveItem(),
 			requestDataview = this.getRequestDataview();
 
+		container.getLayout().setAnimation({
+			type : 'slide',
+			direction : 'left'
+		});
 		//switch to request view
-		carousel.setActiveItem(1);
-
-		//Set sort order for requests.
-		// requestDataview.getStore().sort('receivedTime' , sortOrder);
+		container.setActiveItem(1);
 	},
 
 

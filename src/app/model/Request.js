@@ -31,7 +31,9 @@ Ext.define('EatSense.model.Request', {
 		},
 		{	//time in milliseconds, just treat as number
 			name: 'receivedTime',
-			type : 'number'
+			// type : 'number'
+			type : 'date',
+			dateFormat: 'time'
 		}	
 		],
 		associations : {

@@ -102,14 +102,16 @@ Ext.define('EatSense.view.Main', {
 				 items: [
 			        {
 			        	name: 'sort-request',
-			        	label: i10n.translate('spot.filter.requests.asc'),
-			        	value: 'requests-asc'
+			        	//swap labels, because we show elapsed time
+			        	label: i10n.translate('spot.filter.requests.desc'),
+			        	value: 'requests-asc',
+			        	checked: true
 			        },
 			        {
 			        	name: 'sort-request',
-			        	label: i10n.translate('spot.filter.requests.desc'),
-			        	value: 'requests-desc',
-			        	checked: true
+			        	//swap labels, because we show elapsed time
+			        	label: i10n.translate('spot.filter.requests.asc'),
+			        	value: 'requests-desc'			        	
 			        }
 				 ]
 			}

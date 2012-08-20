@@ -3,6 +3,11 @@ Ext.define('EatSense.store.DefaultRequest', {
 	config: {
 		model: 'EatSense.model.Request',
 		storeId: 'defRequestStore',
-		syncRemovedRecords: false
+		syncRemovedRecords: false,
+		sorters: [
+		{
+			property: 'receivedTime',
+			direction: 'DESC'
+		}]
 	}			
 });

@@ -18,10 +18,10 @@ Ext.define('EatSense.view.Main', {
 			xtype: 'label',
 			itemId: 'info'
 			},
-			{	
-				text: i10n.translate('spot.filter.title'),
-				action: 'show-filter'
-			},
+			// {	
+			// 	text: i10n.translate('spot.filter.title'),
+			// 	action: 'show-filter'
+			// },
 			{
 				xtype: 'spacer'
 			},
@@ -71,22 +71,51 @@ Ext.define('EatSense.view.Main', {
 			            name : 'filter',
 			            label: i10n.translate('spot.filter.active'),
 			            value: 'active',
-			        },
-			        {
-			        	name: 'filter',
-			        	label: i10n.translate('spot.filter.requests.asc'),
-			        	value: 'requests-asc'
-			        },
-			        {
-			        	name: 'filter',
-			        	label: i10n.translate('spot.filter.requests.desc'),
-			        	value: 'requests-desc'
 			        }
 				 ]
 			}
 
 			]
+		},
+		{
+			xtype: 'panel',
+			cls: 'spot-filter-panel',
+			itemId: 'requestSortPanel',
+			modal: true,
+			hideOnMaskTap: true,
+			padding: 5,
+			// width: 220,
+			// height: 200,
+			hidden: true,
+			items: [
+			{
+				xtype: 'label',
+				html: i10n.translate('request.sort.title'),
+				cls: 'spot-filter-label'
 			},
+			{
+				 xtype: 'fieldset',
+				 defaults: {
+				 	labelWidth: '75%',
+				 	xtype: 'radiofield'
+				 },
+				 items: [
+			        {
+			        	name: 'sort-request',
+			        	label: i10n.translate('spot.filter.requests.asc'),
+			        	value: 'requests-asc'
+			        },
+			        {
+			        	name: 'sort-request',
+			        	label: i10n.translate('spot.filter.requests.desc'),
+			        	value: 'requests-desc',
+			        	checked: true
+			        }
+				 ]
+			}
+
+			]
+		},
 		{
 			xtype: 'panel',
 			layout: 'fit',					

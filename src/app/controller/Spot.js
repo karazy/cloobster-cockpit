@@ -38,9 +38,14 @@ Ext.define('EatSense.controller.Spot', {
 		    switchSpotList: 'spotselection list',
 		    spotDetailItem: 'spotdetailitem',
 		    filterRadios: 'radiofield[name=filter]',
+		    requestSortRadios: 'radiofield[name=sort-request]',
 		    showFilterButton: 'main button[action=show-filter]',
+		    showRequestSortButton: 'main button[action=show-request-sort]',
 		    filterPanel: 'main #filterPanel',
-		    requestDataview: 'spotcard #requestDataview'
+		    requestSortPanel: 'main #requestSortPanel',
+		    requestDataview: 'spotcard #requestDataview',
+		    showSpotViewButton: 'spotcard button[action=show-spotview]',
+		    showRequestViewButton: 'spotcard button[action=show-requestview]'
 		},
 
 		control : {
@@ -86,18 +91,30 @@ Ext.define('EatSense.controller.Spot', {
 		 	filterRadios : {
 		 		check: 'filterSpotsRadio'
 		 	},
+		 	requestSortRadios: {
+		 		check: 'sortRequestRadio'	
+		 	},
 		 	showFilterButton : {
 		 		tap : 'showFilterPanel'
+		 	},
+		 	showRequestSortButton : {
+		 		tap: 'showRequestSortPanel'
 		 	},
 		 	mainview: {
 		 		activeitemchange: 'areaChanged'		 		
 		 	},
 		 	requestDataview : {
 		 		itemtap : 'requestItemTapped'
+		 	},
+		 	showSpotViewButton: {
+		 		tap: 'showSpotView'
+		 	},
+		 	showRequestViewButton: {
+		 		tap: 'showRequestView'
 		 	}
 		 	// viewCarousel: {
-		 	// 	activeitemchange: ''
-		 	// }
+		 	// 	activeitemchange: 'spotCarouselItemChange'		 		
+		 	// },
 		},
 
 		//the active spot, when spot detail view is visible
@@ -106,8 +123,8 @@ Ext.define('EatSense.controller.Spot', {
 		activeCustomer: null,
 		//active bill of active Customer
 		activeBill : null,
-		//when not null, than contains the active areaFilter
-		areaFilter : null
+		//contains active area
+		activeArea : null
 	},
 
 	init: function() {
@@ -125,9 +142,10 @@ Ext.define('EatSense.controller.Spot', {
 		loginCtr.on('eatSense.read-only', this.lockActions, this);
 		loginCtr.on('eatSense.unlock', this.unlockActions, this);
 
-		//fill request store
-		messageCtr.on('eatSense.request', this.updateRequestsIncremental, this);
-		// messageCtr.on('eatSense.bill', this.updateRequestsIncremental, this);
+		//update requests in request view
+		messageCtr.on('eatSense.order', this.updateRequests, this);
+		messageCtr.on('eatSense.bill', this.updateRequests, this);
+		messageCtr.on('eatSense.checkin', this.updateRequests, this);
 	},
 
 	// start load and show data
@@ -141,6 +159,7 @@ Ext.define('EatSense.controller.Spot', {
 			defRequestStore = Ext.StoreManager.lookup('defRequestStore'),
 			tabPanel = this.getMainview(),
 			tab,
+			carousel,
 			areaFilter;
 
 		areaStore.load({
@@ -167,10 +186,14 @@ Ext.define('EatSense.controller.Spot', {
 			 				'areaFilter' : areaFilter
 			 			});
 
+			 			//atach change listener to carousel
+			 			// carousel = tab.down('carousel');
+			 			// carousel.on('activeitemchange', this.spotCarouselItemChange, this);
+
 			 			tabPanel.add(tab);
 			 			if(index == 0) {
+			 				me.setActiveArea(area);
 							spotStore.filter(tab.getAreaFilter());
-							defRequestStore.filter(tab.getAreaFilter());
 			 			};
 			 			console.log("add tab " + area.get('name'));
 			 		});
@@ -184,19 +207,20 @@ Ext.define('EatSense.controller.Spot', {
 	},
 
 	loadRequests: function() {
-		var store = Ext.StoreManager.lookup('defRequestStore');
-
-		//set initial sort order
-		store.sort('receivedTime' , 'DESC');
+		var me = this,
+			store = Ext.StoreManager.lookup('defRequestStore'),
+			dataview = this.getRequestDataview(),
+			spotcard = this.getSpotcard();
 
 		store.load({
 			params: {
-				// 'areaId' : 
+				'areaId' : this.getActiveArea().getId(),
 				'types': ['ORDER', 'BILL']
 			},
 			callback: function(records, operation, success) {
 				if(success) {
-					
+					me.getMainview().getActiveItem().down('#requestDataview').refresh();
+					dataview.refresh();
 				} else {
 					me.getApplication().handleServerError({
 						'error': operation.error, 
@@ -532,7 +556,7 @@ Ext.define('EatSense.controller.Spot', {
 		Ext.Array.each(tabs, function(tab, index) {
 			//don't applay new flag if tab to update is active
 			//this.getMainview().getActiveItem() != tab && 
-			if(me.getMainview().getActiveItem() != tab &&tab.getArea().getId() == areaId) {
+			if(me.getMainview().getActiveItem() != tab && tab.getArea().getId() == areaId) {
 				me.setTabBadgeText(tab, status);
 				return false;
 			};
@@ -643,7 +667,7 @@ Ext.define('EatSense.controller.Spot', {
 							// me.getSpotDetailCustomerList().select(me.getActiveCustomer());
 							me.refreshActiveCustomerOrders();
 					}
-				} 
+				}
 			}
 		}
 	},
@@ -651,17 +675,27 @@ Ext.define('EatSense.controller.Spot', {
 	* Update the request list with incoming request from a channel message.
 	*
 	*/
-	updateRequestsIncremental: function(action, newRequest) {
+	updateRequests: function(action, newRequest) {
 		var defRequestStore = Ext.StoreManager.lookup('defRequestStore'),
-			request = Ext.create('EatSense.model.Request', newRequest);
+			// request = Ext.create('EatSense.model.Request', newRequest),
+			dataview = this.getRequestDataview(),
+			carousel = this.getViewCarousel();
+
 			//check if this request belongs to displayed area
+			//only load if request view is active
+			// if(carousel.getActiveIndex() == 1) {
+			this.loadRequests();	
+			// }
 
-			if(request.get('areaId'))
+	},	
 
-			if(request.get('type') == 'ORDER' || request.get('type') == 'BILL') {
-				defRequestStore.add(request);
-			};
+	spotCarouselItemChange: function(container, newValue, oldValue)  {
+		console.log('carousel activeitemchange');
+
+		this.updateRequests();
+
 	},
+
 	/**
 	*	Updates spotdetail view when a new/changed bill arrives.
 	*
@@ -1217,7 +1251,7 @@ Ext.define('EatSense.controller.Spot', {
 	},
 	/**
 	* Handler for a tab change when switching areas. Filters the store so that
-	* only spots of this area are shown.
+	* only spots and requests of this area are shown.
 	*/
 	areaChanged: function(container, newTab, oldTab) {
 		var spotStore = Ext.StoreManager.lookup('spotStore'),
@@ -1228,15 +1262,18 @@ Ext.define('EatSense.controller.Spot', {
 			if(spotStore.getFilters().length > 0 && oldTab && oldTab.getAreaFilter()) {
 				spotStore.getData().removeFilters([oldTab.getAreaFilter()]);
 			};
-			if(defRequestStore.getFilters().length > 0 && oldTab && oldTab.getAreaFilter()) {
-				defRequestStore.getData().removeFilters([oldTab.getAreaFilter()]);
-			};
+			// if(defRequestStore.getFilters().length > 0 && oldTab && oldTab.getAreaFilter()) {
+			// 	defRequestStore.getData().removeFilters([oldTab.getAreaFilter()]);
+			// };
 
 			spotStore.filter(newTab.getAreaFilter());
-			defRequestStore.filter(newTab.getAreaFilter());
+			// defRequestStore.filter(newTab.getAreaFilter());
 			//Bug? Call filter again, because sometimes it isn't filtered directly.
 			spotStore.filter();
-			defRequestStore.filter();
+			// defRequestStore.filter();
+			this.setActiveArea(newTab.getArea());
+			this.updateRequests();
+
 			newTab.down('dataview').refresh();
 			newTab.tab.setBadgeText("");
 		}
@@ -1362,6 +1399,21 @@ Ext.define('EatSense.controller.Spot', {
 		panel.hide();
 	},
 
+	sortRequestRadio: function(radio) {
+		var store = Ext.StoreManager.lookup('defRequestStore'),
+			panel = this.getRequestSortPanel();
+
+		if(radio.getSubmitValue() == 'requests-asc') {
+			store.sort('receivedTime' , 'ASC');
+		} else if(radio.getSubmitValue() == 'requests-desc') {
+			store.sort('receivedTime' , 'DESC');
+		} else {
+			console.log('wrong sort value received.')
+		};
+
+		panel.hide();
+	},
+
 	showSpotView: function() {
 		var carousel = this.getViewCarousel();
 
@@ -1381,7 +1433,7 @@ Ext.define('EatSense.controller.Spot', {
 		carousel.setActiveItem(1);
 
 		//Set sort order for requests.
-		requestDataview.getStore().sort('receivedTime' , sortOrder);
+		// requestDataview.getStore().sort('receivedTime' , sortOrder);
 	},
 
 
@@ -1404,6 +1456,14 @@ Ext.define('EatSense.controller.Spot', {
 	*/
 	showFilterPanel: function(button) {
 		var panel = this.getFilterPanel();
+
+		panel.showBy(button);
+	},
+	/**
+	* Shows the request sort panel next to the button.
+	*/
+	showRequestSortPanel: function(button) {
+		var panel = this.getRequestSortPanel();
 
 		panel.showBy(button);
 	}

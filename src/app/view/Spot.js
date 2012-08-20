@@ -18,24 +18,69 @@ Ext.define('EatSense.view.Spot', {
 				activeItem : 0,
 				items: [
 					{
-						xtype: 'dataview',
-						itemId: 'spotsview',
-						store: 'spotStore',
-						baseCls: 'dv-baseCls',
-						itemCls: 'spot',
-						useComponents: true,
-						defaultType: 'spotitem'
+						xtype: 'panel',
+						layout: 'fit',
+						items: [
+						{
+							xtype: 'toolbar',
+							docked: 'top',
+							items: [
+							{	
+								text: i10n.translate('spot.filter.title'),
+								action: 'show-filter'
+							},
+							{
+								xtype: 'spacer'
+							},
+							{
+								text: i10n.translate('spot.filterbar.requestview'),
+								ui: 'forward',
+								action: 'show-requestview'
+							}
+							]
+						},
+						{
+							xtype: 'dataview',
+							itemId: 'spotsview',
+							store: 'spotStore',
+							baseCls: 'dv-baseCls',
+							itemCls: 'spot',
+							useComponents: true,
+							defaultType: 'spotitem'
+						}
+						]
 					},
 					{
-						xtype: 'dataview',
-						itemId: 'requestDataview',
-						useComponents: true,
-						defaultType: 'requestitem',
-						// store: {
-						// 	model: 'EatSense.model.Request',
-						// }
-						store: 'defRequestStore'
-					}	
+						xtype: 'panel',
+						layout: 'fit',
+						items: [
+						{
+							xtype: 'toolbar',
+							docked: 'top',
+							items: [
+							{
+								text: i10n.translate('spot.filterbar.spotview'),
+								ui: 'back',
+								action: 'show-spotview'
+							},
+							{	
+								text: i10n.translate('request.sort.title'),
+								action: 'show-request-sort'
+							},
+							]
+						},
+						{
+							xtype: 'dataview',
+							itemId: 'requestDataview',
+							useComponents: true,
+							defaultType: 'requestitem',
+							// store: {
+							// 	model: 'EatSense.model.Request',
+							// }
+							store: 'defRequestStore'
+							}	
+						]
+					}
 				]
 			}
 

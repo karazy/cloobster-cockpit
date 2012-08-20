@@ -13,6 +13,7 @@ Ext.define('EatSense.util.Configuration', {
 		channelReconnectTries: 20,
 		heartbeatInterval: 10000,
 		debug: false,
-		eventPrefix: 'cloobster'
+		eventPrefix: 'cloobster',
+		requestTimeCalcRefreshInterval: 60000
 	}
 });

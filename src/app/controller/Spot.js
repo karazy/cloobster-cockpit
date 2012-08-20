@@ -5,7 +5,7 @@
 */
 Ext.define('EatSense.controller.Spot', {
 	extend: 'Ext.app.Controller',
-	requires: ['EatSense.view.Main', 'EatSense.view.SpotSelectionDialog', 'EatSense.view.CustomerRequestDialog'],
+	requires: ['EatSense.view.Main', 'EatSense.view.SpotSelectionDialog', 'EatSense.view.CustomerRequestDialog', 'Ext.util.DelayedTask'],
 	config: {
 		refs: {
 			spotitem: 'spotitem button',
@@ -124,7 +124,9 @@ Ext.define('EatSense.controller.Spot', {
 		//active bill of active Customer
 		activeBill : null,
 		//contains active area
-		activeArea : null
+		activeArea : null,
+
+		refreshRequestTask: null
 	},
 
 	init: function() {
@@ -200,6 +202,16 @@ Ext.define('EatSense.controller.Spot', {
 
 			 		me.loadSpots();
 			 		me.loadRequests();
+
+			 		var task = function(delay) {
+						Ext.create('Ext.util.DelayedTask', function() {
+			    			console.log('refreshRequestTask called');
+			    			me.getMainview().getActiveItem().down('#requestDataview').refresh();
+			    			task(delay);
+						}).delay(delay);	
+					}
+		
+					task(appConfig.requestTimeCalcRefreshInterval);
 			 	}			
 			 }
 		});

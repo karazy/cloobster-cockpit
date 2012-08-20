@@ -8,11 +8,13 @@ Ext.define('EatSense.view.RequestItem', {
 
 		/** An Ext.Label displaying question text. */
 		spot : {
-			margin: '0 5 0 0'
+			margin: '0 5 0 0',
+			cls: 'requestitem-spot'
 		},
 
 		customer: {
-			margin: '0 5 0 0'
+			margin: '0 5 0 0',
+			cls: 'requestitem-customer'
 		},
 
 		requestTime : {
@@ -30,6 +32,7 @@ Ext.define('EatSense.view.RequestItem', {
 				setHtml: 'receivedTime'
 			}
 	 	},
+
 	 	layout: {
 			type: 'hbox',
 			align: 'center'

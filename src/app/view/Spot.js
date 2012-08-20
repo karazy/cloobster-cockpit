@@ -74,11 +74,11 @@ Ext.define('EatSense.view.Spot', {
 							itemId: 'requestDataview',
 							useComponents: true,
 							defaultType: 'requestitem',
-							// store: {
-							// 	model: 'EatSense.model.Request',
-							// }
-							store: 'defRequestStore'
-							}	
+							store: 'defRequestStore',
+							cls: 'requestitem-container',
+							itemCls: 'requestitem-wrapper',
+							pressedCls: 'requestitem-wrapper-pressed',
+						}	
 						]
 					}
 				]

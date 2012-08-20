@@ -1415,7 +1415,7 @@ Ext.define('EatSense.controller.Spot', {
 	},
 
 	showSpotView: function() {
-		var carousel = this.getViewCarousel();
+		var carousel = this.getMainview().getActiveItem().down('carousel');
 
 		//switch to request view
 		carousel.setActiveItem(0);
@@ -1426,7 +1426,7 @@ Ext.define('EatSense.controller.Spot', {
 	*/
 	showRequestView: function(sortOrder) {
 		var me = this,
-			carousel = this.getViewCarousel(),
+			carousel = this.getMainview().getActiveItem().down('carousel'),
 			requestDataview = this.getRequestDataview();
 
 		//switch to request view

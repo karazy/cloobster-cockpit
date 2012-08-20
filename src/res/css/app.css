@@ -254,6 +254,31 @@
 	-webkit-mask-image: url('res/images/forbidden.png');
 }
 
+/* request view */
+
+.requestitem-container {
+	margin: 0.3em;
+}
+
+.requestitem-wrapper {
+	border: 1px solid #C3C3C3;
+	background-color: #c3c3c3;
+	border-radius: 0.5em;
+	margin: 1em;
+	padding: 1em;
+	color: black;
+}
+
+.requestitem-wrapper-pressed {
+	background-color: #F5B800;
+	color: white;
+}
+
+.requestitem-spot {
+	/*margin-right: 0.3em;*/
+}
+
+
 /* connections status indicator in bottom toolbar */
 
 .status-indicator .ONLINE {

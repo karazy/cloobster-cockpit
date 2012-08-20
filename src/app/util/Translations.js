@@ -71,6 +71,7 @@ Ext.define('EatSense.util.Translations',{
 		"requestMsgboxTitle" : "Gästewünsche",
 		"requestDismiss" : "Gästewünsche löschen",
 		"spot.filterbar.spotview" : "Spotansicht",
+		"request.sort.title" : "Sortierung",
 		//constants
 		"ORDER_PLACED" : "Neue Bestellung!",
 		"PLACED" : "Neu!",

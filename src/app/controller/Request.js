@@ -45,7 +45,7 @@ Ext.define('EatSense.controller.Request',{
 			params: {
 				'pathId': restaurantId,
 				'spotId': spotCtr.getActiveSpot().get('id'),
-				'types' : appConstants.Request.CUSTOM
+				'type' : appConstants.Request.CUSTOM
 			},
 			 callback: function(records, operation, success) {
 			 	if(success) { 

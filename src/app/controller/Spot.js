@@ -215,7 +215,7 @@ Ext.define('EatSense.controller.Spot', {
 		store.load({
 			params: {
 				'areaId' : this.getActiveArea().getId(),
-				'types': ['ORDER', 'BILL']
+				'type': ['ORDER', 'BILL']
 			},
 			callback: function(records, operation, success) {
 				if(success) {

@@ -4,19 +4,17 @@ Ext.define('EatSense.view.Spot', {
 	xtype: 'spotcard',
 	config: {
 		title: i10n.translate('spotsTitle'),
-		layout: 'fit',
+		layout: 'card',
 		//holds data of assigned area
 		area: null,
 		//Counts spot requests! Each spot which has at least one request increases the counter by 1.
 		areaFilter : null,
+		activeItem : 0,
 		items: [
-			{
-				xtype: 'carousel',
-				// layout: {
-				// 	type: 'card'
-				// },
-				activeItem : 0,
-				items: [
+			// {
+
+				
+				// items: [
 					{
 						xtype: 'panel',
 						layout: 'fit',
@@ -81,8 +79,8 @@ Ext.define('EatSense.view.Spot', {
 						}	
 						]
 					}
-				]
-			}
+				// ]
+			// }
 
 		]
 	}

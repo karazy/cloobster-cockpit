@@ -11,7 +11,7 @@ Ext.define('EatSense.controller.Spot', {
 			spotitem: 'spotitem button',
 			// spotsview: '#spotsview',
 			spotcard: 'spotcard',
-			viewCarousel: 'spotcard carousel',
+			viewCarousel: 'spotcard #views',
 			mainview: 'main',
 			// spotTab: 'tab',
 			info: 'toolbar[docked=bottom] #info',
@@ -1415,7 +1415,7 @@ Ext.define('EatSense.controller.Spot', {
 	},
 
 	showSpotView: function() {
-		var carousel = this.getMainview().getActiveItem().down('carousel');
+		var carousel = this.getMainview().getActiveItem();
 
 		//switch to request view
 		carousel.setActiveItem(0);
@@ -1426,7 +1426,7 @@ Ext.define('EatSense.controller.Spot', {
 	*/
 	showRequestView: function(sortOrder) {
 		var me = this,
-			carousel = this.getMainview().getActiveItem().down('carousel'),
+			carousel = this.getMainview().getActiveItem(),
 			requestDataview = this.getRequestDataview();
 
 		//switch to request view

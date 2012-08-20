@@ -29,11 +29,9 @@ Ext.define('EatSense.model.Request', {
 		{
 			name: 'areaId'
 		},
-		{
+		{	//time in milliseconds, just treat as number
 			name: 'receivedTime',
-			// type: 'time'
-			type : 'date',
-			dateFormat: 'time',
+			type : 'number'
 		}	
 		],
 		associations : {

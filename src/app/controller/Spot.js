@@ -112,9 +112,6 @@ Ext.define('EatSense.controller.Spot', {
 		 	showRequestViewButton: {
 		 		tap: 'showRequestView'
 		 	}
-		 	// viewCarousel: {
-		 	// 	activeitemchange: 'spotCarouselItemChange'		 		
-		 	// },
 		},
 
 		//the active spot, when spot detail view is visible
@@ -217,22 +214,25 @@ Ext.define('EatSense.controller.Spot', {
 		});
 
 	},
-
+	/**
+	* Loads all requests displayed in request list view
+	*/
 	loadRequests: function() {
 		var me = this,
-			store = Ext.StoreManager.lookup('defRequestStore'),
-			dataview = this.getRequestDataview(),
-			spotcard = this.getSpotcard();
+			store = Ext.StoreManager.lookup('defRequestStore');
+			// dataview = this.getRequestDataview();
 
 		store.load({
 			params: {
 				'areaId' : this.getActiveArea().getId(),
-				'type': ['ORDER', 'BILL']
+				//simply load everything
+				// 'type': ['ORDER', 'BILL']
 			},
 			callback: function(records, operation, success) {
 				if(success) {
+					//get the active requestview!
 					me.getMainview().getActiveItem().down('#requestDataview').refresh();
-					dataview.refresh();
+					// dataview.refresh();
 				} else {
 					me.getApplication().handleServerError({
 						'error': operation.error, 
@@ -684,28 +684,15 @@ Ext.define('EatSense.controller.Spot', {
 		}
 	},
 	/**
-	* Update the request list with incoming request from a channel message.
-	*
+	* Update the request list. Will be called when order, bill or checkin messages arrive.
+	* @param action
+	*	ignored
+	* @param data
+	*	ignored
+	* @see EatSense.controller.Spot.loadRequests()
 	*/
-	updateRequests: function(action, newRequest) {
-		var defRequestStore = Ext.StoreManager.lookup('defRequestStore'),
-			// request = Ext.create('EatSense.model.Request', newRequest),
-			dataview = this.getRequestDataview(),
-			carousel = this.getViewCarousel();
-
-			//check if this request belongs to displayed area
-			//only load if request view is active
-			// if(carousel.getActiveIndex() == 1) {
-			this.loadRequests();	
-			// }
-
-	},	
-
-	spotCarouselItemChange: function(container, newValue, oldValue)  {
-		console.log('carousel activeitemchange');
-
-		this.updateRequests();
-
+	updateRequests: function(action, data) {
+		this.loadRequests();	
 	},
 
 	/**
@@ -889,21 +876,9 @@ Ext.define('EatSense.controller.Spot', {
 		order.set('status', appConstants.Order.RECEIVED);
 		order.getData(true);
 
-		//persist changes
-		// order.save({
-		// 	params: {
-		// 		pathId: loginCtr.getAccount().get('businessId'),
-		// 	},
-		// 	success: function(record, operation) {
-		// 		console.log('order confirmed');
-		// 	},
-		// 	failure: function(record, operation) {
-		// 		order.set('status', appConstants.Order.PLACED);
-		// 		Ext.Msg.alert(i10n.translate('error'), i10n.translate('errorSpotDetailOrderSave'), Ext.emptyFn);
-		// 	}
-		// });
 
 		//same approach as in eatSense App. Magic lies in getRawJsonData()
+		//model.save() doesn't work because unecessary data gets send
 		//still kind of a workaround
 		Ext.Ajax.request({			
     	    url: appConfig.serviceUrl+'/b/businesses/'+loginCtr.getAccount().get('businessId')+'/orders/'+order.getId(),
@@ -1293,7 +1268,7 @@ Ext.define('EatSense.controller.Spot', {
 
 	/**
 	* Event handler for itemTap on RequestItem.
-	*
+	* Opens spot details and selects the correct checkin.
 	*/
 	requestItemTapped : function(dataview, index, item, record) {
 		var spotStore = Ext.StoreManager.lookup('spotStore'),
@@ -1402,10 +1377,6 @@ Ext.define('EatSense.controller.Spot', {
 			console.log('apply filter active');
 			store.filterBy(this.spotActiveFilterFn);
 			this.showSpotView();
-		} else if(radio.getSubmitValue() == 'requests-asc') {
-			this.showRequestView('ASC');
-		} else if(radio.getSubmitValue() == 'requests-desc') {
-			this.showRequestView('DESC');
 		};
 
 		panel.hide();
@@ -1425,7 +1396,10 @@ Ext.define('EatSense.controller.Spot', {
 
 		panel.hide();
 	},
-
+	/**
+	* Show spot view.
+	*
+	*/
 	showSpotView: function() {
 		var container = this.getMainview().getActiveItem();
 		
@@ -1438,7 +1412,7 @@ Ext.define('EatSense.controller.Spot', {
 	},
 
 	/**
-	*
+	* Show request view.
 	*/
 	showRequestView: function() {
 		var me = this,

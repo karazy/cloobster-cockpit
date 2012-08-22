@@ -41,7 +41,7 @@ Ext.define('EatSense.util.Translations',{
 		"spot.locked" : "Dieses Restaurant wurde gelöscht.<br/>Es können keine Aktionen mehr durchgeführt werden.",
 		"spot.filter.none" : "Alle Spots",
 		"spot.filter.active" : "Aktive Spots",
-		"spot.filter.title" : "Ansicht",
+		"spot.filter.title" : "Filter",
 		"spot.filter.requests.asc" : "Liste aufsteigend",
 		"spot.filter.requests.desc": "Liste absteigend",
 		"spot.filterbar.requestview" : "Listenansicht",

@@ -26,6 +26,9 @@ Ext.define('EatSense.model.Request', {
 		{
 			name: 'checkInName'
 		},
+		{	//additional information which can be displayed along the request
+			name: 'info'
+		},
 		{
 			name: 'areaId'
 		},

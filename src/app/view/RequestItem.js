@@ -112,15 +112,27 @@ Ext.define('EatSense.view.RequestItem', {
 			minutesPassed,
 			// time = new Date(),
 			elapsedTimeFormatted,
-			dayPassed = false;
+			dayPassed = false,
+			requestInfoText;
 
 		if(newRecord) {
+			//additional text to display along with the request
+			requestInfoText = newRecord.get('info') ? " " + newRecord.get('info') : "";
+
+			console.log('updateRecord for request type ' + newRecord.get('type'));
 
 			if(newRecord.get('type') == appConstants.ORDER_PLACED) {
-				this.getType().setHtml(i10n.translate('request.item.orderplaced'));
+				this.getType().setHtml(i10n.translate('request.item.orderplaced', requestInfoText));
+				this.removeCls('spotitem-request');
 			} else if(newRecord.get('type') == appConstants.PAYMENT_REQUEST) {
-				this.getType().setHtml(i10n.translate('request.item.paymentrequest'));
+				this.getType().setHtml(i10n.translate('request.item.paymentrequest', requestInfoText));
+				this.removeCls('spotitem-request');
+			} else if(newRecord.get('type') == appConstants.Request.CALL_WAITER) {
+				this.getType().setHtml(i10n.translate('request.item.custom'));
+				this.addCls('spotitem-request');
 			};
+
+
 
 			// time.setTime(newRecord.get('receivedTime'));
 			substractedTime = Math.abs(Date.now() - newRecord.get('receivedTime').getTime());

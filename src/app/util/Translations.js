@@ -75,8 +75,9 @@ Ext.define('EatSense.util.Translations',{
 		"request.item.elapsedtime.mm" : "vor {0} Minuten",
 		"request.item.elapsedtime.hhmm" : "vor {0}:{1} Stunden",
 		"request.item.elapsedtime.dd" : "vor mehr als einem Tag",
-		"request.item.paymentrequest" : "möchte bezahlen",
-		"request.item.orderplaced" : "hat bestellt",
+		"request.item.paymentrequest" : "möchte bezahlen mittels <b>{0}</b>",
+		"request.item.orderplaced" : "hat bestellt <b>{0}</b>",
+		"request.item.custom" : "hat einen <b>besonderen Wunsch</b>",
 		//constants
 		"ORDER_PLACED" : "Neue Bestellung!",
 		"PLACED" : "Neu!",

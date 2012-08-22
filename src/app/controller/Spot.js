@@ -143,6 +143,7 @@ Ext.define('EatSense.controller.Spot', {
 
 		//update requests in request view
 		messageCtr.on('eatSense.order', this.updateRequests, this);
+		messageCtr.on('eatSense.request', this.updateRequests, this);
 		messageCtr.on('eatSense.bill', this.updateRequests, this);
 		messageCtr.on('eatSense.checkin', this.updateRequests, this);
 	},
@@ -692,6 +693,9 @@ Ext.define('EatSense.controller.Spot', {
 	* @see EatSense.controller.Spot.loadRequests()
 	*/
 	updateRequests: function(action, data) {
+
+		//TODO only load requests if it belongs to the active area!
+		//currently not possible
 		this.loadRequests();	
 	},
 

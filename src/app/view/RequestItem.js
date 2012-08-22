@@ -123,13 +123,13 @@ Ext.define('EatSense.view.RequestItem', {
 
 			if(newRecord.get('type') == appConstants.ORDER_PLACED) {
 				this.getType().setHtml(i10n.translate('request.item.orderplaced', requestInfoText));
-				this.removeCls('spotitem-request');
+				this.removeCls('requestitem-alert');
 			} else if(newRecord.get('type') == appConstants.PAYMENT_REQUEST) {
 				this.getType().setHtml(i10n.translate('request.item.paymentrequest', requestInfoText));
-				this.removeCls('spotitem-request');
+				this.removeCls('requestitem-alert');
 			} else if(newRecord.get('type') == appConstants.Request.CALL_WAITER) {
 				this.getType().setHtml(i10n.translate('request.item.custom'));
-				this.addCls('spotitem-request');
+				this.addCls('requestitem-alert');
 			};
 
 

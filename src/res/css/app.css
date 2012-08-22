@@ -274,8 +274,12 @@
 	color: white;
 }
 
-.requestitem-spot {
-	/*margin-right: 0.3em;*/
+.requestitem-alert {
+  background-color: #F5B800 !important;
+  -webkit-animation-name: blinker;  
+  -webkit-animation-iteration-count: infinite;  
+  -webkit-animation-timing-function: cubic-bezier(1.0,0,0,1.0);
+  -webkit-animation-duration: 1s; 
 }
 
 

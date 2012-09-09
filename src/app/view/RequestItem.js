@@ -16,21 +16,21 @@ Ext.define('EatSense.view.RequestItem', {
 			cls: 'requestitem-customer'
 		},
 
-		type : {
-			margin: '0 5 0 0',
-		},
+		// type : {
+		// 	margin: '0 5 0 0',
+		// },
 
 		requestTime : {
-
+			cls: 'requestitem-time'
 		},
 
 		dataMap: {
 			getSpot: {
 				setHtml: 'spotName'
 			},
-			getCustomer: {
-				setHtml: 'checkInName'
-			},
+			// getCustomer: {
+			// 	setHtml: 'checkInName'
+			// },
 			// getType: {
 			// 	setHtml: 'type'
 			// },
@@ -41,7 +41,7 @@ Ext.define('EatSense.view.RequestItem', {
 
 	 	layout: {
 			type: 'hbox',
-			align: 'center'
+			align: 'stretch'
 		}
 	},
 
@@ -113,22 +113,25 @@ Ext.define('EatSense.view.RequestItem', {
 			// time = new Date(),
 			elapsedTimeFormatted,
 			dayPassed = false,
-			requestInfoText;
+			requestInfoText,
+			customer;
 
 		if(newRecord) {
 			//additional text to display along with the request
 			requestInfoText = newRecord.get('info') ? " " + newRecord.get('info') : "";
 
+			customer = newRecord.get('checkInName');
+
 			console.log('updateRecord for request type ' + newRecord.get('type'));
 
 			if(newRecord.get('type') == appConstants.ORDER_PLACED) {
-				this.getType().setHtml(i10n.translate('request.item.orderplaced', requestInfoText));
+				this.getCustomer().setHtml(i10n.translate('request.item.orderplaced',customer, requestInfoText));
 				this.removeCls('requestitem-alert');
 			} else if(newRecord.get('type') == appConstants.PAYMENT_REQUEST) {
-				this.getType().setHtml(i10n.translate('request.item.paymentrequest', requestInfoText));
+				this.getCustomer().setHtml(i10n.translate('request.item.paymentrequest',customer, requestInfoText));
 				this.removeCls('requestitem-alert');
 			} else if(newRecord.get('type') == appConstants.Request.CALL_WAITER) {
-				this.getType().setHtml(i10n.translate('request.item.custom'));
+				this.getCustomer().setHtml(i10n.translate('request.item.custom'));
 				this.addCls('requestitem-alert');
 			};
 

@@ -131,7 +131,7 @@ Ext.define('EatSense.view.RequestItem', {
 				this.getCustomer().setHtml(i10n.translate('request.item.paymentrequest',customer, requestInfoText));
 				this.removeCls('requestitem-alert');
 			} else if(newRecord.get('type') == appConstants.Request.CALL_WAITER) {
-				this.getCustomer().setHtml(i10n.translate('request.item.custom'));
+				this.getCustomer().setHtml(i10n.translate('request.item.custom', customer));
 				this.addCls('requestitem-alert');
 			};
 

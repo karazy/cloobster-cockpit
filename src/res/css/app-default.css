@@ -10126,7 +10126,6 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* line 337, app-default.scss */
 .requestitem-alert {
-  background-color: #F5B800 !important;
   -webkit-animation-name: blinker;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: cubic-bezier(1, 0, 0, 1);
@@ -10134,7 +10133,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* connections status indicator in bottom toolbar */
-/* line 348, app-default.scss */
+/* line 347, app-default.scss */
 .status-indicator .ONLINE {
   width: 1em;
   height: 1em;
@@ -10144,7 +10143,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: green;
 }
 
-/* line 357, app-default.scss */
+/* line 356, app-default.scss */
 .status-indicator .TIMEOUT {
   width: 1em;
   height: 1em;
@@ -10154,7 +10153,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: gray;
 }
 
-/* line 366, app-default.scss */
+/* line 365, app-default.scss */
 .status-indicator .RECONNECT {
   width: 1em;
   height: 1em;
@@ -10164,7 +10163,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: yellow;
 }
 
-/* line 375, app-default.scss */
+/* line 374, app-default.scss */
 .status-indicator .INITIALIZING {
   width: 1em;
   height: 1em;
@@ -10174,7 +10173,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: yellow;
 }
 
-/* line 384, app-default.scss */
+/* line 383, app-default.scss */
 .status-indicator .CONNECTION_LOST {
   width: 1em;
   height: 1em;
@@ -10184,7 +10183,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: white;
 }
 
-/* line 393, app-default.scss */
+/* line 392, app-default.scss */
 .status-indicator .DISCONNECTED {
   width: 1em;
   height: 1em;
@@ -10194,7 +10193,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: red;
 }
 
-/* line 402, app-default.scss */
+/* line 401, app-default.scss */
 .locked-button .x-button-icon {
   -webkit-mask-image: url("/cockpit/res/images/lock_closed.png");
   background-color: black;

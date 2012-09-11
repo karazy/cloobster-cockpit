@@ -134,13 +134,20 @@ Ext.define('EatSense.controller.Message', {
 		    	'businessId' :  account.get('businessId'),
 		    	'clientId' : clientId
 		    },
-		    success: function(response){
+		    success: function(response) {
 		       	console.log('online check request result: ' + response.responseText);
 		       	if(response.responseText == 'DISCONNECTED') {
 		       		disconnectCallback();
-		       	}		       	
+		       	}
 		    }, 
 		    failure: function(response) {
+		    	if(appChannel.connectionStatus != 'CONNECTION_LOST') {
+		    		appChannel.setStatusHelper('CONNECTION_LOST');
+		    		this.handleStatus({
+		    			'status' : appChannel.connectionStatus, 
+		    			'prevStatus': appChannel.previousStatus
+		    		});
+		    	}
 		    	console.log('online check request failed with code: ' + response.status);
 		    }
 		});

@@ -32,6 +32,8 @@ Ext.define('EatSense.util.Channel', {
 	previousStatus : 'NONE',
 	//online check interval object
 	interval : null,
+	//ping interval object
+	pingInterval : null,
 	//true when the listener for window event pageshow has been connected
 	pageshowListenerRegistered : null,
 
@@ -117,7 +119,7 @@ Ext.define('EatSense.util.Channel', {
 				'prevStatus': this.previousStatus
 			}]);
 			console.log('start online check interval every 5s');
-			this.interval = window.setInterval(this.repeatedOnlineCheck , 5000);			
+			this.interval = window.setInterval(this.repeatedOnlineCheck , 5000);
 		}
 	},
 
@@ -147,13 +149,14 @@ Ext.define('EatSense.util.Channel', {
 	repeatedOnlineCheck: function() {
 		if(this.connectionStatus == 'ONLINE' || this.connectionStatus == 'DISCONNECTED') {
 			if(interval) {
-				console.log('stopping online check');
+				console.log('Stopping fast online check (every 5s).');
 				window.clearInterval(this.interval);
 			}
 		}
 		if(this.connectionStatus == 'CONNECTION_LOST') {
 			this.checkOnlineFunction.apply(this.executionScope, [
 				function() {
+					// disconnect function. Called after checking with the server if the channel disconnected.
 					if(this.interval) {
 						window.clearInterval(this.interval);	
 					}
@@ -254,8 +257,6 @@ Ext.define('EatSense.util.Channel', {
 			this.socket = this.channel.open(handler);
 	},
 
-
-
 		/**
 		* Setup channel comunication and try to establish a connection.
 		* @param options
@@ -310,7 +311,6 @@ Ext.define('EatSense.util.Channel', {
 			if(this.socket) {
 				this.setStatusHelper('DISCONNECTED');	
 				this.socket.close();
-			};			
+			}
 		}	
-
 });

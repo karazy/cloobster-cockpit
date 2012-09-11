@@ -208,6 +208,7 @@ Ext.define('EatSense.controller.Spot', {
 
 			 		me.loadSpots();
 			 		me.loadRequests();
+			 		me.loadHistory();
 
 			 		var task = function(delay) {
 						Ext.create('Ext.util.DelayedTask', function() {
@@ -251,6 +252,32 @@ Ext.define('EatSense.controller.Spot', {
 				}
 			}
 		});
+	},
+	/**
+	* Loads the history for history view.
+	*
+	*/
+	loadHistory: function() {
+		var me = this,
+			store = Ext.StoreManager.lookup('historyStore');
+
+		store.load({
+			params: {
+				'areaId' : this.getActiveArea().getId(),
+			},
+			callback: function(records, operation, success) {
+				if(success) {
+					//get the active historyview!
+					me.getMainview().getActiveItem().down('#historyDataview').refresh();
+				} else {
+					me.getApplication().handleServerError({
+						'error': operation.error, 
+						'forceLogout': {403: true},
+						'hideMessage':false
+					});
+				}
+			}
+		});	
 	},
 
 	/**
@@ -1438,7 +1465,10 @@ Ext.define('EatSense.controller.Spot', {
 		//switch to request view
 		container.setActiveItem(1);
 	},
-
+	/**
+	* Action for request view forward button.
+	*
+	*/
 	forwardRequestView: function() {
 		var me = this,
 			container = this.getMainview().getActiveItem();
@@ -1450,7 +1480,9 @@ Ext.define('EatSense.controller.Spot', {
 		//switch to request view
 		container.setActiveItem(2);
 	},
-
+	/**
+	* Action for history view back button.
+	*/
 	backHistoryView: function() {
 		var me = this,
 			container = this.getMainview().getActiveItem(),

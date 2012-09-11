@@ -1,6 +1,6 @@
 Ext.define('EatSense.view.Spot', {
 	extend: 'Ext.Panel',
-	requires: ['EatSense.view.SpotItem', 'EatSense.view.SpotDetail', 'EatSense.view.RequestItem'],
+	requires: ['EatSense.view.SpotItem', 'EatSense.view.SpotDetail', 'EatSense.view.RequestItem', 'EatSense.view.HistoryItem'],
 	xtype: 'spotcard',
 	config: {
 		title: i10n.translate('spotsTitle'),

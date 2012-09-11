@@ -9,7 +9,8 @@ Ext.Loader.setPath('EatSense', 'app');
 Ext.application({
 	name : 'EatSense',
 	controllers : ['Login','Spot', 'Message', 'Request'],
-	models : ['AppState', 'Account', 'Area', 'Spot', 'Business', 'CheckIn', 'Order', 'Product', 'Choice', 'Option', 'Bill', 'PaymentMethod', 'Request'],
+	models : ['AppState', 'Account', 'Area', 'Spot', 'Business', 'CheckIn', 'Order', 
+        'Product', 'Choice', 'Option', 'Bill', 'PaymentMethod', 'Request', 'History'],
 	views : ['Login', 'ChooseBusiness', 'Main'], 
 	stores : ['Account', 'AppState', 'Area',  'Spot', 'Business', 'CheckIn', 'Order', 'Bill', 'Request', 'DefaultRequest' ],
 	requires: [

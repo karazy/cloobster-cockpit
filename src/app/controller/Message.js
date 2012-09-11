@@ -122,7 +122,7 @@ Ext.define('EatSense.controller.Message', {
 	/**
 	* 	Let the server know we are still there.
 	*/
-	checkOnline: function(disconnectCallback) {
+	checkOnline: function(disconnectCallback, connectedCallback) {
 		var account = this.getApplication().getController('Login').getAccount(),
 			clientId = account.get('clientId');
 		
@@ -138,6 +138,9 @@ Ext.define('EatSense.controller.Message', {
 		       	console.log('online check request result: ' + response.responseText);
 		       	if(response.responseText == 'DISCONNECTED') {
 		       		disconnectCallback();
+		       	}
+		       	else if(respone.responseText == 'CONNECTED') {
+		       		connectedCallback();
 		       	}
 		    }, 
 		    failure: function(response) {

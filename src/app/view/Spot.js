@@ -17,10 +17,6 @@ Ext.define('EatSense.view.Spot', {
 		areaFilter : null,
 		activeItem : 0,
 		items: [
-			// {
-
-				
-				// items: [
 					{
 						xtype: 'panel',
 						layout: 'fit',
@@ -71,6 +67,14 @@ Ext.define('EatSense.view.Spot', {
 								text: i10n.translate('request.sort.title'),
 								action: 'show-request-sort'
 							},
+							{
+								xtype: 'spacer'
+							},
+							{
+								text: i10n.translate('spot.filterbar.historyview'),
+								ui: 'forward',
+								action: 'show-forward-requestview'
+							}
 							]
 						},
 						{
@@ -84,9 +88,34 @@ Ext.define('EatSense.view.Spot', {
 							pressedCls: 'requestitem-wrapper-pressed',
 						}	
 						]
+					},
+					{
+						xtype: 'panel',
+						layout: 'fit',
+						items: [
+						{
+							xtype: 'toolbar',
+							docked: 'top',
+							items: [
+							{
+								text: i10n.translate('spot.filterbar.requestview'),
+								ui: 'back',
+								action: 'show-back-historyview'
+							}
+							]
+						},
+						{
+							xtype: 'dataview',
+							itemId: 'historyDataview',
+							useComponents: true,
+							defaultType: 'historyitem',
+							store: 'historyStore',
+							// cls: 'requestitem-container',
+							// itemCls: 'requestitem-wrapper',
+							// pressedCls: 'requestitem-wrapper-pressed',
+						}	
+						]
 					}
-				// ]
-			// }
 
 		]
 	}

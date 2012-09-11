@@ -45,7 +45,9 @@ Ext.define('EatSense.controller.Spot', {
 		    requestSortPanel: 'main #requestSortPanel',
 		    requestDataview: 'spotcard #requestDataview',
 		    showSpotViewButton: 'spotcard button[action=show-spotview]',
-		    showRequestViewButton: 'spotcard button[action=show-requestview]'
+		    showRequestViewButton: 'spotcard button[action=show-requestview]',
+		    forwardRequestViewButton: 'spotcard button[action=show-forward-requestview]',
+		    backHistoryViewButton: 'spotcard button[action=show-back-historyview]',
 		},
 
 		control : {
@@ -111,6 +113,12 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	showRequestViewButton: {
 		 		tap: 'showRequestView'
+		 	},
+		 	forwardRequestViewButton: {
+		 		tap: 'forwardRequestView'
+		 	},
+		 	backHistoryViewButton: {
+		 		tap: 'backHistoryView'
 		 	}
 		},
 
@@ -1431,7 +1439,30 @@ Ext.define('EatSense.controller.Spot', {
 		container.setActiveItem(1);
 	},
 
+	forwardRequestView: function() {
+		var me = this,
+			container = this.getMainview().getActiveItem();
 
+		container.getLayout().setAnimation({
+			type : 'slide',
+			direction : 'left'
+		});
+		//switch to request view
+		container.setActiveItem(2);
+	},
+
+	backHistoryView: function() {
+		var me = this,
+			container = this.getMainview().getActiveItem(),
+			requestDataview = this.getRequestDataview();
+
+		container.getLayout().setAnimation({
+			type : 'slide',
+			direction : 'right'
+		});
+		//switch to request view
+		container.setActiveItem(1);
+	},
 	/**
 	* Filter method.
 	* Returns true for spots with status ORDER_PLACED, PAYMENT_REQUEST or CALL_WAITER.

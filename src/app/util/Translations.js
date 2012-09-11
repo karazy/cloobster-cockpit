@@ -45,6 +45,7 @@ Ext.define('EatSense.util.Translations',{
 		"spot.filter.requests.asc" : "Liste aufsteigend",
 		"spot.filter.requests.desc": "Liste absteigend",
 		"spot.filterbar.requestview" : "Listenansicht",
+		"spot.filterbar.historyview" : "Alte Vorgänge",
 		//spot details
 		"spotDetailCustomerLabel" : "Gäste",
 		"errorSpotDetailCheckInLoading" : "Laden der eingecheckten Personen fehlgeschlagen!",

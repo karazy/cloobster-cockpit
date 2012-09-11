@@ -20,34 +20,34 @@ Ext.define('EatSense.controller.Spot', {
 		        xtype: 'spotdetail',
 		        autoCreate: true
 		    },
-		    spotDetailCustomerList: 'spotdetail #checkInList',
-		    spotDetailOrderList: 'spotdetail #spotDetailOrders',		    
-		    confirmOrderButton: 'spotdetail button[action=confirm]',
-		    cancelOrderButton: 'spotdetail button[action=cancel]',
-		    closeSpotDetailButton: 'spotdetail button[action=close]',
-		    paidSpotDetailButton: 'spotdetail button[action=paid]',
-		    cancelAllButton: 'spotdetail button[action=cancel-all]',    
-		    confirmAllButton: 'spotdetail button[action=confirm-all]',
-		    switchSpotButton: 'spotdetail button[action=switch-spot]', 		    
-		    spotDetailStatistic: 'spotdetail #statistics',
-		    spotSelectionDialog: {
-		    	selector: 'spotselection',
-		    	xtype: 'spotselection',
-		    	autoCreate: true
-		    },
-		    switchSpotList: 'spotselection list',
-		    spotDetailItem: 'spotdetailitem',
-		    filterRadios: 'radiofield[name=filter]',
-		    requestSortRadios: 'radiofield[name=sort-request]',
-		    showFilterButton: 'main button[action=show-filter]',
-		    showRequestSortButton: 'main button[action=show-request-sort]',
-		    filterPanel: 'main #filterPanel',
-		    requestSortPanel: 'main #requestSortPanel',
-		    requestDataview: 'spotcard #requestDataview',
-		    showSpotViewButton: 'spotcard button[action=show-spotview]',
-		    showRequestViewButton: 'spotcard button[action=show-requestview]',
-		    forwardRequestViewButton: 'spotcard button[action=show-forward-requestview]',
-		    backHistoryViewButton: 'spotcard button[action=show-back-historyview]',
+			spotDetailCustomerList: 'spotdetail #checkInList',
+			spotDetailOrderList: 'spotdetail #spotDetailOrders',		    
+			confirmOrderButton: 'spotdetail button[action=confirm]',
+			cancelOrderButton: 'spotdetail button[action=cancel]',
+			closeSpotDetailButton: 'spotdetail button[action=close]',
+			paidSpotDetailButton: 'spotdetail button[action=paid]',
+			cancelAllButton: 'spotdetail button[action=cancel-all]',    
+			confirmAllButton: 'spotdetail button[action=confirm-all]',
+			switchSpotButton: 'spotdetail button[action=switch-spot]', 		    
+			spotDetailStatistic: 'spotdetail #statistics',
+			spotSelectionDialog: {
+				selector: 'spotselection',
+				xtype: 'spotselection',
+				autoCreate: true
+			},
+			switchSpotList: 'spotselection list',
+			spotDetailItem: 'spotdetailitem',
+			filterRadios: 'radiofield[name=filter]',
+			requestSortRadios: 'radiofield[name=sort-request]',
+			showFilterButton: 'main button[action=show-filter]',
+			showRequestSortButton: 'main button[action=show-request-sort]',
+			filterPanel: 'main #filterPanel',
+			requestSortPanel: 'main #requestSortPanel',
+			requestDataview: 'spotcard #requestDataview',
+			showSpotViewButton: 'spotcard button[action=show-spotview]',
+			showRequestViewButton: 'spotcard button[action=show-requestview]',
+			forwardRequestViewButton: 'spotcard button[action=show-forward-requestview]',
+			backHistoryViewButton: 'spotcard button[action=show-back-historyview]',
 		},
 
 		control : {
@@ -154,6 +154,8 @@ Ext.define('EatSense.controller.Spot', {
 		messageCtr.on('eatSense.request', this.updateRequests, this);
 		messageCtr.on('eatSense.bill', this.updateRequests, this);
 		messageCtr.on('eatSense.checkin', this.updateRequests, this);
+
+		messageCtr.on('eatSense.checkin', this.updateHistory, this);
 	},
 
 	// start load and show data
@@ -735,6 +737,23 @@ Ext.define('EatSense.controller.Spot', {
 	},
 
 	/**
+	* Update the history list. Will be called when checkin messages arrive.
+	* @param action
+	*	
+	* @param data
+	*	
+	* @see EatSense.controller.Spot.loadRequests()
+	*/
+	updateHistory: function(action, data) {
+
+		//TODO only load requests if it belongs to the active area!
+		//currently not possible
+		if(action == 'delete' && data.status == appConstants.COMPLETE) {
+			this.loadHistory();	
+		}
+	},
+
+	/**
 	*	Updates spotdetail view when a new/changed bill arrives.
 	*
 	*/
@@ -1299,6 +1318,7 @@ Ext.define('EatSense.controller.Spot', {
 			// defRequestStore.filter();
 			this.setActiveArea(newTab.getArea());
 			this.updateRequests();
+			this.loadHistory();
 
 			newTab.down('dataview').refresh();
 			newTab.tab.setBadgeText("");

@@ -20,16 +20,16 @@ Ext.define('EatSense.view.HistoryItem', {
 		},
 
 		dataMap: {
-			spot: {
+			getSpot: {
 				setHtml: 'spotName'
 			},
-			nickname: {
+			getNickname: {
 				setHtml: 'nickname'
 			},
-			billTime: {
+			getBillTime: {
 				setHtml: 'billTime'
 			},
-			total: {
+			getTotal: {
 				setHtml: 'billTotal'
 			}
 		},

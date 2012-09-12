@@ -249,7 +249,7 @@ Ext.define('EatSense.controller.Spot', {
 		var me = this,
 			store = Ext.StoreManager.lookup('defRequestStore');
 			// dataview = this.getRequestDataview();
-
+		
 		store.load({
 			params: {
 				'areaId' : this.getActiveArea().getId(),
@@ -279,10 +279,11 @@ Ext.define('EatSense.controller.Spot', {
 		var me = this,
 			store = Ext.StoreManager.lookup('historyStore');
 
+		store.getProxy().setExtraParam('areaId', this.getActiveArea().getId());
 		store.load({
-			params: {
-				'areaId' : this.getActiveArea().getId(),
-			},
+			// params: {
+			// 	'areaId' : this.getActiveArea().getId(),
+			// },
 			callback: function(records, operation, success) {
 				if(success) {
 					//get the active historyview!

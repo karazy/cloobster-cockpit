@@ -4,6 +4,7 @@ Ext.define('EatSense.store.History', {
 		model: 'EatSense.model.History',
 		storeId: 'historyStore',
 		syncRemovedRecords: false,
-		pageSize: 10
+		pageSize: 5,
+		remoteFilter: true
 	}
 });

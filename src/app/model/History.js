@@ -19,7 +19,8 @@ Ext.define('EatSense.model.History', {
 		],
 		proxy: {
 			type: 'rest',
-			url: '/b/businesses/{pathId}/checkins/history'
+			url: '/b/businesses/{pathId}/checkins/history',
+			enablePagingParams: true
 		}
 	}
 });

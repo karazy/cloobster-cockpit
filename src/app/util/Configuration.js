@@ -11,6 +11,10 @@ Ext.define('EatSense.util.Configuration', {
 		language: 'DE',
 		channelReconnectTimeout: 10000,
 		channelReconnectTries: 20,
+		// Interval for channel ping messages.
+		channelPingInterval: 30000,
+		// Amount of time in ms to wait for a channel message after ping.
+		channelMessageTimeout: 30000,
 		heartbeatInterval: 10000,
 		debug: false,
 		eventPrefix: 'cloobster',

@@ -87,8 +87,7 @@ Ext.define('EatSense.controller.Message', {
 	requestNewToken: function(successCallback, connectionCallback) {
 		var me = this,
 			account = this.getApplication().getController('Login').getAccount(),
-			login = account.get('login'),
-			clientId = login + new Date().getTime(),
+			clientId = account.get('id') + '+' + new Date().getTime(),
 			businessId = account.get('businessId');
 		
 		account.set('clientId', clientId);
@@ -124,7 +123,8 @@ Ext.define('EatSense.controller.Message', {
 	*/
 	checkOnline: function(disconnectCallback, connectedCallback) {
 		var account = this.getApplication().getController('Login').getAccount(),
-			clientId = account.get('clientId');
+			clientId = account.get('clientId'),
+			me = this;
 		
 		console.log('checkOnline: clientId ' + clientId);
 		Ext.Ajax.request({
@@ -139,14 +139,15 @@ Ext.define('EatSense.controller.Message', {
 		       	if(response.responseText == 'DISCONNECTED') {
 		       		disconnectCallback();
 		       	}
-		       	else if(respone.responseText == 'CONNECTED') {
+		       	else if(response.responseText == 'CONNECTED') {
 		       		connectedCallback();
 		       	}
 		    }, 
 		    failure: function(response) {
 		    	if(appChannel.connectionStatus != 'CONNECTION_LOST') {
+		    		//TODO Notify user of the interrupted connection.
 		    		appChannel.setStatusHelper('CONNECTION_LOST');
-		    		this.handleStatus({
+		    		me.handleStatus({
 		    			'status' : appChannel.connectionStatus, 
 		    			'prevStatus': appChannel.previousStatus
 		    		});

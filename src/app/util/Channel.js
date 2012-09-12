@@ -48,8 +48,10 @@ Ext.define('EatSense.util.Channel', {
 	},
 
 	onOpen: function() {
+		var me = this;
+		
 		if(this.connectionStatus == 'ONLINE') {
-			console.log('channel opened already received');
+			console.log('onOpen: Channel still online.');
 			return;
 		}
 		console.log('channel opened');
@@ -62,7 +64,14 @@ Ext.define('EatSense.util.Channel', {
 			'status' : this.connectionStatus, 
 			'prevStatus': this.previousStatus
 		}]);
-
+		
+		if(!this.pingInterval) {
+			// Set online ping to 30s for tests.
+			this.pingInterval = window.setInterval(function() {
+				me.repeatedOnlinePing();
+			} , appConfig.channelPingInterval);
+		}
+		
 		/*		
 		 This is mainly for mobile devices when going into standby. 
 		 It is not possible in a webapp to be notified when standy is entered.
@@ -72,21 +81,21 @@ Ext.define('EatSense.util.Channel', {
 		if(!this.pageshowListenerRegistered) {
 			this.pageshowListenerRegistered = true;
 			window.addEventListener("pageshow", function(){			
-				this.setStatusHelper('RECONNECT');
-				this.statusHandlerFunction.apply(this.executionScope, [{
+				me.setStatusHelper('RECONNECT');
+				me.statusHandlerFunction.apply(this.executionScope, [{
 					'status' : this.connectionStatus, 
 					'prevStatus': this.previousStatus
 				}]);
 				console.log('online check');
 				// repeatedOnlineCheck();
-				this.checkOnlineFunction.apply(this.executionScope, [function() {
-					this.setStatusHelper('TIMEOUT');
-					this.statusHandlerFunction.apply(this.executionScope, [{
-						'status' : this.connectionStatus, 
-						'prevStatus': this.previousStatus
+				me.checkOnlineFunction.apply(this.executionScope, [function() {
+					me.setStatusHelper('TIMEOUT');
+					me.statusHandlerFunction.apply(me.executionScope, [{
+						'status' : me.connectionStatus, 
+						'prevStatus': me.previousStatus
 					}]);
-					this.timedOut = true;
-					this.socket.close();
+					me.timedOut = true;
+					me.socket.close();
 				}]);
 			}, false);
 		}
@@ -98,7 +107,8 @@ Ext.define('EatSense.util.Channel', {
 	},
 
 	onError: function(error) {
-		var errorDesc = (error && error.description) ? error.description : "";
+		var errorDesc = (error && error.description) ? error.description : "",
+			me = this;
 
 		console.log('channel error: ' + errorDesc);
 
@@ -121,7 +131,9 @@ Ext.define('EatSense.util.Channel', {
 				'prevStatus': this.previousStatus
 			}]);
 			console.log('start online check interval every 5s');
-			this.interval = window.setInterval(this.repeatedOnlineCheck , 5000);
+			this.interval = window.setInterval(function() {
+						me.repeatedOnlineCheck(); 
+					}, 5000);
 		}
 	},
 
@@ -147,10 +159,10 @@ Ext.define('EatSense.util.Channel', {
 			}]);
 		}
 	},
-	
 	repeatedOnlineCheck: function() {
+		var me = this;
 		if(this.connectionStatus == 'ONLINE' || this.connectionStatus == 'DISCONNECTED') {
-			if(interval) {
+			if(this.interval) {
 				console.log('Stopping fast online check (every 5s).');
 				window.clearInterval(this.interval);
 			}
@@ -159,12 +171,13 @@ Ext.define('EatSense.util.Channel', {
 			this.checkOnlineFunction.apply(this.executionScope, [
 				function() {
 					// disconnect function. Called after checking with the server if the channel disconnected.
-					if(this.interval) {
-						window.clearInterval(this.interval);	
+					if(me.interval) {
+						window.clearInterval(me.interval);	
 					}
-					this.timedOut = true;
-					this.setStatusHelper('TIMEOUT');
-					this.socket.close();
+					me.timedOut = true;
+					me.setStatusHelper('TIMEOUT');
+					me.socket.close();
+					me.socket = null;
 				}
 			]);
 		}
@@ -172,36 +185,41 @@ Ext.define('EatSense.util.Channel', {
 	repeatedOnlinePing: function() {
 		var me = this;
 		if(this.connectionStatus == 'DISCONNECTED') {
-			if(this.pingInterval) {
-				console.log('Stopping online ping.');
-				window.clearInterval(this.interval);
-			}
+			this.stopOnlinePing();
 			return;
 		}
 		else {
 			this.checkOnlineFunction.apply(this.executionScope, [
  				function() {
- 					// disconnect function. Called after checking with the server if the channel disconnected.
- 					if(this.pingInterval) {
- 						window.clearInterval(this.interval);	
- 					}
- 					this.timedOut = true;
- 					this.setStatusHelper('TIMEOUT');
- 					this.socket.close();
+ 					// DISCONNECTED response from server. Channel was disconnected but script did not react.
+ 					// close socket and set status accordingly.
+ 					me.stopOnlinePing();
+ 					me.timedOut = true;
+ 					me.setStatusHelper('TIMEOUT');
+ 					me.socket.close();
  				},
  				function() {
  					// CONNECTED response from server. Channel should still be operational. Wait 30s for channel message.
- 					
- 					this.messageTimeout = window.setTimeout(function() {
+ 					me.messageTimeout = window.setTimeout(function() {
  						me.messageTimedOut();
- 					}, 30000);
+ 					}, appConfig.channelMessageTimeout);
  				}
  			]);
 		}
 	},
+	stopOnlinePing: function() {
+		if(this.pingInterval) {
+			console.log('Stopping online ping.');
+			window.clearInterval(this.pingInterval);
+			this.pingInterval = null;
+		}
+	},
 	messageTimedOut: function() {
 		// Called after 30s if we did not receive a channel message from the server.
-		
+		this.messageTimeout = null;
+		this.timedOut = true;
+		this.setStatusHelper('TIMEOUT');
+		this.socket.close();
 	},
 	/**
 	*	Repeatedly tries to reopen a channel after it has been close.
@@ -252,7 +270,6 @@ Ext.define('EatSense.util.Channel', {
 		};
 		connect();
 	},
-
 	setStatusHelper: function(newStatus) {
 		this.previousStatus = this.connectionStatus;
 		this.connectionStatus = newStatus;
@@ -331,6 +348,11 @@ Ext.define('EatSense.util.Channel', {
 
 		},
 		connectedReceived: function () {
+			if(this.messageTimeout) {
+				// Channel message received. Clear the timeout
+				window.clearTimeout(this.messageTimeout);
+				this.messageTimeout = null;
+			}
 			this.onOpen();
 		},
 		/**
@@ -340,12 +362,12 @@ Ext.define('EatSense.util.Channel', {
 			this.timedOut = false;
 			this.connectionLost = false;	
 			this.channelToken = null;
-
+			
+			this.stopOnlinePing();
+			
 			console.log('normal channel closing');
-
-			if(this.socket) {
-				this.setStatusHelper('DISCONNECTED');	
-				this.socket.close();
-			}
+			this.setStatusHelper('DISCONNECTED');
+			this.socket.close();
+			this.socket = null;
 		}	
 });

@@ -287,7 +287,7 @@ Ext.define('EatSense.controller.Spot', {
 			store = Ext.StoreManager.lookup('historyStore');
 
 		store.getProxy().setExtraParam('areaId', this.getActiveArea().getId());
-		store.load({
+		store.loadPage(1, {
 			// params: {
 			// 	'areaId' : this.getActiveArea().getId(),
 			// },

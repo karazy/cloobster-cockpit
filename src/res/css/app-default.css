@@ -10132,8 +10132,81 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-animation-duration: 1s;
 }
 
+/* history view */
+/* line 345, app-default.scss */
+.historyitem-container {
+  margin: 0.3em;
+}
+
+/* line 349, app-default.scss */
+.historyitem-wrapper {
+  /*border: 1px solid #C3C3C3;*/
+  /*background-color: #c3c3c3;*/
+  /*border-radius: 0.5em;*/
+  margin: 1em;
+  color: black;
+}
+
+/* line 357, app-default.scss */
+.historyitem-spot {
+  border: 1px solid #000;
+  background-color: #4975A2;
+  margin-right: 0.5em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  width: 20%;
+  word-break: break-word;
+}
+
+/* line 367, app-default.scss */
+.historyitem-customer {
+  border: 1px solid #000;
+  background-color: #C6D7E9;
+  /*background-image: url('../images/order.png');*/
+  background-repeat: no-repeat;
+  background-position: 0.3em 50%;
+  background-size: 30px;
+  margin-right: 0.5em;
+  padding: 0.5em;
+  /*padding-left: 2em;*/
+  border-radius: 0.5em;
+  width: 20%;
+}
+
+/* line 381, app-default.scss */
+.historyitem-time {
+  border: 1px solid #000;
+  background-color: #DFE8CB;
+  background-image: url("../images/time.png");
+  background-repeat: no-repeat;
+  background-position: 0.3em 50%;
+  background-size: 30px;
+  margin-right: 0.5em;
+  padding: 0.5em;
+  padding-left: 2em;
+  border-radius: 0.5em;
+  width: 15%;
+}
+
+/* line 395, app-default.scss */
+.historyitem-total {
+  border: 1px solid #000;
+  background-color: #D0F5A9;
+  background-repeat: no-repeat;
+  background-position: 0.3em 50%;
+  background-size: 30px;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  width: 10%;
+}
+
+/* line 406, app-default.scss */
+.historyitem-wrapper-pressed {
+  color: white;
+}
+
 /* connections status indicator in bottom toolbar */
-/* line 347, app-default.scss */
+/* line 412, app-default.scss */
 .status-indicator .ONLINE {
   width: 1em;
   height: 1em;
@@ -10143,7 +10216,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: green;
 }
 
-/* line 356, app-default.scss */
+/* line 421, app-default.scss */
 .status-indicator .TIMEOUT {
   width: 1em;
   height: 1em;
@@ -10153,7 +10226,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: gray;
 }
 
-/* line 365, app-default.scss */
+/* line 430, app-default.scss */
 .status-indicator .RECONNECT {
   width: 1em;
   height: 1em;
@@ -10163,7 +10236,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: yellow;
 }
 
-/* line 374, app-default.scss */
+/* line 439, app-default.scss */
 .status-indicator .INITIALIZING {
   width: 1em;
   height: 1em;
@@ -10173,7 +10246,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: yellow;
 }
 
-/* line 383, app-default.scss */
+/* line 448, app-default.scss */
 .status-indicator .CONNECTION_LOST {
   width: 1em;
   height: 1em;
@@ -10183,7 +10256,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: white;
 }
 
-/* line 392, app-default.scss */
+/* line 457, app-default.scss */
 .status-indicator .DISCONNECTED {
   width: 1em;
   height: 1em;
@@ -10193,7 +10266,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: red;
 }
 
-/* line 401, app-default.scss */
+/* line 466, app-default.scss */
 .locked-button .x-button-icon {
   -webkit-mask-image: url("/cockpit/res/images/lock_closed.png");
   background-color: black;

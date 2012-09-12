@@ -16,10 +16,6 @@ Ext.define('EatSense.view.RequestItem', {
 			cls: 'requestitem-customer'
 		},
 
-		// type : {
-		// 	margin: '0 5 0 0',
-		// },
-
 		requestTime : {
 			cls: 'requestitem-time'
 		},

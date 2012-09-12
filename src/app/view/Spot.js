@@ -22,8 +22,9 @@ Ext.define('EatSense.view.Spot', {
 						layout: 'fit',
 						items: [
 						{
-							xtype: 'toolbar',
+							xtype: 'titlebar',
 							docked: 'top',
+							title: i10n.translate('spot.filterbar.spotview'),
 							items: [
 							{	
 								text: i10n.translate('spot.filter.title'),
@@ -35,7 +36,8 @@ Ext.define('EatSense.view.Spot', {
 							{
 								text: i10n.translate('spot.filterbar.requestview'),
 								ui: 'forward',
-								action: 'show-requestview'
+								action: 'show-requestview',
+								align: 'right'
 							}
 							]
 						},
@@ -55,8 +57,9 @@ Ext.define('EatSense.view.Spot', {
 						layout: 'fit',
 						items: [
 						{
-							xtype: 'toolbar',
+							xtype: 'titlebar',
 							docked: 'top',
+							title: i10n.translate('spot.filterbar.requestview'),
 							items: [
 							{
 								text: i10n.translate('spot.filterbar.spotview'),
@@ -73,7 +76,8 @@ Ext.define('EatSense.view.Spot', {
 							{
 								text: i10n.translate('spot.filterbar.historyview'),
 								ui: 'forward',
-								action: 'show-forward-requestview'
+								action: 'show-forward-requestview',
+								align: 'right'
 							}
 							]
 						},
@@ -94,8 +98,9 @@ Ext.define('EatSense.view.Spot', {
 						layout: 'fit',
 						items: [
 						{
-							xtype: 'toolbar',
+							xtype: 'titlebar',
 							docked: 'top',
+							title: i10n.translate('spot.filterbar.historyview'),
 							items: [
 							{
 								text: i10n.translate('spot.filterbar.requestview'),
@@ -110,9 +115,9 @@ Ext.define('EatSense.view.Spot', {
 							useComponents: true,
 							defaultType: 'historyitem',
 							store: 'historyStore',
-							// cls: 'requestitem-container',
-							// itemCls: 'requestitem-wrapper',
-							// pressedCls: 'requestitem-wrapper-pressed',
+							cls: 'historyitem-container',
+							itemCls: 'historyitem-wrapper',
+							pressedCls: 'historyitem-wrapper-pressed',
 						}	
 						]
 					}

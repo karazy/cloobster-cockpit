@@ -4,19 +4,22 @@ Ext.define('EatSense.view.HistoryItem', {
 	config: {
 
 		spot: {
-			margin: 0
+			cls: 'historyitem-spot'
 		},
 
 		nickname: {
-			margin: 0
+			cls: 'historyitem-customer'
 		},
 
 		billTime: {
-			margin: 0
+			cls: 'historyitem-time'
 		},
 
 		total: {
-			margin: 0
+			cls: 'historyitem-total',
+			setCustomValue: function(value) {
+				setHtml(value + "TEST");
+			}
 		},
 
 		dataMap: {
@@ -30,7 +33,7 @@ Ext.define('EatSense.view.HistoryItem', {
 				setHtml: 'billTime'
 			},
 			getTotal: {
-				setHtml: 'billTotal'
+				setCustomValue: 'billTotal'
 			}
 		},
 		layout: {

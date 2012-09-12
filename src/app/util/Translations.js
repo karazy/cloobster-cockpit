@@ -45,7 +45,7 @@ Ext.define('EatSense.util.Translations',{
 		"spot.filter.requests.asc" : "Liste aufsteigend",
 		"spot.filter.requests.desc": "Liste absteigend",
 		"spot.filterbar.requestview" : "Listenansicht",
-		"spot.filterbar.historyview" : "Alte Vorgänge",
+		"spot.filterbar.historyview" : "Alte CheckIns",
 		//spot details
 		"spotDetailCustomerLabel" : "Gäste",
 		"errorSpotDetailCheckInLoading" : "Laden der eingecheckten Personen fehlgeschlagen!",
@@ -81,7 +81,12 @@ Ext.define('EatSense.util.Translations',{
 		"request.item.custom" : "\"{0}\" hat einen <b>besonderen Wunsch</b>",
 		//history
 		"history.detail.list.paging" : "Weitere Einträge",
-		"history.detail.title" : "Vorgang Details",
+		"history.detail.title" : "CheckIn Details",
+		"history.detail.info.spot" : "Spot",
+		"history.detail.info.nickname" : "Spitzname",
+		"history.detail.info.billtime" : "Datum",
+		"history.detail.info.billtotal" : "Total",
+		"history.detail.list.title" : "Bestellungen",
 		//constants
 		"ORDER_PLACED" : "Neue Bestellung!",
 		"PLACED" : "Neu!",

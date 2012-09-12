@@ -1365,7 +1365,8 @@ Ext.define('EatSense.controller.Spot', {
 	historyItemTapped: function(dataview, index, item, history) {
 		console.log('historyItemTapped');
 		var	me = this,
-			detail = me.getHistoryDetail(),
+			detail = this.getHistoryDetail(),
+			infoPanel = detail.down('#infoPanel'),
 			// checkInList = detail.down('#checkInList'),
 			//see SpotItem for details why button.oRec is called
 			// data = button.getParent().getRecord(),			
@@ -1374,6 +1375,8 @@ Ext.define('EatSense.controller.Spot', {
 			orderStore = detail.down('dataview').getStore();
 		
 		// titlebar.setTitle(data.get('name'));
+
+		infoPanel.getTpl().overwrite(infoPanel.element, history.getData());
 
 		orderStore.load({
 			params: {

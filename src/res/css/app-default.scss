@@ -24,6 +24,13 @@
 
 @CHARSET "UTF-8";
 
+/* general */
+
+.font-bold {
+	font-weight: bold;
+}
+
+/* spot view */
 
 .spot {
 	float: left;
@@ -213,7 +220,7 @@
 }
 
 .spotdetailitem-order {
-	width: 70%;
+	/*width: 70%;*/
 	margin-bottom: 20px;
 	font-size:0.8em;
 }
@@ -406,6 +413,34 @@
 
 .historyitem-wrapper-pressed {
 	color: white;
+}
+
+.history-info-panel {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	padding: 0.5em 0.3em 0.5em 0.3em;
+	margin-bottom: 0.5em;
+	background-color: #C3C3C3;
+}
+
+.history-info-panel .row {
+	display: -webkit-box;
+	-webkit-box-orient: horizontal;
+	-webkit-box-align: stretch;
+/*	-webkit-box-pack: end;*/
+}
+
+.history-info-panel .row>div {
+	/*-webkit-box-flex: 1;*/
+	width: 50%;
+}
+
+.history-detail-list-title {
+	font-size: 1.2em;
+	font-weight: bold;
+	padding-left: 0.3em;
+	margin-bottom: 0.5em;
+
 }
 
 /* connections status indicator in bottom toolbar */

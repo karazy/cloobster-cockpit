@@ -10,8 +10,8 @@ Ext.define('EatSense.view.HistoryDetailItem', {
 		hideOnMaskTap: 'true',
 		baseCls: 'spotdetail',
 		top: '5%',
-		left: '10%',
-		right: '15%',
+		left: '20%',
+		right: '5%',
 		bottom: '5%',
 		layout: 'fit',
 		fullscreen: true,
@@ -47,90 +47,45 @@ Ext.define('EatSense.view.HistoryDetailItem', {
 			{
 				xtype: 'panel',
 				docked: 'top',
+				cls: 'history-info-panel',
+				itemId: 'infoPanel',
 				layout: {
 					type: 'hbox',
 					align: 'start'
 				},
-				height: 100,
-				items: [
-				{
-					xtype: 'panel',					
-					// itemId: 'statistics',
-					cls: 'spotdetail-statistics',
-					items: [
-						{
-							xtype: 'label',
-							itemId: 'title',					
-							html: '<p>'+i10n.translate('statistic')+'</p>'
+				tpl: new Ext.XTemplate(
+					'<div class="row">'+
+					'<div><span class="font-bold">'+i10n.translate('history.detail.info.spot')+'</span> {spotName}</div>'+
+					'<div><span class="font-bold">'+i10n.translate('history.detail.info.nickname')+'</span> {nickname}</div>'+
+					'</div><div class="row">'+
+					'<div><span class="font-bold">'+i10n.translate('history.detail.info.billtime')+'</span> {[this.formatTime(values.billTime)]}</div>'+
+					'<div><span class="font-bold">'+i10n.translate('history.detail.info.billtotal')+'</span> {[this.formatPrice(values.billTotal)]} - {paymentMethod}</div>'+
+					'</div>'
+					,
+					{
+						formatTime: function(time) {
+							var dateFormat = appConstants.DateTimeFormat[appConfig.language],
+								formattedDate = Ext.util.Format.date(time, dateFormat);
+							return formattedDate;
 						},
-						{
-							xtype: 'label',
-							itemId: 'checkInTime',
-							tpl: new Ext.XTemplate(
-								'<p>Check-In: {[this.formatTime(values.checkInTime)]}</p>',
-								{
-									formatTime: function(time) {
-										return Ext.util.Format.date(time, 'H:i');
-									}
-								}
-							)
-						},				
-						{
-							xtype: 'label',
-							itemId: 'total',
-							tpl: new Ext.XTemplate('<p>Total: {[this.formatPrice(values.total)]}</p>',
-								{
-									formatPrice: function(price) {
-										return appHelper.formatPrice(price);
-									}
-								}
-							)
+						formatPrice: function(price) {
+							return appHelper.formatPrice(price);
 						}
-					]
-				},
-				{
-					xtype: 'panel',
-					layout: {
-						type: 'vbox',
-						pack: 'start',
-						align: 'start'
-					},
-					items: [
-					{
-						xtype: 'label',
-						itemId: 'statusLabel',
-						cls: 'spotdetail-status',
-						tpl: new Ext.XTemplate('<table width="100%"><td width="100px">Status:</td><td align="right" class="{[values.status.toLowerCase()]}">{[this.translateStatus(values.status)]}</td></table>',
-							{
-								translateStatus: function(status) {
-									return i10n.translate(status);
-								}
-							}
-						)
-					},
-					{
-						xtype: 'label',
-						itemId: 'paymentLabel',
-						cls: 'spotdetail-status',
-						hidden: true,
-						tpl: new Ext.XTemplate('<table><td width="100px">'+i10n.translate('paymentMethodLabel')+':</td><td class="payment">{paymentMethod}</td></table>',
-							{
-								translateStatus: function(status) {
-									return i10n.translate(status);
-								}
-							}
-						)
-					}
-					]
-				}
-				]
+					})
 			},
-			 {
+			{
+				xtype: 'label',
+				docked: 'top',
+				cls: 'history-detail-list-title',
+				html: i10n.translate('history.detail.list.title')
+			},
+			{
 				xtype: 'list',
 				itemId: 'historyDetailOrders',
 				store: {
 					model: 'EatSense.model.Order'
 				},
+				cls: 'spotdetailitem-order',
 				itemTpl: new Ext.XTemplate(
 					"<h2>{amount} x {productName} - {[this.formatPrice(values.priceCalculated)]}</h2>" +
 					"<h4>Uhrzeit: {[values.orderTime.toLocaleTimeString()]}</h4>"+
@@ -154,8 +109,7 @@ Ext.define('EatSense.view.HistoryDetailItem', {
 				, {
 				//checks if the current choice has selections. If not it will not be shown.
 				//we need to pass the product as the choices object in this context is raw data
-				checkSelections: function(values, xindex) {
-					console.log('Cart Overview -> checkSelections');				
+				checkSelections: function(values, xindex) {		
 					var result = false;
 					Ext.each(values.options,
 							function(option) {
@@ -169,42 +123,8 @@ Ext.define('EatSense.view.HistoryDetailItem', {
 				formatPrice: function(price) {
 					return appHelper.formatPrice(price);
 				}
-			})
-				// useComponents: true,
-				// defaultType: 'spotdetailitem'				
+			})			
 			}, 
-			// {
-			// 	xtype: 'toolbar',
-			// 	baseCls: 'spotdetail-toolbar',
-			// 	docked: 'bottom',
-			// 	layout: {
-			// 		type: 'hbox',
-			// 		align: 'middle',
-			// 		pack: 'center'
-			// 	},
-			// 	defaults: {
-			// 		ui: 'action',
-			// 		cls: 'spotdetail-toolbar-button',
-			// 		xtype: 'lockbutton',
-			// 	},
-			// 	items: [
-			// 	{
-			// 		text: i10n.translate('paidButton'),
-			// 		action: 'paid',
-			// 		disabled: true
-			// 	},
-			// 	{
-			// 		text: i10n.translate('switchSpotButton'),
-			// 		action: 'switch-spot',
-			// 		disabled: true
-			// 	},
-			// 	{
-			// 		text: i10n.translate('cancelAllOrdersButton'),
-			// 		action: 'cancel-all',
-			// 		disabled: true
-			// 	}
-			// 	]				
-			// }
 			]
 		}
 		]

@@ -4,22 +4,23 @@ Ext.define('EatSense.view.HistoryItem', {
 	config: {
 
 		spot: {
-			cls: 'historyitem-spot'
+			cls: 'historyitem-spot',
+			flex: 3
 		},
 
 		nickname: {
-			cls: 'historyitem-customer'
+			cls: 'historyitem-customer',
+			flex: 4
 		},
 
 		billTime: {
-			cls: 'historyitem-time'
+			cls: 'historyitem-time',
+			flex: 2
 		},
 
 		total: {
 			cls: 'historyitem-total',
-			setCustomValue: function(value) {
-				setHtml(value + "TEST");
-			}
+			flex: 1
 		},
 
 		dataMap: {
@@ -29,12 +30,12 @@ Ext.define('EatSense.view.HistoryItem', {
 			getNickname: {
 				setHtml: 'nickname'
 			},
-			getBillTime: {
-				setHtml: 'billTime'
-			},
-			getTotal: {
-				setCustomValue: 'billTotal'
-			}
+			// getBillTime: {
+			// 	setHtml: 'billTime'
+			// },
+			// getTotal: {
+			// 	setCustomValue: 'billTotal'
+			// }
 		},
 		layout: {
 			type: 'hbox',
@@ -93,4 +94,28 @@ Ext.define('EatSense.view.HistoryItem', {
 			this.remove(oldItem);
 		}
 	},
+		/**
+	*	Overrides the private updateRecord method. Does some special actions
+	*	which could not be done in dataMap.
+	*
+	*/
+	updateRecord: function(newRecord, oldRecord) {
+		var billTime = "",
+			dateFormat = null,
+			formattedDate = "",
+			billTotal = "";
+
+		if(newRecord) {
+			billTotal = appHelper.formatPrice(newRecord.get('billTotal'));
+			billTime = newRecord.get('billTime');
+			dateFormat = appConstants.DateTimeFormat[appConfig.language];
+			formattedDate = Ext.util.Format.date(billTime, dateFormat);
+
+			this.getBillTime().setHtml(formattedDate);
+			this.getTotal(billTotal).setHtml(billTotal);
+			
+		}
+
+		this.callParent([newRecord, oldRecord]);
+	}
 });

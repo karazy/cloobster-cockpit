@@ -22,6 +22,7 @@ Ext.application({
 		'Ext.Label',
 		'Ext.TitleBar',
         'Ext.MessageBox',
+        'Ext.DateExtras',
         //util
         'EatSense.util.Constants',
         'EatSense.util.Configuration',

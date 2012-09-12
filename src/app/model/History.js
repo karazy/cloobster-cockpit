@@ -3,7 +3,11 @@ Ext.define('EatSense.model.History', {
 	config: {
 		fields: [
 			{ name: 'billId'}, 
-			{ name: 'billTime'}, 
+			{ 
+				name: 'billTime',
+				type : 'date',
+				dateFormat : 'time'
+			}, 
 			{ name: 'billTotal'}, 
 			{ name: 'paymentMethod'}, 
 			{ name: 'checkInTime'}, 

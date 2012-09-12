@@ -10085,7 +10085,7 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-right: 1em;
   padding: 0.5em;
   border-radius: 0.5em;
-  width: 20%;
+  /*width: 20%;*/
   word-break: break-word;
 }
 
@@ -10101,7 +10101,7 @@ input[type="search"]::-webkit-search-cancel-button {
   padding: 0.5em;
   padding-left: 2em;
   border-radius: 0.5em;
-  width: 65%;
+  /*width: 65%;*/
 }
 
 /* line 319, app-default.scss */
@@ -10113,9 +10113,9 @@ input[type="search"]::-webkit-search-cancel-button {
   background-position: 0.3em 50%;
   background-size: 30px;
   padding: 0.5em;
-  padding-left: 2em;
+  padding-left: 2.5em;
   border-radius: 0.5em;
-  width: 15%;
+  /*width: 25%;*/
 }
 
 /* line 332, app-default.scss */
@@ -10154,7 +10154,7 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-right: 0.5em;
   padding: 0.5em;
   border-radius: 0.5em;
-  width: 20%;
+  /*width: 20%;*/
   word-break: break-word;
 }
 
@@ -10170,7 +10170,7 @@ input[type="search"]::-webkit-search-cancel-button {
   padding: 0.5em;
   /*padding-left: 2em;*/
   border-radius: 0.5em;
-  width: 20%;
+  /*width: 20%;*/
 }
 
 /* line 381, app-default.scss */
@@ -10183,9 +10183,9 @@ input[type="search"]::-webkit-search-cancel-button {
   background-size: 30px;
   margin-right: 0.5em;
   padding: 0.5em;
-  padding-left: 2em;
+  padding-left: 2.5em;
   border-radius: 0.5em;
-  width: 15%;
+  /*width: 15%;*/
 }
 
 /* line 395, app-default.scss */
@@ -10197,16 +10197,17 @@ input[type="search"]::-webkit-search-cancel-button {
   background-size: 30px;
   padding: 0.5em;
   border-radius: 0.5em;
-  width: 10%;
+  text-align: right;
+  /*width: 10%;*/
 }
 
-/* line 406, app-default.scss */
+/* line 407, app-default.scss */
 .historyitem-wrapper-pressed {
   color: white;
 }
 
 /* connections status indicator in bottom toolbar */
-/* line 412, app-default.scss */
+/* line 413, app-default.scss */
 .status-indicator .ONLINE {
   width: 1em;
   height: 1em;
@@ -10216,7 +10217,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: green;
 }
 
-/* line 421, app-default.scss */
+/* line 422, app-default.scss */
 .status-indicator .TIMEOUT {
   width: 1em;
   height: 1em;
@@ -10226,7 +10227,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: gray;
 }
 
-/* line 430, app-default.scss */
+/* line 431, app-default.scss */
 .status-indicator .RECONNECT {
   width: 1em;
   height: 1em;
@@ -10236,7 +10237,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: yellow;
 }
 
-/* line 439, app-default.scss */
+/* line 440, app-default.scss */
 .status-indicator .INITIALIZING {
   width: 1em;
   height: 1em;
@@ -10246,7 +10247,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: yellow;
 }
 
-/* line 448, app-default.scss */
+/* line 449, app-default.scss */
 .status-indicator .CONNECTION_LOST {
   width: 1em;
   height: 1em;
@@ -10256,7 +10257,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: white;
 }
 
-/* line 457, app-default.scss */
+/* line 458, app-default.scss */
 .status-indicator .DISCONNECTED {
   width: 1em;
   height: 1em;
@@ -10266,7 +10267,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: red;
 }
 
-/* line 466, app-default.scss */
+/* line 467, app-default.scss */
 .locked-button .x-button-icon {
   -webkit-mask-image: url("/cockpit/res/images/lock_closed.png");
   background-color: black;

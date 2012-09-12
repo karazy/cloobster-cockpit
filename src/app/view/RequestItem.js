@@ -8,16 +8,19 @@ Ext.define('EatSense.view.RequestItem', {
 
 		spot : {
 			margin: '0 5 0 0',
-			cls: 'requestitem-spot'
+			cls: 'requestitem-spot',
+			flex: 2
 		},
 
 		customer: {
 			margin: '0 5 0 0',
-			cls: 'requestitem-customer'
+			cls: 'requestitem-customer',
+			flex: 4
 		},
 
 		requestTime : {
-			cls: 'requestitem-time'
+			cls: 'requestitem-time',
+			flex: 1
 		},
 
 		dataMap: {
@@ -117,8 +120,6 @@ Ext.define('EatSense.view.RequestItem', {
 			requestInfoText = newRecord.get('info') ? " " + newRecord.get('info') : "";
 
 			customer = newRecord.get('checkInName');
-
-			console.log('updateRecord for request type ' + newRecord.get('type'));
 
 			if(newRecord.get('type') == appConstants.ORDER_PLACED) {
 				this.getCustomer().setHtml(i10n.translate('request.item.orderplaced',customer, requestInfoText));

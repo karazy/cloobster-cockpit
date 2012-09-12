@@ -1,6 +1,6 @@
 Ext.define('EatSense.view.Spot', {
 	extend: 'Ext.Panel',
-	requires: ['EatSense.view.SpotItem', 'EatSense.view.SpotDetail', 'EatSense.view.RequestItem', 'EatSense.view.HistoryItem'],
+	requires: ['Ext.plugin.ListPaging', 'EatSense.view.SpotItem', 'EatSense.view.SpotDetail', 'EatSense.view.RequestItem', 'EatSense.view.HistoryItem'],
 	xtype: 'spotcard',
 	config: {
 		title: i10n.translate('spotsTitle'),
@@ -118,6 +118,13 @@ Ext.define('EatSense.view.Spot', {
 							cls: 'historyitem-container',
 							itemCls: 'historyitem-wrapper',
 							pressedCls: 'historyitem-wrapper-pressed',
+							plugins: [
+						        {
+						            xclass: 'Ext.plugin.ListPaging',
+						            loadMoreText: i10n.translate('history.detail.list.paging')
+						            // autoPaging: true
+						        }
+						    ]
 						}	
 						]
 					}

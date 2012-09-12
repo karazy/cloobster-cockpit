@@ -212,12 +212,12 @@ Ext.define('EatSense.controller.Spot', {
 			 		me.loadRequests();
 			 		me.loadHistory();
 
+			 		//update elapsed time in request view
 			 		var task = function(delay) {
 						Ext.create('Ext.util.DelayedTask', function() {
-			    			console.log('refreshRequestTask called');
 			    			me.getMainview().getActiveItem().down('#requestDataview').refresh();
 			    			task(delay);
-						}).delay(delay);	
+						}).delay(delay);
 					}
 		
 					task(appConfig.requestTimeCalcRefreshInterval);

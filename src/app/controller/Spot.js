@@ -247,9 +247,10 @@ Ext.define('EatSense.controller.Spot', {
 	*/
 	loadRequests: function() {
 		var me = this,
-			store = Ext.StoreManager.lookup('defRequestStore');
+			store = Ext.StoreManager.lookup('defRequestStore'),
+			mainview = this.getMainview();
 			// dataview = this.getRequestDataview();
-		
+
 		store.load({
 			params: {
 				'areaId' : this.getActiveArea().getId(),
@@ -260,6 +261,12 @@ Ext.define('EatSense.controller.Spot', {
 				if(success) {
 					//get the active requestview!
 					me.getMainview().getActiveItem().down('#requestDataview').refresh();
+					if(records.length > 0) {
+						me.getMainview().getActiveItem().down('#requestListDescPanel').setHidden(true);
+					} else {
+						me.getMainview().getActiveItem().down('#requestListDescPanel').setHidden(false);
+					};
+					
 					// dataview.refresh();
 				} else {
 					me.getApplication().handleServerError({

@@ -82,6 +82,14 @@ Ext.define('EatSense.view.Spot', {
 							]
 						},
 						{
+							xtype: 'panel',
+							itemId: 'requestListDescPanel',
+							docked: 'top',
+							html: i10n.translate('request.list.description'),
+							styleHtmlContent: true,
+							hidden: true,
+						},
+						{
 							xtype: 'dataview',
 							itemId: 'requestDataview',
 							useComponents: true,
@@ -121,8 +129,8 @@ Ext.define('EatSense.view.Spot', {
 							plugins: [
 						        {
 						            xclass: 'Ext.plugin.ListPaging',
-						            loadMoreText: i10n.translate('history.detail.list.paging')
-						            // autoPaging: true
+						            loadMoreText: i10n.translate('history.detail.list.paging'),
+						            autoPaging: true
 						        }
 						    ]
 						}	

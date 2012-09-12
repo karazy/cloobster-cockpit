@@ -5,7 +5,10 @@
 */
 Ext.define('EatSense.controller.Spot', {
 	extend: 'Ext.app.Controller',
-	requires: ['EatSense.view.Main', 'EatSense.view.SpotSelectionDialog', 'EatSense.view.CustomerRequestDialog', 'Ext.util.DelayedTask'],
+	requires: ['EatSense.view.Main', 'EatSense.view.SpotSelectionDialog', 
+		'EatSense.view.CustomerRequestDialog', 
+		'Ext.util.DelayedTask',
+		'EatSense.view.HistoryDetailItem'],
 	config: {
 		refs: {
 			spotitem: 'spotitem button',
@@ -48,6 +51,13 @@ Ext.define('EatSense.controller.Spot', {
 			showRequestViewButton: 'spotcard button[action=show-requestview]',
 			forwardRequestViewButton: 'spotcard button[action=show-forward-requestview]',
 			backHistoryViewButton: 'spotcard button[action=show-back-historyview]',
+			historyDataview: 'spotcard #historyDataview',
+			historyDetail: {
+				selector: 'historydetailitem',
+				xtype: 'historydetailitem',
+				autoCreate: true
+			},
+			closeHistoryDetailButton: 'historydetailitem button[action=close]'
 		},
 
 		control : {
@@ -119,6 +129,12 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	backHistoryViewButton: {
 		 		tap: 'backHistoryView'
+		 	},
+		 	historyDataview: {
+		 		itemtap: 'historyItemTapped'
+		 	},
+		 	closeHistoryDetailButton: {
+		 		tap: 'closeHistoryDetail'
 		 	}
 		},
 
@@ -1342,7 +1358,53 @@ Ext.define('EatSense.controller.Spot', {
 		}
 
 	},
+	/**
+	* Event handler for itemTap on HistoryItem.
+	* Shows checkIn and all orders belonging to this HistoryItem.
+	*/
+	historyItemTapped: function(dataview, index, item, history) {
+		console.log('historyItemTapped');
+		var	me = this,
+			detail = me.getHistoryDetail(),
+			// checkInList = detail.down('#checkInList'),
+			//see SpotItem for details why button.oRec is called
+			// data = button.getParent().getRecord(),			
+			checkInStore = Ext.StoreManager.lookup('checkInStore'),
+			titlebar = detail.down('titlebar'),
+			orderStore = detail.down('dataview').getStore();
+		
+		// titlebar.setTitle(data.get('name'));
 
+		orderStore.load({
+			params: {
+				checkInId: history.get('checkInId')
+			},
+			 callback: function(records, operation, success) {
+			 	if(success) {
+			 		// Ext.Array.each()
+			 		Ext.Array.each(records, function(order, index) {
+			 			order.calculate();
+			 		});
+			 	} else {
+			 		me.getApplication().handleServerError({
+						'error': operation.error, 
+						'forceLogout': {403: true}, 
+						'hideMessage':false
+					});
+			 	}
+			 }
+		});
+
+		//show detail view
+		Ext.Viewport.add(detail);
+		detail.show();
+	},
+	/**
+	* Close history detail.
+	*/
+	closeHistoryDetail: function(button) {
+		this.getHistoryDetail().hide();
+	},
 	// end actions
 
 	// start misc actions

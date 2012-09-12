@@ -81,6 +81,7 @@ Ext.define('EatSense.util.Translations',{
 		"request.item.custom" : "\"{0}\" hat einen <b>besonderen Wunsch</b>",
 		//history
 		"history.detail.list.paging" : "Weitere Einträge",
+		"history.detail.title" : "Vorgang Details",
 		//constants
 		"ORDER_PLACED" : "Neue Bestellung!",
 		"PLACED" : "Neu!",

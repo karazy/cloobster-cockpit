@@ -47,28 +47,41 @@ Ext.application({
 		
 	},
 	launch : function() {
-    // Destroy the #appLoadingIndicator element
-    Ext.fly('appLoadingIndicator').destroy();
+        var oldOnError = window.onerror;
 
-	console.log('launch cockpit ...');
+        // Destroy the #appLoadingIndicator element
+        Ext.fly('appLoadingIndicator').destroy();
 
-    if(appConfig.debug) {        
-        (function() {
-            var exLog = console.log,
-                debugConsole,
-                date;
-            console.log = function(msg) {
-                exLog.apply(this, arguments);
-                debugConsole = Ext.getCmp('debugConsole');
-                if(debugConsole) {
-                    date = new Date();
-                    debugConsole.setHtml(debugConsole.getHtml() + '<br/>' + Ext.Date.format(date, 'Y-m-d H:i:s') + ' -> ' + msg);
-                    debugConsole.getScrollable().getScroller().scrollToEnd();
-                }                
-            };
-        })();
-        console.log('Debug mode active!');
-    }
+    	console.log('launch cockpit ...');
+
+        if(appConfig.debug) {        
+            (function() {
+                var exLog = console.log,
+                    debugConsole,
+                    date;
+                console.log = function(msg) {
+                    exLog.apply(this, arguments);
+                    debugConsole = Ext.getCmp('debugConsole');
+                    if(debugConsole) {
+                        date = new Date();
+                        debugConsole.setHtml(debugConsole.getHtml() + '<br/>' + Ext.Date.format(date, 'Y-m-d H:i:s') + ' -> ' + msg);
+                        debugConsole.getScrollable().getScroller().scrollToEnd();
+                    }                
+                };
+            })();
+            console.log('Debug mode active!');
+        }
+
+        // Override previous handler.
+        window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+          if (oldOnError)
+            // Call previous handler.
+            return oldOnError(errorMsg, url, lineNumber);
+          console.log("onError: " + errorMsg + ", url: "+ url + ", lineNumber: " + lineNumber);
+          // Just let default handler run.
+          return false;
+        }
+
 
 	   	var loginCtr = this.getController('Login');
 

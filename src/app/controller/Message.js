@@ -87,7 +87,7 @@ Ext.define('EatSense.controller.Message', {
 	requestNewToken: function(successCallback, connectionCallback) {
 		var me = this,
 			account = this.getApplication().getController('Login').getAccount(),
-			clientId = account.get('id') + '+' + new Date().getTime(),
+			clientId = account.get('id') + '-' + new Date().getTime(),
 			businessId = account.get('businessId');
 		
 		account.set('clientId', clientId);
@@ -140,7 +140,9 @@ Ext.define('EatSense.controller.Message', {
 		       		disconnectCallback();
 		       	}
 		       	else if(response.responseText == 'CONNECTED') {
-		       		connectedCallback();
+		       		if(connectedCallback) {
+		       			connectedCallback();
+		       		}
 		       	}
 		    }, 
 		    failure: function(response) {

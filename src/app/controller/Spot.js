@@ -286,11 +286,10 @@ Ext.define('EatSense.controller.Spot', {
 		var me = this,
 			store = Ext.StoreManager.lookup('historyStore');
 
+		//user ExtraParam so that they are always submitted
 		store.getProxy().setExtraParam('areaId', this.getActiveArea().getId());
+
 		store.loadPage(1, {
-			// params: {
-			// 	'areaId' : this.getActiveArea().getId(),
-			// },
 			callback: function(records, operation, success) {
 				if(success) {
 					//get the active historyview!

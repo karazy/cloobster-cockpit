@@ -5,7 +5,10 @@
 */
 Ext.define('EatSense.controller.Spot', {
 	extend: 'Ext.app.Controller',
-	requires: ['EatSense.view.Main', 'EatSense.view.SpotSelectionDialog', 'EatSense.view.CustomerRequestDialog', 'Ext.util.DelayedTask'],
+	requires: ['EatSense.view.Main', 'EatSense.view.SpotSelectionDialog', 
+		'EatSense.view.CustomerRequestDialog', 
+		'Ext.util.DelayedTask',
+		'EatSense.view.HistoryDetailItem'],
 	config: {
 		refs: {
 			spotitem: 'spotitem button',
@@ -20,32 +23,41 @@ Ext.define('EatSense.controller.Spot', {
 		        xtype: 'spotdetail',
 		        autoCreate: true
 		    },
-		    spotDetailCustomerList: 'spotdetail #checkInList',
-		    spotDetailOrderList: 'spotdetail #spotDetailOrders',		    
-		    confirmOrderButton: 'spotdetail button[action=confirm]',
-		    cancelOrderButton: 'spotdetail button[action=cancel]',
-		    closeSpotDetailButton: 'spotdetail button[action=close]',
-		    paidSpotDetailButton: 'spotdetail button[action=paid]',
-		    cancelAllButton: 'spotdetail button[action=cancel-all]',    
-		    confirmAllButton: 'spotdetail button[action=confirm-all]',
-		    switchSpotButton: 'spotdetail button[action=switch-spot]', 		    
-		    spotDetailStatistic: 'spotdetail #statistics',
-		    spotSelectionDialog: {
-		    	selector: 'spotselection',
-		    	xtype: 'spotselection',
-		    	autoCreate: true
-		    },
-		    switchSpotList: 'spotselection list',
-		    spotDetailItem: 'spotdetailitem',
-		    filterRadios: 'radiofield[name=filter]',
-		    requestSortRadios: 'radiofield[name=sort-request]',
-		    showFilterButton: 'main button[action=show-filter]',
-		    showRequestSortButton: 'main button[action=show-request-sort]',
-		    filterPanel: 'main #filterPanel',
-		    requestSortPanel: 'main #requestSortPanel',
-		    requestDataview: 'spotcard #requestDataview',
-		    showSpotViewButton: 'spotcard button[action=show-spotview]',
-		    showRequestViewButton: 'spotcard button[action=show-requestview]'
+			spotDetailCustomerList: 'spotdetail #checkInList',
+			spotDetailOrderList: 'spotdetail #spotDetailOrders',		    
+			confirmOrderButton: 'spotdetail button[action=confirm]',
+			cancelOrderButton: 'spotdetail button[action=cancel]',
+			closeSpotDetailButton: 'spotdetail button[action=close]',
+			paidSpotDetailButton: 'spotdetail button[action=paid]',
+			cancelAllButton: 'spotdetail button[action=cancel-all]',    
+			confirmAllButton: 'spotdetail button[action=confirm-all]',
+			switchSpotButton: 'spotdetail button[action=switch-spot]', 		    
+			spotDetailStatistic: 'spotdetail #statistics',
+			spotSelectionDialog: {
+				selector: 'spotselection',
+				xtype: 'spotselection',
+				autoCreate: true
+			},
+			switchSpotList: 'spotselection list',
+			spotDetailItem: 'spotdetailitem',
+			filterRadios: 'radiofield[name=filter]',
+			requestSortRadios: 'radiofield[name=sort-request]',
+			showFilterButton: 'main button[action=show-filter]',
+			showRequestSortButton: 'main button[action=show-request-sort]',
+			filterPanel: 'main #filterPanel',
+			requestSortPanel: 'main #requestSortPanel',
+			requestDataview: 'spotcard #requestDataview',
+			showSpotViewButton: 'spotcard button[action=show-spotview]',
+			showRequestViewButton: 'spotcard button[action=show-requestview]',
+			forwardRequestViewButton: 'spotcard button[action=show-forward-requestview]',
+			backHistoryViewButton: 'spotcard button[action=show-back-historyview]',
+			historyDataview: 'spotcard #historyDataview',
+			historyDetail: {
+				selector: 'historydetailitem',
+				xtype: 'historydetailitem',
+				autoCreate: true
+			},
+			closeHistoryDetailButton: 'historydetailitem button[action=close]'
 		},
 
 		control : {
@@ -111,6 +123,18 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	showRequestViewButton: {
 		 		tap: 'showRequestView'
+		 	},
+		 	forwardRequestViewButton: {
+		 		tap: 'forwardRequestView'
+		 	},
+		 	backHistoryViewButton: {
+		 		tap: 'backHistoryView'
+		 	},
+		 	historyDataview: {
+		 		itemtap: 'historyItemTapped'
+		 	},
+		 	closeHistoryDetailButton: {
+		 		tap: 'closeHistoryDetail'
 		 	}
 		},
 
@@ -146,6 +170,8 @@ Ext.define('EatSense.controller.Spot', {
 		messageCtr.on('eatSense.request', this.updateRequests, this);
 		messageCtr.on('eatSense.bill', this.updateRequests, this);
 		messageCtr.on('eatSense.checkin', this.updateRequests, this);
+
+		messageCtr.on('eatSense.checkin', this.updateHistory, this);
 	},
 
 	// start load and show data
@@ -200,13 +226,14 @@ Ext.define('EatSense.controller.Spot', {
 
 			 		me.loadSpots();
 			 		me.loadRequests();
+			 		me.loadHistory();
 
+			 		//update elapsed time in request view
 			 		var task = function(delay) {
 						Ext.create('Ext.util.DelayedTask', function() {
-			    			console.log('refreshRequestTask called');
 			    			me.getMainview().getActiveItem().down('#requestDataview').refresh();
 			    			task(delay);
-						}).delay(delay);	
+						}).delay(delay);
 					}
 		
 					task(appConfig.requestTimeCalcRefreshInterval);
@@ -220,7 +247,8 @@ Ext.define('EatSense.controller.Spot', {
 	*/
 	loadRequests: function() {
 		var me = this,
-			store = Ext.StoreManager.lookup('defRequestStore');
+			store = Ext.StoreManager.lookup('defRequestStore'),
+			mainview = this.getMainview();
 			// dataview = this.getRequestDataview();
 
 		store.load({
@@ -233,6 +261,12 @@ Ext.define('EatSense.controller.Spot', {
 				if(success) {
 					//get the active requestview!
 					me.getMainview().getActiveItem().down('#requestDataview').refresh();
+					if(records.length > 0) {
+						me.getMainview().getActiveItem().down('#requestListDescPanel').setHidden(true);
+					} else {
+						me.getMainview().getActiveItem().down('#requestListDescPanel').setHidden(false);
+					};
+					
 					// dataview.refresh();
 				} else {
 					me.getApplication().handleServerError({
@@ -243,6 +277,33 @@ Ext.define('EatSense.controller.Spot', {
 				}
 			}
 		});
+	},
+	/**
+	* Loads the history for history view.
+	*
+	*/
+	loadHistory: function() {
+		var me = this,
+			store = Ext.StoreManager.lookup('historyStore');
+
+		store.getProxy().setExtraParam('areaId', this.getActiveArea().getId());
+		store.loadPage(1, {
+			// params: {
+			// 	'areaId' : this.getActiveArea().getId(),
+			// },
+			callback: function(records, operation, success) {
+				if(success) {
+					//get the active historyview!
+					me.getMainview().getActiveItem().down('#historyDataview').refresh();
+				} else {
+					me.getApplication().handleServerError({
+						'error': operation.error, 
+						'forceLogout': {403: true},
+						'hideMessage':false
+					});
+				}
+			}
+		});	
 	},
 
 	/**
@@ -697,6 +758,23 @@ Ext.define('EatSense.controller.Spot', {
 		//TODO only load requests if it belongs to the active area!
 		//currently not possible
 		this.loadRequests();	
+	},
+
+	/**
+	* Update the history list. Will be called when checkin messages arrive.
+	* @param action
+	*	
+	* @param data
+	*	
+	* @see EatSense.controller.Spot.loadRequests()
+	*/
+	updateHistory: function(action, data) {
+
+		//TODO only load requests if it belongs to the active area!
+		//currently not possible
+		if(action == 'delete' && data.status == appConstants.COMPLETE) {
+			this.loadHistory();	
+		}
 	},
 
 	/**
@@ -1264,6 +1342,7 @@ Ext.define('EatSense.controller.Spot', {
 			// defRequestStore.filter();
 			this.setActiveArea(newTab.getArea());
 			this.updateRequests();
+			this.loadHistory();
 
 			newTab.down('dataview').refresh();
 			newTab.tab.setBadgeText("");
@@ -1287,7 +1366,56 @@ Ext.define('EatSense.controller.Spot', {
 		}
 
 	},
+	/**
+	* Event handler for itemTap on HistoryItem.
+	* Shows checkIn and all orders belonging to this HistoryItem.
+	*/
+	historyItemTapped: function(dataview, index, item, history) {
+		console.log('historyItemTapped');
+		var	me = this,
+			detail = this.getHistoryDetail(),
+			infoPanel = detail.down('#infoPanel'),
+			// checkInList = detail.down('#checkInList'),
+			//see SpotItem for details why button.oRec is called
+			// data = button.getParent().getRecord(),			
+			checkInStore = Ext.StoreManager.lookup('checkInStore'),
+			titlebar = detail.down('titlebar'),
+			orderStore = detail.down('dataview').getStore();
+		
+		// titlebar.setTitle(data.get('name'));
 
+		infoPanel.getTpl().overwrite(infoPanel.element, history.getData());
+
+		orderStore.load({
+			params: {
+				checkInId: history.get('checkInId')
+			},
+			 callback: function(records, operation, success) {
+			 	if(success) {
+			 		// Ext.Array.each()
+			 		Ext.Array.each(records, function(order, index) {
+			 			order.calculate();
+			 		});
+			 	} else {
+			 		me.getApplication().handleServerError({
+						'error': operation.error, 
+						'forceLogout': {403: true}, 
+						'hideMessage':false
+					});
+			 	}
+			 }
+		});
+
+		//show detail view
+		Ext.Viewport.add(detail);
+		detail.show();
+	},
+	/**
+	* Close history detail.
+	*/
+	closeHistoryDetail: function(button) {
+		this.getHistoryDetail().hide();
+	},
 	// end actions
 
 	// start misc actions
@@ -1430,8 +1558,36 @@ Ext.define('EatSense.controller.Spot', {
 		//switch to request view
 		container.setActiveItem(1);
 	},
+	/**
+	* Action for request view forward button.
+	*
+	*/
+	forwardRequestView: function() {
+		var me = this,
+			container = this.getMainview().getActiveItem();
 
+		container.getLayout().setAnimation({
+			type : 'slide',
+			direction : 'left'
+		});
+		//switch to request view
+		container.setActiveItem(2);
+	},
+	/**
+	* Action for history view back button.
+	*/
+	backHistoryView: function() {
+		var me = this,
+			container = this.getMainview().getActiveItem(),
+			requestDataview = this.getRequestDataview();
 
+		container.getLayout().setAnimation({
+			type : 'slide',
+			direction : 'right'
+		});
+		//switch to request view
+		container.setActiveItem(1);
+	},
 	/**
 	* Filter method.
 	* Returns true for spots with status ORDER_PLACED, PAYMENT_REQUEST or CALL_WAITER.

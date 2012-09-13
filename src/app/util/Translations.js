@@ -45,6 +45,7 @@ Ext.define('EatSense.util.Translations',{
 		"spot.filter.requests.asc" : "Liste aufsteigend",
 		"spot.filter.requests.desc": "Liste absteigend",
 		"spot.filterbar.requestview" : "Listenansicht",
+		"spot.filterbar.historyview" : "Alte CheckIns",
 		//spot details
 		"spotDetailCustomerLabel" : "Gäste",
 		"errorSpotDetailCheckInLoading" : "Laden der eingecheckten Personen fehlgeschlagen!",
@@ -77,7 +78,17 @@ Ext.define('EatSense.util.Translations',{
 		"request.item.elapsedtime.dd" : ">24h",
 		"request.item.paymentrequest" : "\"{0}\" möchte bezahlen mittels <b>{1}</b>",
 		"request.item.orderplaced" : "\"{0}\" möchte <b>{1}</b> bestellen",
-		"request.item.custom" : "hat einen <b>besonderen Wunsch</b>",
+		"request.item.custom" : "\"{0}\" hat einen <b>besonderen Wunsch</b>",
+		"request.list.description" : "<h1>Die Listenansicht</h1>Hier werden die Kundenwünsche chronologisch aufgelistet.<br/>"+
+			"Zur Zeit sind Ihre Kunden wunschlos glücklich und haben keine Wünsche.",
+		//history
+		"history.detail.list.paging" : "Weitere Einträge",
+		"history.detail.title" : "CheckIn Details",
+		"history.detail.info.spot" : "Spot",
+		"history.detail.info.nickname" : "Spitzname",
+		"history.detail.info.billtime" : "Datum",
+		"history.detail.info.billtotal" : "Total",
+		"history.detail.list.title" : "Bestellungen",
 		//constants
 		"ORDER_PLACED" : "Neue Bestellung!",
 		"PLACED" : "Neu!",

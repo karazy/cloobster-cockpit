@@ -9,9 +9,11 @@ Ext.Loader.setPath('EatSense', 'app');
 Ext.application({
 	name : 'EatSense',
 	controllers : ['Login','Spot', 'Message', 'Request'],
-	models : ['AppState', 'Account', 'Area', 'Spot', 'Business', 'CheckIn', 'Order', 'Product', 'Choice', 'Option', 'Bill', 'PaymentMethod', 'Request'],
+	models : ['AppState', 'Account', 'Area', 'Spot', 'Business', 'CheckIn', 'Order', 
+        'Product', 'Choice', 'Option', 'Bill', 'PaymentMethod', 'Request', 'History'],
 	views : ['Login', 'ChooseBusiness', 'Main'], 
-	stores : ['Account', 'AppState', 'Area',  'Spot', 'Business', 'CheckIn', 'Order', 'Bill', 'Request', 'DefaultRequest' ],
+	stores : ['Account', 'AppState', 'Area',  'Spot', 'Business', 
+        'CheckIn', 'Order', 'Bill', 'Request', 'DefaultRequest', 'History' ],
 	requires: [
 		//require most common types
 		'Ext.Container',
@@ -20,6 +22,7 @@ Ext.application({
 		'Ext.Label',
 		'Ext.TitleBar',
         'Ext.MessageBox',
+        'Ext.DateExtras',
         //util
         'EatSense.util.Constants',
         'EatSense.util.Configuration',

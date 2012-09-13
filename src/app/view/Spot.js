@@ -1,6 +1,6 @@
 Ext.define('EatSense.view.Spot', {
 	extend: 'Ext.Panel',
-	requires: ['EatSense.view.SpotItem', 'EatSense.view.SpotDetail', 'EatSense.view.RequestItem'],
+	requires: ['Ext.plugin.ListPaging', 'EatSense.view.SpotItem', 'EatSense.view.SpotDetail', 'EatSense.view.RequestItem', 'EatSense.view.HistoryItem'],
 	xtype: 'spotcard',
 	config: {
 		title: i10n.translate('spotsTitle'),
@@ -17,17 +17,14 @@ Ext.define('EatSense.view.Spot', {
 		areaFilter : null,
 		activeItem : 0,
 		items: [
-			// {
-
-				
-				// items: [
 					{
 						xtype: 'panel',
 						layout: 'fit',
 						items: [
 						{
-							xtype: 'toolbar',
+							xtype: 'titlebar',
 							docked: 'top',
+							title: i10n.translate('spot.filterbar.spotview'),
 							items: [
 							{	
 								text: i10n.translate('spot.filter.title'),
@@ -39,7 +36,8 @@ Ext.define('EatSense.view.Spot', {
 							{
 								text: i10n.translate('spot.filterbar.requestview'),
 								ui: 'forward',
-								action: 'show-requestview'
+								action: 'show-requestview',
+								align: 'right'
 							}
 							]
 						},
@@ -59,8 +57,9 @@ Ext.define('EatSense.view.Spot', {
 						layout: 'fit',
 						items: [
 						{
-							xtype: 'toolbar',
+							xtype: 'titlebar',
 							docked: 'top',
+							title: i10n.translate('spot.filterbar.requestview'),
 							items: [
 							{
 								text: i10n.translate('spot.filterbar.spotview'),
@@ -71,7 +70,24 @@ Ext.define('EatSense.view.Spot', {
 								text: i10n.translate('request.sort.title'),
 								action: 'show-request-sort'
 							},
+							{
+								xtype: 'spacer'
+							},
+							{
+								text: i10n.translate('spot.filterbar.historyview'),
+								ui: 'forward',
+								action: 'show-forward-requestview',
+								align: 'right'
+							}
 							]
+						},
+						{
+							xtype: 'panel',
+							itemId: 'requestListDescPanel',
+							docked: 'top',
+							html: i10n.translate('request.list.description'),
+							styleHtmlContent: true,
+							hidden: true,
 						},
 						{
 							xtype: 'dataview',
@@ -84,9 +100,42 @@ Ext.define('EatSense.view.Spot', {
 							pressedCls: 'requestitem-wrapper-pressed',
 						}	
 						]
+					},
+					{
+						xtype: 'panel',
+						layout: 'fit',
+						items: [
+						{
+							xtype: 'titlebar',
+							docked: 'top',
+							title: i10n.translate('spot.filterbar.historyview'),
+							items: [
+							{
+								text: i10n.translate('spot.filterbar.requestview'),
+								ui: 'back',
+								action: 'show-back-historyview'
+							}
+							]
+						},
+						{
+							xtype: 'dataview',
+							itemId: 'historyDataview',
+							useComponents: true,
+							defaultType: 'historyitem',
+							store: 'historyStore',
+							cls: 'historyitem-container',
+							itemCls: 'historyitem-wrapper',
+							pressedCls: 'historyitem-wrapper-pressed',
+							plugins: [
+						        {
+						            xclass: 'Ext.plugin.ListPaging',
+						            loadMoreText: i10n.translate('history.detail.list.paging'),
+						            autoPaging: true
+						        }
+						    ]
+						}	
+						]
 					}
-				// ]
-			// }
 
 		]
 	}

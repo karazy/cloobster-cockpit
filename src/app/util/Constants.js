@@ -24,6 +24,11 @@ Ext.define('EatSense.util.Constants', {
 			EURO: '$1,$2 €',
 			US_DOLLAR: '\$ $1.$2'
 		},
+		//general date format
+		DateTimeFormat : {
+			'DE' : 'd.m.yy H:i',
+			'EN' : 'm/d/yy H:i'
+		},
 		FORCE_LOGOUT : 'FORCE_LOGOUT'
 	}
 });

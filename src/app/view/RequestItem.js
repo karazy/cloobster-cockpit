@@ -8,20 +8,19 @@ Ext.define('EatSense.view.RequestItem', {
 
 		spot : {
 			margin: '0 5 0 0',
-			cls: 'requestitem-spot'
+			cls: 'requestitem-spot',
+			flex: 2
 		},
 
 		customer: {
 			margin: '0 5 0 0',
-			cls: 'requestitem-customer'
+			cls: 'requestitem-customer',
+			flex: 4
 		},
 
-		// type : {
-		// 	margin: '0 5 0 0',
-		// },
-
 		requestTime : {
-			cls: 'requestitem-time'
+			cls: 'requestitem-time',
+			flex: 1
 		},
 
 		dataMap: {
@@ -122,8 +121,6 @@ Ext.define('EatSense.view.RequestItem', {
 
 			customer = newRecord.get('checkInName');
 
-			console.log('updateRecord for request type ' + newRecord.get('type'));
-
 			if(newRecord.get('type') == appConstants.ORDER_PLACED) {
 				this.getCustomer().setHtml(i10n.translate('request.item.orderplaced',customer, requestInfoText));
 				this.removeCls('requestitem-alert');
@@ -131,7 +128,7 @@ Ext.define('EatSense.view.RequestItem', {
 				this.getCustomer().setHtml(i10n.translate('request.item.paymentrequest',customer, requestInfoText));
 				this.removeCls('requestitem-alert');
 			} else if(newRecord.get('type') == appConstants.Request.CALL_WAITER) {
-				this.getCustomer().setHtml(i10n.translate('request.item.custom'));
+				this.getCustomer().setHtml(i10n.translate('request.item.custom', customer));
 				this.addCls('requestitem-alert');
 			};
 

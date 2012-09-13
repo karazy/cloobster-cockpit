@@ -1,6 +1,7 @@
 Ext.define('EatSense.model.History', {
 	extend: 'Ext.data.Model',
 	config: {
+		idProperty: 'checkInId',
 		fields: [
 			{ name: 'billId'}, 
 			{ 

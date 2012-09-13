@@ -286,11 +286,10 @@ Ext.define('EatSense.controller.Spot', {
 		var me = this,
 			store = Ext.StoreManager.lookup('historyStore');
 
+		//user ExtraParam so that they are always submitted
 		store.getProxy().setExtraParam('areaId', this.getActiveArea().getId());
+
 		store.loadPage(1, {
-			// params: {
-			// 	'areaId' : this.getActiveArea().getId(),
-			// },
 			callback: function(records, operation, success) {
 				if(success) {
 					//get the active historyview!
@@ -1535,10 +1534,10 @@ Ext.define('EatSense.controller.Spot', {
 	showSpotView: function() {
 		var container = this.getMainview().getActiveItem();
 		
-		container.getLayout().setAnimation({
-			type : 'slide',
-			direction : 'right'
-		});
+		// container.getLayout().setAnimation({
+		// 	type : 'slide',
+		// 	direction : 'right'
+		// });
 		//switch to request view
 		container.setActiveItem(0);
 	},
@@ -1551,10 +1550,10 @@ Ext.define('EatSense.controller.Spot', {
 			container = this.getMainview().getActiveItem(),
 			requestDataview = this.getRequestDataview();
 
-		container.getLayout().setAnimation({
-			type : 'slide',
-			direction : 'left'
-		});
+		// container.getLayout().setAnimation({
+		// 	type : 'slide',
+		// 	direction : 'left'
+		// });
 		//switch to request view
 		container.setActiveItem(1);
 	},
@@ -1566,10 +1565,10 @@ Ext.define('EatSense.controller.Spot', {
 		var me = this,
 			container = this.getMainview().getActiveItem();
 
-		container.getLayout().setAnimation({
-			type : 'slide',
-			direction : 'left'
-		});
+		// container.getLayout().setAnimation({
+		// 	type : 'slide',
+		// 	direction : 'left'
+		// });
 		//switch to request view
 		container.setActiveItem(2);
 	},
@@ -1581,10 +1580,10 @@ Ext.define('EatSense.controller.Spot', {
 			container = this.getMainview().getActiveItem(),
 			requestDataview = this.getRequestDataview();
 
-		container.getLayout().setAnimation({
-			type : 'slide',
-			direction : 'right'
-		});
+		// container.getLayout().setAnimation({
+		// 	type : 'slide',
+		// 	direction : 'right'
+		// });
 		//switch to request view
 		container.setActiveItem(1);
 	},

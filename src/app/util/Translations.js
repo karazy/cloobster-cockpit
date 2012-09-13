@@ -97,11 +97,12 @@ Ext.define('EatSense.util.Translations',{
 		"CALL_WAITER" : "{0} ruft eine Bedienung",
 		//general errors
 		"error" : "Fehler",
+		"error.critical" : "Entschuldigung, es trat ein Fehler auf, der nicht automatisch behoben werden konnte.<br>Die App wird neu geladen.",
 		"errorTitle" : "Fehler",		
 		"errorMsg" : "Entschuldigung! Ein Fehler ist aufgetreten.<br/>Wir kümmern uns darum!",
 		"errorResource" : "Daten konnten nicht vom Server geladen werden.",
 		"errorPermission" : "Sitzung ist ungültig.",
-		"errorCommunication" : "Leider ist unser Server nicht erreichbar.<br/>Wir kümmern uns darum!",
+		"errorCommunication" : "Leider besteht zur Zeit ein Problem mit der Verbindung.<br>Bitte überprüfen Sie die Netzwerkverbindung.",
 		"errorGeneralCommunication" : "Beim Laden von Aktualisierungsdaten trat ein Fehler auf.<br/>Zur Sicherheit bitte neu anmelden.",
 		"resourceNotAvailable" : "Angeforderte Ressource ist nicht erreichbar.",
 		"channelTokenError" : "Updates im Hintergrund nicht funktionsfähig."

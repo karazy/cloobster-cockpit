@@ -47,7 +47,8 @@ Ext.application({
 		
 	},
 	launch : function() {
-        var oldOnError = window.onerror;
+        var oldOnError = window.onerror,
+            undefinedErrorCount = 0;
 
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
@@ -72,14 +73,39 @@ Ext.application({
             console.log('Debug mode active!');
         }
 
+
         // Override previous handler.
         window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
-          if (oldOnError)
-            // Call previous handler.
-            return oldOnError(errorMsg, url, lineNumber);
-          console.log("onError: " + errorMsg + ", url: "+ url + ", lineNumber: " + lineNumber);
-          // Just let default handler run.
-          return false;
+            if (oldOnError)
+                // Call previous handler.
+                return oldOnError(errorMsg, url, lineNumber);
+
+            if (typeof url === "undefined" && lineNumber === 0) {
+                console.log("app.onError: undefined error received count="+undefinedErrorCount);
+                if(++undefinedErrorCount > 10) {
+                    // Diplay error message and reload after user confirmed.
+                    Ext.Msg.show({
+                        title: i10n.translate('error'),
+                        message: i10n.translate('error.critical'),
+                        buttons: [{
+                            text: i10n.translate('ok'),
+                            itemId: 'ok',
+                            ui: 'action'
+                        }],
+                        scope: this,
+                        fn: function(btnId) { 
+                            window.location.reload();
+                        }
+                    });
+
+                }
+            }
+            else {
+                console.log("onError: " + errorMsg + ", url: "+ url + ", lineNumber: " + lineNumber);  
+            }
+
+            // Just let default handler run.
+            return false;
         }
 
 

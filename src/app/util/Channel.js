@@ -102,7 +102,7 @@ Ext.define('EatSense.util.Channel', {
 	},
 
 	onMessage: function(data) {
-		console.log('channel message received');
+		console.log('Channel.onMessage: message received');
 		this.messageHandlerFunction.apply(this.executionScope, [data.data]);
 	},
 
@@ -113,7 +113,7 @@ Ext.define('EatSense.util.Channel', {
 		console.log('channel error: ' + errorDesc);
 
 		if(error && ( error.code == '401' || error.code == '400') ) {
-			console.log('onError: reason TIMEOUT, code: ' + error.code);
+			console.log('Channel.onError: reason TIMEOUT, code: ' + error.code);
 			this.timedOut = true;
 			this.setStatusHelper('TIMEOUT');
 			this.statusHandlerFunction.apply(this.executionScope, [{
@@ -123,7 +123,7 @@ Ext.define('EatSense.util.Channel', {
 			this.socket.close();
 			
 		} else if (!this.connectionLost && error && (error.code == '-1' || error.code == '0')) {
-			console.log('onError: reason CONNECTION_LOST');
+			console.log('Channel.onError: reason CONNECTION_LOST');
 			this.connectionLost = true;
 			this.setStatusHelper('CONNECTION_LOST');
 			this.statusHandlerFunction.apply(this.executionScope, [{
@@ -139,20 +139,20 @@ Ext.define('EatSense.util.Channel', {
 
 	onClose: function() {
 		if(!appHelper.isFunction(this.requestTokenHandlerFunction)) {
-			console.log('requestTokenHandlerFunction is not of type function!');
+			console.log('Channel.onClose: requestTokenHandlerFunction is not of type function!');
 			return;
 		};
 
 		if(this.timedOut === true && this.connectionStatus == 'TIMEOUT') {
-			console.log('onClose: reason TIMEOUT');
+			console.log('Channel.onClose: reason TIMEOUT');
 			this.setStatusHelper('RECONNECT');
 			this.repeatedConnectionTry();
 		} else if(this.connectionLost === true && this.connectionStatus == 'CONNECTION_LOST') {
-			console.log('onClose: reason CONNECTION_LOST');
+			console.log('Channel.onClose: reason CONNECTION_LOST');
 			this.setStatusHelper('RECONNECT');
 			this.repeatedConnectionTry();
 		} else if(this.connectionStatus == 'DISCONNECTED'){
-			console.log('onClose: reason DISCONNECTED');
+			console.log('Channel.onClose: reason DISCONNECTED');
 			this.statusHandlerFunction.apply(this.executionScope, [{
 				'status' : this.connectionStatus, 
 				'prevStatus': this.previousStatus
@@ -163,7 +163,7 @@ Ext.define('EatSense.util.Channel', {
 		var me = this;
 		if(this.connectionStatus == 'ONLINE' || this.connectionStatus == 'DISCONNECTED') {
 			if(this.interval) {
-				console.log('Stopping fast online check (every 5s).');
+				console.log('Channel.repeatedOnlineCheck: Stopping fast online check (every 5s).');
 				window.clearInterval(this.interval);
 			}
 		}
@@ -194,15 +194,21 @@ Ext.define('EatSense.util.Channel', {
  					// DISCONNECTED response from server. Channel was disconnected but script did not react.
  					// close socket and set status accordingly.
  					me.stopOnlinePing();
+ 					if(me.messageTimeout) {
+ 						// Clear possible previous timeout. We already know there is no connection.
+ 						window.clearTimeout(me.messageTimeout);
+ 					}
  					me.timedOut = true;
  					me.setStatusHelper('TIMEOUT');
  					me.socket.close();
  				},
  				function() {
  					// CONNECTED response from server. Channel should still be operational. Wait 30s for channel message.
- 					me.messageTimeout = window.setTimeout(function() {
- 						me.messageTimedOut();
- 					}, appConfig.channelMessageTimeout);
+ 					if(!me.messageTimeout) {
+						me.messageTimeout = window.setTimeout(function() {
+	 						me.messageTimedOut();
+	 					}, appConfig.channelMessageTimeout || 30000); 						
+ 					}
  				}
  			]);
 		}
@@ -212,6 +218,12 @@ Ext.define('EatSense.util.Channel', {
 			console.log('Stopping online ping.');
 			window.clearInterval(this.pingInterval);
 			this.pingInterval = null;
+		}
+	},
+	clearMessageTimeout: function() {
+		if(this.messageTimeout) {
+			window.clearTimeout(this.messageTimeout);
+			this.messageTimeout = null;
 		}
 	},
 	messageTimedOut: function() {
@@ -241,7 +253,7 @@ Ext.define('EatSense.util.Channel', {
 			}
 
 			if(tries > appConfig.channelReconnectTries) {
-				console.log('Maximum tries reached. No more connection attempts.');
+				console.log('Channel.repeatedConnectionTry: Maximum tries reached. No more connection attempts.');
 				me.setStatusHelper('DISCONNECTED');	
 				if(appHelper.isFunction(this.statusHandlerFunction)) {
 					me.statusHandlerFunction.apply(me.executionScope, [{
@@ -258,13 +270,13 @@ Ext.define('EatSense.util.Channel', {
 				'reconnectIteration' : tries
 			}]);
 
-			console.log('repeatedConnectionTry: iteration ' + tries);
+			console.log('Channel.repeatedConnectionTry: iteration ' + tries);
 			tries += 1;
 			me.channelReconnectTimeout = (me.channelReconnectTimeout > 300000) ? me.channelReconnectTimeout : me.channelReconnectTimeout * me.channelReconnectFactor;
 			// setupChannel(channelToken);
 			
 			me.requestTokenHandlerFunction.apply(me.executionScope, [function(token) {me.setupChannel(token)}, function() {
-				console.log('repeatedConnectionTry: Next reconnect try in '+me.channelReconnectTimeout);					
+				console.log('Channel.repeatedConnectionTry: Next reconnect try in '+me.channelReconnectTimeout);					
 				window.setTimeout(connect, me.channelReconnectTimeout);
 			}]);
 		};
@@ -314,7 +326,7 @@ Ext.define('EatSense.util.Channel', {
 		* @param options
 		*/
 		setup: function(options) {
-			console.log('setup channel communication');
+			console.log('Channel.setup: init channel');
 
 			if(!appHelper.isFunction(options.messageHandler)) {
 				throw "No messageHandler provided";
@@ -348,11 +360,7 @@ Ext.define('EatSense.util.Channel', {
 
 		},
 		connectedReceived: function () {
-			if(this.messageTimeout) {
-				// Channel message received. Clear the timeout
-				window.clearTimeout(this.messageTimeout);
-				this.messageTimeout = null;
-			}
+			this.clearMessageTimeout();
 			this.onOpen();
 		},
 		/**
@@ -364,10 +372,11 @@ Ext.define('EatSense.util.Channel', {
 			this.channelToken = null;
 			
 			this.stopOnlinePing();
+
 			
-			console.log('normal channel closing');
+			console.log('Channel.closeChannel: normal channel closing');
 			this.setStatusHelper('DISCONNECTED');
 			this.socket.close();
 			this.socket = null;
-		}	
+		}
 });

@@ -1535,10 +1535,10 @@ Ext.define('EatSense.controller.Spot', {
 	showSpotView: function() {
 		var container = this.getMainview().getActiveItem();
 		
-		container.getLayout().setAnimation({
-			type : 'slide',
-			direction : 'right'
-		});
+		// container.getLayout().setAnimation({
+		// 	type : 'slide',
+		// 	direction : 'right'
+		// });
 		//switch to request view
 		container.setActiveItem(0);
 	},
@@ -1551,10 +1551,10 @@ Ext.define('EatSense.controller.Spot', {
 			container = this.getMainview().getActiveItem(),
 			requestDataview = this.getRequestDataview();
 
-		container.getLayout().setAnimation({
-			type : 'slide',
-			direction : 'left'
-		});
+		// container.getLayout().setAnimation({
+		// 	type : 'slide',
+		// 	direction : 'left'
+		// });
 		//switch to request view
 		container.setActiveItem(1);
 	},
@@ -1566,10 +1566,10 @@ Ext.define('EatSense.controller.Spot', {
 		var me = this,
 			container = this.getMainview().getActiveItem();
 
-		container.getLayout().setAnimation({
-			type : 'slide',
-			direction : 'left'
-		});
+		// container.getLayout().setAnimation({
+		// 	type : 'slide',
+		// 	direction : 'left'
+		// });
 		//switch to request view
 		container.setActiveItem(2);
 	},
@@ -1581,10 +1581,10 @@ Ext.define('EatSense.controller.Spot', {
 			container = this.getMainview().getActiveItem(),
 			requestDataview = this.getRequestDataview();
 
-		container.getLayout().setAnimation({
-			type : 'slide',
-			direction : 'right'
-		});
+		// container.getLayout().setAnimation({
+		// 	type : 'slide',
+		// 	direction : 'right'
+		// });
 		//switch to request view
 		container.setActiveItem(1);
 	},

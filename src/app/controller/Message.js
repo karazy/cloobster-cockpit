@@ -114,7 +114,7 @@ Ext.define('EatSense.controller.Message', {
 					'forceLogout': false, 
 					'hideMessage':true, 
 				});
-				connectionCallback();
+				connectionCallback(response.status);
 		    }
 		});
 	},

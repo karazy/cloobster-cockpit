@@ -201,7 +201,7 @@ Ext.define('EatSense.util.Channel', {
  					}
  					me.timedOut = true;
  					me.setStatusHelper('TIMEOUT');
- 					me.socket.close();
+ 					me.closeSocket();
  				},
  				function() {
  					// CONNECTED response from server. Channel should still be operational.
@@ -275,8 +275,9 @@ Ext.define('EatSense.util.Channel', {
 			me.channelReconnectTimeout = (me.channelReconnectTimeout > 300000) ? me.channelReconnectTimeout : me.channelReconnectTimeout * me.channelReconnectFactor;
 			// setupChannel(channelToken);
 			
-			me.requestTokenHandlerFunction.apply(me.executionScope, [function(token) {me.setupChannel(token)}, function() {
-				console.log('Channel.repeatedConnectionTry: Next try in '+me.channelReconnectTimeout);					
+			me.requestTokenHandlerFunction.apply(me.executionScope, [function(token) {me.setupChannel(token)}, function(status) {
+				console.log('Channel.repeatedConnectionTry: Next try in '+me.channelReconnectTimeout);
+				
 				window.setTimeout(connect, me.channelReconnectTimeout);
 			}]);
 		};

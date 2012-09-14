@@ -230,7 +230,7 @@ Ext.define('EatSense.util.Channel', {
 		if(this.connectionStatus != 'RECONNECT') {
 			this.timedOut = true;
 			this.setStatusHelper('TIMEOUT');
-			closeSocket();
+			this.closeSocket();
 		}
 	},
 	/**

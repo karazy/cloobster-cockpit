@@ -23,7 +23,7 @@ Ext.define('EatSense.util.Channel', {
 	//token used for this channel
 	channelToken : null,
 	//timeout used when attempting to reconnect the channel
-	channelReconnectTimeout : appConfig.channelReconnectTimeout ||  10000,
+	channelReconnectTimeout : appConfig.channelReconnectTimeout ||  20000,
 	//a factor by which the intervall for requesting a new token increases over time to prevent mass channel creations
 	channelReconnectFactor : 1.3,
 	//the status for the connection
@@ -51,25 +51,22 @@ Ext.define('EatSense.util.Channel', {
 		var me = this;
 		
 		if(this.connectionStatus == 'ONLINE') {
-			console.log('onOpen: Channel still online.');
+			console.log('Channel.onOpen: still online');
 			return;
 		}
-		console.log('channel opened');
+
+		console.log('Channel.onOpen: channel opened');
 		this.connectionLost = false;	
 		this.timedOut = false;		
 		this.channelReconnectTimeout = appConfig.channelReconnectTimeout;
 
-		this.setStatusHelper('ONLINE');
-		this.statusHandlerFunction.apply(this.executionScope, [{
-			'status' : this.connectionStatus, 
-			'prevStatus': this.previousStatus
-		}]);
+		this.setStatusHelper('ONLINE', true);
 		
 		if(!this.pingInterval) {
 			// Set online ping to 30s for tests.
 			this.pingInterval = window.setInterval(function() {
 				me.repeatedOnlinePing();
-			} , appConfig.channelPingInterval);
+			} , appConfig.channelPingInterval || 31000);
 		}
 		
 		/*		
@@ -81,11 +78,7 @@ Ext.define('EatSense.util.Channel', {
 		if(!this.pageshowListenerRegistered) {
 			this.pageshowListenerRegistered = true;
 			window.addEventListener("pageshow", function(){			
-				me.setStatusHelper('RECONNECT');
-				me.statusHandlerFunction.apply(this.executionScope, [{
-					'status' : this.connectionStatus, 
-					'prevStatus': this.previousStatus
-				}]);
+				me.setStatusHelper('RECONNECT', true);
 				console.log('online check');
 				// repeatedOnlineCheck();
 				me.checkOnlineFunction.apply(this.executionScope, [function() {
@@ -95,7 +88,7 @@ Ext.define('EatSense.util.Channel', {
 						'prevStatus': me.previousStatus
 					}]);
 					me.timedOut = true;
-					me.socket.close();
+					me.closeSocket();
 				}]);
 			}, false);
 		}
@@ -143,6 +136,10 @@ Ext.define('EatSense.util.Channel', {
 			return;
 		};
 
+		if(this.connectionStatus == 'RECONNECT') {
+			return;
+		}
+
 		if(this.timedOut === true && this.connectionStatus == 'TIMEOUT') {
 			console.log('Channel.onClose: reason TIMEOUT');
 			this.setStatusHelper('RECONNECT');
@@ -175,9 +172,8 @@ Ext.define('EatSense.util.Channel', {
 						window.clearInterval(me.interval);	
 					}
 					me.timedOut = true;
-					me.setStatusHelper('TIMEOUT');
-					me.socket.close();
-					me.socket = null;
+					me.setStatusHelper('TIMEOUT', true);
+					me.closeSocket();
 				}
 			]);
 		}
@@ -228,10 +224,14 @@ Ext.define('EatSense.util.Channel', {
 	},
 	messageTimedOut: function() {
 		// Called after 30s if we did not receive a channel message from the server.
+		console.log("Channel.messageTimedOut: No message received after timeout.");
 		this.messageTimeout = null;
-		this.timedOut = true;
-		this.setStatusHelper('TIMEOUT');
-		this.socket.close();
+
+		if(this.connectionStatus != 'RECONNECT') {
+			this.timedOut = true;
+			this.setStatusHelper('TIMEOUT');
+			closeSocket();
+		}
 	},
 	/**
 	*	Repeatedly tries to reopen a channel after it has been close.
@@ -244,7 +244,7 @@ Ext.define('EatSense.util.Channel', {
 			return;
 		}
 
-		console.log('Trying to connect and request new token.');
+		console.log('Channel.repeatedConnectionTry: Trying to request new token and open socket.');
 
 		var tries = 0;
 		var connect = function() {
@@ -254,8 +254,8 @@ Ext.define('EatSense.util.Channel', {
 
 			if(tries > appConfig.channelReconnectTries) {
 				console.log('Channel.repeatedConnectionTry: Maximum tries reached. No more connection attempts.');
-				me.setStatusHelper('DISCONNECTED');	
-				if(appHelper.isFunction(this.statusHandlerFunction)) {
+				me.setStatusHelper('DISCONNECTED', true);	
+				if(appHelper.isFunction(me.statusHandlerFunction)) {
 					me.statusHandlerFunction.apply(me.executionScope, [{
 						'status' : me.connectionStatus, 
 						'prevStatus': me.previousStatus
@@ -270,23 +270,35 @@ Ext.define('EatSense.util.Channel', {
 				'reconnectIteration' : tries
 			}]);
 
-			console.log('Channel.repeatedConnectionTry: iteration ' + tries);
+			console.log('Channel.repeatedConnectionTry: try ' + tries);
 			tries += 1;
 			me.channelReconnectTimeout = (me.channelReconnectTimeout > 300000) ? me.channelReconnectTimeout : me.channelReconnectTimeout * me.channelReconnectFactor;
 			// setupChannel(channelToken);
 			
 			me.requestTokenHandlerFunction.apply(me.executionScope, [function(token) {me.setupChannel(token)}, function() {
-				console.log('Channel.repeatedConnectionTry: Next reconnect try in '+me.channelReconnectTimeout);					
+				console.log('Channel.repeatedConnectionTry: Next try in '+me.channelReconnectTimeout);					
 				window.setTimeout(connect, me.channelReconnectTimeout);
 			}]);
 		};
 		connect();
 	},
-	setStatusHelper: function(newStatus) {
+	setStatusHelper: function(newStatus, broadcast) {
 		this.previousStatus = this.connectionStatus;
 		this.connectionStatus = newStatus;
+		if(broadcast === true && appHelper.isFunction(this.statusHandlerFunction)) {
+			this.statusHandlerFunction.apply(this.executionScope, [{
+				'status' : this.connectionStatus, 
+				'prevStatus': this.previousStatus
+			}]);
+		}
 	},
-
+	closeSocket: function() {
+		if(this.socket) {
+			console.log("Channel.closeSocket: closing");
+			this.socket.close();
+			this.socket = null;
+		}
+	},
 	/**
 	* Creates the channel and set the handler.
 	* @param token
@@ -298,6 +310,8 @@ Ext.define('EatSense.util.Channel', {
 		if(!token) {
 			return;
 		}
+
+		this.closeSocket();
 		
 		var handler = new Object();
 		handler.onopen =  function() {
@@ -308,7 +322,7 @@ Ext.define('EatSense.util.Channel', {
 		handler.onerror = function(error) {me.onError(error)};
 		handler.onclose = function() {me.onClose()};
 
-		console.log('setupChannel: token ' + token);
+		console.log('Channel.setupChannel: token ' + token);
 
 		this.channelToken = token;
 		try {
@@ -321,62 +335,61 @@ Ext.define('EatSense.util.Channel', {
 		this.socket = this.channel.open(handler);
 	},
 
-		/**
-		* Setup channel comunication and try to establish a connection.
-		* @param options
-		*/
-		setup: function(options) {
-			console.log('Channel.setup: init channel');
+	/**
+	* Setup channel comunication and try to establish a connection.
+	* @param options
+	*/
+	setup: function(options) {
+		console.log('Channel.setup: init channel');
 
-			if(!appHelper.isFunction(options.messageHandler)) {
-				throw "No messageHandler provided";
-			};
+		if(!appHelper.isFunction(options.messageHandler)) {
+			throw "No messageHandler provided";
+		};
 
-			this.messageHandlerFunction = options.messageHandler;
+		this.messageHandlerFunction = options.messageHandler;
 
-			if(!appHelper.isFunction(options.requestTokenHandler)) {
-				throw "No requestTokenHandler provided";
-			};
+		if(!appHelper.isFunction(options.requestTokenHandler)) {
+			throw "No requestTokenHandler provided";
+		};
 
-			this.requestTokenHandlerFunction = options.requestTokenHandler;
+		this.requestTokenHandlerFunction = options.requestTokenHandler;
 
-			if(!appHelper.isFunction(options.statusHandler)) {
-				throw "No statusHandler provided";
-			};
+		if(!appHelper.isFunction(options.statusHandler)) {
+			throw "No statusHandler provided";
+		};
 
-			this.statusHandlerFunction = options.statusHandler;
+		this.statusHandlerFunction = options.statusHandler;
 
-			if(!appHelper.isFunction(options.checkOnlineHandler)) {
-				throw "No checkOnlineHandler provided";
-			};
+		if(!appHelper.isFunction(options.checkOnlineHandler)) {
+			throw "No checkOnlineHandler provided";
+		};
 
-			this.checkOnlineFunction = options.checkOnlineHandler;
-			
+		this.checkOnlineFunction = options.checkOnlineHandler;
+		
 
-			(options.executionScope) ? this.executionScope = options.executionScope : this;
-			this.connectionLost = true;
-			this.connectionStatus = 'INITIALIZING';
-			this.repeatedConnectionTry();
+		(options.executionScope) ? this.executionScope = options.executionScope : this;
+		this.connectionLost = true;
+		this.connectionStatus = 'INITIALIZING';
+		this.repeatedConnectionTry();
 
-		},
-		connectedReceived: function () {
-			this.clearMessageTimeout();
-			this.onOpen();
-		},
-		/**
-		* Closes the cannel and prevents a new token request.
-		*/
-		closeChannel: function() {
-			this.timedOut = false;
-			this.connectionLost = false;	
-			this.channelToken = null;
-			
-			this.stopOnlinePing();
+	},
+	connectedReceived: function () {
+		this.clearMessageTimeout();
+		this.onOpen();
+	},
+	/**
+	* Closes the cannel and prevents a new token request.
+	*/
+	closeChannel: function() {
+		this.timedOut = false;
+		this.connectionLost = false;	
+		this.channelToken = null;
+		
+		this.stopOnlinePing();
 
-			
-			console.log('Channel.closeChannel: normal channel closing');
-			this.setStatusHelper('DISCONNECTED');
-			this.socket.close();
-			this.socket = null;
-		}
+		
+		console.log('Channel.closeChannel: normal channel closing');
+		this.setStatusHelper('DISCONNECTED');
+		this.closeSocket();
+	}
 });

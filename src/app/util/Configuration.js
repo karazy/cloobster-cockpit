@@ -9,10 +9,10 @@ Ext.define('EatSense.util.Configuration', {
 		//true means caching is disabled
 		disableCaching: false,
 		language: 'DE',
-		channelReconnectTimeout: 10000,
+		channelReconnectTimeout: 20000,
 		channelReconnectTries: 20,
 		// Interval for channel ping messages.
-		channelPingInterval: 30000,
+		channelPingInterval: 31000,
 		// Amount of time in ms to wait for a channel message after ping.
 		channelMessageTimeout: 30000,
 		heartbeatInterval: 10000,

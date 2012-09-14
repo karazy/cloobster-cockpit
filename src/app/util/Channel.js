@@ -185,6 +185,11 @@ Ext.define('EatSense.util.Channel', {
 			return;
 		}
 		else {
+			if(!me.messageTimeout) {
+				me.messageTimeout = window.setTimeout(function() {
+					me.messageTimedOut();
+				}, appConfig.channelMessageTimeout || 30000); 						
+			}
 			this.checkOnlineFunction.apply(this.executionScope, [
  				function() {
  					// DISCONNECTED response from server. Channel was disconnected but script did not react.
@@ -199,12 +204,7 @@ Ext.define('EatSense.util.Channel', {
  					me.socket.close();
  				},
  				function() {
- 					// CONNECTED response from server. Channel should still be operational. Wait 30s for channel message.
- 					if(!me.messageTimeout) {
-						me.messageTimeout = window.setTimeout(function() {
-	 						me.messageTimedOut();
-	 					}, appConfig.channelMessageTimeout || 30000); 						
- 					}
+ 					// CONNECTED response from server. Channel should still be operational.
  				}
  			]);
 		}

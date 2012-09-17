@@ -144,11 +144,15 @@ Ext.define('EatSense.controller.Spot', {
 		activeCustomer: null,
 		//active bill of active Customer
 		activeBill : null,
+<<<<<<< HEAD
+
+		notificationSound : null
+=======
 		//contains active area
 		activeArea : null,
-		notificationSound : null,
 
 		refreshRequestTask: null
+>>>>>>> master
 	},
 
 	init: function() {
@@ -348,14 +352,13 @@ Ext.define('EatSense.controller.Spot', {
 			 },
 			 scope: this
 		});	
-		//me.initNotificationSound();
+		me.initNotificationSound();
 	},
 
 	initNotificationSound: function() {
 		var contentEl = this.getMainview().getContentEl(),
 			audioEle = new Audio();
 			audioEle.src = 'res/sounds/simple.mp3';
-			audioEle.loop = true;
 			this.getMainview().setHtml(audioEle);
 			this.setNotificationSound(audioEle),
 			me = this;
@@ -603,15 +606,20 @@ Ext.define('EatSense.controller.Spot', {
 			spotStore = Ext.StoreManager.lookup('spotStore'),
 			filters = spotStore.getFilters();
 		
+<<<<<<< HEAD
+		//don't use getById, because barcode is the id
+		index = spotStore.findExact('id', updatedSpot.id);
+		this.getNotificationSound().load();
+		this.getNotificationSound().play();
+		if(index > -1) {
+			dirtySpot = spotStore.getAt(index);		
+=======
 		//use getById because this ignores Filters!
 		spotStore.clearFilter(true);
 		dirtySpot = spotStore.getById(updatedSpot.id);
 		spotStore.setFilters(filters);
 		spotStore.filter();
-
-		soundManager.play('notifySound');
-		//this.getNotificationSound().load();
-		//this.getNotificationSound().play();
+>>>>>>> master
 
 		if(dirtySpot) {
 			if(updatedSpot.status) {

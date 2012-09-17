@@ -55,6 +55,17 @@ Ext.application({
 
     	console.log('launch cockpit ...');
 
+        soundManager.setup({
+            url: 'res/swf/',
+            onready: function() {
+                soundManager.createSound({
+                    id:'notifySound',
+                    url:'res/sounds/simple.mp3'
+                });
+            }
+        });
+        soundManager.beginDelayedInit();
+
         if(appConfig.debug) {        
             (function() {
                 var exLog = console.log,

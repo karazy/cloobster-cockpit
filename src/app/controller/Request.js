@@ -91,10 +91,6 @@ Ext.define('EatSense.controller.Request',{
 		assocCheckIn = checkInStore.getById(requestModel.get('checkInId'));
 		requestModel.setCheckIn(assocCheckIn);
 
-		//FR: workaround. Otherwise sound only plays once
-		me.getNotificationSound().media.dom.load();
-		me.getNotificationSound().play();
-
 		if(!detail.isHidden() && spotCtr.getActiveCustomer()) {
 			//only show if the correct spot is active
 			if(request.spotId == spotCtr.getActiveSpot().get('id')) {

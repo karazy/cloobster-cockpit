@@ -18,12 +18,6 @@ Ext.define('EatSense.view.Spot', {
 		activeItem : 0,
 		items: [
 					{
-						itemId: 'notificationSound',
-	    	        	xtype : 'audio',
-	        	    	hidden: true,
-	            		url   : 'res/sounds/simple.mp3'
-		        	},
-					{
 						xtype: 'panel',
 						layout: 'fit',
 						items: [

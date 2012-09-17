@@ -355,6 +355,7 @@ Ext.define('EatSense.controller.Spot', {
 		var contentEl = this.getMainview().getContentEl(),
 			audioEle = new Audio();
 			audioEle.src = 'res/sounds/simple.mp3';
+			audioEle.loop = true;
 			this.getMainview().setHtml(audioEle);
 			this.setNotificationSound(audioEle),
 			me = this;

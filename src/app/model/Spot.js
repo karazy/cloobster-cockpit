@@ -28,6 +28,10 @@ Ext.define('EatSense.model.Spot', {
 		}, { //value of all orders
 			name: 'currentTotal',
 			type: 'number'
+		},
+		{
+			name: 'areaId',
+			type: 'number'
 		}],
 		proxy : {
 			type : 'rest',

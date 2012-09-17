@@ -87,8 +87,7 @@ Ext.define('EatSense.controller.Message', {
 	requestNewToken: function(successCallback, connectionCallback) {
 		var me = this,
 			account = this.getApplication().getController('Login').getAccount(),
-			login = account.get('login'),
-			clientId = login + new Date().getTime(),
+			clientId = account.get('id') + '-' + new Date().getTime(),
 			businessId = account.get('businessId');
 		
 		account.set('clientId', clientId);
@@ -115,16 +114,17 @@ Ext.define('EatSense.controller.Message', {
 					'forceLogout': false, 
 					'hideMessage':true, 
 				});
-				connectionCallback();
+				connectionCallback(response.status);
 		    }
 		});
 	},
 	/**
 	* 	Let the server know we are still there.
 	*/
-	checkOnline: function(disconnectCallback) {
+	checkOnline: function(disconnectCallback, connectedCallback) {
 		var account = this.getApplication().getController('Login').getAccount(),
-			clientId = account.get('clientId');
+			clientId = account.get('clientId'),
+			me = this;
 		
 		console.log('checkOnline: clientId ' + clientId);
 		Ext.Ajax.request({
@@ -134,13 +134,26 @@ Ext.define('EatSense.controller.Message', {
 		    	'businessId' :  account.get('businessId'),
 		    	'clientId' : clientId
 		    },
-		    success: function(response){
+		    success: function(response) {
 		       	console.log('online check request result: ' + response.responseText);
 		       	if(response.responseText == 'DISCONNECTED') {
 		       		disconnectCallback();
-		       	}		       	
+		       	}
+		       	else if(response.responseText == 'CONNECTED') {
+		       		if(connectedCallback) {
+		       			connectedCallback();
+		       		}
+		       	}
 		    }, 
 		    failure: function(response) {
+		    	if(appChannel.connectionStatus != 'CONNECTION_LOST') {
+		    		//TODO Notify user of the interrupted connection.
+		    		appChannel.setStatusHelper('CONNECTION_LOST');
+		    		me.handleStatus({
+		    			'status' : appChannel.connectionStatus, 
+		    			'prevStatus': appChannel.previousStatus
+		    		});
+		    	}
 		    	console.log('online check request failed with code: ' + response.status);
 		    }
 		});

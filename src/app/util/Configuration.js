@@ -7,12 +7,17 @@ Ext.define('EatSense.util.Configuration', {
 		currencyFormat: 'EURO',
 		version: 0.1,
 		//true means caching is disabled
-		disableCaching: true,
+		disableCaching: false,
 		language: 'DE',
-		channelReconnectTimeout: 10000,
+		channelReconnectTimeout: 15000,
 		channelReconnectTries: 20,
+		// Interval for channel ping messages.
+		channelPingInterval: 31000,
+		// Amount of time in ms to wait for a channel message after ping.
+		channelMessageTimeout: 30000,
 		heartbeatInterval: 10000,
-		debug: false,
-		eventPrefix: 'cloobster'
+		debug: true,
+		eventPrefix: 'cloobster',
+		requestTimeCalcRefreshInterval: 60000
 	}
-})
+});

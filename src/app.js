@@ -9,9 +9,11 @@ Ext.Loader.setPath('EatSense', 'app');
 Ext.application({
 	name : 'EatSense',
 	controllers : ['Login','Spot', 'Message', 'Request'],
-	models : ['Account','Spot', 'Business', 'CheckIn', 'Order', 'Product', 'Choice', 'Option', 'Bill', 'PaymentMethod', 'Request'],
+	models : ['AppState', 'Account', 'Area', 'Spot', 'Business', 'CheckIn', 'Order', 
+        'Product', 'Choice', 'Option', 'Bill', 'PaymentMethod', 'Request', 'History'],
 	views : ['Login', 'ChooseBusiness', 'Main'], 
-	stores : ['Account', 'AppState',  'Spot', 'Business', 'CheckIn', 'Order', 'Bill', 'Request' ],
+	stores : ['Account', 'AppState', 'Area',  'Spot', 'Business', 
+        'CheckIn', 'Order', 'Bill', 'Request', 'DefaultRequest', 'History' ],
 	requires: [
 		//require most common types
 		'Ext.Container',
@@ -20,6 +22,7 @@ Ext.application({
 		'Ext.Label',
 		'Ext.TitleBar',
         'Ext.MessageBox',
+        'Ext.DateExtras',
         //util
         'EatSense.util.Constants',
         'EatSense.util.Configuration',
@@ -44,28 +47,67 @@ Ext.application({
 		
 	},
 	launch : function() {
-    // Destroy the #appLoadingIndicator element
-    Ext.fly('appLoadingIndicator').destroy();
+        var oldOnError = window.onerror,
+            undefinedErrorCount = 0;
 
-	console.log('launch cockpit ...');
+        // Destroy the #appLoadingIndicator element
+        Ext.fly('appLoadingIndicator').destroy();
 
-    if(appConfig.debug) {        
-        (function() {
-            var exLog = console.log,
-                debugConsole,
-                date;
-            console.log = function(msg) {
-                exLog.apply(this, arguments);
-                debugConsole = Ext.getCmp('debugConsole');
-                if(debugConsole) {
-                    date = new Date();
-                    debugConsole.setHtml(debugConsole.getHtml() + '<br/>' + Ext.Date.format(date, 'Y-m-d H:i:s') + ' -> ' + msg);
-                    debugConsole.getScrollable().getScroller().scrollToEnd();
-                }                
-            };
-        })();
-        console.log('Debug mode active!');
-    }
+    	console.log('launch cockpit ...');
+
+        if(appConfig.debug) {        
+            (function() {
+                var exLog = console.log,
+                    debugConsole,
+                    date;
+                console.log = function(msg) {
+                    exLog.apply(this, arguments);
+                    debugConsole = Ext.getCmp('debugConsole');
+                    if(debugConsole) {
+                        date = new Date();
+                        debugConsole.setHtml(debugConsole.getHtml() + '<br/>' + Ext.Date.format(date, 'Y-m-d H:i:s') + ' -> ' + msg);
+                        debugConsole.getScrollable().getScroller().scrollToEnd();
+                    }                
+                };
+            })();
+            console.log('Debug mode active!');
+        }
+
+
+        // Override previous handler.
+        window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+            if (oldOnError)
+                // Call previous handler.
+                return oldOnError(errorMsg, url, lineNumber);
+
+            if (typeof url === "undefined" && lineNumber === 0) {
+                console.log("app.onError: undefined error received count="+undefinedErrorCount);
+                if(++undefinedErrorCount > 10) {
+                    // Diplay error message and reload after user confirmed.
+                    Ext.Msg.show({
+                        title: i10n.translate('error'),
+                        message: i10n.translate('error.critical'),
+                        buttons: [{
+                            text: i10n.translate('ok'),
+                            itemId: 'ok',
+                            ui: 'action'
+                        }],
+                        scope: this,
+                        fn: function(btnId) { 
+                            window.location.reload();
+                        }
+                    });
+
+                }
+            }
+            else {
+                console.log("onError: " + errorMsg + ", url: "+ url + ", lineNumber: " + lineNumber);  
+            }
+
+            // Just let default handler run.
+            return false;
+        }
+
 
 	   	var loginCtr = this.getController('Login');
 

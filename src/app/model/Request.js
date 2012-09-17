@@ -19,7 +19,25 @@ Ext.define('EatSense.model.Request', {
 		},
 		{
 			name: 'spotId'
-		}
+		},
+		{
+			name: 'spotName'
+		},
+		{
+			name: 'checkInName'
+		},
+		{	//additional information which can be displayed along the request
+			name: 'info'
+		},
+		{
+			name: 'areaId'
+		},
+		{	//time in milliseconds, just treat as number
+			name: 'receivedTime',
+			// type : 'number'
+			type : 'date',
+			dateFormat: 'time'
+		}	
 		],
 		associations : {
 			type : 'hasOne',

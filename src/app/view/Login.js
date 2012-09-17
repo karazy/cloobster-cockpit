@@ -1,7 +1,7 @@
 Ext.define('EatSense.view.Login', {
 	extend: 'Ext.Panel',
 	xtype: 'login',
-	requires: ['Ext.field.Toggle', 'Ext.field.Password'],
+	requires: ['Ext.field.Toggle', 'Ext.field.Password', 'Ext.Img'],
 	config: {
 		fullscreen: true,
 		centered: true,

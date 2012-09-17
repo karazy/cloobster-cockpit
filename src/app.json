@@ -57,12 +57,12 @@
      *      }
      */
     "css": [
+        // {
+        //     "path": "resources/css/app.css",
+        //     "update": "delta"
+        // },
         {
-            "path": "resources/css/app.css",
-            "update": "delta"
-        },
-        {
-            "path": "res/css/app.css",
+            "path": "res/css/app-default.css",
             "update": "delta"
         }
     ],

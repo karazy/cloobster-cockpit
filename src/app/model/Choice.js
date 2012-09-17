@@ -16,16 +16,12 @@ Ext.define('EatSense.model.Choice', {
 			{name: 'included', type: 'number'},
 			{name: 'overridePrice', type: 'string'},
 			{name : 'parent', type: 'number'},
-			{name : 'active', type: 'boolean', persist: false, defaultValue: false}
+			{name : 'active', type: 'boolean', persist: false, defaultValue: false},
+			{name: 'originalChoiceId', type: 'number'}
 		],
 		hasMany : {
 			model : 'EatSense.model.Option',
 			name : 'options'
-		},
-		associations : {
-			type : 'hasOne',
-			model : 'EatSense.model.Choice',
-			associatedName: 'parentChoice'
 		}
 	},	
 	/**
@@ -160,8 +156,7 @@ Ext.define('EatSense.model.Choice', {
 		rawJson.price = this.get('price');
 		rawJson.included = this.get('included');
 		rawJson.overridePrice = this.get('overridePrice');
-		// rawJson.active = this.get('active');
-		rawJson.parent = this.get('parent');
+		rawJson.originalChoiceId = this.get('originalChoiceId');
 		
 		rawJson.options = new Array(this.options().data.length);
 		for ( ; index < optionsLength; index++) {
@@ -195,8 +190,7 @@ Ext.define('EatSense.model.Choice', {
 		this.set('price', rawData.price);
 		this.set('included', rawData.included);
 		this.set('overridePrice', rawData.overridePrice);
-		// this.set('active', rawData.active);
-		this.set('parent', rawData.parent);
+		this.set('originalChoiceId', rawData.originalChoiceId);
 
 		return true;			
 	}

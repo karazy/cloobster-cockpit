@@ -1,6 +1,6 @@
 /**
-*	Handles customer requests like "Call Waiter".
-*	
+*	Handles special customer requests like "Call Waiter".
+*	Deals not with general requests like ORDER or BILL
 */
 Ext.define('EatSense.controller.Request',{
 	extend: 'Ext.app.Controller',
@@ -10,8 +10,7 @@ Ext.define('EatSense.controller.Request',{
 			customerRequestDialog: {
 		    	selector: 'customerrequest',
 		    	xtype: 'customerrequest',
-		    	// autoCreate: true		    	
-		    },		    
+		    },
 			dismissRequestsButton: 'customerrequest button[action=dismiss]',
 			customerRequestList: 'customerrequest list',
 			notificationSound: '#notificationSound'
@@ -46,7 +45,8 @@ Ext.define('EatSense.controller.Request',{
 		requestStore.load({
 			params: {
 				'pathId': restaurantId,
-				'spotId': spotCtr.getActiveSpot().get('id')
+				'spotId': spotCtr.getActiveSpot().get('id'),
+				'type' : appConstants.Request.CUSTOM
 			},
 			 callback: function(records, operation, success) {
 			 	if(success) { 

@@ -14,12 +14,14 @@ Ext.define('EatSense.model.Account', {
 		{
 			name: 'role'
 		}, 
-		{
-			name: 'businessId'
+		{	//only used locally
+			name: 'businessId',
+			persist: false
 		},	
 		//TODO maybe store an association?
-		{
-			name: 'business'
+		{	//only used locally
+			name: 'business',
+			persist: false
 		},
 		{	//channel token
 			name: 'token'

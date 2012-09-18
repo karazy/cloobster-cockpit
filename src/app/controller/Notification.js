@@ -29,16 +29,16 @@ Ext.define('EatSense.controller.Notification', {
 		var contentEl = this.getMainview().getContentEl(),
 			audioEle = new Audio();
 			audioEle.src = appConfig.audioNotificationFile;
-			Ext.Viewport.setHtml(audioEle);
+			// audioEle.loop = true;
+			this.getMainview().setHtml(audioEle);
 			this.setNotificationSound(audioEle),
-			me = this;			
+			me = this;
 
-		Ext.Viewport.mon(Ext.Viewport.el, {
-    		tap : function(e, t) {
-				console.log('main was tapped');
+		Ext.Viewport.element.on('tap', function() {
+			console.log('viewport was tapped');
 				me.stopAudioNotification();
-    		}
 		});
+
 	},
 
 	toggleNotificationSound: function(button) {
@@ -48,7 +48,7 @@ Ext.define('EatSense.controller.Notification', {
 
 		if(!this.getUserInit()) {
 			console.log('Notification.toggleNotificationSound -> user init');
-			this.initNotificationSound();			
+			this.initNotificationSound();					
 			this.setUserInit(true);
 		};
 
@@ -74,8 +74,9 @@ Ext.define('EatSense.controller.Notification', {
 			console.log('Notification.toggleNotificationSound -> activate');
 			this.setNotificationActive(true);
 			button.setIconCls('volume');
-			this.getNotificationSound().load();
-			this.getNotificationSound().play();	
+			this.getNotificationSound().autoplay = true;
+			this.getNotificationSound().load();	
+			// this.getNotificationSound().play();	
 			//register events
 			messageCtr.on('eatSense.request', this.processRequest, this);
 			messageCtr.on('eatSense.bill', this.processBill, this);
@@ -97,24 +98,29 @@ Ext.define('EatSense.controller.Notification', {
 		var sound = this.getNotificationSound();
 
 		function playSound() {
+			sound.autoplay = true;
 			sound.load();
-			sound.play();
+			// sound.pause();
+			// sound.currentTime = 0.1;
+			// sound.play();
 		};
 
 		if(!this.getSoundInterval()) {
 			playSound();
-			this.setSoundInterval(window.setInterval(playSound, 3500));	
-			console.log("Trying to play sound every 2s.");
+			this.setSoundInterval(window.setInterval(playSound, 5000));	
+			console.log("Trying to play sound every 5s.");
 		}
 
 	},
 
 	stopAudioNotification: function() {
+		var sound = this.getNotificationSound();
 		// this.setNotificationActive(false);
 		//clear interval
 		if(this.getSoundInterval()) {
+			sound.pause();
 			window.clearInterval(this.getSoundInterval());
-			this.setSoundInterval(null);
+			this.setSoundInterval(null);			
 			console.log("Stopping sound interval.");	
 		}
 		

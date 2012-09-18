@@ -75,7 +75,8 @@
          * List of items in the CACHE MANIFEST section
          */
         "cache": [
-            "index.html"
+            "index.html",
+            // "res/sounds/simple.mp3"
         ],
         /**
          * List of items in the NETWORK section

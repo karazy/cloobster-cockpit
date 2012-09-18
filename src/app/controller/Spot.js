@@ -363,8 +363,17 @@ Ext.define('EatSense.controller.Spot', {
 			audioEle.loop = true;
 			this.getMainview().setHtml(audioEle);
 			this.setNotificationSound(audioEle),
-			me = this;
-			// audioEle.addEventListener('onended', function() {
+			me = this,
+			loopCounter = 0;
+
+			// Try to setup loop.
+			audioEle.addEventListener('ended', function() {
+				++loopCounter;
+				if(loopCounter < 3) {
+					this.play();
+					console.log("Sound ended: loop " + loopCounter);
+				}
+			});
 			// 	audioEle = null;
 			// 	me.initNotificationSound();
 			// });

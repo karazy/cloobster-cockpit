@@ -58,7 +58,6 @@ Ext.define('EatSense.controller.Spot', {
 				autoCreate: true
 			},
 			closeHistoryDetailButton: 'historydetailitem button[action=close]',
-			activateSoundButton: 'main button[action=activate-sound]'
 		},
 
 		control : {
@@ -136,9 +135,6 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	closeHistoryDetailButton: {
 		 		tap: 'closeHistoryDetail'
-		 	},
-		 	activateSoundButton: {
-		 		tap: 'activateNotificationSound'
 		 	}
 		},
 
@@ -150,10 +146,8 @@ Ext.define('EatSense.controller.Spot', {
 		activeBill : null,
 		//contains active area
 		activeArea : null,
-		notificationSound : null,
 
-		refreshRequestTask: null,
-		soundInterval: null
+		refreshRequestTask: null
 	},
 
 	init: function() {
@@ -246,14 +240,6 @@ Ext.define('EatSense.controller.Spot', {
 			 	}			
 			 }
 		});
-
-		this.getMainview().mon(this.getMainview().el, {
-    		tap : function(e, t) {
-
-    			console.log('main was tapped');
-    		}
-		});
-
 	},
 	/**
 	* Loads all requests displayed in request list view
@@ -361,45 +347,8 @@ Ext.define('EatSense.controller.Spot', {
 			 scope: this
 		});	
 
-		me.initNotificationSound();
 	},
 
-	initNotificationSound: function() {
-		var contentEl = this.getMainview().getContentEl(),
-			audioEle = new Audio();
-			audioEle.src = 'res/sounds/simple.mp3';
-			this.getMainview().setHtml(audioEle);
-			this.setNotificationSound(audioEle),
-			me = this;	
-			// 	audioEle = null;
-			// 	me.initNotificationSound();
-			// });
-			//audioEle.play();
-	},
-
-	activateNotificationSound: function(button) {
-		var sound = this.getNotificationSound();
-		// var contentEl = this.getMainview().getContentEl();
-		
-		function playSound() {
-			sound.load();
-			sound.play();
-		};
-
-		if(!this.getSoundInterval()) {
-			playSound();
-			this.setSoundInterval(window.setInterval(playSound, 3500));	
-			console.log("Trying to play sound every 2s.");
-		}
-		else {
-			window.clearInterval(this.getSoundInterval());
-			this.setSoundInterval(null);
-			console.log("Stopping sound interval.");
-		}
-
-
-		//soundManager.play('notifySound');
-	},
 
 	/**
 	* Event handler for SpotItem tap.
@@ -643,10 +592,6 @@ Ext.define('EatSense.controller.Spot', {
 		dirtySpot = spotStore.getById(updatedSpot.id);
 		spotStore.setFilters(filters);
 		spotStore.filter();
-
-		//soundManager.play('notifySound');
-		this.getNotificationSound().load();
-		this.getNotificationSound().play();
 
 		if(dirtySpot) {
 			if(updatedSpot.status) {

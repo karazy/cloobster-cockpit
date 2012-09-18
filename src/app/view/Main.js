@@ -18,17 +18,14 @@ Ext.define('EatSense.view.Main', {
 			xtype: 'label',
 			itemId: 'info'
 			},
-			// {	
-			// 	text: i10n.translate('spot.filter.title'),
-			// 	action: 'show-filter'
-			// },
 			{
 				xtype: 'spacer'
 			},
 			{
 				xtype: 'button',
 				action: 'activate-sound',
-				text: i10n.translate('toolbar.bottom.sound')
+				iconMask: true,
+				iconCls: 'volume_mute'
 			},
 			{
 				xtype: 'label',

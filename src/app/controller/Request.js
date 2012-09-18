@@ -12,8 +12,7 @@ Ext.define('EatSense.controller.Request',{
 		    	xtype: 'customerrequest',
 		    },
 			dismissRequestsButton: 'customerrequest button[action=dismiss]',
-			customerRequestList: 'customerrequest list',
-			notificationSound: '#notificationSound'
+			customerRequestList: 'customerrequest list'
 		},
 		control: {
 			dismissRequestsButton : {

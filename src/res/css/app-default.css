@@ -9772,23 +9772,35 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-mask-image: url('data:image/png;base64,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');
 }
 
+/* line 20, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
+.x-tab .x-button-icon.volume_mute,
+.x-button .x-button-icon.x-icon-mask.volume_mute {
+  -webkit-mask-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAADHklEQVRoBe2bu2sUURSHs74gNhELFRsRsRARRHwggqi1goW2sZH06QS1FP8HsbETtLR2KxEfiI8ypg1WQYsYTEw230/uhsFiiHPPPfcIc+DHPHbvuee758zjzs4ORqPRxP9gA4w496E7xDzbNeYdXRt6tkuwB+nzKfqV0/e2nMYebRPsUfp6js6g7Tn9hs4wsII7jB6hUyg7QdkOCKKIJdizOH+MzqNdFh2FzDCwgjuO7qLTyAQWPxPhgIGdJK5raBpdQdo2s1AlnTIr2JtIZWwKq1ELk2FgFYvKWJkV7F5kbiGAE6yO1XvIvIybo1YdGFgdVofQQ6SzsnkZ43PTqgIn2CNEo+vsBbRzM7JCK9WAgdW98QH0BKmci8PSR52TVoLVvfEzdA65XS3cM5xgp4B8gU54wtKX38iqs0Zmh2yeRFkTAfn8V3MrpQasZj3KbBVzAU6wZlO8nJEqfgwD+/cUz72MmwOUBQzMDZzpbNtWKbpFvIjMpnj46mxZwPQqYF1D2/zosz3IbIqHr87WFuhWnO7nS7otzPWzlb5MvtNWiiYdRHPSA0fLiHU8fYatRzSavz7D0TJiHU+fYesRjeavz3C0jFjH02fYekSj+eszHC0j1vH0GbYe0Wj+cp9UfAJoHbU9mNNnevB+DOX2h4tM03taJUV4u9El9BWtIb0Y1lWrtB3mxFv8GCa4nwT5Ct1G80gVUc2KA4sMaGVG0LfQN+1CVcwFWGQJ+g2rerS7oF3I3dyARQa0yvktuop+aBdyNVdgkQG9hj6yehm5Z9odWNDJvrB0L+9qwMo0wO8S9BxLl/KuBgzgn/Jm8QHNIF2yNAhFrSqwyMj0CovXSNdpndCKQlcHBnAM/Z7VB+gz0iAUsfr3tgmLTC/xe/PLtDnNUu9cmr+kFgZYoEAvA63yHoNeZ930d+VQwAl6MWV6mW29F6IXYMziDHEMC7RpZHqRbZX3faRj+zcyMbORM4mm4SSV95BdS0h/A9B/H7ItZIbHVECbTy1DAwscaNOpZXjgBvR4aqn5dGcbMIKdG3s35OytV46niPl71743AGgAIxNOBbobAAAAAElFTkSuQmCC');
+}
+
+/* line 20, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
+.x-tab .x-button-icon.volume,
+.x-button .x-button-icon.x-icon-mask.volume {
+  -webkit-mask-image: url('data:image/png;base64,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');
+}
+
 @CHARSET "UTF-8";
 @CHARSET "UTF-8";
 /* general */
-/* line 29, app-default.scss */
+/* line 31, app-default.scss */
 .font-bold {
   font-weight: bold;
 }
 
 /* spot view */
-/* line 35, app-default.scss */
+/* line 37, app-default.scss */
 .spot {
   float: left;
   width: 150px;
   margin: 10px;
 }
 
-/* line 41, app-default.scss */
+/* line 43, app-default.scss */
 .spotitem {
   height: 120px;
   border: solid 1px;
@@ -9798,67 +9810,67 @@ input[type="search"]::-webkit-search-cancel-button {
   word-break: break-word;
 }
 
-/* line 50, app-default.scss */
+/* line 52, app-default.scss */
 .spot div {
   width: 100%;
 }
 
-/* line 55, app-default.scss */
+/* line 57, app-default.scss */
 .spot h2 {
   text-align: center;
   font-size: 1.5em;
 }
 
-/* line 60, app-default.scss */
+/* line 62, app-default.scss */
 .spot p {
   text-align: center;
 }
 
-/* line 65, app-default.scss */
+/* line 67, app-default.scss */
 .spot-filter-panel {
   /*	-webkit-box-shadow: 0em 0em 0em 0.3 #888;
   	box-shadow: 0em 0em 0em 0.3 #888;*/
 }
 
-/* line 70, app-default.scss */
+/* line 72, app-default.scss */
 .spot-filter-label {
   text-align: center;
   font-size: 1.5em;
 }
 
-/* line 75, app-default.scss */
+/* line 77, app-default.scss */
 .spotitem-pressed {
   background-color: #646464 !important;
 }
 
-/* line 79, app-default.scss */
+/* line 81, app-default.scss */
 .spotSelected {
   background-color: #6464c8;
 }
 
-/* line 85, app-default.scss */
+/* line 87, app-default.scss */
 .spotitem-checkedin {
   background-color: #64ff64;
 }
 
-/* line 89, app-default.scss */
+/* line 91, app-default.scss */
 .spotitem-placed {
   background-color: #c86464;
 }
 
 @-webkit-keyframes blinker {
-  /* line 94, app-default.scss */
+  /* line 96, app-default.scss */
   from {
     opacity: 1.0;
   }
 
-  /* line 95, app-default.scss */
+  /* line 97, app-default.scss */
   to {
     opacity: 0.0;
   }
 }
 
-/* line 98, app-default.scss */
+/* line 100, app-default.scss */
 .spotitem-request {
   background-color: #c86464;
   -webkit-animation-name: blinker;
@@ -9867,17 +9879,17 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-animation-duration: 1s;
 }
 
-/* line 109, app-default.scss */
+/* line 111, app-default.scss */
 .loginbox {
   background-color: #6464c8;
 }
 
-/* line 113, app-default.scss */
+/* line 115, app-default.scss */
 .loginbox-field {
   margin-bottom: 0.5em;
 }
 
-/* line 117, app-default.scss */
+/* line 119, app-default.scss */
 .spotdetail {
   background-color: white;
   border: 2px solid grey;
@@ -9885,38 +9897,38 @@ input[type="search"]::-webkit-search-cancel-button {
   /*padding: 8px;*/
 }
 
-/* line 124, app-default.scss */
+/* line 126, app-default.scss */
 .spotdetail-titlebar {
   border-top-left-radius: 0.3em;
   border-top-right-radius: 0.3em;
 }
 
-/* line 129, app-default.scss */
+/* line 131, app-default.scss */
 .spotdetail-toolbar {
   background-color: white;
   border-top: 2px solid black;
   padding-top: 3px;
 }
 
-/* line 135, app-default.scss */
+/* line 137, app-default.scss */
 .spotdetail-customer-name {
   word-break: break-word;
 }
 
-/* line 143, app-default.scss */
+/* line 145, app-default.scss */
 .spotdetail-customer-flag {
   background-color: red;
   float: left;
   margin-right: 3px;
 }
 
-/* line 149, app-default.scss */
+/* line 151, app-default.scss */
 .spotdetail-toolbar-button {
   margin-right: 5px;
   margin-left: 5px;
 }
 
-/* line 154, app-default.scss */
+/* line 156, app-default.scss */
 .spotdetail-status {
   position: relative;
   margin: 5px;
@@ -9924,28 +9936,28 @@ input[type="search"]::-webkit-search-cancel-button {
   /*float: left;*/
 }
 
-/* line 161, app-default.scss */
+/* line 163, app-default.scss */
 .spotdetail-status .order_placed {
   border: 1px solid black;
   background-color: red;
   padding: 3px;
 }
 
-/* line 167, app-default.scss */
+/* line 169, app-default.scss */
 .spotdetail-status .payment_request {
   border: 1px solid black;
   background-color: red;
   padding: 3px;
 }
 
-/* line 173, app-default.scss */
+/* line 175, app-default.scss */
 .spotdetail-status .checkedin {
   border: 1px solid black;
   background-color: green;
   padding: 3px;
 }
 
-/* line 179, app-default.scss */
+/* line 181, app-default.scss */
 .spotdetail-statistics {
   position: relative;
   top: 10px;
@@ -9959,7 +9971,7 @@ input[type="search"]::-webkit-search-cancel-button {
   min-width: 40px;
 }
 
-/* line 192, app-default.scss */
+/* line 194, app-default.scss */
 .spotdetail-close {
   background-color: black;
   border-radius: 1em;
@@ -9973,14 +9985,14 @@ input[type="search"]::-webkit-search-cancel-button {
   top: 3px;
 }
 
-/* line 205, app-default.scss */
+/* line 207, app-default.scss */
 .spotdetailitem-customer-label {
   background-color: white;
   text-align: center;
   font-weight: bold;
 }
 
-/* line 211, app-default.scss */
+/* line 213, app-default.scss */
 .spotdetailitem-flag {
   width: 10%;
   top: 0;
@@ -9991,14 +10003,14 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-left: 5px;
 }
 
-/* line 222, app-default.scss */
+/* line 224, app-default.scss */
 .spotdetailitem-order {
   /*width: 70%;*/
   margin-bottom: 20px;
   font-size: 0.8em;
 }
 
-/* line 228, app-default.scss */
+/* line 230, app-default.scss */
 .spotdetailitem-order h2 {
   font-weight: bold;
   /*float: left;*/
@@ -10006,34 +10018,34 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-right: 10px;
 }
 
-/* line 235, app-default.scss */
+/* line 237, app-default.scss */
 .spotdetailitem-order h4 {
   font-size: 1em;
 }
 
-/* line 239, app-default.scss */
+/* line 241, app-default.scss */
 .spotdetailitem-order h3 {
   font-size: 1em;
   font-weight: bold;
 }
 
-/* line 244, app-default.scss */
+/* line 246, app-default.scss */
 .spotdetailitem-order-cancel {
   text-decoration: line-through;
 }
 
-/* line 248, app-default.scss */
+/* line 250, app-default.scss */
 .spotdetailitem-order-cancel h2 {
   text-decoration: line-through;
 }
 
-/* line 252, app-default.scss */
+/* line 254, app-default.scss */
 .x-button-icon.spotdetailitem-confirm, .x-button .x-button-icon.x-icon-mask.spotdetailitem-confirm {
   -webkit-mask-image: url("../images/check_icon.png");
   /*background-image: url('../images/check_icon.png');*/
 }
 
-/* line 257, app-default.scss */
+/* line 259, app-default.scss */
 .spotdetailitem-order div:nth-of-type(1) {
   /*position: absolute; 
   right: 0; 
@@ -10042,13 +10054,13 @@ input[type="search"]::-webkit-search-cancel-button {
   	padding-right: 5px;*/
 }
 
-/* line 265, app-default.scss */
+/* line 267, app-default.scss */
 .spotdetailitem-order .choices {
   clear: both;
   text-align: left;
 }
 
-/* line 270, app-default.scss */
+/* line 272, app-default.scss */
 .spotdetailitem-confirm {
   top: 0;
   /*position: absolute;*/
@@ -10056,7 +10068,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 10%;*/
 }
 
-/* line 277, app-default.scss */
+/* line 279, app-default.scss */
 .spotdetailitem-cancel {
   /*width: 10%;*/
   top: 0;
@@ -10065,18 +10077,18 @@ input[type="search"]::-webkit-search-cancel-button {
   /*float: left;*/
 }
 
-/* line 284, app-default.scss */
+/* line 286, app-default.scss */
 .cancel-all {
   -webkit-mask-image: url("res/images/forbidden.png");
 }
 
 /* request view */
-/* line 290, app-default.scss */
+/* line 292, app-default.scss */
 .requestitem-container {
   margin: 0.3em;
 }
 
-/* line 294, app-default.scss */
+/* line 296, app-default.scss */
 .requestitem-wrapper {
   /*border: 1px solid #C3C3C3;*/
   /*background-color: #c3c3c3;*/
@@ -10085,7 +10097,7 @@ input[type="search"]::-webkit-search-cancel-button {
   color: black;
 }
 
-/* line 302, app-default.scss */
+/* line 304, app-default.scss */
 .requestitem-spot {
   border: 1px solid #000;
   background-color: #4975A2;
@@ -10096,7 +10108,7 @@ input[type="search"]::-webkit-search-cancel-button {
   word-break: break-word;
 }
 
-/* line 312, app-default.scss */
+/* line 314, app-default.scss */
 .requestitem-customer {
   border: 1px solid #000;
   background-color: #C6D7E9;
@@ -10111,7 +10123,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 65%;*/
 }
 
-/* line 326, app-default.scss */
+/* line 328, app-default.scss */
 .requestitem-time {
   border: 1px solid #000;
   background-color: #DFE8CB;
@@ -10125,13 +10137,13 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 25%;*/
 }
 
-/* line 339, app-default.scss */
+/* line 341, app-default.scss */
 .requestitem-wrapper-pressed {
   /*background-color: #F5B800;*/
   color: white;
 }
 
-/* line 344, app-default.scss */
+/* line 346, app-default.scss */
 .requestitem-alert {
   -webkit-animation-name: blinker;
   -webkit-animation-iteration-count: infinite;
@@ -10140,12 +10152,12 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* history view */
-/* line 352, app-default.scss */
+/* line 354, app-default.scss */
 .historyitem-container {
   margin: 0.3em;
 }
 
-/* line 356, app-default.scss */
+/* line 358, app-default.scss */
 .historyitem-wrapper {
   /*border: 1px solid #C3C3C3;*/
   /*background-color: #c3c3c3;*/
@@ -10154,7 +10166,7 @@ input[type="search"]::-webkit-search-cancel-button {
   color: black;
 }
 
-/* line 364, app-default.scss */
+/* line 366, app-default.scss */
 .historyitem-spot {
   border: 1px solid #000;
   background-color: #4975A2;
@@ -10165,7 +10177,7 @@ input[type="search"]::-webkit-search-cancel-button {
   word-break: break-word;
 }
 
-/* line 374, app-default.scss */
+/* line 376, app-default.scss */
 .historyitem-customer {
   border: 1px solid #000;
   background-color: #C6D7E9;
@@ -10180,7 +10192,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 20%;*/
 }
 
-/* line 388, app-default.scss */
+/* line 390, app-default.scss */
 .historyitem-time {
   border: 1px solid #000;
   background-color: #DFE8CB;
@@ -10195,7 +10207,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 15%;*/
 }
 
-/* line 402, app-default.scss */
+/* line 404, app-default.scss */
 .historyitem-total {
   border: 1px solid #000;
   background-color: #D0F5A9;
@@ -10208,12 +10220,12 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 10%;*/
 }
 
-/* line 414, app-default.scss */
+/* line 416, app-default.scss */
 .historyitem-wrapper-pressed {
   color: white;
 }
 
-/* line 418, app-default.scss */
+/* line 420, app-default.scss */
 .history-info-panel {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -10222,7 +10234,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: #C3C3C3;
 }
 
-/* line 426, app-default.scss */
+/* line 428, app-default.scss */
 .history-info-panel .row {
   display: -webkit-box;
   -webkit-box-orient: horizontal;
@@ -10230,13 +10242,13 @@ input[type="search"]::-webkit-search-cancel-button {
   /*	-webkit-box-pack: end;*/
 }
 
-/* line 433, app-default.scss */
+/* line 435, app-default.scss */
 .history-info-panel .row > div {
   /*-webkit-box-flex: 1;*/
   width: 50%;
 }
 
-/* line 438, app-default.scss */
+/* line 440, app-default.scss */
 .history-detail-list-title {
   font-size: 1.2em;
   font-weight: bold;
@@ -10245,7 +10257,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* connections status indicator in bottom toolbar */
-/* line 448, app-default.scss */
+/* line 450, app-default.scss */
 .status-indicator .ONLINE {
   width: 1em;
   height: 1em;
@@ -10255,7 +10267,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: green;
 }
 
-/* line 457, app-default.scss */
+/* line 459, app-default.scss */
 .status-indicator .TIMEOUT {
   width: 1em;
   height: 1em;
@@ -10265,7 +10277,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: gray;
 }
 
-/* line 466, app-default.scss */
+/* line 468, app-default.scss */
 .status-indicator .RECONNECT {
   width: 1em;
   height: 1em;
@@ -10275,7 +10287,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: yellow;
 }
 
-/* line 475, app-default.scss */
+/* line 477, app-default.scss */
 .status-indicator .INITIALIZING {
   width: 1em;
   height: 1em;
@@ -10285,7 +10297,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: yellow;
 }
 
-/* line 484, app-default.scss */
+/* line 486, app-default.scss */
 .status-indicator .CONNECTION_LOST {
   width: 1em;
   height: 1em;
@@ -10295,7 +10307,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: white;
 }
 
-/* line 493, app-default.scss */
+/* line 495, app-default.scss */
 .status-indicator .DISCONNECTED {
   width: 1em;
   height: 1em;
@@ -10305,7 +10317,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: red;
 }
 
-/* line 502, app-default.scss */
+/* line 504, app-default.scss */
 .locked-button .x-button-icon {
   -webkit-mask-image: url("/cockpit/res/images/lock_closed.png");
   background-color: black;

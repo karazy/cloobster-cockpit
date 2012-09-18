@@ -18,6 +18,7 @@ Ext.define('EatSense.util.Configuration', {
 		heartbeatInterval: 10000,
 		debug: true,
 		eventPrefix: 'cloobster',
-		requestTimeCalcRefreshInterval: 60000
+		requestTimeCalcRefreshInterval: 60000,
+		audioNotificationFile: 'res/sounds/simple.mp3'
 	}
 });

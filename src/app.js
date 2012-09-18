@@ -8,7 +8,7 @@ Ext.Loader.setPath('EatSense', 'app');
 
 Ext.application({
 	name : 'EatSense',
-	controllers : ['Login','Spot', 'Message', 'Request'],
+	controllers : ['Login','Spot', 'Message', 'Request', 'Notification'],
 	models : ['AppState', 'Account', 'Area', 'Spot', 'Business', 'CheckIn', 'Order', 
         'Product', 'Choice', 'Option', 'Bill', 'PaymentMethod', 'Request', 'History'],
 	views : ['Login', 'ChooseBusiness', 'Main'], 
@@ -54,17 +54,6 @@ Ext.application({
         Ext.fly('appLoadingIndicator').destroy();
 
     	console.log('launch cockpit ...');
-
-        /*soundManager.setup({
-            url: 'res/swf/',
-            onready: function() {
-                soundManager.createSound({
-                    id:'notifySound',
-                    url:'res/sounds/simple.mp3'
-                });
-            }
-        });
-        soundManager.beginDelayedInit();*/
 
         if(appConfig.debug) {        
             (function() {

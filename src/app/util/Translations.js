@@ -89,6 +89,9 @@ Ext.define('EatSense.util.Translations',{
 		"history.detail.info.billtime" : "Datum",
 		"history.detail.info.billtotal" : "Total",
 		"history.detail.list.title" : "Bestellungen",
+		//notifications
+		"notification.sound.deactivate" : "Audio Benachrichtung: AUS",
+		"notification.sound.activate" : "Audio Benachrichtung: AN",
 		//constants
 		"ORDER_PLACED" : "Neue Bestellung!",
 		"PLACED" : "Neu!",

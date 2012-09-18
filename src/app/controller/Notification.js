@@ -21,10 +21,6 @@ Ext.define('EatSense.controller.Notification', {
 		userInit: false,
 
 	},
-
-	launch: function(){
-		
-	},
 	/**
 	* Initialize Sound by inserting a HTML5 Audio Tag into the DOM.
 	*
@@ -33,11 +29,11 @@ Ext.define('EatSense.controller.Notification', {
 		var contentEl = this.getMainview().getContentEl(),
 			audioEle = new Audio();
 			audioEle.src = appConfig.audioNotificationFile;
-			this.getMainview().setHtml(audioEle);
+			Ext.Viewport.setHtml(audioEle);
 			this.setNotificationSound(audioEle),
 			me = this;			
 
-		this.getMainview().mon(this.getMainview().el, {
+		Ext.Viewport.mon(Ext.Viewport.el, {
     		tap : function(e, t) {
 				console.log('main was tapped');
 				me.stopAudioNotification();
@@ -82,13 +78,16 @@ Ext.define('EatSense.controller.Notification', {
 			this.getNotificationSound().play();	
 			//register events
 			messageCtr.on('eatSense.request', this.processRequest, this);
+			messageCtr.on('eatSense.bill', this.processBill, this);
+			messageCtr.on('eatSense.checkin', this.processCheckIn, this);
 		} else {
 			console.log('Notification.toggleNotificationSound -> deactivate');
 			this.setNotificationActive(false);
 			button.setIconCls('volume_mute');
 			//deregister events
 			messageCtr.un('eatSense.request', this.processRequest, this);
-
+			messageCtr.un('eatSense.bill', this.processBill, this);
+			messageCtr.un('eatSense.checkin', this.processCheckIn, this);
 		};
 
 		msgBox.show();
@@ -121,9 +120,24 @@ Ext.define('EatSense.controller.Notification', {
 		
 	},
 
-	processRequest: function(action, message) {
+	processRequest: function(action, data) {
 
-		this.startAudioNotification();
-	}
+		if(action == "new") {
+			this.startAudioNotification();	
+		};
+	},
+
+	processBill: function(action, data) {
+
+		if(action == "new") {
+			this.startAudioNotification();	
+		};
+	},
+	processCheckIn: function(action, data) {
+
+		if(action == "update-orders") {
+			this.startAudioNotification();
+		};
+	},
 
 });

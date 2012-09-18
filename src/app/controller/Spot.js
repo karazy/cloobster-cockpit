@@ -153,7 +153,7 @@ Ext.define('EatSense.controller.Spot', {
 		notificationSound : null,
 
 		refreshRequestTask: null,
-		soundLoopCounter: 0
+		soundInterval: null
 	},
 
 	init: function() {
@@ -363,18 +363,7 @@ Ext.define('EatSense.controller.Spot', {
 			audioEle.src = 'res/sounds/simple.mp3';
 			this.getMainview().setHtml(audioEle);
 			this.setNotificationSound(audioEle),
-			me = this;
-
-			// Try to setup loop.
-			audioEle.addEventListener('ended', function() {
-				me.setSoundLoopCounter(me.getSoundLoopCounter() + 1);
-				if(me.getSoundLoopCounter() < 3) {
-					this.pause();
-					this.load();
-					this.play();
-					console.log("Sound ended: loop " + me.getSoundLoopCounter());
-				}
-			}, false);
+			me = this;	
 			// 	audioEle = null;
 			// 	me.initNotificationSound();
 			// });
@@ -382,11 +371,24 @@ Ext.define('EatSense.controller.Spot', {
 	},
 
 	activateNotificationSound: function(button) {
+		var sound = this.getNotificationSound();
 		// var contentEl = this.getMainview().getContentEl();
-		this.getNotificationSound().load();
-		this.getNotificationSound().play();
-		this.setSoundLoopCounter(0);
-		console.log("Trying to play sound...");
+		
+		function playSound() {
+			sound.load();
+			sound.play();
+		};
+
+		if(!this.getSoundInterval()) {
+			playSound();
+			this.setSoundInterval(window.setInterval(playSound, 2000));	
+			console.log("Trying to play sound every 2s.");
+		}
+		else {
+			window.clearInterval(this.getSoundInterval());
+			console.log("Stopping sound interval.");
+		}
+
 
 		//soundManager.play('notifySound');
 	},

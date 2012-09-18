@@ -114,7 +114,7 @@ Ext.define('EatSense.controller.Spot', {
 		 		tap: 'showRequestSortPanel'
 		 	},
 		 	mainview: {
-		 		activeitemchange: 'areaChanged'		 		
+		 		activeitemchange: 'areaChanged'	
 		 	},
 		 	requestDataview : {
 		 		itemtap : 'requestItemTapped'
@@ -244,6 +244,13 @@ Ext.define('EatSense.controller.Spot', {
 					task(appConfig.requestTimeCalcRefreshInterval);
 			 	}			
 			 }
+		});
+
+		this.getMainview().mon(this.getMainview().el, {
+    		tap : function(e, t) {
+
+    			console.log('main was tapped');
+    		}
 		});
 
 	},

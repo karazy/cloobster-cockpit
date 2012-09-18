@@ -33,10 +33,6 @@
      */
     "js": [
         {
-            "path": "lib/sm2/soundmanager2-jsmin.js",
-            "update": "full"
-        },
-        {
             "path": "sdk/sencha-touch.js"
         },
         {

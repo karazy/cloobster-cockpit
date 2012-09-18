@@ -388,11 +388,12 @@ Ext.define('EatSense.controller.Spot', {
 
 		if(!this.getSoundInterval()) {
 			playSound();
-			this.setSoundInterval(window.setInterval(playSound, 2000));	
+			this.setSoundInterval(window.setInterval(playSound, 3500));	
 			console.log("Trying to play sound every 2s.");
 		}
 		else {
 			window.clearInterval(this.getSoundInterval());
+			this.setSoundInterval(null);
 			console.log("Stopping sound interval.");
 		}
 

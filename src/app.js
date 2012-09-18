@@ -55,7 +55,7 @@ Ext.application({
 
     	console.log('launch cockpit ...');
 
-        soundManager.setup({
+        /*soundManager.setup({
             url: 'res/swf/',
             onready: function() {
                 soundManager.createSound({
@@ -64,7 +64,7 @@ Ext.application({
                 });
             }
         });
-        soundManager.beginDelayedInit();
+        soundManager.beginDelayedInit();*/
 
         if(appConfig.debug) {        
             (function() {

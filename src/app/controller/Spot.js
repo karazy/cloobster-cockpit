@@ -352,7 +352,8 @@ Ext.define('EatSense.controller.Spot', {
 			 },
 			 scope: this
 		});	
-		//me.initNotificationSound();
+
+		me.initNotificationSound();
 	},
 
 	initNotificationSound: function() {
@@ -372,8 +373,11 @@ Ext.define('EatSense.controller.Spot', {
 
 	activateNotificationSound: function(button) {
 		// var contentEl = this.getMainview().getContentEl();
-		
-		soundManager.play('notifySound');
+		this.getNotificationSound().load();
+		this.getNotificationSound().play();
+		console.log("Trying to play sound...");
+
+		//soundManager.play('notifySound');
 	},
 
 	/**
@@ -619,7 +623,7 @@ Ext.define('EatSense.controller.Spot', {
 		spotStore.setFilters(filters);
 		spotStore.filter();
 
-		soundManager.play('notifySound');
+		//soundManager.play('notifySound');
 		//this.getNotificationSound().load();
 		//this.getNotificationSound().play();
 

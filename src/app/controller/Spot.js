@@ -57,7 +57,8 @@ Ext.define('EatSense.controller.Spot', {
 				xtype: 'historydetailitem',
 				autoCreate: true
 			},
-			closeHistoryDetailButton: 'historydetailitem button[action=close]'
+			closeHistoryDetailButton: 'historydetailitem button[action=close]',
+			activateSoundButton: 'main button[action=activate-sound]'
 		},
 
 		control : {
@@ -135,6 +136,9 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	closeHistoryDetailButton: {
 		 		tap: 'closeHistoryDetail'
+		 	},
+		 	activateSoundButton: {
+		 		tap: 'activateNotificationSound'
 		 	}
 		},
 
@@ -364,7 +368,13 @@ Ext.define('EatSense.controller.Spot', {
 			// 	me.initNotificationSound();
 			// });
 			//audioEle.play();
-	},	
+	},
+
+	activateNotificationSound: function(button) {
+		// var contentEl = this.getMainview().getContentEl();
+		
+		soundManager.play('notifySound');
+	},
 
 	/**
 	* Event handler for SpotItem tap.

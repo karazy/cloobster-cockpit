@@ -26,6 +26,11 @@ Ext.define('EatSense.view.Main', {
 				xtype: 'spacer'
 			},
 			{
+				xtype: 'button',
+				action: 'activate-sound',
+				text: i10n.translate('toolbar.bottom.sound')
+			},
+			{
 				xtype: 'label',
 				itemId: 'connectionStatus',
 				cls: 'status-indicator',

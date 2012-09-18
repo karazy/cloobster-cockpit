@@ -624,8 +624,8 @@ Ext.define('EatSense.controller.Spot', {
 		spotStore.filter();
 
 		//soundManager.play('notifySound');
-		//this.getNotificationSound().load();
-		//this.getNotificationSound().play();
+		this.getNotificationSound().load();
+		this.getNotificationSound().play();
 
 		if(dirtySpot) {
 			if(updatedSpot.status) {

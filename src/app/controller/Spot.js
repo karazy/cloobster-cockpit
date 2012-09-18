@@ -376,6 +376,7 @@ Ext.define('EatSense.controller.Spot', {
 			audioEle.addEventListener('ended', function() {
 				me.setSoundLoopCounter(me.getSoundLoopCounter() + 1);
 				if(me.getSoundLoopCounter() < 3) {
+					this.pause();
 					this.load();
 					this.play();
 					console.log("Sound ended: loop " + me.getSoundLoopCounter());

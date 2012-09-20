@@ -19,8 +19,38 @@ Ext.define('EatSense.controller.Notification', {
 		notificationActive: false,
 		/* Indicates that user activated notification sound once. */
 		userInit: false,
+		/* Counts played alarms when alarm is active. */
+		playCounter: 0
 
 	},
+
+	showActivationHint: function() {
+		var me =this,
+			msgBox = Ext.create('Ext.MessageBox');
+
+		msgBox = Ext.create('Ext.MessageBox', {
+			// hideOnMaskTap: true,
+			modal: false,
+			title: i10n.translate('notification.sound.manual.title'),
+			'message' : i10n.translate('notification.sound.manual.msg'),
+			buttons: [],
+			bottom: '5%',
+			right: '3%'
+		});
+
+		// msgBox.showBy(this.getActivateSoundButton(), "tl-tr?");
+		msgBox.show();
+
+		//make popup to disappear on viewport tap
+		Ext.Viewport.element.on('tap', hideActivationHint, this, {
+			single: true,
+			delay: 200
+		});
+
+		function hideActivationHint() {
+			msgBox.hide(true);
+		};
+	},	
 	/**
 	* Initialize Sound by inserting a HTML5 Audio Tag into the DOM.
 	*
@@ -35,12 +65,14 @@ Ext.define('EatSense.controller.Notification', {
 			me = this;
 
 		Ext.Viewport.element.on('tap', function() {
-			console.log('viewport was tapped');
-				me.stopAudioNotification();
+			me.stopAudioNotification();
 		});
 
 	},
-
+	/**
+	* Event handler for activate sound button.
+	* Toggles the sound on and off.
+	*/
 	toggleNotificationSound: function(button) {
 		var messageCtr = this.getApplication().getController('Message'),
 			active = this.getNotificationActive(),
@@ -55,7 +87,7 @@ Ext.define('EatSense.controller.Notification', {
 		msgBox = Ext.create('Ext.MessageBox', {
 			modal: false,
 			centered: false,
-			top: '5%',
+			bottom: '5%',
 			right: '3%',
 			// left: '3%',
 			'message' : (!active) ? i10n.translate('notification.sound.activate') : i10n.translate('notification.sound.deactivate'),
@@ -74,6 +106,7 @@ Ext.define('EatSense.controller.Notification', {
 			console.log('Notification.toggleNotificationSound -> activate');
 			this.setNotificationActive(true);
 			button.setIconCls('volume');
+			button.setCls('volume-status-on');
 			this.getNotificationSound().autoplay = true;
 			this.getNotificationSound().load();	
 			// this.getNotificationSound().play();	
@@ -85,6 +118,7 @@ Ext.define('EatSense.controller.Notification', {
 			console.log('Notification.toggleNotificationSound -> deactivate');
 			this.setNotificationActive(false);
 			button.setIconCls('volume_mute');
+			button.setCls('volume-status-off');
 			//deregister events
 			messageCtr.un('eatSense.request', this.processRequest, this);
 			messageCtr.un('eatSense.bill', this.processBill, this);
@@ -93,13 +127,26 @@ Ext.define('EatSense.controller.Notification', {
 
 		msgBox.show();
 	},
-
+	/**
+	* Starts an audio notification alarm.
+	* Only one alarm can be active. Other notifcations triggering the alarm won't start it new.
+	* 
+	*/
 	startAudioNotification: function() {
-		var sound = this.getNotificationSound();
+		var me = this,
+			sound = this.getNotificationSound();
+		
+		this.setPlayCounter(0);
 
 		function playSound() {
-			sound.autoplay = true;
-			sound.load();
+			me.setPlayCounter(me.getPlayCounter()+1);
+			if(me.getPlayCounter() > appConfig.audioNotificationIterations) {
+				me.stopAudioNotification();
+			} else {
+				sound.autoplay = true;
+				sound.load();
+				console.log('played ' + me.getPlayCounter() + ' out of ' + appConfig.audioNotificationIterations);
+			}								
 			// sound.pause();
 			// sound.currentTime = 0.1;
 			// sound.play();
@@ -112,15 +159,18 @@ Ext.define('EatSense.controller.Notification', {
 		}
 
 	},
-
+	/**
+	* Stops the audio notification alarm.
+	* 
+	*/
 	stopAudioNotification: function() {
 		var sound = this.getNotificationSound();
-		// this.setNotificationActive(false);
+		
 		//clear interval
 		if(this.getSoundInterval()) {
 			sound.pause();
 			window.clearInterval(this.getSoundInterval());
-			this.setSoundInterval(null);			
+			this.setSoundInterval(null);	
 			console.log("Stopping sound interval.");	
 		}
 		

@@ -25,7 +25,8 @@ Ext.define('EatSense.view.Main', {
 				xtype: 'button',
 				action: 'activate-sound',
 				iconMask: true,
-				iconCls: 'volume_mute'
+				iconCls: 'volume_mute',
+				cls: 'volume-status-off'
 			},
 			{
 				xtype: 'button',

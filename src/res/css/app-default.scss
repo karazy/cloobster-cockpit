@@ -501,7 +501,21 @@
 	background-color: red;
 }
 
-.locked-button .x-button-icon {
+/* Volume Button */
+
+.volume_mute {
+	background-image: none !important;
+	background-color: #FA5858 !important;
+}
+
+.volume {
+	background-image: none !important;
+	background-color: #64FF64 !important;
+}
+
+
+/* Lock button */
+.locked-button .x-button-icon { 
 	-webkit-mask-image: url('/cockpit/res/images/lock_closed.png');
 	background-color: black;
 	-webkit-mask-size: 20px;

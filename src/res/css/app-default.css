@@ -10274,7 +10274,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border-radius: 0.5em;
   float: right;
   margin: 0px 0.5em;
-  background-color: gray;
+  background-color: yellow;
 }
 
 /* line 468, app-default.scss */
@@ -10304,7 +10304,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border-radius: 0.5em;
   float: right;
   margin: 0px 0.5em;
-  background-color: white;
+  background-color: red;
 }
 
 /* line 495, app-default.scss */

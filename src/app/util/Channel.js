@@ -234,6 +234,7 @@ Ext.define('EatSense.util.Channel', {
 	},
 	clearMessageTimeout: function() {
 		if(this.messageTimeout) {
+			console.log('Channel.clearMessageTimeout');
 			window.clearTimeout(this.messageTimeout);
 			this.messageTimeout = null;
 		}
@@ -400,6 +401,8 @@ Ext.define('EatSense.util.Channel', {
 		this.channelToken = null;
 		
 		this.stopOnlinePing();
+		this.stopOnlineCheck();
+		this.stopConnectionTry();
 
 		console.log('Channel.closeChannel: normal channel closing');
 		this.setStatusHelper('DISCONNECTED');

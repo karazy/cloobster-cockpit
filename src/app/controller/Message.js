@@ -242,8 +242,11 @@ Ext.define('EatSense.controller.Message', {
 	*/
 	connectionStatusTapped: function(button) {
 		//logic for manual reconnect goes here.
-		//only react if connection is in status DISCONNECT or similar
-		
+		//only react if connection is in status DISCONNECTED, or CONNECTION_LOST
+		if(appChannel.connectionStatus == 'DISCONNECTED' || appChannel.connectionStatus == 'CONNECTION_LOST') {
+			appChannel.setStatusHelper('CONNECTION_LOST', true);
+			appChannel.startOnlineCheck();
+		}
 
 	}
 });

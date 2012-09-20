@@ -97,7 +97,7 @@ Ext.define('EatSense.controller.Message', {
 		
 		account.set('clientId', clientId);
 		console.log('requestNewToken: clientId ' + clientId);
-		//TODO Refactor to:  /b/businesses/{businessId}/channels
+
 		Ext.Ajax.request({
 		    url: appConfig.serviceUrl+'/b/businesses/'+businessId+'/channels',	    
 		    method: 'POST',
@@ -107,7 +107,7 @@ Ext.define('EatSense.controller.Message', {
 		    success: function(response){
 		       	token = response.responseText;
 		       	successCallback(token);	
-		       	connectionCallback();
+		       	connectionCallback(response.status);
 		    }, 
 		    failure: function(response) {
 		    	//just log don't show message or force logout!
@@ -233,10 +233,38 @@ Ext.define('EatSense.controller.Message', {
 			this.refreshAll(true);
 		}
 
+		if((previousStatus == 'ONLINE') && connectionStatus == 'CONNECTION_LOST') {
+			this.showConnectivityHint(i10n.translate('errorCommunication'));
+		}
+
 		if(stop) {
 			this.refreshAll(false);
 		}
 	},
+	showConnectivityHint: function(message) {
+		var me =this,
+			msgBox = Ext.create('Ext.MessageBox', {
+			// hideOnMaskTap: true,
+			modal: false,
+			'message' : message,
+			buttons: [],
+			bottom: '5%',
+			right: '3%'
+		});
+
+		// msgBox.showBy(this.getActivateSoundButton(), "tl-tr?");
+		msgBox.show();
+
+		//make popup to disappear on viewport tap
+		Ext.Viewport.element.on('tap', hideActivationHint, this, {
+			single: true,
+			delay: 200
+		});
+
+		function hideActivationHint() {
+			msgBox.hide(true);
+		};
+	},	
 	/**
 	* Eventhandler for connection status button in bottom toolbar.
 	*/
@@ -244,9 +272,8 @@ Ext.define('EatSense.controller.Message', {
 		//logic for manual reconnect goes here.
 		//only react if connection is in status DISCONNECTED, or CONNECTION_LOST
 		if(appChannel.connectionStatus == 'DISCONNECTED' || appChannel.connectionStatus == 'CONNECTION_LOST') {
-			appChannel.setStatusHelper('CONNECTION_LOST', true);
-			appChannel.startOnlineCheck();
+			appChannel.closeChannel();
+			this.openChannel();
 		}
-
 	}
 });

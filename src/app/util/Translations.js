@@ -107,7 +107,7 @@ Ext.define('EatSense.util.Translations',{
 		"errorMsg" : "Entschuldigung! Ein Fehler ist aufgetreten.<br/>Wir kümmern uns darum!",
 		"errorResource" : "Daten konnten nicht vom Server geladen werden.",
 		"errorPermission" : "Sitzung ist ungültig.",
-		"errorCommunication" : "Leider besteht zur Zeit ein Problem mit der Verbindung.<br>Bitte überprüfen Sie die Netzwerkverbindung.",
+		"errorCommunication" : "Es scheint zur Zeit ein Problem mit der Verbindung zu geben.<br>Bitte überprüfen Sie die Netzwerkverbindung.",
 		"errorGeneralCommunication" : "Beim Laden von Aktualisierungsdaten trat ein Fehler auf.<br/>Zur Sicherheit bitte neu anmelden.",
 		"resourceNotAvailable" : "Angeforderte Ressource ist nicht erreichbar.",
 		"channelTokenError" : "Updates im Hintergrund nicht funktionsfähig."

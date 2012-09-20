@@ -28,7 +28,8 @@ Ext.define('EatSense.view.Main', {
 				iconCls: 'volume_mute'
 			},
 			{
-				xtype: 'label',
+				xtype: 'button',
+				baseCls: 'no-cls',
 				itemId: 'connectionStatus',
 				cls: 'status-indicator',
 				tpl: '<span>'+i10n.translate('toolbar.bottom.status')+'</span><span class="{0}"></span>'

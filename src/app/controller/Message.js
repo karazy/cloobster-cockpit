@@ -11,6 +11,11 @@ Ext.define('EatSense.controller.Message', {
 		{
 			connectionStatus: 'toolbar[docked=bottom] #connectionStatus'
 		},
+		control: {
+			connectionStatus: {
+				tap: 'connectionStatusTapped'
+			}
+		},
 		evtPrefix: 'eatSense',
 		interval: null,
 		//indicates if polling is active and a refreshAll events get fired 
@@ -228,5 +233,14 @@ Ext.define('EatSense.controller.Message', {
 		if(stop) {
 			this.refreshAll(false);
 		}
+	},
+	/**
+	* Eventhandler for connection status button in bottom toolbar.
+	*/
+	connectionStatusTapped: function(button) {
+		//logic for manual reconnect goes here.
+		//only react if connection is in status DISCONNECT or similar
+		
+
 	}
 });

@@ -177,6 +177,8 @@ Ext.define('EatSense.controller.Spot', {
 	// start load and show data
 	/**
 	* Load all available areas and create tabs dynamically.
+	* Also acts as initialization method. This method gets directly called after successful login
+	* or restore state.
 	*/
 	loadAreas: function() {
 		var me = this,
@@ -240,6 +242,9 @@ Ext.define('EatSense.controller.Spot', {
 			 	}			
 			 }
 		});
+
+		//show user the audio notification box as a reminder
+		this.getApplication().getController('Notification').showActivationHint();
 	},
 	/**
 	* Loads all requests displayed in request list view

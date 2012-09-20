@@ -10317,7 +10317,21 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: red;
 }
 
-/* line 504, app-default.scss */
+/* Volume Button */
+/* line 506, app-default.scss */
+.volume_mute {
+  background-image: none !important;
+  background-color: #FA5858 !important;
+}
+
+/* line 511, app-default.scss */
+.volume {
+  background-image: none !important;
+  background-color: #64FF64 !important;
+}
+
+/* Lock button */
+/* line 518, app-default.scss */
 .locked-button .x-button-icon {
   -webkit-mask-image: url("/cockpit/res/images/lock_closed.png");
   background-color: black;

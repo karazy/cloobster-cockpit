@@ -90,8 +90,10 @@ Ext.define('EatSense.util.Translations',{
 		"history.detail.info.billtotal" : "Total",
 		"history.detail.list.title" : "Bestellungen",
 		//notifications
-		"notification.sound.deactivate" : "Audio Benachrichtung: AUS",
-		"notification.sound.activate" : "Audio Benachrichtung: AN",
+		"notification.sound.deactivate" : "Audio Benachrichtigung: AUS",
+		"notification.sound.activate" : "Audio Benachrichtigung: AN",
+		"notification.sound.manual.title" : "Audio Benachrichtigungen",
+		"notification.sound.manual.msg" : "Möchten Sie Audio Benachrichtigungen für eintreffende Ereignisse aktivieren?",
 		//constants
 		"ORDER_PLACED" : "Neue Bestellung!",
 		"PLACED" : "Neu!",

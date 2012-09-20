@@ -98,7 +98,6 @@
        // "resources/icons",
        // "resources/startup",
         "res/images",
-        "res/swf",
         "res/sounds"
     ],
 

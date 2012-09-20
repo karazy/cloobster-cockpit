@@ -19,6 +19,8 @@ Ext.define('EatSense.controller.Notification', {
 		notificationActive: false,
 		/* Indicates that user activated notification sound once. */
 		userInit: false,
+		/* Counts played alarms when alarm is active. */
+		playCounter: 0
 
 	},
 
@@ -131,11 +133,20 @@ Ext.define('EatSense.controller.Notification', {
 	* 
 	*/
 	startAudioNotification: function() {
-		var sound = this.getNotificationSound();
+		var me = this,
+			sound = this.getNotificationSound();
+		
+		this.setPlayCounter(0);
 
 		function playSound() {
-			sound.autoplay = true;
-			sound.load();
+			me.setPlayCounter(me.getPlayCounter()+1);
+			if(me.getPlayCounter() > appConfig.audioNotificationIterations) {
+				me.stopAudioNotification();
+			} else {
+				sound.autoplay = true;
+				sound.load();
+				console.log('played ' + me.getPlayCounter() + ' out of ' + appConfig.audioNotificationIterations);
+			}								
 			// sound.pause();
 			// sound.currentTime = 0.1;
 			// sound.play();
@@ -154,12 +165,12 @@ Ext.define('EatSense.controller.Notification', {
 	*/
 	stopAudioNotification: function() {
 		var sound = this.getNotificationSound();
-		// this.setNotificationActive(false);
+		
 		//clear interval
 		if(this.getSoundInterval()) {
 			sound.pause();
 			window.clearInterval(this.getSoundInterval());
-			this.setSoundInterval(null);			
+			this.setSoundInterval(null);	
 			console.log("Stopping sound interval.");	
 		}
 		

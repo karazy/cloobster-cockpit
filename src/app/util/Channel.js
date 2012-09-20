@@ -178,8 +178,10 @@ Ext.define('EatSense.util.Channel', {
 				function() {
 					// disconnect function. Called after checking with the server if the channel disconnected.
 					me.stopOnlineCheck();
-					me.setStatusHelper('TIMEOUT', true);
-					me.closeSocket();
+					if(this.connectionStatus != 'RECONNECT') {
+						me.setStatusHelper('TIMEOUT', true);
+						me.closeSocket();
+					}
 				},
 				function() {
 					// connected function.
@@ -229,7 +231,7 @@ Ext.define('EatSense.util.Channel', {
 			console.log('Channel.startMessageTimeout: Waiting for message (ms)' + (appConfig.channelMessageTimeout || 30000));
 			me.messageTimeout = window.setTimeout(function() {
 				me.messageTimedOut();
-			}, appConfig.channelMessageTimeout || 30000); 						
+			}, appConfig.channelMessageTimeout || 30000);						
 		}
 	},
 	clearMessageTimeout: function() {

@@ -18,7 +18,7 @@ Ext.define('EatSense.util.Translations',{
 		"update.ready" : "Update",
 		"update.ready.message" : "Ein Update ist verfgübar.<br/>Anwendung neu laden?",
 		//tabbar
-		"spotsTitle" : "Tische",
+		"spotsTitle" : "Spots",
 		//toolbar
 		"toolbar.bottom.status" : "Verbindung",
 		//login
@@ -56,14 +56,14 @@ Ext.define('EatSense.util.Translations',{
 		"processOrdersFirst" : "Bitte zuerst alle Bestellungen abarbeiten.",
 		"cancelAllOrders" : "Alle Bestellungen stornieren und diesen Gast entfernen?",
 		"errorSpotDetailOrderCancel" : "Bestellung {0} konnte nicht storniert werden.",
-		"switchSpotButton" : "Tisch wechseln",
+		"switchSpotButton" : "Spot wechseln",
 		"switchSpotMessage": "{0} an {1} verschoben",
 		"cancelOrderQuestion" : "{0} stornieren?",
 		"cancelAllOrdersButton" : "Gast entfernen",
 		"confirmAllOrdersButton" : "Alle annehmen",
 		"paidButton" : "Bezahlt",
-		"spotSelectionTitle" : "Tisch auswählen",
-		"switchSpotError" : "Server Fehler aufgetreten. Tischwechsel fehlgeschlagen!",
+		"spotSelectionTitle" : "Spot auswählen",
+		"switchSpotError" : "Server Fehler aufgetreten. Spotwechsel fehlgeschlagen!",
 		"paymentMethodLabel" : "Bezahlart",
 		"choiceValErrMandatory" : "Bitte Wahl für {0} treffen.",
 		"choiceValErrMin" : "Bitte mindestens {0} {1} auswählen.",

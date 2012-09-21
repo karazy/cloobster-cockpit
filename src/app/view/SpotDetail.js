@@ -75,7 +75,7 @@ Ext.define('EatSense.view.SpotDetail', {
 				itemId: 'checkInList', 
 				itemTpl: new Ext.XTemplate(
 						 "<tpl if='status == \"ORDER_PLACED\" || status == \"PAYMENT_REQUEST\"'>"+
-							 "<span class='spotdetail-customer-flag'>X</span>"+
+							 "<div class='spotdetail-customer-flag'> </div>"+
 						 "</tpl>"+
 						"<h2 class='spotdetail-customer-name {[values.status == \"ORDER_PLACED\" ? \"customer-highlight\" : \"\"]}'>{nickname}</h2>"
 						

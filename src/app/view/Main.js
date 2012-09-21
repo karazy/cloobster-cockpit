@@ -30,10 +30,11 @@ Ext.define('EatSense.view.Main', {
 			},
 			{
 				xtype: 'button',
-				baseCls: 'no-cls',
+				// baseCls: 'no-cls',
 				itemId: 'connectionStatus',
-				cls: 'status-indicator',
-				tpl: '<span>'+i10n.translate('toolbar.bottom.status')+'</span><span class="{0}"></span>'
+				labelCls: '.status-indicator-ONLINE',
+				text: i10n.translate('toolbar.bottom.status') + '<span class="status"></span>',
+				// tpl: '<span>'+'</span><span class="{0}"></span>'
 			},
 			{
 				xtype: 'button',

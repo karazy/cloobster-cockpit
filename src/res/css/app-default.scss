@@ -41,12 +41,16 @@
 }
 
 .spotitem {
-	height: 120px;
+	height: 130px;
 	border: solid 1px;
 	border-color: black;
-	border-radius: 5px;
+	border-radius: 0.2em;
 	background-color: grey;
+	padding: 3px;
 	word-break: break-word;
+	box-shadow: 3px 3px 0.5em 0.1em gray;
+/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(3%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.5)));
 }
 
 .spot div {
@@ -75,7 +79,8 @@
 }
 
 .spotitem-pressed {
-	background-color: rgb(100,100,100) !important;
+	/*background-color: rgb(100,100,100) !important;*/
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.5)), color-stop(97%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0)));
 }
 
 .spotSelected {
@@ -86,6 +91,12 @@
 
 .spotitem-checkedin {
 	background-color: rgb(100,255,100);
+
+	// needs latest Compass, add '@import "compass"' to your scss
+/*	background-color: #c9de96; // Old browsers
+	@include filter-gradient(#c9de96, #398235, vertical); // IE6-9
+	@include background-image(linear-gradient(top,  #c9de96 0%,#8ab66b 44%,#398235 100%));*/
+
 }
 
 .spotitem-placed {
@@ -106,6 +117,7 @@
 }
 
 .spotitem-pay {
+
 }
 
 .loginbox {
@@ -447,58 +459,79 @@
 
 /* connections status indicator in bottom toolbar */
 
-.status-indicator .ONLINE {
-	width: 1em;
-	height: 1em;
-	border-radius: 0.5em;
-	float: right;
-	margin: 0px 0.5em;
-	background-color: green;
+.status-indicator-ONLINE {
+
+	.status {
+		width: 1.2em;
+		height: 1.2em;
+		border-radius: 0.75em;
+		float: right;
+		margin: 0 .5em;
+		background-color: #64FF64;
+		border: 1px solid black;	
+	}
+	
 }
 
-.status-indicator .TIMEOUT {
-	width: 1em;
-	height: 1em;
-	border-radius: 0.5em;
-	float: right;
-	margin: 0px 0.5em;
-	background-color: yellow;
+.status-indicator-TIMEOUT {
+	
+	.status {
+		width: 1.2em;
+		height: 1.2em;
+		border-radius: 0.75em;
+		float: right;
+		margin: 0 .5em;
+		background-color: yellow;
+		border: 1px solid black;
+	}
 }
 
-.status-indicator .RECONNECT {
-	width: 1em;
-	height: 1em;
-	border-radius: 0.5em;
-	float: right;
-	margin: 0px 0.5em;
-	background-color: yellow;
+.status-indicator-RECONNECT {
+	.status {
+		width: 1.2em;
+		height: 1.2em;
+		border-radius: 0.75em;
+		float: right;
+		margin: 0 .5em;
+		background-color: yellow;	
+		border: 1px solid black;
+	}
 }
 
-.status-indicator .INITIALIZING {
-	width: 1em;
-	height: 1em;
-	border-radius: 0.5em;
-	float: right;
-	margin: 0px 0.5em;
-	background-color: yellow;
+.status-indicator-INITIALIZING {
+	.status {
+		width: 1.2em;
+		height: 1.2em;
+		border-radius: 0.75em;
+		float: right;
+		margin: 0 .5em;
+		background-color: yellow;
+		border: 1px solid black;	
+	}
 }
 
-.status-indicator .CONNECTION_LOST {
-	width: 1em;
-	height: 1em;
-	border-radius: 0.5em;
-	float: right;
-	margin: 0px 0.5em;
-	background-color: red;
+.status-indicator-CONNECTION_LOST {
+	.status {
+		width: 1.2em;
+		height: 1.2em;
+		border-radius: 0.75em;
+		float: right;
+		margin: 0 .5em;
+		background-color: #FA5858;
+		border: 1px solid black;	
+	}
 }
 
-.status-indicator .DISCONNECTED {
-	width: 1em;
-	height: 1em;
-	border-radius: 0.5em;
-	float: right;
-	margin: 0px 0.5em;
-	background-color: red;
+.status-indicator-DISCONNECTED {
+	.status {
+		width: 1.2em;
+		height: 1.2em;
+		border-radius: 0.75em;
+		float: right;
+		margin: 0 .5em;
+		background-color: #FA5858;
+		border: 1px solid black;	
+	}
 }
 
 /* Volume Button */

@@ -222,7 +222,8 @@ Ext.define('EatSense.controller.Message', {
 		console.log('handleStatus: status changed from '+previousStatus+' to '+connectionStatus+' ('+reconnectIteration+' call).');
 		if(statusLabel) {
 			//no statuslabel exists in login mask. To prevent erros check if label exists.
-			statusLabel.getTpl().overwrite(statusLabel.element, [connectionStatus]);
+			// statusLabel.getTpl().overwrite(statusLabel.element, [connectionStatus]);
+			statusLabel.setLabelCls('status-indicator-'+connectionStatus);
 		}		
 
 		if((previousStatus == 'DISCONNECTED' || previousStatus == 'RECONNECT') && connectionStatus == 'ONLINE') {

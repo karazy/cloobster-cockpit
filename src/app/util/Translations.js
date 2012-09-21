@@ -69,8 +69,8 @@ Ext.define('EatSense.util.Translations',{
 		"choiceValErrMin" : "Bitte mindestens {0} {1} auswählen.",
 		"choiceValErrMax" : "Bitte maximal  {0} {1} auswählen.",
 		//requests
-		"requestMsgboxTitle" : "Gästewünsche",
-		"requestDismiss" : "Gästewünsche löschen",
+		"requestMsgboxTitle" : "VIP Calls",
+		"requestDismiss" : "VIP Calls löschen",
 		"spot.filterbar.spotview" : "Spotansicht",
 		"request.sort.title" : "Sortierung",
 		"request.item.elapsedtime.mm" : "{0}min",
@@ -99,7 +99,7 @@ Ext.define('EatSense.util.Translations',{
 		"PLACED" : "Neu!",
 		"CHECKEDIN" : "Checked-In",
 		"PAYMENT_REQUEST" : "Bezahlen",
-		"CALL_WAITER" : "{0} ruft eine Bedienung",
+		"CALL_WAITER" : "<b>{0}</b>",
 		//general errors
 		"error" : "Fehler",
 		"error.critical" : "Entschuldigung, es trat ein Fehler auf, der nicht automatisch behoben werden konnte.<br>Die App wird neu geladen.",

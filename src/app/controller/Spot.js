@@ -522,7 +522,8 @@ Ext.define('EatSense.controller.Spot', {
 	*/
 	refreshActiveCustomerOrders: function() {
 		var me = this,
-			orderStore = Ext.StoreManager.lookup('orderStore');
+			orderStore = Ext.StoreManager.lookup('orderStore'),
+			completeButton = this.getCompleteCheckInButton();
 
 		if(!me.getActiveCustomer()) {
 			console.log('no active customer');
@@ -536,7 +537,13 @@ Ext.define('EatSense.controller.Spot', {
 				// spotId: 
 			},
 			 callback: function(records, operation, success) {
-			 	if(success) { 		
+			 	if(success) {
+			 		// if(records.length == 0) {
+			 		// 	completeButton.setDisabled(true);
+			 		// } else {
+			 		// 	completeButton.setDisabled(false);
+			 		// };
+			 			
 			 		me.updateCustomerStatusPanel(me.getActiveCustomer());
 			 		me.updateCustomerTotal(records);
 			 	} else {
@@ -1289,7 +1296,7 @@ Ext.define('EatSense.controller.Spot', {
 		// filteredSpots.each(function(spot) {
 		// 	spotList.add(spot);	
 		// });
-		spotSelectionDlg.showBy(button, 'br-tc?');
+		spotSelectionDlg.showBy(button, 'tr-bc?');
 	},
 	/**
 	*	Switch user to another table.	
@@ -1466,7 +1473,8 @@ Ext.define('EatSense.controller.Spot', {
 		this.setActiveSpot(null);
 		this.setActiveCustomer(null);
 		this.setActiveBill(null);
-		this.getSpotDetail().fireEvent('eatSense.customer-update', false);		
+		//disable all buttons
+		this.getSpotDetail().fireEvent('eatSense.customer-update', true);		
 
 		messageCtr.un('eatSense.checkin', this.updateSpotDetailCheckInIncremental, this);
 		messageCtr.un('eatSense.order', this.updateSpotDetailOrderIncremental, this);
@@ -1663,7 +1671,7 @@ Ext.define('EatSense.controller.Spot', {
 		paymentList.setStore(business.payments());
 		paymentList.refresh();
 
-		dialog.showBy(button, 'br-tc?');
+		dialog.showBy(button, 'tl-bc?');
 		
 	},
 	/**
@@ -1676,10 +1684,26 @@ Ext.define('EatSense.controller.Spot', {
 			billRawData,
 			completeButton = this.getCompleteCheckInButton(),
 			loginCtr = this.getApplication().getController('Login'),
-			errMsg;
+			errMsg,
+			orderStore = Ext.StoreManager.lookup('orderStore'),
+			logPrefix = 'Spot.showCompleteCheckInDialog > ';
+
 
 		list.deselectAll();
 		dialog.hide();
+
+		if(!this.getActiveCustomer()) {
+			console.log(logPrefix + 'no active customer');
+			return;
+		};
+
+		if(orderStore.getCount() == 0) {
+			console.log(logPrefix + 'cannot complete checkin for customer without orders');
+			return;	
+		};
+
+		
+		completeButton.setDisabled(true);
 
 		Ext.Msg.show({
 			title: i10n.translate('hint'),
@@ -1720,9 +1744,11 @@ Ext.define('EatSense.controller.Spot', {
 			    	    jsonData: billRawData,
 			    	    scope: this,
 			    	    success: function(response) {
-			    	    	completeButton.setDisabled(true);			    	    	
+			    	    				    	    	
 			    	    },
 			    	    failure: function(response) {
+			    	    	completeButton.setDisabled(false);
+
 			    	    	if(response.status == 422) {
 			    	    		
 			    	    		errMsg = i10n.translate('completecheckin.error.noorders');

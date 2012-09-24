@@ -60,7 +60,7 @@ Ext.define('EatSense.util.Translations',{
 		"switchSpotMessage": "{0} an {1} verschoben",
 		"cancelOrderQuestion" : "{0} stornieren?",
 		"cancelAllOrdersButton" : "Gast entfernen",
-		"confirmAllOrdersButton" : "Alle annehmen",
+		"confirmAllOrdersButton" : "Alle Bestellungen annehmen",
 		"paidButton" : "Bezahlt",
 		"spotSelectionTitle" : "Spot auswählen",
 		"switchSpotError" : "Server Fehler aufgetreten. Spotwechsel fehlgeschlagen!",

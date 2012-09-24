@@ -11,9 +11,9 @@ Ext.define('EatSense.view.SpotDetail', {
 		hideOnMaskTap: 'true',
 		baseCls: 'spotdetail',
 		top: '5%',
-		left: '2%',
-		right: '2%',
-		bottom: '5%',
+		left: '7px',
+		right: '7px',
+		bottom: '4%',
 		layout: 'fit',
 		fullscreen: true,
 		//this should be initially hidden
@@ -179,28 +179,20 @@ Ext.define('EatSense.view.SpotDetail', {
 						)
 					}
 					]
-				}
-				,
+				},
 				{
 					xtype: 'panel',
 					layout: {
-						type: 'hbox'
-					},			
+						type: 'hbox',
+						align: 'center'
+					},
+					margin: '5 0 5 0',					
 					defaults: {
 						ui: 'action',
 						cls: 'spotdetail-toolbar-button',
 						xtype: 'lockbutton',
 					},
 					items: [
-					{
-						xtype: 'lockbutton',
-						action: 'confirm-all',
-						disabled: true,
-						text: i10n.translate('confirmAllOrdersButton'),
-						ui: 'action',
-						// right: 5,
-						// bottom: 5
-					},
 					{
 						text: i10n.translate('spotdetail.checkin.complete'),
 						action: 'complete-checkin',
@@ -215,11 +207,32 @@ Ext.define('EatSense.view.SpotDetail', {
 						text: i10n.translate('switchSpotButton'),
 						action: 'switch-spot',
 						disabled: true
+					}
+					]
+				},
+				{
+					xtype: 'panel',
+					layout: {
+						type: 'hbox',
+						align: 'center'
 					},
+					defaults: {
+						ui: 'action',
+						cls: 'spotdetail-toolbar-button',
+						xtype: 'lockbutton',
+					},
+					items: [
 					{
 						text: i10n.translate('cancelAllOrdersButton'),
 						action: 'cancel-all',
 						disabled: true
+					},
+					{
+						xtype: 'lockbutton',
+						action: 'confirm-all',
+						disabled: true,
+						text: i10n.translate('confirmAllOrdersButton'),
+						ui: 'action',
 					}
 					]
 				}

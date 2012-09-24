@@ -68,6 +68,9 @@ Ext.define('EatSense.util.Translations',{
 		"choiceValErrMandatory" : "Bitte Wahl für {0} treffen.",
 		"choiceValErrMin" : "Bitte mindestens {0} {1} auswählen.",
 		"choiceValErrMax" : "Bitte maximal  {0} {1} auswählen.",
+		"spotdetail.checkin.complete" : "Vorgang abschliessen",
+		"completecheckin.title" : "Vorgang abschliessen",
+		"completecheckin.description" : "Wenn ein Gast den Bezahlvorgang nicht selbst ausgelöst hat, können Sie diesen hier manuell anstoßen.",
 		//requests
 		"requestMsgboxTitle" : "VIP Calls",
 		"requestDismiss" : "VIP Calls löschen",

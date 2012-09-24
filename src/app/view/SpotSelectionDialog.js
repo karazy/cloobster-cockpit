@@ -20,6 +20,7 @@ Ext.define('EatSense.view.SpotSelectionDialog', {
 			store: 'spotStore',
 			itemId: 'spotList',
 			itemTpl: '{name}',
+			ui: 'round',
 			allowDeselect: true,
 		}]
 	}

@@ -5,7 +5,7 @@
 */
 Ext.define('EatSense.controller.Spot', {
 	extend: 'Ext.app.Controller',
-	requires: ['EatSense.view.Main', 'EatSense.view.SpotSelectionDialog', 
+	requires: ['EatSense.view.Main', 'EatSense.view.SpotSelectionDialog', 'EatSense.view.CompleteCheckInDialog',
 		'EatSense.view.CustomerRequestDialog', 
 		'Ext.util.DelayedTask',
 		'EatSense.view.HistoryDetailItem'],
@@ -31,7 +31,13 @@ Ext.define('EatSense.controller.Spot', {
 			paidSpotDetailButton: 'spotdetail button[action=paid]',
 			cancelAllButton: 'spotdetail button[action=cancel-all]',    
 			confirmAllButton: 'spotdetail button[action=confirm-all]',
-			switchSpotButton: 'spotdetail button[action=switch-spot]', 		    
+			switchSpotButton: 'spotdetail button[action=switch-spot]',
+			completeCheckInButton: 'spotdetail button[action=complete-checkin]',
+			completeCheckInDialog: {
+				selector: 'completecheckin',
+				xtype: 'completecheckin',
+				autoCreate: true
+			},
 			spotDetailStatistic: 'spotdetail #statistics',
 			spotSelectionDialog: {
 				selector: 'spotselection',
@@ -93,6 +99,9 @@ Ext.define('EatSense.controller.Spot', {
 		 	}, 
 		 	switchSpotList: {
 		 		select: 'switchSpot'
+		 	},
+		 	completeCheckInButton: {
+		 		tap: 'showCompleteCheckInDialog'
 		 	},
 		 	dismissRequestsButton : {
 		 		tap: 'deleteCustomerRequests'
@@ -1622,8 +1631,37 @@ Ext.define('EatSense.controller.Spot', {
 		var panel = this.getRequestSortPanel();
 
 		panel.showBy(button);
-	}
+	},
 
 	// end misc actions
+
+	//start complete checkin logic
+	/**
+	* Tap event handler for complete checkin buttons.
+	* Shows a dialog with available payments to manually complete this checkin.
+	*/
+	showCompleteCheckInDialog: function(button) {
+		var me = this,
+			dialog = this.getCompleteCheckInDialog(),
+			paymentList = dialog.down('list'),
+			business = this.getApplication().getController('Login').getBusiness(),
+			logPrefix = 'Spot.showCompleteCheckInDialog > ';
+
+
+		if(!business) {
+			console.log(logPrefix + 'no business set in Login Controller');
+		};
+
+		paymentList.setStore(business.payments());
+		paymentList.refresh();
+
+		dialog.showBy(button, 'br-tc?');
+		
+
+	},
+
+
+
+	//end complete checkin logic
 
 })

@@ -32,6 +32,7 @@ Ext.define('EatSense.view.SpotDetail', {
 					this.down('button[action=paid]').setDisabled(active);			
 					this.down('button[action=cancel-all]').setDisabled(active);
 					this.down('button[action=confirm-all]').setDisabled(active);
+					this.down('button[action=complete-checkin]').setDisabled(active);
 				} catch(e) {
 					console.log(e);
 				}
@@ -212,6 +213,11 @@ Ext.define('EatSense.view.SpotDetail', {
 					xtype: 'lockbutton',
 				},
 				items: [
+				{
+					text: i10n.translate('spotdetail.checkin.complete'),
+					action: 'complete-checkin',
+					disabled: true
+				},
 				{
 					text: i10n.translate('paidButton'),
 					action: 'paid',

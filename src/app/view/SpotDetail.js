@@ -95,6 +95,7 @@ Ext.define('EatSense.view.SpotDetail', {
 			{
 				xtype: 'panel',
 				docked: 'top',
+				cls: 'spotdetail-status-panel',
 				layout: {
 					type: 'hbox',
 					align: 'start'
@@ -104,18 +105,24 @@ Ext.define('EatSense.view.SpotDetail', {
 				{
 					xtype: 'panel',					
 					// itemId: 'statistics',
-					cls: 'spotdetail-statistics',
+					// cls: 'spotdetail-statistics',
+					layout: {
+						type: 'vbox',
+						// pack: 'start',
+						align: 'start'
+					},
 					items: [
-						{
-							xtype: 'label',
-							itemId: 'title',					
-							html: '<p>'+i10n.translate('statistic')+'</p>'
-						},
+						// {
+						// 	xtype: 'label',
+						// 	itemId: 'title',					
+						// 	html: '<p>'+i10n.translate('statistic')+'</p>'
+						// },
 						{
 							xtype: 'label',
 							itemId: 'checkInTime',
+							cls: 'spotdetail-status',
 							tpl: new Ext.XTemplate(
-								'<p>Check-In: {[this.formatTime(values.checkInTime)]}</p>',
+								'<div class="key">Check-In:</div><div class="value">{[this.formatTime(values.checkInTime)]}</div>',
 								{
 									formatTime: function(time) {
 										return Ext.util.Format.date(time, 'H:i');
@@ -126,7 +133,8 @@ Ext.define('EatSense.view.SpotDetail', {
 						{
 							xtype: 'label',
 							itemId: 'total',
-							tpl: new Ext.XTemplate('<p>Total: {[this.formatPrice(values.total)]}</p>',
+							cls: 'spotdetail-status',
+							tpl: new Ext.XTemplate('<div class="key">Total:</div><div class="value">{[this.formatPrice(values.total)]}</div>',
 								{
 									formatPrice: function(price) {
 										return appHelper.formatPrice(price);
@@ -140,7 +148,7 @@ Ext.define('EatSense.view.SpotDetail', {
 					xtype: 'panel',
 					layout: {
 						type: 'vbox',
-						pack: 'start',
+						// pack: 'start',
 						align: 'start'
 					},
 					items: [
@@ -148,7 +156,7 @@ Ext.define('EatSense.view.SpotDetail', {
 						xtype: 'label',
 						itemId: 'statusLabel',
 						cls: 'spotdetail-status',
-						tpl: new Ext.XTemplate('<table width="100%"><td width="100px">Status:</td><td align="right" class="{[values.status.toLowerCase()]}">{[this.translateStatus(values.status)]}</td></table>',
+						tpl: new Ext.XTemplate('<div class="key">Status:</div><div class="value {[values.status.toLowerCase()]}">{[this.translateStatus(values.status)]}</div>',
 							{
 								translateStatus: function(status) {
 									return i10n.translate(status);
@@ -161,7 +169,7 @@ Ext.define('EatSense.view.SpotDetail', {
 						itemId: 'paymentLabel',
 						cls: 'spotdetail-status',
 						hidden: true,
-						tpl: new Ext.XTemplate('<table><td width="100px">'+i10n.translate('paymentMethodLabel')+':</td><td class="payment">{paymentMethod}</td></table>',
+						tpl: new Ext.XTemplate('<div class="key">'+i10n.translate('paymentMethodLabel')+':</div><div class="value">{paymentMethod}</div>',
 							{
 								translateStatus: function(status) {
 									return i10n.translate(status);

@@ -38,12 +38,13 @@ Ext.define('EatSense.controller.Spot', {
 				xtype: 'completecheckin',
 				autoCreate: true
 			},
+			completeCheckInList: 'completecheckin list',
 			spotDetailStatistic: 'spotdetail #statistics',
 			spotSelectionDialog: {
 				selector: 'spotselection',
 				xtype: 'spotselection',
 				autoCreate: true
-			},
+			},			
 			switchSpotList: 'spotselection list',
 			spotDetailItem: 'spotdetailitem',
 			filterRadios: 'radiofield[name=filter]',
@@ -102,6 +103,9 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	completeCheckInButton: {
 		 		tap: 'showCompleteCheckInDialog'
+		 	},
+		 	completeCheckInList: {
+		 		select: 'completeCheckIn'
 		 	},
 		 	dismissRequestsButton : {
 		 		tap: 'deleteCustomerRequests'
@@ -1659,6 +1663,37 @@ Ext.define('EatSense.controller.Spot', {
 		
 
 	},
+	/**
+	* Show confirm dialog and confirm checkin on 'yes'.
+	*/
+	completeCheckIn: function(list, record, options) {
+		var me = this,
+			dialog = this.getCompleteCheckInDialog();
+
+		dialog.hide();
+		list.deselectAll();
+
+		Ext.Msg.show({
+			title: i10n.translate('hint'),
+			message: i10n.translate('completecheckin.confirm.msg', record.get('name')),
+			buttons: [{
+				text: i10n.translate('yes'),
+				itemId: 'yes',
+				ui: 'action'
+			}, {
+				text: i10n.translate('no'),
+				itemId: 'no',
+				ui: 'action'
+			}],
+			scope: this,
+			fn: function(btnId, value, opt) {
+				if(btnId == 'yes') {
+					
+				}
+			}
+		});
+
+	}
 
 
 

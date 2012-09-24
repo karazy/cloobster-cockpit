@@ -46,10 +46,10 @@ Ext.define('EatSense.model.Bill', {
 	 		reader: {
 	 			type: 'json'
 	 		},
-	 		writer: new EatSense.override.CustomJsonWriter({
-	   			type: 'json',
-	   			writeAllFields: true
-	   		})
+	 		// writer: new EatSense.override.CustomJsonWriter({
+	   // 			type: 'json',
+	   // 			writeAllFields: true
+	   // 		})
 	 	}
 	}
 });

@@ -1701,7 +1701,7 @@ Ext.define('EatSense.controller.Spot', {
 					});
 					newBill.set('id', '');
 					// newBill.setPaymentMethod(record);
-					billRawData = newBill.getData(true);
+					billRawData = newBill.getData();
 
 					billRawData.paymentMethod = {
 						name: record.get('name')

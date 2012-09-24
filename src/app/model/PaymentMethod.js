@@ -3,12 +3,20 @@ Ext.define('EatSense.model.PaymentMethod', {
 	config : {
 		fields : [ 
 		{
+			name: 'id',
+			persist: false
+		},
+		{
 			name : 'name',
 			type : 'string'
 		},
 		{
 			name: 'order',
 			type: 'number'
+		},		
+		{
+			name: 'business_id',
+			persist: false
 		}]	
 	}
 });

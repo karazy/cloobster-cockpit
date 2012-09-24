@@ -31,6 +31,7 @@ Ext.application({
         'EatSense.util.Localization',
         'EatSense.util.Channel',
 		//require custom types
+        'EatSense.override.CustomJsonWriter',
 		'EatSense.data.proxy.CustomRestProxy',
 		'EatSense.data.proxy.OperationImprovement',
         'EatSense.data.LockButton'],

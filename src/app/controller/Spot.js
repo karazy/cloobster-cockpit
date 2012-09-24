@@ -1668,10 +1668,13 @@ Ext.define('EatSense.controller.Spot', {
 	*/
 	completeCheckIn: function(list, record, options) {
 		var me = this,
-			dialog = this.getCompleteCheckInDialog();
+			dialog = this.getCompleteCheckInDialog(),
+			newBill,
+			billRawData,
+			loginCtr = this.getApplication().getController('Login');
 
-		dialog.hide();
 		list.deselectAll();
+		dialog.hide();
 
 		Ext.Msg.show({
 			title: i10n.translate('hint'),
@@ -1688,6 +1691,42 @@ Ext.define('EatSense.controller.Spot', {
 			scope: this,
 			fn: function(btnId, value, opt) {
 				if(btnId == 'yes') {
+					newBill = Ext.create('EatSense.model.Bill', {
+						'checkInId' : me.getActiveCustomer().get('id')						
+					});
+					newBill.set('id', '');
+					// newBill.setPaymentMethod(record);
+					billRawData = newBill.getData(true);
+
+					billRawData.paymentMethod = {
+						name: record.get('name')
+					};
+					//cleanup object for backend
+					// delete billRawData.bill_id;
+					// delete billRawData.paymentMethod.id;
+					// delete billRawData.paymentMethod.business_id;
+					// delete billRawData.paymentMethod.bill_id;
+					// delete billRawData.paymentMethod.xindex;
+
+					Ext.Ajax.request({
+						url: appConfig.serviceUrl+'/b/businesses/'+loginCtr.getAccount().get('businessId')+'/bills/',
+			    	    method: 'POST',
+			    	    jsonData: billRawData,
+			    	    scope: this,
+			    	    success: function(response) {
+
+			    	    	
+			    	    },
+			    	    failure: function(response) {
+		    	    		me.getApplication().handleServerError({
+								'error': {
+									'status': response.status,
+									'statusText': response.statusText
+								}, 
+								'forceLogout': {403: true}
+							});
+				   	    }
+					});
 					
 				}
 			}

@@ -557,7 +557,8 @@ Ext.define('EatSense.controller.Spot', {
 	refreshActiveCustomerPayment: function() {
 		var me = this,
 			billStore = Ext.StoreManager.lookup('billStore'),
-			paidButton = this.getPaidSpotDetailButton();
+			paidButton = this.getPaidSpotDetailButton(),
+			completeButton = this.getCompleteCheckInButton();
 
 		if(!me.getActiveCustomer()) {
 			console.log('no active customer');
@@ -566,6 +567,7 @@ Ext.define('EatSense.controller.Spot', {
 
 		if(me.getActiveCustomer().get('status') == appConstants.PAYMENT_REQUEST) {
 			paidButton.setDisabled(false);
+			completeButton.setDisabled(true);
 			billStore.load({
 				params: {
 					// pathId: restaurantId,
@@ -804,6 +806,7 @@ Ext.define('EatSense.controller.Spot', {
 				detail = this.getSpotDetail(),
 				paymentLabel = detail.down('#paymentLabel'),
 				paidButton = this.getPaidSpotDetailButton(),
+				completeButton = this.getCompleteCheckInButton(),
 				bill;
 
 				//check if spot detail is visible and if it is the same spot the checkin belongs to
@@ -818,6 +821,7 @@ Ext.define('EatSense.controller.Spot', {
 				if(action == 'new') {
 					this.setActiveBill(bill);
 					paidButton.setDisabled(false);
+					completeButton.setDisabled(true);
 					me.updateCustomerPaymentMethod(bill.getPaymentMethod().get('name'));
 				} else if (action == 'update') {
 					//currently no action needed. update occurs when a bill is cleared
@@ -1661,7 +1665,6 @@ Ext.define('EatSense.controller.Spot', {
 
 		dialog.showBy(button, 'br-tc?');
 		
-
 	},
 	/**
 	* Show confirm dialog and confirm checkin on 'yes'.
@@ -1671,7 +1674,9 @@ Ext.define('EatSense.controller.Spot', {
 			dialog = this.getCompleteCheckInDialog(),
 			newBill,
 			billRawData,
-			loginCtr = this.getApplication().getController('Login');
+			completeButton = this.getCompleteCheckInButton(),
+			loginCtr = this.getApplication().getController('Login'),
+			errMsg;
 
 		list.deselectAll();
 		dialog.hide();
@@ -1701,6 +1706,7 @@ Ext.define('EatSense.controller.Spot', {
 					billRawData.paymentMethod = {
 						name: record.get('name')
 					};
+					//WHAT A FUCKING SENCHA MESS
 					//cleanup object for backend
 					// delete billRawData.bill_id;
 					// delete billRawData.paymentMethod.id;
@@ -1714,16 +1720,21 @@ Ext.define('EatSense.controller.Spot', {
 			    	    jsonData: billRawData,
 			    	    scope: this,
 			    	    success: function(response) {
-
-			    	    	
+			    	    	completeButton.setDisabled(true);			    	    	
 			    	    },
 			    	    failure: function(response) {
+			    	    	if(response.status == 422) {
+			    	    		
+			    	    		errMsg = i10n.translate('completecheckin.error.noorders');
+			    	    	};
+
 		    	    		me.getApplication().handleServerError({
 								'error': {
 									'status': response.status,
 									'statusText': response.statusText
 								}, 
-								'forceLogout': {403: true}
+								'forceLogout': {403: true},
+								'message': errMsg || null
 							});
 				   	    }
 					});

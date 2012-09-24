@@ -152,7 +152,7 @@
 
 .spotdetail-toolbar {
 	background-color: white;
-	border-top: 2px solid black;
+	/*border-top: 2px solid black;*/
 	padding-top: 3px;
 }
 
@@ -181,7 +181,8 @@
 
 .spotdetail-status-panel {
 	background-color: #C3C3C3;
-	margin-bottom: 1em;
+	margin-bottom: 0.7em;
+	padding-bottom: 0.3em;
 	border-bottom-right-radius: 0.2em;
 	border-bottom-left-radius: 0.2em;
 }

@@ -72,6 +72,7 @@ Ext.define('EatSense.util.Translations',{
 		"completecheckin.title" : "Vorgang abschliessen",
 		"completecheckin.description" : "Wenn ein Gast den Bezahlvorgang nicht selbst ausgelöst hat, können Sie diesen hier manuell anstoßen.",
 		"completecheckin.confirm.msg" : "Möchten Sie den Vorgang mittels {0} abschliessen? Dies kann nicht rückgängig gemacht werden.",
+		"completecheckin.error.noorders" : "Vorgang kann nicht abgeschlossen werden, da keine Bestellungen vorliegen.",
 		//requests
 		"requestMsgboxTitle" : "VIP Calls",
 		"requestDismiss" : "VIP Calls löschen",

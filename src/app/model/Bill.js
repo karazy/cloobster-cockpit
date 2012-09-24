@@ -11,11 +11,10 @@ Ext.define('EatSense.model.Bill', {
 			name : 'billnumber',
 			type : 'string'
 		}, 
-		// {
-		// 	name : 'paymentMethod',
-		// 	type : 'string',
-		// 	// persist: false
-		// }, 
+		{
+			name : 'paymentMethod',
+			type : 'string'
+		}, 
 		{
 			name : 'total',
 			type : 'number',
@@ -34,12 +33,12 @@ Ext.define('EatSense.model.Bill', {
 			name: 'checkInId'
 		}
 		],
-		// associations: [{
-	 //            type: 'hasOne',
-	 //            model: 'EatSense.model.PaymentMethod',
-	 //            primaryKey: 'id',
-	 //            associatedName: 'paymentMethod'
-	 //    }],
+		associations: [{
+            type: 'hasOne',
+            model: 'EatSense.model.PaymentMethod',
+            // primaryKey: 'id',
+            // associatedName: 'paymentMethod'
+		 }],
 		proxy: {
 	 		type: 'rest',
 	 		enablePagingParams: false,

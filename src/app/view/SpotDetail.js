@@ -95,6 +95,7 @@ Ext.define('EatSense.view.SpotDetail', {
 			{
 				xtype: 'panel',
 				docked: 'top',
+				cls: 'spotdetail-status-panel',
 				layout: {
 					type: 'hbox',
 					align: 'start'

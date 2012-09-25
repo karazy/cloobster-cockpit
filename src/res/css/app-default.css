@@ -9797,17 +9797,18 @@ input[type="search"]::-webkit-search-cancel-button {
 .general-dialog .description {
   background-color: #EEEEEE;
   font-size: 0.8em;
+  text-align: center;
 }
 
 /* spot view */
-/* line 47, app-default.scss */
+/* line 48, app-default.scss */
 .spot {
   float: left;
   width: 150px;
   margin: 10px;
 }
 
-/* line 53, app-default.scss */
+/* line 54, app-default.scss */
 .spotitem {
   height: 130px;
   border: solid 1px;
@@ -9821,46 +9822,46 @@ input[type="search"]::-webkit-search-cancel-button {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(3%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
 }
 
-/* line 66, app-default.scss */
+/* line 67, app-default.scss */
 .spot div {
   width: 100%;
 }
 
-/* line 71, app-default.scss */
+/* line 72, app-default.scss */
 .spot h2 {
   text-align: center;
   font-size: 1.5em;
 }
 
-/* line 76, app-default.scss */
+/* line 77, app-default.scss */
 .spot p {
   text-align: center;
 }
 
-/* line 81, app-default.scss */
+/* line 82, app-default.scss */
 .spot-filter-panel {
   /*	-webkit-box-shadow: 0em 0em 0em 0.3 #888;
   	box-shadow: 0em 0em 0em 0.3 #888;*/
 }
 
-/* line 86, app-default.scss */
+/* line 87, app-default.scss */
 .spot-filter-label {
   text-align: center;
   font-size: 1.5em;
 }
 
-/* line 91, app-default.scss */
+/* line 92, app-default.scss */
 .spotitem-pressed {
   /*background-color: rgb(100,100,100) !important;*/
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.5)), color-stop(97%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0)));
 }
 
-/* line 96, app-default.scss */
+/* line 97, app-default.scss */
 .spotSelected {
   background-color: #6464c8;
 }
 
-/* line 102, app-default.scss */
+/* line 103, app-default.scss */
 .spotitem-checkedin {
   background-color: #64ff64;
   /*	background-color: #c9de96; // Old browsers
@@ -9868,24 +9869,24 @@ input[type="search"]::-webkit-search-cancel-button {
   	@include background-image(linear-gradient(top,  #c9de96 0%,#8ab66b 44%,#398235 100%));*/
 }
 
-/* line 112, app-default.scss */
+/* line 113, app-default.scss */
 .spotitem-placed {
   background-color: #c86464;
 }
 
 @-webkit-keyframes blinker {
-  /* line 117, app-default.scss */
+  /* line 118, app-default.scss */
   from {
     opacity: 1.0;
   }
 
-  /* line 118, app-default.scss */
+  /* line 119, app-default.scss */
   to {
     opacity: 0.0;
   }
 }
 
-/* line 121, app-default.scss */
+/* line 122, app-default.scss */
 .spotitem-request {
   background-color: #c86464;
   -webkit-animation-name: blinker;
@@ -9894,17 +9895,17 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-animation-duration: 1s;
 }
 
-/* line 133, app-default.scss */
+/* line 134, app-default.scss */
 .loginbox {
   background-color: #6464c8;
 }
 
-/* line 137, app-default.scss */
+/* line 138, app-default.scss */
 .loginbox-field {
   margin-bottom: 0.5em;
 }
 
-/* line 141, app-default.scss */
+/* line 142, app-default.scss */
 .spotdetail {
   background-color: white;
   border: 2px solid grey;
@@ -9912,25 +9913,25 @@ input[type="search"]::-webkit-search-cancel-button {
   /*padding: 8px;*/
 }
 
-/* line 148, app-default.scss */
+/* line 149, app-default.scss */
 .spotdetail-titlebar {
   border-top-left-radius: 0.3em;
   border-top-right-radius: 0.3em;
 }
 
-/* line 153, app-default.scss */
+/* line 154, app-default.scss */
 .spotdetail-toolbar {
   background-color: #EEE;
   /*border-top: 2px solid black;*/
   /*padding-top: 3px;*/
 }
 
-/* line 159, app-default.scss */
+/* line 160, app-default.scss */
 .spotdetail-customer-name {
   word-break: break-word;
 }
 
-/* line 167, app-default.scss */
+/* line 168, app-default.scss */
 .spotdetail-customer-flag {
   background-color: red;
   float: left;
@@ -9941,13 +9942,13 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-mask-image: url("../images/request.png");
 }
 
-/* line 177, app-default.scss */
+/* line 178, app-default.scss */
 .spotdetail-toolbar-button {
   margin-right: 5px;
   margin-left: 5px;
 }
 
-/* line 182, app-default.scss */
+/* line 183, app-default.scss */
 .spotdetail-status-panel {
   background-color: #C3C3C3;
   margin-bottom: 0.7em;
@@ -9956,67 +9957,67 @@ input[type="search"]::-webkit-search-cancel-button {
   border-bottom-left-radius: 0.2em;
 }
 
-/* line 190, app-default.scss */
+/* line 191, app-default.scss */
 .spotdetail-status {
   margin: 5px;
 }
-/* line 194, app-default.scss */
+/* line 195, app-default.scss */
 .spotdetail-status div {
   padding: 3px;
 }
-/* line 198, app-default.scss */
+/* line 199, app-default.scss */
 .spotdetail-status div.key {
   width: 120px;
   float: left;
   font-weight: bold;
 }
-/* line 204, app-default.scss */
+/* line 205, app-default.scss */
 .spotdetail-status div.value {
   text-align: right;
   display: inline-block;
   /*padding: 3px;*/
 }
-/* line 210, app-default.scss */
+/* line 211, app-default.scss */
 .spotdetail-status div.order_placed {
   border: 1px solid black;
   background-color: red;
   /*padding: 3px;*/
 }
-/* line 215, app-default.scss */
+/* line 216, app-default.scss */
 .spotdetail-status div.payment_request {
   border: 1px solid black;
   background-color: red;
   /*padding: 3px;*/
 }
-/* line 220, app-default.scss */
+/* line 221, app-default.scss */
 .spotdetail-status div.checkedin {
   border: 1px solid black;
   background-color: green;
   /*padding: 3px;*/
 }
 
-/* line 228, app-default.scss */
+/* line 229, app-default.scss */
 .spotdetail-status .order_placed {
   border: 1px solid black;
   background-color: red;
   /*padding: 3px;*/
 }
 
-/* line 234, app-default.scss */
+/* line 235, app-default.scss */
 .spotdetail-status .payment_request {
   border: 1px solid black;
   background-color: red;
   /*padding: 3px;*/
 }
 
-/* line 240, app-default.scss */
+/* line 241, app-default.scss */
 .spotdetail-status .checkedin {
   border: 1px solid black;
   background-color: green;
   /*padding: 3px;*/
 }
 
-/* line 246, app-default.scss */
+/* line 247, app-default.scss */
 .spotdetail-statistics {
   position: relative;
   top: 10px;
@@ -10030,7 +10031,7 @@ input[type="search"]::-webkit-search-cancel-button {
   min-width: 40px;
 }
 
-/* line 259, app-default.scss */
+/* line 260, app-default.scss */
 .spotdetail-close {
   background-color: black;
   border-radius: 1em;
@@ -10044,14 +10045,14 @@ input[type="search"]::-webkit-search-cancel-button {
   top: 3px;
 }
 
-/* line 272, app-default.scss */
+/* line 273, app-default.scss */
 .spotdetailitem-customer-label {
   background-color: #EEEEEE;
   text-align: center;
   font-weight: bold;
 }
 
-/* line 278, app-default.scss */
+/* line 279, app-default.scss */
 .spotdetailitem-flag {
   width: 10%;
   top: 0;
@@ -10062,14 +10063,14 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-left: 5px;
 }
 
-/* line 289, app-default.scss */
+/* line 290, app-default.scss */
 .spotdetailitem-order {
   /*width: 70%;*/
   margin-bottom: 20px;
   font-size: 0.8em;
 }
 
-/* line 295, app-default.scss */
+/* line 296, app-default.scss */
 .spotdetailitem-order h2 {
   font-weight: bold;
   /*float: left;*/
@@ -10077,34 +10078,34 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-right: 10px;
 }
 
-/* line 302, app-default.scss */
+/* line 303, app-default.scss */
 .spotdetailitem-order h4 {
   font-size: 1em;
 }
 
-/* line 306, app-default.scss */
+/* line 307, app-default.scss */
 .spotdetailitem-order h3 {
   font-size: 1em;
   font-weight: bold;
 }
 
-/* line 311, app-default.scss */
+/* line 312, app-default.scss */
 .spotdetailitem-order-cancel {
   text-decoration: line-through;
 }
 
-/* line 315, app-default.scss */
+/* line 316, app-default.scss */
 .spotdetailitem-order-cancel h2 {
   text-decoration: line-through;
 }
 
-/* line 319, app-default.scss */
+/* line 320, app-default.scss */
 .x-button-icon.spotdetailitem-confirm, .x-button .x-button-icon.x-icon-mask.spotdetailitem-confirm {
   -webkit-mask-image: url("../images/check_icon.png");
   /*background-image: url('../images/check_icon.png');*/
 }
 
-/* line 324, app-default.scss */
+/* line 325, app-default.scss */
 .spotdetailitem-order div:nth-of-type(1) {
   /*position: absolute; 
   right: 0; 
@@ -10113,13 +10114,13 @@ input[type="search"]::-webkit-search-cancel-button {
   	padding-right: 5px;*/
 }
 
-/* line 332, app-default.scss */
+/* line 333, app-default.scss */
 .spotdetailitem-order .choices {
   clear: both;
   text-align: left;
 }
 
-/* line 337, app-default.scss */
+/* line 338, app-default.scss */
 .spotdetailitem-confirm {
   top: 0;
   /*position: absolute;*/
@@ -10127,7 +10128,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 10%;*/
 }
 
-/* line 344, app-default.scss */
+/* line 345, app-default.scss */
 .spotdetailitem-cancel {
   /*width: 10%;*/
   top: 0;
@@ -10136,18 +10137,18 @@ input[type="search"]::-webkit-search-cancel-button {
   /*float: left;*/
 }
 
-/* line 351, app-default.scss */
+/* line 352, app-default.scss */
 .cancel-all {
   -webkit-mask-image: url("res/images/forbidden.png");
 }
 
 /* request view */
-/* line 357, app-default.scss */
+/* line 358, app-default.scss */
 .requestitem-container {
   margin: 0.3em;
 }
 
-/* line 361, app-default.scss */
+/* line 362, app-default.scss */
 .requestitem-wrapper {
   /*border: 1px solid #C3C3C3;*/
   /*background-color: #c3c3c3;*/
@@ -10156,7 +10157,7 @@ input[type="search"]::-webkit-search-cancel-button {
   color: black;
 }
 
-/* line 369, app-default.scss */
+/* line 370, app-default.scss */
 .requestitem-spot {
   border: 1px solid #000;
   background-color: #4975A2;
@@ -10167,7 +10168,7 @@ input[type="search"]::-webkit-search-cancel-button {
   word-break: break-word;
 }
 
-/* line 379, app-default.scss */
+/* line 380, app-default.scss */
 .requestitem-customer {
   border: 1px solid #000;
   background-color: #C6D7E9;
@@ -10182,7 +10183,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 65%;*/
 }
 
-/* line 393, app-default.scss */
+/* line 394, app-default.scss */
 .requestitem-time {
   border: 1px solid #000;
   background-color: #DFE8CB;
@@ -10196,13 +10197,13 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 25%;*/
 }
 
-/* line 406, app-default.scss */
+/* line 407, app-default.scss */
 .requestitem-wrapper-pressed {
   /*background-color: #F5B800;*/
   color: white;
 }
 
-/* line 411, app-default.scss */
+/* line 412, app-default.scss */
 .requestitem-alert {
   -webkit-animation-name: blinker;
   -webkit-animation-iteration-count: infinite;
@@ -10211,12 +10212,12 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* history view */
-/* line 419, app-default.scss */
+/* line 420, app-default.scss */
 .historyitem-container {
   margin: 0.3em;
 }
 
-/* line 423, app-default.scss */
+/* line 424, app-default.scss */
 .historyitem-wrapper {
   /*border: 1px solid #C3C3C3;*/
   /*background-color: #c3c3c3;*/
@@ -10225,7 +10226,7 @@ input[type="search"]::-webkit-search-cancel-button {
   color: black;
 }
 
-/* line 431, app-default.scss */
+/* line 432, app-default.scss */
 .historyitem-spot {
   border: 1px solid #000;
   background-color: #4975A2;
@@ -10236,7 +10237,7 @@ input[type="search"]::-webkit-search-cancel-button {
   word-break: break-word;
 }
 
-/* line 441, app-default.scss */
+/* line 442, app-default.scss */
 .historyitem-customer {
   border: 1px solid #000;
   background-color: #C6D7E9;
@@ -10251,7 +10252,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 20%;*/
 }
 
-/* line 455, app-default.scss */
+/* line 456, app-default.scss */
 .historyitem-time {
   border: 1px solid #000;
   background-color: #DFE8CB;
@@ -10266,7 +10267,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 15%;*/
 }
 
-/* line 469, app-default.scss */
+/* line 470, app-default.scss */
 .historyitem-total {
   border: 1px solid #000;
   background-color: #D0F5A9;
@@ -10279,12 +10280,12 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 10%;*/
 }
 
-/* line 481, app-default.scss */
+/* line 482, app-default.scss */
 .historyitem-wrapper-pressed {
   color: white;
 }
 
-/* line 485, app-default.scss */
+/* line 486, app-default.scss */
 .history-info-panel {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -10293,7 +10294,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: #C3C3C3;
 }
 
-/* line 493, app-default.scss */
+/* line 494, app-default.scss */
 .history-info-panel .row {
   display: -webkit-box;
   -webkit-box-orient: horizontal;
@@ -10301,13 +10302,13 @@ input[type="search"]::-webkit-search-cancel-button {
   /*	-webkit-box-pack: end;*/
 }
 
-/* line 500, app-default.scss */
+/* line 501, app-default.scss */
 .history-info-panel .row > div {
   /*-webkit-box-flex: 1;*/
   width: 50%;
 }
 
-/* line 505, app-default.scss */
+/* line 506, app-default.scss */
 .history-detail-list-title {
   font-size: 1.2em;
   font-weight: bold;
@@ -10316,7 +10317,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* connections status indicator in bottom toolbar */
-/* line 517, app-default.scss */
+/* line 518, app-default.scss */
 .status-indicator-ONLINE .status {
   width: 1.2em;
   height: 1.2em;
@@ -10327,7 +10328,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 531, app-default.scss */
+/* line 532, app-default.scss */
 .status-indicator-TIMEOUT .status {
   width: 1.2em;
   height: 1.2em;
@@ -10338,7 +10339,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 543, app-default.scss */
+/* line 544, app-default.scss */
 .status-indicator-RECONNECT .status {
   width: 1.2em;
   height: 1.2em;
@@ -10349,7 +10350,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 555, app-default.scss */
+/* line 556, app-default.scss */
 .status-indicator-INITIALIZING .status {
   width: 1.2em;
   height: 1.2em;
@@ -10360,7 +10361,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 567, app-default.scss */
+/* line 568, app-default.scss */
 .status-indicator-CONNECTION_LOST .status {
   width: 1.2em;
   height: 1.2em;
@@ -10371,7 +10372,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 579, app-default.scss */
+/* line 580, app-default.scss */
 .status-indicator-DISCONNECTED .status {
   width: 1.2em;
   height: 1.2em;
@@ -10383,20 +10384,20 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* Volume Button */
-/* line 592, app-default.scss */
+/* line 593, app-default.scss */
 .volume_mute {
   background-image: none !important;
   background-color: #FA5858 !important;
 }
 
-/* line 597, app-default.scss */
+/* line 598, app-default.scss */
 .volume {
   background-image: none !important;
   background-color: #64FF64 !important;
 }
 
 /* Lock button */
-/* line 604, app-default.scss */
+/* line 605, app-default.scss */
 .locked-button .x-button-icon {
   -webkit-mask-image: url("/cockpit/res/images/lock_closed.png");
   background-color: black;

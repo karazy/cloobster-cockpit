@@ -9,11 +9,18 @@ Ext.define('EatSense.view.SpotSelectionDialog', {
 		right: '30%',
 		width: 200,
 		height: 300,
+		cls: 'general-dialog',
 		items: [
 		{
 			xtype: 'titlebar',
 			docked: 'top',
 			title: i10n.translate('spotSelectionTitle')
+		},
+		{
+			xtype: 'label',
+			docked: 'top',
+			cls: 'description',
+			html: i10n.translate('spotselection.description')
 		},
 		{
 			xtype: 'list',

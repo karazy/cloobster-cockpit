@@ -56,23 +56,27 @@ Ext.define('EatSense.util.Translations',{
 		"processOrdersFirst" : "Bitte zuerst alle Bestellungen abarbeiten.",
 		"cancelAllOrders" : "Alle Bestellungen stornieren und diesen Gast entfernen?",
 		"errorSpotDetailOrderCancel" : "Bestellung {0} konnte nicht storniert werden.",
-		"switchSpotButton" : "Spot wechseln",
+		"switchSpotButton" : "Bewegen",
 		"switchSpotMessage": "{0} an {1} verschoben",
 		"cancelOrderQuestion" : "{0} stornieren?",
-		"cancelAllOrdersButton" : "Gast entfernen",
-		"confirmAllOrdersButton" : "Alle Bestellungen annehmen",
-		"paidButton" : "Bezahlt",
+		"cancelAllOrdersButton" : "Entfernen",
+		"confirmAllOrdersButton" : "Annehmen",
+		//Label for button to complete a checkin.
+		"paidButton" : "Checkout",
 		"spotSelectionTitle" : "Spot auswählen",
 		"switchSpotError" : "Server Fehler aufgetreten. Spotwechsel fehlgeschlagen!",
 		"paymentMethodLabel" : "Bezahlart",
 		"choiceValErrMandatory" : "Bitte Wahl für {0} treffen.",
 		"choiceValErrMin" : "Bitte mindestens {0} {1} auswählen.",
 		"choiceValErrMax" : "Bitte maximal  {0} {1} auswählen.",
-		"spotdetail.checkin.complete" : "Vorgang abschliessen",
+		"spotdetail.checkin.complete" : "Rechnung",
 		"completecheckin.title" : "Vorgang abschliessen",
 		"completecheckin.description" : "Wenn ein Gast den Bezahlvorgang nicht selbst ausgelöst hat, können Sie diesen hier manuell anstoßen.",
 		"completecheckin.confirm.msg" : "Möchten Sie den Vorgang mittels {0} abschliessen? Dies kann nicht rückgängig gemacht werden.",
 		"completecheckin.error.noorders" : "Vorgang kann nicht abgeschlossen werden, da keine Bestellungen vorliegen.",
+		"spotselection.description" : "Verschieben Sie einen Gast an einen anderen Spot (Tisch, Zimmer ...).",
+		"spotdetail.buttongroup.checkin" : "Check-In",
+		"spotdetail.buttongroup.customer" : "Gast",
 		//requests
 		"requestMsgboxTitle" : "VIP Calls",
 		"requestDismiss" : "VIP Calls löschen",
@@ -99,6 +103,13 @@ Ext.define('EatSense.util.Translations',{
 		"notification.sound.activate" : "Audio Benachrichtigung: AN",
 		"notification.sound.manual.title" : "Audio Benachrichtigungen",
 		"notification.sound.manual.msg" : "Möchten Sie Audio Benachrichtigungen für eintreffende Ereignisse aktivieren?",
+		//payment action
+		"payment.nobill.message" : "Sie können erst als \"Bezahlt\" abschliessen wenn der Gast die Rechung angefordert hat oder Sie auf \"Rechnung\" gedrückt haben.",
+		//complete checkin action
+		//message box text when someone tries to complete a checkin which has no orders
+		"complete.noorders.message" : "Diese Funktion steht erst zur Verfügung wenn der Gast etwas bestellt hat.",
+		//message box text when someone tries to complete a checkin more than once
+		"complete.bill.message" : "Die Rechnung wurde bereits erstellt.",
 		//constants
 		"ORDER_PLACED" : "Neue Bestellung!",
 		"PLACED" : "Neu!",

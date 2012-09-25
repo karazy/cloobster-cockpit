@@ -180,6 +180,66 @@ Ext.define('EatSense.view.SpotDetail', {
 					}
 					]
 				},
+				{
+					xtype: 'panel',
+					// docked: 'top',
+					layout: {
+						type: 'hbox',
+						align: 'center'
+					},
+					margin: '5 0 5 0',					
+					defaults: {
+						ui: 'action',
+						cls: 'spotdetail-toolbar-button',
+						xtype: 'lockbutton',
+					},
+					items: [
+					{
+						text: i10n.translate('spotdetail.checkin.complete'),
+						action: 'complete-checkin',
+						disabled: true,
+						ui: 'action'
+					},
+					{
+						text: i10n.translate('paidButton'),
+						action: 'paid',
+						disabled: true,
+						ui: 'action'
+					},
+					{
+						text: i10n.translate('switchSpotButton'),
+						action: 'switch-spot',
+						disabled: true
+					},
+				// 	]
+				// },
+				// {
+				// 	xtype: 'panel',
+				// 	layout: {
+				// 		type: 'hbox',
+				// 		align: 'center'
+				// 	},
+				// 	defaults: {
+				// 		ui: 'action',
+				// 		cls: 'spotdetail-toolbar-button',
+				// 		xtype: 'lockbutton',
+				// 	},
+				// 	items: [
+					{
+						text: i10n.translate('cancelAllOrdersButton'),
+						action: 'cancel-all',
+						disabled: true,
+						ui: 'action'
+					},
+					{
+						xtype: 'lockbutton',
+						action: 'confirm-all',
+						disabled: true,
+						text: i10n.translate('confirmAllOrdersButton'),
+						ui: 'action',
+					}
+					]
+				},
 				// {
 				// 	xtype: 'panel',
 				// 	layout: {
@@ -221,66 +281,6 @@ Ext.define('EatSense.view.SpotDetail', {
 				// }
 				]
 			},
-				{
-					xtype: 'panel',
-					docked: 'top',
-					layout: {
-						type: 'hbox',
-						align: 'center'
-					},
-					margin: '0 0 5 0',					
-					defaults: {
-						ui: 'action',
-						cls: 'spotdetail-toolbar-button',
-						xtype: 'lockbutton',
-					},
-					items: [
-					{
-						text: i10n.translate('spotdetail.checkin.complete'),
-						action: 'complete-checkin',
-						disabled: true,
-						ui: 'confirm'
-					},
-					{
-						text: i10n.translate('paidButton'),
-						action: 'paid',
-						disabled: true,
-						ui: 'confirm'
-					},
-					{
-						text: i10n.translate('switchSpotButton'),
-						action: 'switch-spot',
-						disabled: true
-					},
-				// 	]
-				// },
-				// {
-				// 	xtype: 'panel',
-				// 	layout: {
-				// 		type: 'hbox',
-				// 		align: 'center'
-				// 	},
-				// 	defaults: {
-				// 		ui: 'action',
-				// 		cls: 'spotdetail-toolbar-button',
-				// 		xtype: 'lockbutton',
-				// 	},
-				// 	items: [
-					{
-						text: i10n.translate('cancelAllOrdersButton'),
-						action: 'cancel-all',
-						disabled: true,
-						ui: 'decline'
-					},
-					{
-						xtype: 'lockbutton',
-						action: 'confirm-all',
-						disabled: true,
-						text: i10n.translate('confirmAllOrdersButton'),
-						ui: 'action',
-					}
-					]
-				},
 			{
 				xtype: 'dataview',
 				itemId: 'spotDetailOrders',

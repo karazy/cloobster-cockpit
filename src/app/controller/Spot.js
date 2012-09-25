@@ -527,7 +527,7 @@ Ext.define('EatSense.controller.Spot', {
 			completeButton = this.getCompleteCheckInButton();
 
 		if(!me.getActiveCustomer()) {
-			console.log('no active customer');
+			console.log('Spot.refreshActiveCustomerOrders > no active customer');
 			return;
 		}
 

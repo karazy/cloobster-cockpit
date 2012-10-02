@@ -592,6 +592,7 @@ Ext.define('EatSense.controller.Spot', {
 				 scope: this
 			});
 		} else {
+			me.setActiveBill(null);
 			//make sure to hide payment method label
 			me.updateCustomerPaymentMethod();
 			// paidButton.disable();
@@ -756,6 +757,7 @@ Ext.define('EatSense.controller.Spot', {
 								me.setSpotdetailButtonsActive(false);
 								orders.removeAll();
 								me.setActiveCustomer(null);
+								me.setActiveBill(null);
 								me.updateCustomerStatusPanel();
 								me.updateCustomerTotal();
 								me.updateCustomerPaymentMethod();
@@ -1209,6 +1211,7 @@ Ext.define('EatSense.controller.Spot', {
 									} else {
 										orders.removeAll();
 										me.setActiveCustomer(null);
+										me.setActiveBill(null);
 										me.updateCustomerStatusPanel();
 										me.updateCustomerTotal();
 										me.updateCustomerPaymentMethod();

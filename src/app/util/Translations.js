@@ -157,6 +157,39 @@ Ext.define('EatSense.util.Translations',{
 			"EN" : ""
 		},
 		//spot details
+		"spotdetail.checkin.complete" : {
+			"DE" :  "Rechnung",
+			"EN" : ""
+		},
+		"completecheckin.title" : {
+			"DE" :  "Vorgang abschliessen",
+			"EN" : ""
+		},
+		"completecheckin.description" : {
+			"DE" :  "Wenn ein Gast den Bezahlvorgang nicht selbst ausgelöst hat, können Sie diesen hier manuell anstoßen.",
+			"EN" : ""
+		},
+		"completecheckin.confirm.msg" : {
+			"DE" :  "Möchten Sie den Vorgang mittels {0} abschliessen? Dies kann nicht rückgängig gemacht werden.",
+			"EN" : ""
+		},
+		"completecheckin.error.noorders" : {
+			"DE" :  "Vorgang kann nicht abgeschlossen werden, da keine Bestellungen vorliegen.",
+			"EN" : ""
+		},
+		"spotselection.description" : {
+			"DE" :  "Verschieben Sie einen Gast an einen anderen Spot (Tisch, Zimmer ...).",
+			"EN" : ""
+		},
+		"spotdetail.buttongroup.checkin" : {
+			"DE" :  "Check-In",
+			"EN" : ""
+		},
+		"spotdetail.buttongroup.customer" : {
+			"DE" :  "Gast",
+			"EN" : ""
+		},
+
 		"spotDetailCustomerLabel" : {
 			"DE" :  "Gäste",
 			"EN" : ""
@@ -317,6 +350,24 @@ Ext.define('EatSense.util.Translations',{
 			"EN" : ""
 		},
 		//notifications
+
+		//payment action
+		"payment.nobill.message" : {
+			"DE" :  "Sie können erst als \"Bezahlt\" abschliessen wenn der Gast die Rechung angefordert hat oder Sie auf \"Rechnung\" gedrückt haben.",
+			"EN" : ""
+		},
+		//complete checkin action
+		//message box text when someone tries to complete a checkin which has no orders
+		"complete.noorders.message" : {
+			"DE" :  "Diese Funktion steht erst zur Verfügung wenn der Gast etwas bestellt hat.",
+			"EN" : ""
+		},
+		//message box text when someone tries to complete a checkin more than once
+		"complete.bill.message" : {
+			"DE" :  "Die Rechnung wurde bereits erstellt.",
+			"EN" : ""
+		},
+
 		"notification.sound.deactivate" : {
 			"DE" :  "Audio Benachrichtigung: AUS",
 			"EN" : ""
@@ -333,6 +384,7 @@ Ext.define('EatSense.util.Translations',{
 			"DE" :  "Möchten Sie Audio Benachrichtigungen für eintreffende Ereignisse aktivieren?",
 			"EN" : ""
 		},
+
 		//constants
 		"ORDER_PLACED" : {
 			"DE" :  "Neue Bestellung!",

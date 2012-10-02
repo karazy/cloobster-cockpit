@@ -8,8 +8,26 @@ Ext.define('EatSense.model.Business', {
 				{name: 'id'},
 				{name: 'name'},
 				{name: 'description'},
-				{name: 'trash'}
+				{name: 'trash'},
+				{name: 'currency'}
 			],
+			associations: [
+			{
+	            type: 'hasMany',
+	            model: 'EatSense.model.PaymentMethod',
+	            primaryKey: 'id',
+	            name: 'payments',
+	            //autoLoad: true,
+	            associationKey: 'paymentMethods', // read child data from child_groups
+	            store: {
+	            	sorters: [
+						{
+							property: 'order',
+							direction: 'ASC'
+						}
+	            	]
+	            }
+	        }],
 			proxy: {
 				type: 'rest',
 				enablePagingParams: false,

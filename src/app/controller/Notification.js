@@ -1,3 +1,7 @@
+/**
+* Controls audio notifications.
+*
+*/
 Ext.define('EatSense.controller.Notification', {
 	extend: 'Ext.app.Controller',
 	requires: [],

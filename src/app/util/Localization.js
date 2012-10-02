@@ -72,8 +72,8 @@ Ext.define('EatSense.util.Localization', {
 		 //alternativ with custom object and no sencha store
 		var value = "",
 			translations = this.getTranslations();
-		 if (translations[this.getLang()] && translations[this.getLang()][key] && translations[this.getLang()][key] !== '') {
-			 value = translations[this.getLang()][key];
+		 if (key && translations[key] && translations[key][this.getLang()] && translations[key][this.getLang()] !== '') {
+			 value = translations[key][this.getLang()];
 			 if(arguments.length > 1) {
 				 //this is a string with placeholders
 				 //replace key with retrieved value and the call Ext.String.format

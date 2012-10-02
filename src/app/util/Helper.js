@@ -85,10 +85,41 @@ Ext.define('EatSense.util.Helper', {
 	toggleAlertActive: function(active) {
 		this.setAlertActive(active);
 	},
-	// /**
-	// * Get status of alertActive.
-	// */
-	// getAlertActive: function() {
-	// 	return alertActive;
-	// }
+
+	/**
+	* Displays a non modal messagebox which hides on viewport tap.
+	*
+	*
+	*
+	*/
+	showNotificationBox: function(title, message, topPos, leftPos) {
+		var me =this,
+			msgBox = Ext.create('Ext.MessageBox');
+
+		msgBox = Ext.create('Ext.MessageBox', {
+			modal: false,
+			'title': i10n.translate(title),
+			'message' : i10n.translate(message),
+			buttons: [],
+			top: topPos,
+			left: leftPos
+		});
+
+		// msgBox.showBy(this.getActivateSoundButton(), "tl-tr?");
+		msgBox.show();
+
+		//defer registering tap handler. otherwise tap is registered before box is shown
+		Ext.defer(function() {
+			//make popup to disappear on viewport tap
+			Ext.Viewport.element.on('tap', hideActivationHint, this, {
+				single: true,
+				delay: appConfig.msgboxShortHideTimeout
+			});
+		}, 50, this);
+
+
+		function hideActivationHint() {
+			msgBox.hide(true);
+		};
+	}
 });

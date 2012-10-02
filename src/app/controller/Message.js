@@ -152,7 +152,6 @@ Ext.define('EatSense.controller.Message', {
 		    }, 
 		    failure: function(response) {
 		    	if(appChannel.connectionStatus != 'CONNECTION_LOST') {
-		    		//TODO Notify user of the interrupted connection.
 		    		appChannel.setStatusHelper('CONNECTION_LOST');
 		    		appChannel.stopOnlinePing();
 		    		appChannel.clearMessageTimeout();

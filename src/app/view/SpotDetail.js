@@ -11,9 +11,9 @@ Ext.define('EatSense.view.SpotDetail', {
 		hideOnMaskTap: 'true',
 		baseCls: 'spotdetail',
 		top: '5%',
-		left: '5%',
-		right: '5%',
-		bottom: '5%',
+		left: '7px',
+		right: '7px',
+		bottom: '4%',
 		layout: 'fit',
 		fullscreen: true,
 		//this should be initially hidden
@@ -27,11 +27,12 @@ Ext.define('EatSense.view.SpotDetail', {
 				//enable/disable action buttons depending on customer status
 				try {
 					var nestedButtons = null;
-					console.log('customer-update event. active state: ' + active);
+					// console.log('customer-update event. active state: ' + active);
 					this.down('button[action=switch-spot]').setDisabled(active);
 					this.down('button[action=paid]').setDisabled(active);			
 					this.down('button[action=cancel-all]').setDisabled(active);
 					this.down('button[action=confirm-all]').setDisabled(active);
+					this.down('button[action=complete-checkin]').setDisabled(active);
 				} catch(e) {
 					console.log(e);
 				}
@@ -58,7 +59,7 @@ Ext.define('EatSense.view.SpotDetail', {
 			layout:'fit',
 			minWidth: 200
 		},
-		{
+		{	//customer list
 			xtype: 'panel',
 			layout:  {
 				type: 'fit'
@@ -85,38 +86,35 @@ Ext.define('EatSense.view.SpotDetail', {
 			}
 			]
 		},
-		{
+		{	//status panel
 			xtype: 'panel',
 			layout: {
 				type: 'fit'
 			},
-			// fullscreen: true,
 			items: [
 			{
 				xtype: 'panel',
 				docked: 'top',
 				cls: 'spotdetail-status-panel',
 				layout: {
-					type: 'hbox',
+					type: 'vbox',
+					pack: 'center',
 					align: 'start'
+
 				},
-				height: 100,
+				// height: 100,
 				items: [
 				{
 					xtype: 'panel',					
-					// itemId: 'statistics',
-					// cls: 'spotdetail-statistics',
 					layout: {
-						type: 'vbox',
-						// pack: 'start',
+						type: 'hbox',
 						align: 'start'
 					},
+					width: '100%',
+					defaults: {
+						width: '50%'
+					},
 					items: [
-						// {
-						// 	xtype: 'label',
-						// 	itemId: 'title',					
-						// 	html: '<p>'+i10n.translate('statistic')+'</p>'
-						// },
 						{
 							xtype: 'label',
 							itemId: 'checkInTime',
@@ -147,9 +145,12 @@ Ext.define('EatSense.view.SpotDetail', {
 				{
 					xtype: 'panel',
 					layout: {
-						type: 'vbox',
-						// pack: 'start',
+						type: 'hbox',
 						align: 'start'
+					},
+					width: '100%',
+					defaults: {
+						width: '50%'
 					},
 					items: [
 					{
@@ -178,57 +179,152 @@ Ext.define('EatSense.view.SpotDetail', {
 						)
 					}
 					]
-				}
-				,
+				},
 				{
-					xtype: 'lockbutton',
-					action: 'confirm-all',
-					disabled: true,
-					text: i10n.translate('confirmAllOrdersButton'),
-					ui: 'action',
-					right: 5,
-					bottom: 5
-				}]
+					xtype: 'panel',
+					// docked: 'top',
+					layout: {
+						type: 'hbox',
+						align: 'center'
+					},
+					margin: '5 0 5 0',					
+					defaults: {
+						ui: 'action',
+						cls: 'spotdetail-toolbar-button',
+						xtype: 'lockbutton',
+					},
+					items: [
+					{
+						text: i10n.translate('spotdetail.checkin.complete'),
+						action: 'complete-checkin',
+						disabled: true,
+						ui: 'action'
+					},
+					{
+						text: i10n.translate('paidButton'),
+						action: 'paid',
+						disabled: true,
+						ui: 'action'
+					},
+					{
+						text: i10n.translate('switchSpotButton'),
+						action: 'switch-spot',
+						disabled: true
+					},
+				// 	]
+				// },
+				// {
+				// 	xtype: 'panel',
+				// 	layout: {
+				// 		type: 'hbox',
+				// 		align: 'center'
+				// 	},
+				// 	defaults: {
+				// 		ui: 'action',
+				// 		cls: 'spotdetail-toolbar-button',
+				// 		xtype: 'lockbutton',
+				// 	},
+				// 	items: [
+					{
+						text: i10n.translate('cancelAllOrdersButton'),
+						action: 'cancel-all',
+						disabled: true,
+						ui: 'action'
+					},
+					{
+						xtype: 'lockbutton',
+						action: 'confirm-all',
+						disabled: true,
+						text: i10n.translate('confirmAllOrdersButton'),
+						ui: 'action',
+					}
+					]
+				},
+				// {
+				// 	xtype: 'panel',
+				// 	layout: {
+				// 		type: 'hbox',
+				// 		align: 'center',
+				// 		pack: 'center'
+				// 	},
+				// 	width: '100%',
+				// 	defaults: {
+				// 		xtype: 'label',
+				// 		style: 'text-align:center;'
+				// 	},
+				// 	items: [
+				// 	{
+				// 		xtype: 'label',
+				// 		html: i10n.translate('spotdetail.buttongroup.checkin'),
+				// 		flex: 1
+				// 	},
+				// 	{
+				// 		xtype: 'label',
+				// 		html: i10n.translate('spotdetail.buttongroup.customer'),
+				// 		flex: 1
+				// 	},
+				// 	{
+				// 		xtype: 'label',
+				// 		flex: 1
+				// 	}
+				// 	]
+
+				// }
+				// {
+				// 	xtype: 'lockbutton',
+				// 	action: 'confirm-all',
+				// 	disabled: true,
+				// 	text: i10n.translate('confirmAllOrdersButton'),
+				// 	ui: 'action',
+				// 	// right: 5,
+				// 	// bottom: 5
+				// }
+				]
 			},
-			 {
+			{
 				xtype: 'dataview',
 				itemId: 'spotDetailOrders',
 				store: 'orderStore',
 				useComponents: true,
 				defaultType: 'spotdetailitem'				
 			}, 
-			{
-				xtype: 'toolbar',
-				baseCls: 'spotdetail-toolbar',
-				docked: 'bottom',
-				layout: {
-					type: 'hbox',
-					align: 'middle',
-					pack: 'center'
-				},
-				defaults: {
-					ui: 'action',
-					cls: 'spotdetail-toolbar-button',
-					xtype: 'lockbutton',
-				},
-				items: [
-				{
-					text: i10n.translate('paidButton'),
-					action: 'paid',
-					disabled: true
-				},
-				{
-					text: i10n.translate('switchSpotButton'),
-					action: 'switch-spot',
-					disabled: true
-				},
-				{
-					text: i10n.translate('cancelAllOrdersButton'),
-					action: 'cancel-all',
-					disabled: true
-				}
-				]				
-			}
+			// {
+			// 	xtype: 'toolbar',
+			// 	baseCls: 'spotdetail-toolbar',
+			// 	docked: 'bottom',
+			// 	layout: {
+			// 		type: 'hbox',
+			// 		align: 'middle',
+			// 		pack: 'center'
+			// 	},
+			// 	defaults: {
+			// 		ui: 'action',
+			// 		cls: 'spotdetail-toolbar-button',
+			// 		xtype: 'lockbutton',
+			// 	},
+			// 	items: [
+			// 	{
+			// 		text: i10n.translate('spotdetail.checkin.complete'),
+			// 		action: 'complete-checkin',
+			// 		disabled: true
+			// 	},
+			// 	{
+			// 		text: i10n.translate('paidButton'),
+			// 		action: 'paid',
+			// 		disabled: true
+			// 	},
+			// 	{
+			// 		text: i10n.translate('switchSpotButton'),
+			// 		action: 'switch-spot',
+			// 		disabled: true
+			// 	},
+			// 	{
+			// 		text: i10n.translate('cancelAllOrdersButton'),
+			// 		action: 'cancel-all',
+			// 		disabled: true
+			// 	}
+			// 	]				
+			// }
 			]
 		}
 		]

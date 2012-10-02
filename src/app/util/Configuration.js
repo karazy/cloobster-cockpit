@@ -2,6 +2,7 @@ Ext.define('EatSense.util.Configuration', {
 	alternateClassName: ['appConfig'],
 	statics: {
 		serviceUrl : '',
+		msgboxShortHideTimeout: 500,
 		msgboxHideTimeout: 1000,
 		msgboxHideLongTimeout: 1500,
 		currencyFormat: 'EURO',

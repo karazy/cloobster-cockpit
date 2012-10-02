@@ -17,6 +17,42 @@ Ext.define('EatSense.view.Spot', {
 		areaFilter : null,
 		activeItem : 0,
 		items: [
+						// {
+						// 	xtype: 'titlebar',
+						// 	docked: 'top',
+						// 	// title: i10n.translate('spot.filterbar.spotview'),
+						// 	items: [
+							
+						// 	{
+						// 		xtype: 'segmentedbutton',
+						// 		items: [
+						// 			{	
+						// 				text: i10n.translate('spot.filterbar.requestview'),
+						// 				// action: 'show-requestview',
+						// 			},
+						// 			{
+						// 				text: i10n.translate('spot.filterbar.spotview'),
+						// 				// action: 'show-spotview',
+						// 			},
+						// 			{
+						// 				text: i10n.translate('spot.filterbar.historyview'),
+						// 			}
+						// 		]
+						// 	},
+						// 	{	
+						// 		text: i10n.translate('spot.filter.title'),
+						// 		action: 'show-filter',
+						// 		align: 'right',
+						// 		ui: 'action'
+						// 	},
+						// 	{	
+						// 		text: i10n.translate('request.sort.title'),
+						// 		action: 'show-request-sort',
+						// 		align: 'right',
+						// 		ui: 'action'
+						// 	}						
+						// 	]
+						// },
 					{
 						xtype: 'panel',
 						layout: 'fit',
@@ -43,7 +79,7 @@ Ext.define('EatSense.view.Spot', {
 								action: 'show-filter',
 								align: 'right',
 								ui: 'action'
-							}							
+							}					
 							]
 						},
 						{

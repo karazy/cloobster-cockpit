@@ -50,8 +50,7 @@ Ext.define('EatSense.view.Main', {
 			modal: true,
 			hideOnMaskTap: true,
 			padding: 5,
-			// width: 220,
-			// height: 200,
+			width: 300,
 			hidden: true,
 			items: [
 			{
@@ -62,20 +61,57 @@ Ext.define('EatSense.view.Main', {
 			{
 				 xtype: 'fieldset',
 				 defaults: {
-				 	labelWidth: '75%',
-				 	xtype: 'radiofield'
+				 	labelWidth: '50%',
+				 	xtype: 'radiofield',
+				 	labelWrap: true
 				 },
 				 items: [
 					{
 			            name : 'filter',
 			            label: i10n.translate('spot.filter.none'),
 			            value: 'none',
-			            checked: true
+			            checked: true,
+			            listeners:{
+			            	// Adding listener for tap on label element,
+					        // this should toggle the checkbox.
+					        "tap": {
+					            element: "label",
+					            fn: function () {
+					            	try {
+					            		var me = this;
+					            		if(!me.isChecked()) {
+					            			me.check();
+					            		}            	
+					            	} catch(e) {
+					            		//fail silently
+					            		console.log("EatSense.view.Main > spot filter listener error");
+					            	}
+					            }
+					        }
+						}
 			        },
 			        {
 			            name : 'filter',
 			            label: i10n.translate('spot.filter.active'),
 			            value: 'active',
+			            listeners:{
+			            	// Adding listener for tap on label element,
+					        // this should toggle the checkbox.
+					        "tap": {
+					            element: "label",
+					            fn: function () {
+					            	try {
+					            		var me = this;
+					            		if(!me.isChecked()) {
+					            			me.check();
+					            		}            	
+					            	} catch(e) {
+					            		//fail silently
+					            		console.log("EatSense.view.Main > spot filter listener error");
+					            	}
+					            }
+					        }
+						}
 			        }
 				 ]
 			}
@@ -89,8 +125,7 @@ Ext.define('EatSense.view.Main', {
 			modal: true,
 			hideOnMaskTap: true,
 			padding: 5,
-			// width: 220,
-			// height: 200,
+			width: 300,
 			hidden: true,
 			items: [
 			{
@@ -101,8 +136,9 @@ Ext.define('EatSense.view.Main', {
 			{
 				 xtype: 'fieldset',
 				 defaults: {
-				 	labelWidth: '75%',
-				 	xtype: 'radiofield'
+				 	labelWidth: '50%',
+				 	xtype: 'radiofield',
+				 	labelWrap: true
 				 },
 				 items: [
 			        {
@@ -110,13 +146,49 @@ Ext.define('EatSense.view.Main', {
 			        	//swap labels, because we show elapsed time
 			        	label: i10n.translate('spot.filter.requests.desc'),
 			        	value: 'requests-asc',
-			        	checked: true
+			        	checked: true,
+			        	listeners:{
+			            	// Adding listener for tap on label element,
+					        // this should toggle the checkbox.
+					        "tap": {
+					            element: "label",
+					            fn: function () {
+					            	try {
+					            		var me = this;
+					            		if(!me.isChecked()) {
+					            			me.check();
+					            		}            	
+					            	} catch(e) {
+					            		//fail silently
+					            		console.log("EatSense.view.Main > spot filter listener error");
+					            	}
+					            }
+					        }
+						}
 			        },
 			        {
 			        	name: 'sort-request',
 			        	//swap labels, because we show elapsed time
 			        	label: i10n.translate('spot.filter.requests.asc'),
-			        	value: 'requests-desc'			        	
+			        	value: 'requests-desc',
+			        	listeners:{
+			            	// Adding listener for tap on label element,
+					        // this should toggle the checkbox.
+					        "tap": {
+					            element: "label",
+					            fn: function () {
+					            	try {
+					            		var me = this;
+					            		if(!me.isChecked()) {
+					            			me.check();
+					            		}            	
+					            	} catch(e) {
+					            		//fail silently
+					            		console.log("EatSense.view.Main > spot filter listener error");
+					            	}
+					            }
+					        }
+						}		        	
 			        }
 				 ]
 			}

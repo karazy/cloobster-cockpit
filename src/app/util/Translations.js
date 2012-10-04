@@ -90,9 +90,9 @@ Ext.define('EatSense.util.Translations',{
 			"DE" :  "Login mit gespeicherten Daten fehlgeschlagen.",
 			"EN" :  "Login has failed."
 		},
-		"chooseStore" : {
-			"DE" :  "Filiale auswählen",
-			"EN" :  "Select affiliate."
+		"login.choosebusiness.title" : {
+			"DE" :  "<h1>Business auswählen</h1><p>In welchem Business wollen Sie einloggen?</p>",
+			"EN" :  "<h1>Select business.</h1><p>Which business do you want to login?</p>"
 		},
 		"login.field.user" : {
 			"DE" :  "Benutzername",

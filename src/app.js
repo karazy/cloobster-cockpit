@@ -51,8 +51,9 @@ Ext.application({
         var oldOnError = window.onerror,
             undefinedErrorCount = 0;
 
-        // Destroy the #appLoadingIndicator element
-        Ext.fly('appLoadingIndicator').destroy();
+        // Destroy the #appLoadingIndicator and #cloobsterLoadingText elements
+        Ext.fly('appLoadingWrapper').destroy();
+        // Ext.fly('cloobsterLoadingText').destroy();
 
     	console.log('launch cockpit ...');
 

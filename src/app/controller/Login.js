@@ -193,18 +193,25 @@ Ext.define('EatSense.controller.Login', {
 		console.log('login');
 
 		var me = this,
+			loginview = this.getLoginPanel(),
 			login = this.getLoginField().getValue(),
 			password = this.getPasswordField().getValue(),				
 			spotCtr = this.getApplication().getController('Spot'),
 			me = this,
 			errorMessage,
-			timestamp = new Date().getTime();
+			timestamp = new Date().getTime();		
 
 		if(Ext.String.trim(login).length == 0 || Ext.String.trim(password).length == 0) {
 			
 			Ext.Msg.alert(i10n.translate('error'), i10n.translate('needCredentials')); 
 			return;
 		}
+
+		loginview.setMasked({
+			xtype: 'loadmask',
+			message: i10n.translate('loadingMsg')
+		});
+
 		//Generate a token via a POST. Getting the account in response is a covenient shortcut, compared to explicitly loading the account
 		Ext.Ajax.request({
     	    url: appConfig.serviceUrl+'/accounts/tokens',
@@ -218,6 +225,7 @@ Ext.define('EatSense.controller.Login', {
 			jsonData: timestamp,
     	    scope: this,
     	    success: function(response) {
+    	    	loginview.unmask();
     	    	me.setAccount(Ext.create('EatSense.model.Account', Ext.decode(response.responseText)));
 				//generate clientId for channel
 				me.getAccount().set('clientId', me.getAccount().get('login') + new Date().getTime());
@@ -231,6 +239,7 @@ Ext.define('EatSense.controller.Login', {
 				me.showBusinesses();
     	    },
     	    failure: function(response) {
+    	    	loginview.unmask();
 				me.resetDefaultAjaxHeaders();
 
 				if(response.status) {
@@ -286,7 +295,8 @@ Ext.define('EatSense.controller.Login', {
 			requestStore = Ext.data.StoreManager.lookup('requestStore'),
 			defRequestStore = Ext.data.StoreManager.lookup('defRequestStore'),			
 			spotDetail = this.getApplication().getController('Spot').getSpotDetail(),
-			business = this.getBusiness();
+			business = this.getBusiness(),
+			loginview = this.getLoginPanel();
 		
 		//make sure to close spot detail if it is still open
 		if(!spotDetail.isHidden()) {
@@ -324,7 +334,8 @@ Ext.define('EatSense.controller.Login', {
 		//remove main view				
 		Ext.Viewport.remove(Ext.Viewport.down('main'));
 		//show main view				
-		Ext.create('EatSense.view.Login');		
+		// Ext.create('EatSense.view.Login');
+		loginview.show();	
 
 	},
 	/**
@@ -366,7 +377,7 @@ Ext.define('EatSense.controller.Login', {
 			spotCtr = this.getApplication().getController('Spot'),
 			loginPanel = this.getLoginPanel();
 
-		Ext.create('EatSense.view.ChooseBusiness');
+		// Ext.create('EatSense.view.ChooseBusiness');
 
 		this.getBusinessList().getStore().load({
 			// params: {
@@ -412,7 +423,8 @@ Ext.define('EatSense.controller.Login', {
 			account = this.getAccount(),
 			appState = this.getAppState(),
 			spotCtr = this.getApplication().getController('Spot'),
-			messageCtr = this.getApplication().getController('Message'); 
+			messageCtr = this.getApplication().getController('Message'),
+			loginview = this.getLoginPanel(); 
 
 		account.set('businessId', business.get('id'));
 		account.set('business', business.get('name'));
@@ -426,7 +438,11 @@ Ext.define('EatSense.controller.Login', {
 
 		me.saveAppState();
 
-		Ext.Viewport.remove(Ext.Viewport.down('login'));
+		//hide loginview, reset values
+		loginview.hide();
+		loginview.setActiveItem(0);
+		me.resetLoginFields();
+
 		Ext.create('EatSense.view.Main');
 		spotCtr.loadAreas();
 
@@ -442,6 +458,7 @@ Ext.define('EatSense.controller.Login', {
 	*	
 	*/
 	chooseBusiness: function(dv, index, target, record) {		
+		dv.deselectAll();
 		this.setBusinessId(record);		
 	},
 	/**

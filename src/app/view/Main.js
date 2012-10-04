@@ -9,6 +9,9 @@ Ext.define('EatSense.view.Main', {
            //override default tabpanel animation setting
            animation: null
         },
+        tabBar: {
+        	scrollable: 'horizontal'
+        },
 		items: [
 		{
 			xtype: 'toolbar',
@@ -38,7 +41,7 @@ Ext.define('EatSense.view.Main', {
 			},
 			{
 				xtype: 'button',
-				iconCls: 'delete',
+				iconCls: 'exit',
     			iconMask: true,
     			action: 'logout'
 			}]

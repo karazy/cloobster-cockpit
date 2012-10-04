@@ -29,6 +29,8 @@ $cloobster-font-color: #1E4776;
 @include pictos-iconmask('time');
 @include pictos-iconmask('volume_mute');
 @include pictos-iconmask('volume');
+/*custom icons in res folder! */
+@include pictos-iconmask('exit');
 
 @CHARSET "UTF-8";
 

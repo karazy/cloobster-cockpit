@@ -56,8 +56,7 @@ Ext.define('EatSense.controller.Spot', {
 			requestDataview: 'spotcard #requestDataview',
 			showSpotViewButton: 'spotcard button[action=show-spotview]',
 			showRequestViewButton: 'spotcard button[action=show-requestview]',
-			forwardRequestViewButton: 'spotcard button[action=show-forward-requestview]',
-			backHistoryViewButton: 'spotcard button[action=show-back-historyview]',
+			showHistoryViewButton: 'spotcard button[action=show-historyview]',
 			historyDataview: 'spotcard #historyDataview',
 			historyDetail: {
 				selector: 'historydetailitem',
@@ -136,6 +135,9 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	showRequestViewButton: {
 		 		tap: 'showRequestView'
+		 	},
+		 	showHistoryViewButton: {
+		 		tap: 'showHistoryView'
 		 	},
 		 	forwardRequestViewButton: {
 		 		tap: 'forwardRequestView'
@@ -1549,8 +1551,12 @@ Ext.define('EatSense.controller.Spot', {
 	*
 	*/
 	showSpotView: function() {
-		var container = this.getMainview().getActiveItem();
+		var container = this.getMainview().getActiveItem(),
+			spotFilterButton = container.down('button[action=show-filter]'),
+			requestSortButton = container.down('button[action=show-request-sort]');;
 		
+		spotFilterButton.show();
+		requestSortButton.hide();
 		// container.getLayout().setAnimation({
 		// 	type : 'slide',
 		// 	direction : 'right'
@@ -1565,8 +1571,12 @@ Ext.define('EatSense.controller.Spot', {
 	showRequestView: function() {
 		var me = this,
 			container = this.getMainview().getActiveItem(),
-			requestDataview = this.getRequestDataview();
+			requestDataview = this.getRequestDataview(),
+			spotFilterButton = container.down('button[action=show-filter]'),
+			requestSortButton = container.down('button[action=show-request-sort]');
 
+		spotFilterButton.hide();
+		requestSortButton.show();
 		// container.getLayout().setAnimation({
 		// 	type : 'slide',
 		// 	direction : 'left'
@@ -1575,34 +1585,18 @@ Ext.define('EatSense.controller.Spot', {
 		container.setActiveItem(1);
 	},
 	/**
-	* Action for request view forward button.
+	* Action for show history view button.
 	*
 	*/
-	forwardRequestView: function() {
-		var me = this,
-			container = this.getMainview().getActiveItem();
-
-		// container.getLayout().setAnimation({
-		// 	type : 'slide',
-		// 	direction : 'left'
-		// });
-		//switch to request view
-		container.setActiveItem(2);
-	},
-	/**
-	* Action for history view back button.
-	*/
-	backHistoryView: function() {
+	showHistoryView: function() {
 		var me = this,
 			container = this.getMainview().getActiveItem(),
-			requestDataview = this.getRequestDataview();
+			spotFilterButton = container.down('button[action=show-filter]'),
+			requestSortButton = container.down('button[action=show-request-sort]');
 
-		// container.getLayout().setAnimation({
-		// 	type : 'slide',
-		// 	direction : 'right'
-		// });
-		//switch to request view
-		container.setActiveItem(1);
+		spotFilterButton.hide();
+		requestSortButton.hide();
+		container.setActiveItem(2);
 	},
 	/**
 	* Filter method.
@@ -1830,7 +1824,7 @@ Ext.define('EatSense.controller.Spot', {
 								'forceLogout': {403: true},
 								'message': errMsg || null
 							});
-							
+
 							notificationCtr.removeCompletedCheckIn(me.getActiveCustomer().get('id'));
 				   	    }
 					});

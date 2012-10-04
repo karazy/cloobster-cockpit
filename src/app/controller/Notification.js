@@ -24,7 +24,9 @@ Ext.define('EatSense.controller.Notification', {
 		/* Indicates that user activated notification sound once. */
 		userInit: false,
 		/* Counts played alarms when alarm is active. */
-		playCounter: 0
+		playCounter: 0,
+		/* Contains manually completed checkInIds to prevent activating notificiation on cockpit which issued the bill. */
+		completedCheckIns: new Array()
 
 	},
 
@@ -179,25 +181,87 @@ Ext.define('EatSense.controller.Notification', {
 		}
 		
 	},
-
+	/**
+	*
+	*
+	*/
 	processRequest: function(action, data) {
 
 		if(action == "new") {
 			this.startAudioNotification();	
 		};
 	},
-
+	/**
+	*
+	*
+	*/
 	processBill: function(action, data) {
+		var completedId = this.removeCompletedCheckIn(data.checkInId);
 
-		if(action == "new") {
+		if(action == "new" && !completedId) {
 			this.startAudioNotification();	
 		};
 	},
+	/**
+	*
+	*
+	*/
 	processCheckIn: function(action, data) {
 
 		if(action == "update-orders") {
 			this.startAudioNotification();
 		};
 	},
+	/**
+	* Adds a checkInId to completedCheckIns Array.
+	* @param checkInId
+	*	Id to add.
+	*/
+	addCompletedCheckIn: function(checkInId) {
+		var checkIns = this.getCompletedCheckIns(),
+			found = false;
+
+		//only proceed if notifications are active
+		if(!this.getNotificationActive()) {
+			return;
+		}
+
+		for (var i = checkIns.length - 1; i >= 0; i--) {
+			if(checkIns[i] == checkInId) {
+				found = true;
+				break;
+			}			
+		};
+
+		if(!found) {
+			checkIns.push(checkInId);	
+		}
+	},
+	/**
+	* If exists removes given checkIn Id from completedCheckIns Array.
+	* @checkInId
+	*	Id to remove
+	* @return
+	*	null if no Id was found otherwise the checkInId
+	*/
+	removeCompletedCheckIn: function(checkInId) {
+		var checkIns = this.getCompletedCheckIns(),
+			foundId = null;
+
+		//only proceed if notifications are active
+		if(!this.getNotificationActive()) {
+			return;
+		}
+
+		for (var i = checkIns.length - 1; i >= 0; i--) {
+			if(checkIns[i] == checkInId) {
+				foundId = checkInId;
+				checkIns.splice(i,1);
+				break;
+			}
+		};
+
+		return foundId;
+	}
 
 });

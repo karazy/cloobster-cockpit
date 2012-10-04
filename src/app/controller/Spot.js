@@ -1750,7 +1750,8 @@ Ext.define('EatSense.controller.Spot', {
 			loginCtr = this.getApplication().getController('Login'),
 			errMsg,
 			orderStore = Ext.StoreManager.lookup('orderStore'),
-			logPrefix = 'Spot.showCompleteCheckInDialog > ';
+			logPrefix = 'Spot.showCompleteCheckInDialog > ',
+			notificationCtr = this.getApplication().getController('Notification');
 
 
 		list.deselectAll();
@@ -1800,6 +1801,10 @@ Ext.define('EatSense.controller.Spot', {
 					// delete billRawData.paymentMethod.bill_id;
 					// delete billRawData.paymentMethod.xindex;
 
+					if(notificationCtr) {
+						notificationCtr.addCompletedCheckIn(me.getActiveCustomer().get('id'));
+					}
+
 					//do it the manual way
 					Ext.Ajax.request({
 						url: appConfig.serviceUrl+'/b/businesses/'+loginCtr.getAccount().get('businessId')+'/bills/',
@@ -1809,9 +1814,9 @@ Ext.define('EatSense.controller.Spot', {
 			    	    success: function(response) {
 			    	    				    	    	
 			    	    },
-			    	    failure: function(response) {
-			    	    	// completeButton.setDisabled(false);
-
+			    	    failure: function(response) {			    	    	
+			    	    	//422 Unprocessable Entity (WebDAV; RFC 4918)
+							//The request was well-formed but was unable to be followed due to semantic errors
 			    	    	if(response.status == 422) {
 			    	    		
 			    	    		errMsg = i10n.translate('completecheckin.error.noorders');
@@ -1825,6 +1830,8 @@ Ext.define('EatSense.controller.Spot', {
 								'forceLogout': {403: true},
 								'message': errMsg || null
 							});
+							
+							notificationCtr.removeCompletedCheckIn(me.getActiveCustomer().get('id'));
 				   	    }
 					});
 					

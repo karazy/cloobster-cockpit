@@ -13,7 +13,7 @@ Ext.define('EatSense.controller.Login', {
 				tap: 'showLogoutDialog'
 			},
 		 	businessList: {
-		 		itemtap: 'chooseBusiness'
+		 		select: 'chooseBusiness'
 		 	},
 		 	cancelLoginButton: {
 	 			tap: 'cancelLogin'
@@ -457,8 +457,8 @@ Ext.define('EatSense.controller.Login', {
 	*	Event handler for choose business list tap.
 	*	
 	*/
-	chooseBusiness: function(dv, index, target, record) {		
-		dv.deselectAll();
+	chooseBusiness: function(dv, record) {		
+		dv.deselectAll(true);
 		this.setBusinessId(record);		
 	},
 	/**

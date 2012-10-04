@@ -241,6 +241,9 @@ Ext.define('EatSense.controller.Message', {
 			this.refreshAll(false);
 		}
 	},
+	/**
+	* Show a message when connectivity problems occur.
+	*/
 	showConnectivityHint: function(message) {
 		var me =this,
 			msgBox = Ext.create('Ext.MessageBox', {

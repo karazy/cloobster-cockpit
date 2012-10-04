@@ -173,6 +173,9 @@ Ext.define('EatSense.controller.Spot', {
 		//refresh all is only active when push communication is out of order
 		messageCtr.on('eatSense.refresh-all', this.loadSpots, this);
 
+		//update request view when pus communication isn't working
+		messageCtr.on('eatSense.refresh-all', this.updateRequests, this);
+
 		messageCtr.on('eatSense.business', this.updateBusinessIncremental, this);
 
 		loginCtr.on('eatSense.read-only', this.lockActions, this);
@@ -263,7 +266,7 @@ Ext.define('EatSense.controller.Spot', {
 		store.load({
 			params: {
 				'areaId' : this.getActiveArea().getId(),
-				//simply load everything
+				//don't filter
 				// 'type': ['ORDER', 'BILL']
 			},
 			callback: function(records, operation, success) {
@@ -276,7 +279,6 @@ Ext.define('EatSense.controller.Spot', {
 						me.getMainview().getActiveItem().down('#requestListDescPanel').setHidden(false);
 					};
 					
-					// dataview.refresh();
 				} else {
 					me.getApplication().handleServerError({
 						'error': operation.error, 
@@ -471,6 +473,7 @@ Ext.define('EatSense.controller.Spot', {
 	/**
 	* @private
 	* Loads all checkins for selected spot.
+	* This method is only active during refresh-all.
 	*/
 	refreshActiveSpotCheckIns: function() {
 		var me = this,

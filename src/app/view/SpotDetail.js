@@ -187,7 +187,7 @@ Ext.define('EatSense.view.SpotDetail', {
 						type: 'hbox',
 						align: 'center'
 					},
-					margin: '5 0 5 0',					
+					margin: '5 0 5 0',
 					defaults: {
 						ui: 'action',
 						cls: 'spotdetail-toolbar-button',

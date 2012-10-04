@@ -227,7 +227,7 @@ Ext.define('EatSense.util.Translations',{
 			"EN" :  "Order {0} could not be canceled."
 		},
 		"switchSpotButton" : {
-			"DE" :  "Spot wechseln",
+			"DE" :  "Wechseln",
 			"EN" :  "Change spot"
 		},
 		"switchSpotMessage" : {
@@ -239,11 +239,11 @@ Ext.define('EatSense.util.Translations',{
 			"EN" :  "Cancel {0}?"
 		},
 		"cancelAllOrdersButton" : {
-			"DE" :  "Gast entfernen",
+			"DE" :  "Entfernen",
 			"EN" :  "Delete client"
 		},
 		"confirmAllOrdersButton" : {
-			"DE" :  "Alle annehmen",
+			"DE" :  "Best. annehmen",
 			"EN" :  "Confirm all"
 		},
 		"paidButton" : {
@@ -280,7 +280,7 @@ Ext.define('EatSense.util.Translations',{
 			"EN" :  "VIP calls"
 		},
 		"requestDismiss" : {
-			"DE" :  "VIP Calls löschen",
+			"DE" :  "Alle löschen",
 			"EN" :  "Cancel VIP calls"
 		},
 		"spot.filterbar.spotview" : {

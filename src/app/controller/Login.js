@@ -197,7 +197,8 @@ Ext.define('EatSense.controller.Login', {
 			password = this.getPasswordField().getValue(),				
 			spotCtr = this.getApplication().getController('Spot'),
 			me = this,
-			errorMessage;
+			errorMessage,
+			timestamp = new Date().getTime();
 
 		if(Ext.String.trim(login).length == 0 || Ext.String.trim(password).length == 0) {
 			
@@ -213,6 +214,8 @@ Ext.define('EatSense.controller.Login', {
 				'login': login,
 				'password': password
 			},
+			//submit a timestamp to prevent iOS6 from caching the POST request
+			jsonData: timestamp,
     	    scope: this,
     	    success: function(response) {
     	    	me.setAccount(Ext.create('EatSense.model.Account', Ext.decode(response.responseText)));

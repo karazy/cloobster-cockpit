@@ -197,11 +197,11 @@ Ext.define('EatSense.controller.Spot', {
 		var me = this,
 			areaStore = Ext.StoreManager.lookup('areaStore'),
 			spotStore = Ext.StoreManager.lookup('spotStore'),
-			defRequestStore = Ext.StoreManager.lookup('defRequestStore'),
 			tabPanel = this.getMainview(),
 			tab,
 			carousel,
-			areaFilter;
+			areaFilter,
+			delayedTask;
 
 		areaStore.load({
 			callback: function(records, operation, success) {
@@ -243,15 +243,7 @@ Ext.define('EatSense.controller.Spot', {
 			 		me.loadRequests();
 			 		me.loadHistory();
 
-			 		//update elapsed time in request view
-			 		var task = function(delay) {
-						Ext.create('Ext.util.DelayedTask', function() {
-			    			me.getMainview().getActiveItem().down('#requestDataview').refresh();
-			    			task(delay);
-						}).delay(delay);
-					}
-		
-					task(appConfig.requestTimeCalcRefreshInterval);
+			 		me.startRequestRefreshTask();
 			 	}			
 			 }
 		});
@@ -463,13 +455,7 @@ Ext.define('EatSense.controller.Spot', {
 	*/
 	showCustomerDetail: function(dataview, record, options) {
 		var me = this,
-			loginCtr = this.getApplication().getController('Login'),
-			orderStore = Ext.StoreManager.lookup('orderStore'),
-			billStore = Ext.StoreManager.lookup('billStore'),				
-			detail = me.getSpotDetail(),
-			restaurantId = loginCtr.getAccount().get('businessId'),
-			bill,
-			paidButton = this.getPaidSpotDetailButton();
+			loginCtr = this.getApplication().getController('Login');
 		
 		if(!record) {
 			return;
@@ -1354,23 +1340,18 @@ Ext.define('EatSense.controller.Spot', {
 	* only spots and requests of this area are shown.
 	*/
 	areaChanged: function(container, newTab, oldTab) {
-		var spotStore = Ext.StoreManager.lookup('spotStore'),
-			defRequestStore = Ext.StoreManager.lookup('defRequestStore');
+		var spotStore = Ext.StoreManager.lookup('spotStore');
 
 		console.log('tab changed');
 		if(!oldTab || newTab.getId() != oldTab.getId()) {
 			if(spotStore.getFilters().length > 0 && oldTab && oldTab.getAreaFilter()) {
 				spotStore.getData().removeFilters([oldTab.getAreaFilter()]);
 			};
-			// if(defRequestStore.getFilters().length > 0 && oldTab && oldTab.getAreaFilter()) {
-			// 	defRequestStore.getData().removeFilters([oldTab.getAreaFilter()]);
-			// };
 
 			spotStore.filter(newTab.getAreaFilter());
-			// defRequestStore.filter(newTab.getAreaFilter());
 			//Bug? Call filter again, because sometimes it isn't filtered directly.
 			spotStore.filter();
-			// defRequestStore.filter();
+
 			this.setActiveArea(newTab.getArea());
 			this.updateRequests();
 			this.loadHistory();
@@ -1670,7 +1651,46 @@ Ext.define('EatSense.controller.Spot', {
 			console.log(e);
 		}
 	},
+	/**
+	* Start a task running all appConfig.requestTimeCalcRefreshInterval ms
+	* which refreshes elapsed time for request items in request view.
+	*
+	*/
+	startRequestRefreshTask: function() {
+		var me = this,
+			task;
+		//update elapsed time in request view
+ 		task = function(delay) {
 
+			delayedTask = Ext.create('Ext.util.DelayedTask', function() {
+				if(me.getMainview().getActiveItem() && me.getMainview().getActiveItem().down('#requestDataview')) {
+					// console.log('Spot.loadAreas > run task');
+					me.getMainview().getActiveItem().down('#requestDataview').refresh();
+				} else {
+					console.log('Spot.loadAreas > could not refresh request view times. Try again in ' + e);
+				}
+    			task(delay);
+			});
+
+			me.setRefreshRequestTask(delayedTask);
+
+			delayedTask.delay(delay);
+		}
+
+		task(appConfig.requestTimeCalcRefreshInterval);
+	},
+	/**
+	* Stops the request refresh task.
+	* @see Spot.startRequestRefreshTask
+	*/
+	stopRequestRefreshTask: function() {
+		try {
+			this.getRefreshRequestTask().cancel();
+		} catch(e) {
+			console.log('Spot.stopRequestRefreshTask > failed to stop');
+		}
+		
+	},
 	// end misc actions
 
 	//start complete checkin logic

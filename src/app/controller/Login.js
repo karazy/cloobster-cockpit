@@ -273,9 +273,15 @@ Ext.define('EatSense.controller.Login', {
 	*	
 	*/
 	logout: function() {
-		console.log('Logout Controller -> logout');
+		console.log('Login.logout');
 		var spotStore = Ext.data.StoreManager.lookup('spotStore'),
 			checkInStore = Ext.data.StoreManager.lookup('checkInStore'),
+			areaStore = Ext.data.StoreManager.lookup('areaStore'),
+			historyStore = Ext.data.StoreManager.lookup('historyStore'),
+			billStore = Ext.data.StoreManager.lookup('billStore'),
+			businessStore = Ext.data.StoreManager.lookup('businessStore'),
+			requestStore = Ext.data.StoreManager.lookup('requestStore'),
+			defRequestStore = Ext.data.StoreManager.lookup('defRequestStore'),			
 			spotDetail = this.getApplication().getController('Spot').getSpotDetail(),
 			business = this.getBusiness();
 		
@@ -289,9 +295,21 @@ Ext.define('EatSense.controller.Login', {
 			this.fireEvent('eatSense.unlock');
 		};
 
-		spotStore.removeAll();
-		checkInStore.removeAll();
+		//clear stores
+		try {
+			spotStore.removeAll();		
+			checkInStore.removeAll();
+			areaStore.removeAll();
+			historyStore.removeAll();
+			billStore.removeAll();
+			businessStore.removeAll();
+			requestStore.removeAll();
+			defRequestStore.removeAll();
+		}catch(e) {
+			console.log('Login.logout > error clearing all stores. ' + e);
+		}
 
+		this.getApplication().getController('Spot').stopRequestRefreshTask();
 
 		appChannel.closeChannel();
 		//remove all stored credentials
@@ -364,8 +382,7 @@ Ext.define('EatSense.controller.Login', {
 			 			loginPanel.setActiveItem(1);
 			 		} else if(records.length == 1){
 			 			me.setBusinessId(records[0]);					
-			 		} 
-
+			 		}
 			 	} else {
 			 		//TODO user can't log in because he is not assigned to a business
 			 		loginPanel.setActiveItem(0);

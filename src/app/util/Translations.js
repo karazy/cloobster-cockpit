@@ -4,448 +4,449 @@ Ext.define('EatSense.util.Translations',{
 
 		// General translations
 		"ok" : {
-			"DE" :  "Ok",
-			"EN" : ""
+			"DE" :  "OK",
+			"EN" : "OK"
 		},
 		"cancel" : {
 			"DE" :  "Abbrechen",
-			"EN" : ""
+			"EN" :  "Cancel"
 		},
 		"back" : {
-			"DE" :  "zurück",
-			"EN" : ""
+			"DE" :  "Zurück",
+			"EN" :  "Back"
 		},
 		"barcode" : {
 			"DE" :  "Barcode",
-			"EN" : ""
+			"EN" :  "Bar code"
 		},		
 		"close" : {
 			"DE" :  "Schliessen",
-			"EN" : ""
+			"EN" :  "Close"
 		},
 		"loadingMsg" : {
 			"DE" :  "Laden ...",
-			"EN" : ""
+			"EN" :  "Loading ..."
 		},
 		"hint" : {
 			"DE" :  "Hinweis",
-			"EN" : ""
+			"EN" :  "Message"
 		},
 		"success" : {
 			"DE" :  "Erfolg",
-			"EN" : ""
+			"EN" :  "Success"
 		},
 		"yes" : {
 			"DE" :  "Ja",
-			"EN" : ""
+			"EN" :  "Yes"
 		},
 		"no" : {
 			"DE" :  "Nein",
-			"EN" : ""
+			"EN" :  "No"
 		},
 		"comment" : {
 			"DE" :  "Kommentar",
-			"EN" : ""
+			"EN" :  "Comment"
 		},
 		"update.ready" : {
 			"DE" :  "Update",
-			"EN" : ""
+			"EN" :  "Update"
 		},
 		"update.ready.message" : {
 			"DE" :  "Ein Update ist verfgübar.<br/>Anwendung neu laden?",
-			"EN" : ""
+			"EN" :  "Update available.<br/>Reload application?"
 		},
 		//tabbar
 		"spotsTitle" : {
 			"DE" :  "Spots",
-			"EN" : ""
+			"EN" :  "Spots"
 		},
 		//toolbar
 		"toolbar.bottom.status" : {
 			"DE" :  "Verbindung",
-			"EN" : ""
+			"EN" :  "Connection"
 		},
 		//login
 		"needCredentials" : {
 			"DE" :  "Bitte Benutzernamen und Passwort eingeben.",
-			"EN" : ""
+			"EN" :  "Please enter user name and password."
 		},
 		"wrongCredentials" : {
 			"DE" :  "Benutzername und/oder Passwort falsch.",
-			"EN" : ""
+			"EN" :  "User name and/or password incorrect."
 		},
 		"savePasswordToggle" : {
 			"DE" :  "Automatisch<br/>einloggen?",
-			"EN" : ""
+			"EN" :  "Remember<br/>log-in?"
 		},
 		"logoutQuestion" : {
 			"DE" :  "Wirklich ausloggen?",
-			"EN" : ""
+			"EN" :  "Log out?"
 		},
 		"noBusinessAssigned" : {
 			"DE" :  "Dein Benutzer ist keinem Betrieb zugewiesen.",
-			"EN" : ""
+			"EN" :  "User is not assigned to any company."
 		},
 		"restoreCredentialsErr" : {
 			"DE" :  "Login mit gespeicherten Daten fehlgeschlagen.",
-			"EN" : ""
+			"EN" :  "Login has failed."
 		},
 		"chooseStore" : {
 			"DE" :  "Filiale auswählen",
-			"EN" : ""
+			"EN" :  "Select affiliate."
 		},
 		"login.field.user" : {
 			"DE" :  "Benutzername",
-			"EN" : ""
+			"EN" :  "User name"
 		},
 		"login.field.password" : {
 			"DE" :  "Passwort",
-			"EN" : ""
+			"EN" :  "Password"
 		},
 		"business.status.deleted" : {
 			"DE" :  "inaktiv",
-			"EN" : ""
+			"EN" :  "inactive"
 		},
 		//area
 		"area.request.new.badge" : {
 			"DE" :  "Neu",
-			"EN" : ""
+			"EN" :  "New"
 		},
 		//spot
 		"errorSpotLoading" : {
 			"DE" :  "Laden der Daten fehlgeschlagen!",
-			"EN" : ""
+			"EN" :  "Data could not be loaded!"
 		},
 		"spot.bar.bottom.status" : {
 			"DE" :  "<span>{0}</strong> eingeloggt bei <strong>{1}</strong>",
-			"EN" : ""
+			"EN" :  "<span>{0}</strong> logged into <strong>{1}</strong>"
 		},
 		"spot.bar.bottom.status.locked" : {
 			"DE" :  "(Gelöscht)",
-			"EN" : ""
+			"EN" :  "(Deleted)"
 		},
 		"spot.locked" : {
 			"DE" :  "Dieses Restaurant wurde gelöscht.<br/>Es können keine Aktionen mehr durchgeführt werden.",
-			"EN" : ""
+			"EN" :  "This location has been deleted.<br/>You cannot edit this location."
 		},
 		"spot.filter.none" : {
 			"DE" :  "Alle Spots",
-			"EN" : ""
+			"EN" :  "All spots"
 		},
 		"spot.filter.active" : {
 			"DE" :  "Aktive Spots",
-			"EN" : ""
+			"EN" :  "Active spots"
 		},
 		"spot.filter.title" : {
 			"DE" :  "Filter",
-			"EN" : ""
+			"EN" :  "Filter"
 		},
 		"spot.filter.requests.asc" : {
 			"DE" :  "Liste aufsteigend",
-			"EN" : ""
+			"EN" : "Ascending order"
 		},
 		"spot.filter.requests.desc" : {
 			"DE" :  "Liste absteigend",
-			"EN" : ""
+			"EN" :  "Descending order"
 		},
 		"spot.filterbar.requestview" : {
 			"DE" :  "Listenansicht",
-			"EN" : ""
+			"EN" :  "Show list"
 		},
 		"spot.filterbar.historyview" : {
 			"DE" :  "Alte CheckIns",
-			"EN" : ""
+			"EN" :  "Past check-ins"
 		},
 		//spot details
 		"spotdetail.checkin.complete" : {
 			"DE" :  "Rechnung",
-			"EN" : ""
+			"EN" :  "Bill"
 		},
 		"completecheckin.title" : {
 			"DE" :  "Vorgang abschliessen",
-			"EN" : ""
+			"EN" :  "Complete check-in"
 		},
 		"completecheckin.description" : {
 			"DE" :  "Wenn ein Gast den Bezahlvorgang nicht selbst ausgelöst hat, können Sie diesen hier manuell anstoßen.",
-			"EN" : ""
+			"EN" :  "If your client has not asked for the bill yet, you can manually trigger the request here."
 		},
 		"completecheckin.confirm.msg" : {
 			"DE" :  "Möchten Sie den Vorgang mittels {0} abschliessen? Dies kann nicht rückgängig gemacht werden.",
-			"EN" : ""
+			"EN" :  "Do you want to complete this action by means of {0}? This action cannot be reversed."
 		},
 		"completecheckin.error.noorders" : {
 			"DE" :  "Vorgang kann nicht abgeschlossen werden, da keine Bestellungen vorliegen.",
-			"EN" : ""
+			"EN" :  "Action cannot be completed as there is no order."
 		},
 		"spotselection.description" : {
 			"DE" :  "Verschieben Sie einen Gast an einen anderen Spot (Tisch, Zimmer ...).",
-			"EN" : ""
+			"EN" :  "Move client to different spot (e.g. room, table)."
 		},
 		"spotdetail.buttongroup.checkin" : {
 			"DE" :  "Check-In",
-			"EN" : ""
+			"EN" :  "Check-in"
 		},
 		"spotdetail.buttongroup.customer" : {
 			"DE" :  "Gast",
-			"EN" : ""
+			"EN" :  "Customer"
 		},
 
 		"spotDetailCustomerLabel" : {
 			"DE" :  "Gäste",
-			"EN" : ""
+			"EN" :  "Customers"
 		},
 		"errorSpotDetailCheckInLoading" : {
 			"DE" :  "Laden der eingecheckten Personen fehlgeschlagen!",
-			"EN" : ""
+			"EN" :  "Customer session data could not be loaded."
 		},
 		"errorSpotDetailOrderLoading" : {
 			"DE" :  "Laden der Bestellungen fehlgeschlagen!",
-			"EN" : ""
+			"EN" :  "Order data could not be loaded!"
 		},
 		"errorSpotDetailOrderSave" : {
 			"DE" :  "Speichern der Bestellung fehlgeschlagen!",
-			"EN" : ""
+			"EN" :  "Order could not be saved!"
 		},
 		"status" : {
 			"DE" :  "Status",
-			"EN" : ""
+			"EN" :  "Status"
 		},
 		"statistic" : {
 			"DE" :  "Infos",
-			"EN" : ""
+			"EN" :  "Info"
 		},
 		"processOrdersFirst" : {
 			"DE" :  "Bitte zuerst alle Bestellungen abarbeiten.",
-			"EN" : ""
+			"EN" :  "Please process all orders first."
 		},
 		"cancelAllOrders" : {
 			"DE" :  "Alle Bestellungen stornieren und diesen Gast entfernen?",
-			"EN" : ""
+			"EN" :  "Cancel all orders or close client session?"
 		},
 		"errorSpotDetailOrderCancel" : {
 			"DE" :  "Bestellung {0} konnte nicht storniert werden.",
-			"EN" : ""
+			"EN" :  "Order {0} could not be canceled."
 		},
 		"switchSpotButton" : {
 			"DE" :  "Spot wechseln",
-			"EN" : ""
+			"EN" :  "Change spot"
 		},
 		"switchSpotMessage" : {
 			"DE" :  "{0} an {1} verschoben",
-			"EN" : ""
+			"EN" :  "{0} moved to {1}"
 		},
 		"cancelOrderQuestion" : {
 			"DE" :  "{0} stornieren?",
-			"EN" : ""
+			"EN" :  "Cancel {0}?"
 		},
 		"cancelAllOrdersButton" : {
 			"DE" :  "Gast entfernen",
-			"EN" : ""
+			"EN" :  "Delete client"
 		},
 		"confirmAllOrdersButton" : {
 			"DE" :  "Alle annehmen",
-			"EN" : ""
+			"EN" :  "Confirm all"
 		},
 		"paidButton" : {
 			"DE" :  "Bezahlt",
-			"EN" : ""
+			"EN" :  "Bill settled"
 		},
 		"spotSelectionTitle" : {
 			"DE" :  "Spot auswählen",
-			"EN" : ""
+			"EN" :  "Select spot"
 		},
 		"switchSpotError" : {
 			"DE" :  "Server Fehler aufgetreten. Spotwechsel fehlgeschlagen!",
-			"EN" : ""
+			"EN" :  "Server connection error. Spot could not be changed."
 		},
 		"paymentMethodLabel" : {
 			"DE" :  "Bezahlart",
-			"EN" : ""
+			"EN" :  "Payment method"
 		},
 		"choiceValErrMandatory" : {
 			"DE" :  "Bitte Wahl für {0} treffen.",
-			"EN" : ""
+			"EN" :  "Please make a choice for {0}."
 		},
 		"choiceValErrMin" : {
 			"DE" :  "Bitte mindestens {0} {1} auswählen.",
-			"EN" : ""
+			"EN" :  "Please select at least {0} {1}."
 		},
 		"choiceValErrMax" : {
-			"DE" :  "Bitte maximal  {0} {1} auswählen.",
-			"EN" : ""
+			"DE" :  "Bitte maximal {0} {1} auswählen.",
+			"EN" :  "Please do not exceed {0} {1}."
 		},
 		//requests
 		"requestMsgboxTitle" : {
 			"DE" :  "VIP Calls",
-			"EN" : ""
+			"EN" :  "VIP calls"
 		},
 		"requestDismiss" : {
 			"DE" :  "VIP Calls löschen",
-			"EN" : ""
+			"EN" :  "Cancel VIP calls"
 		},
 		"spot.filterbar.spotview" : {
 			"DE" :  "Spotansicht",
-			"EN" : ""
+			"EN" :  "Spot view"
 		},
 		"request.sort.title" : {
 			"DE" :  "Sortierung",
-			"EN" : ""
+			"EN" :  "Order"
 		},
 		"request.item.elapsedtime.mm" : {
 			"DE" :  "{0}min",
-			"EN" : ""
+			"EN" :  "{0}min"
 		},
 		"request.item.elapsedtime.hhmm" : {
 			"DE" :  "{0}:{1}h",
-			"EN" : ""
+			"EN" :  "{0}:{1}h"
 		},
 		"request.item.elapsedtime.dd" : {
 			"DE" :  ">24h",
-			"EN" : ""
+			"EN" :  ">24h"
 		},
 		"request.item.paymentrequest" : {
 			"DE" :  "\"{0}\" möchte bezahlen mittels <b>{1}</b>",
-			"EN" : ""
+			"EN" :  "\"{0}\" will pay by means of <b>{1}</b>"
 		},
 		"request.item.orderplaced" : {
 			"DE" :  "\"{0}\" möchte <b>{1}</b> bestellen",
-			"EN" : ""
+			"EN" :  "\"{0}\" has ordered <b>{1}</b>"
 		},
 		"request.item.custom" : {
 			"DE" :  "\"{0}\" hat einen <b>besonderen Wunsch</b>",
-			"EN" : ""
+			"EN" :  "\"{0}\" has added a <b>special request</b>"
 		},
 		"request.list.description" : {
 			"DE" :  "<h1>Die Listenansicht</h1>Hier werden die Kundenwünsche chronologisch aufgelistet.<br/>"+
 					"Zur Zeit sind Ihre Kunden wunschlos glücklich und haben keine Wünsche.",
-			"EN" : ""
+			"EN" :  "<h1>Show list of items</h1>Customer orders in ascending order.<br/>"+
+					"No orders available at this point in time."
 		},
 		//history
 		"history.detail.list.paging" : {
 			"DE" :  "Weitere Einträge",
-			"EN" : ""
+			"EN" :  "Further options"
 		},
 		"history.detail.title" : {
 			"DE" :  "CheckIn Details",
-			"EN" : ""
+			"EN" :  "Check-in details"
 		},
 		"history.detail.info.spot" : {
 			"DE" :  "Spot",
-			"EN" : ""
+			"EN" :  "Spot"
 		},
 		"history.detail.info.nickname" : {
 			"DE" :  "Spitzname",
-			"EN" : ""
+			"EN" :  "Alias"
 		},
 		"history.detail.info.billtime" : {
 			"DE" :  "Datum",
-			"EN" : ""
+			"EN" :  "Date"
 		},
 		"history.detail.info.billtotal" : {
 			"DE" :  "Total",
-			"EN" : ""
+			"EN" :  "Total"
 		},
 		"history.detail.list.title" : {
 			"DE" :  "Bestellungen",
-			"EN" : ""
+			"EN" :  "Orders"
 		},
 		//notifications
 
 		//payment action
 		"payment.nobill.message" : {
-			"DE" :  "Sie können erst als \"Bezahlt\" abschliessen wenn der Gast die Rechung angefordert hat oder Sie auf \"Rechnung\" gedrückt haben.",
-			"EN" : ""
+			"DE" :  "Sie können erst als \"Bezahlt\" abschliessen, wenn der Gast die Rechnung angefordert hat oder Sie auf \"Rechnung\" gedrückt haben.",
+			"EN" :  "You can complete the transaction only if customer has requested the bill or after you have pressed \"Paid\"."
 		},
 		//complete checkin action
 		//message box text when someone tries to complete a checkin which has no orders
 		"complete.noorders.message" : {
-			"DE" :  "Diese Funktion steht erst zur Verfügung wenn der Gast etwas bestellt hat.",
-			"EN" : ""
+			"DE" :  "Diese Funktion steht erst zur Verfügung, wenn der Gast etwas bestellt hat.",
+			"EN" :  "This function is available only when there is an order."
 		},
 		//message box text when someone tries to complete a checkin more than once
 		"complete.bill.message" : {
 			"DE" :  "Die Rechnung wurde bereits erstellt.",
-			"EN" : ""
+			"EN" :  "Bill has been issued."
 		},
 
 		"notification.sound.deactivate" : {
 			"DE" :  "Audio Benachrichtigung: AUS",
-			"EN" : ""
+			"EN" :  "Audio notification: OFF"
 		},
 		"notification.sound.activate" : {
 			"DE" :  "Audio Benachrichtigung: AN",
-			"EN" : ""
+			"EN" :  "Audio notification: ON"
 		},
 		"notification.sound.manual.title" : {
 			"DE" :  "Audio Benachrichtigungen",
-			"EN" : ""
+			"EN" :  "Audio notification"
 		},
 		"notification.sound.manual.msg" : {
 			"DE" :  "Möchten Sie Audio Benachrichtigungen für eintreffende Ereignisse aktivieren?",
-			"EN" : ""
+			"EN" :  "Do you want to enable alerts for incoming orders?"
 		},
 
 		//constants
 		"ORDER_PLACED" : {
 			"DE" :  "Neue Bestellung!",
-			"EN" : ""
+			"EN" :  "New order!"
 		},
 		"PLACED" : {
 			"DE" :  "Neu!",
-			"EN" : ""
+			"EN" :  "New!"
 		},
 		"CHECKEDIN" : {
 			"DE" :  "Checked-In",
-			"EN" : ""
+			"EN" :  "Checked in"
 		},
 		"PAYMENT_REQUEST" : {
 			"DE" :  "Bezahlen",
-			"EN" : ""
+			"EN" :  "Bill"
 		},
 		"CALL_WAITER" : {
 			"DE" :  "<b>{0}</b>",
-			"EN" : ""
+			"EN" :  "<b>{0}</b>"
 		},
 		//general errors
 		"error" : {
 			"DE" :  "Fehler",
-			"EN" : ""
+			"EN" :  "Error"
 		},
 		"error.critical" : {
-			"DE" :  "Entschuldigung, es trat ein Fehler auf, der nicht automatisch behoben werden konnte.<br>Die App wird neu geladen.",
-			"EN" : ""
+			"DE" :  "Entschuldigung, es trat ein Fehler auf, der nicht automatisch behoben werden konnte.<br/>Die App wird neu geladen.",
+			"EN" :  "We apologize! An error has occurred.<br/>Application is reloading."
 		},
 		"errorTitle" : {
 			"DE" :  "Fehler",
-			"EN" : ""
+			"EN" :  "Error"
 		},		
 		"errorMsg" : {
 			"DE" :  "Entschuldigung! Ein Fehler ist aufgetreten.<br/>Wir kümmern uns darum!",
-			"EN" : ""
+			"EN" :  "We apologize! An error has occurred.<br/>We'll fix it as soon as possible."
 		},
 		"errorResource" : {
 			"DE" :  "Daten konnten nicht vom Server geladen werden.",
-			"EN" : ""
+			"EN" :  "Data error... Connection to server has failed."
 		},
 		"errorPermission" : {
 			"DE" :  "Sitzung ist ungültig.",
-			"EN" : ""
+			"EN" :  "Session is invalid."
 		},
 		"errorCommunication" : {
-			"DE" :  "Es scheint zur Zeit ein Problem mit der Verbindung zu geben.<br>Bitte überprüfen Sie die Netzwerkverbindung.",
-			"EN" : ""
+			"DE" :  "Es scheint zur Zeit ein Problem mit der Verbindung zu geben.<br/>Bitte überprüfen Sie die Netzwerkverbindung.",
+			"EN" :  "Could not connect to server.<br/>Please check your network connection."
 		},
 		"errorGeneralCommunication" : {
 			"DE" :  "Beim Laden von Aktualisierungsdaten trat ein Fehler auf.<br/>Zur Sicherheit bitte neu anmelden.",
-			"EN" : ""
+			"EN" :  "Could not connect to server.<br/>Please log in again."
 		},
 		"resourceNotAvailable" : {
 			"DE" :  "Angeforderte Ressource ist nicht erreichbar.",
-			"EN" : ""
+			"EN" :  "Resource not available."
 		},
 		"channelTokenError" : {
 			"DE" :  "Updates im Hintergrund nicht funktionsfähig.",
-			"EN" : ""
+			"EN" :  "Updates have been successful."
 		},
 	}
 	}

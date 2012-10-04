@@ -7,17 +7,9 @@ Ext.define('EatSense.util.Localization', {
 		lang: null
 	},
 	/**
-	 * Contains translations.
-	 */
-	// translations : null,
-	/**
 	 * default language.
 	 */
-	defaultLang : "DE",
-	/**
-	 * Chosen language.
-	 */
-	// lang : null,
+	defaultLang : "EN",
 
 	appConfig: null,
 
@@ -26,12 +18,6 @@ Ext.define('EatSense.util.Localization', {
 		this.appConfig = EatSense.util.Configuration;
 		//get browser/system locale 
 		this.setLang(this.getLanguage());		
-		// try {
-		// 	this.setTranslations(EatSense.util.Translation.data);
-		// } catch(e) {
-		// 	console.log('translation data not loaded');
-		// 	this.setTranslations({});
-		// }
 	},
 
 	getTranslations: function() {
@@ -46,14 +32,35 @@ Ext.define('EatSense.util.Localization', {
 	 */
 	getLanguage: function() {
 		// Gets called from constructor so getters/setters don't exist at this point
-		//if a language is configured use it otherwise use browser language
-		var userLang = (this.appConfig && this.appConfig.language) ? this.appConfig.language : (navigator.language) ? navigator.language : navigator.userLanguage; 
-		console.log('browser language: '+userLang);
-		if(userLang === 'undefined'|| userLang.length == 0) {
+		//if a language is configured use it otherwise use browser language		
+		var lang = (this.appConfig && this.appConfig.language) ? this.appConfig.language : null; 
+		//http://stackoverflow.com/questions/10642737/detecting-and-applying-current-system-language-on-html-5-app-on-android
+	    if (!lang && navigator && navigator.userAgent && (lang = navigator.userAgent.match(/android.*\W(\w\w)-(\w\w)\W/i))) {
+	        lang = lang[1];
+	    }
+
+	    if (!lang && navigator) {
+	        if (navigator.language) {
+	            lang = navigator.language;
+	        } else if (navigator.browserLanguage) {
+	            lang = navigator.browserLanguage;
+	        } else if (navigator.systemLanguage) {
+	            lang = navigator.systemLanguage;
+	        } else if (navigator.userLanguage) {
+	            lang = navigator.userLanguage;
+	        }
+	        lang = lang.substr(0, 2);
+	    }
+
+		console.log('browser language: '+lang);
+		if(lang === 'undefined'|| lang.length == 0) {
 			//use default language
-			userLang = defaultLang;
+			lang = defaultLang;
 		}
-		return userLang.substring(0,2).toUpperCase();
+		//set language to make it available in the rest of the app
+		this.appConfig.language = lang.toUpperCase();
+
+		return lang.toUpperCase();
 	},
 
 	/**

@@ -1,6 +1,7 @@
 Ext.define('EatSense.view.Spot', {
 	extend: 'Ext.Panel',
-	requires: ['Ext.plugin.ListPaging', 'EatSense.view.SpotItem', 'EatSense.view.SpotDetail', 'EatSense.view.RequestItem', 'EatSense.view.HistoryItem'],
+	requires: ['Ext.plugin.ListPaging', 'EatSense.view.SpotItem', 'EatSense.view.SpotDetail', 'EatSense.view.RequestItem', 'EatSense.view.HistoryItem',
+	'Ext.SegmentedButton'],
 	xtype: 'spotcard',
 	config: {
 		title: i10n.translate('spotsTitle'),

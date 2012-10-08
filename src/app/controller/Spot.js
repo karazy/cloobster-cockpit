@@ -726,10 +726,11 @@ Ext.define('EatSense.controller.Spot', {
 						Ext.Msg.alert(i10n.translate('error'), i10n.translate('errorGeneralCommunication'), Ext.emptyFn);
 					}
 				} else if (action == "delete") {
+					
 					dirtyCheckIn = store.getById(updatedCheckIn.get('id'));
-
+					console.log('Spot.updateSpotDetailCheckInIncremental > PRE delete checkin with get(id) ' + updatedCheckIn.get('id') + ' data.id ' + updatedCheckIn.data.id);
 					if(dirtyCheckIn) {
-						console.log('delete checkin with id ' + updatedCheckIn.get('id'));
+						console.log('Spot.updateSpotDetailCheckInIncremental > POST delete checkin with id ' + updatedCheckIn.get('id'));
 						customerIndex = store.indexOf(dirtyCheckIn);
 						store.remove(dirtyCheckIn);
 						//make sure to load new request so they exist
@@ -1335,8 +1336,10 @@ Ext.define('EatSense.controller.Spot', {
 			}), appConfig.msgboxHideLongTimeout, this);
 
 		}
-		
+
+		//deselect items
 		list.deselectAll();
+		//hide dialog
 		list.getParent().hide();
 		//prevent list selection
 		return false;

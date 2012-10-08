@@ -1335,7 +1335,8 @@ Ext.define('EatSense.controller.Spot', {
 			}), appConfig.msgboxHideLongTimeout, this);
 
 		}
-
+		
+		list.deselectAll();
 		list.getParent().hide();
 		//prevent list selection
 		return false;

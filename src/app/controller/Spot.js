@@ -684,10 +684,12 @@ Ext.define('EatSense.controller.Spot', {
 				dirtyCheckIn,
 				index,
 				listElement,
+				origCheckIn = updatedCheckIn,
 				updatedCheckIn = Ext.create('EatSense.model.CheckIn', updatedCheckIn),
 				requestCtr = this.getApplication().getController('Request'),
 				customerIndex;
-				
+
+		console.log('Spot.updateSpotDetailCheckInIncremental > action=' + action + ' converted checkInId=' + updatedCheckIn.data.id + ' orig Id=' + origCheckIn.id);
 		//check if spot detail is visible and if it is the same spot the checkin belongs to
 		if(!detail.isHidden() && me.getActiveSpot()) {
 			if(updatedCheckIn.get('spotId') == me.getActiveSpot().get('id')) {
@@ -725,7 +727,7 @@ Ext.define('EatSense.controller.Spot', {
 					} else {
 						Ext.Msg.alert(i10n.translate('error'), i10n.translate('errorGeneralCommunication'), Ext.emptyFn);
 					}
-				} else if (action == "delete") {
+				} else if (action == 'delete') {
 					
 					dirtyCheckIn = store.getById(updatedCheckIn.get('id'));
 					console.log('Spot.updateSpotDetailCheckInIncremental > PRE delete checkin with get(id) ' + updatedCheckIn.get('id') + ' data.id ' + updatedCheckIn.data.id);

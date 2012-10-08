@@ -10,10 +10,12 @@ Ext.define('EatSense.model.Bill', {
 		}, {
 			name : 'billnumber',
 			type : 'string'
-		}, {
+		}, 
+		{
 			name : 'paymentMethod',
 			type : 'string'
-		}, {
+		}, 
+		{
 			name : 'total',
 			type : 'number',
 			defaultValue: 0
@@ -26,20 +28,28 @@ Ext.define('EatSense.model.Bill', {
 		}, {
 			name: 'cleared',
 			type: 'boolean'
-		}, {
+		}, 
+		{
 			name: 'checkInId'
-		} ],
-		associations : {
-			type : 'hasOne',
-			model : 'EatSense.model.PaymentMethod',
-		},
+		}
+		],
+		associations: [{
+            type: 'hasOne',
+            model: 'EatSense.model.PaymentMethod',
+            // primaryKey: 'id',
+            // associatedName: 'paymentMethod'
+		 }],
 		proxy: {
 	 		type: 'rest',
 	 		enablePagingParams: false,
 	 		url : '/b/businesses/{pathId}/bills',
 	 		reader: {
 	 			type: 'json'
-	 		}
+	 		},
+	 		// writer: new EatSense.override.CustomJsonWriter({
+	   // 			type: 'json',
+	   // 			writeAllFields: true
+	   // 		})
 	 	}
 	}
 });

@@ -2,13 +2,7 @@ Ext.define('EatSense.view.CustomerRequestDialog', {
 	extend: 'Ext.Panel',
 	xtype: 'customerrequest',
 	config: {
-		// modal: true,
-		// hideOnMaskTap: true,
 		layout: 'fit',
-		// top: '30%',
-		// right: '30%',
-		// left: '30%',
-		// bottom: '30%',
 		items: [
 		{
 				xtype: 'label',
@@ -16,13 +10,9 @@ Ext.define('EatSense.view.CustomerRequestDialog', {
 				docked: 'top',
 				cls: 'spotdetailitem-customer-label'
 		},
-		// {
-		// 	xtype: 'titlebar',
-		// 	docked: 'top',
-		// 	title: i10n.translate('requestMsgboxTitle')
-		// },
 		{
 			xtype: 'list',
+			ui: 'round',
 			store: 'requestStore',
 			itemTpl: new Ext.XTemplate('{[this.formatMessage(values)]}', {
 				formatMessage: function(values) {
@@ -34,7 +24,7 @@ Ext.define('EatSense.view.CustomerRequestDialog', {
 			allowDeselect: true,
 		},{
 			xtype: 'toolbar',
-			docked: 'bottom',
+			docked: 'top',
 			baseCls: 'spotdetail-toolbar',
 			layout: {
 				type: 'hbox',

@@ -1,3 +1,14 @@
+ /* Sencha Variables. */
+ /* General base color for style. */
+$base-color: #6699cc;
+/* Used for action buttons and active items. */
+$active-color: #ff9933; 
+
+$list-active-color: #6699cc;
+
+/* The blue cloobster color */
+$cloobster-font-color: #1E4776;
+
 @import 'sencha-touch/default/all';
 
 @include sencha-panel;
@@ -21,6 +32,8 @@
 @include pictos-iconmask('time');
 @include pictos-iconmask('volume_mute');
 @include pictos-iconmask('volume');
+/*custom icons in res folder! */
+@include pictos-iconmask('exit');
 
 @CHARSET "UTF-8";
 
@@ -30,6 +43,17 @@
 
 .font-bold {
 	font-weight: bold;
+}
+
+/* Class for dialogs like spot selection or complete checkin */
+.general-dialog {
+
+	.description {
+		background-color: #EEEEEE;
+		font-size: 0.8em;
+		text-align: center;
+	}
+
 }
 
 /* spot view */
@@ -120,12 +144,23 @@
 
 }
 
+/* Login */
 .loginbox {
-	background-color: rgb(100,100,200);	
+	background-color: $cloobster-font-color !important;
 }
 
 .loginbox-field {
 	margin-bottom: 0.5em;
+}
+
+/* Login choose business */
+.loginbox-text {
+	text-align: center;
+	color: $cloobster-font-color;
+	
+	h1 {
+		font-size: 1.2em;
+	}
 }
 
 .spotdetail {
@@ -141,9 +176,9 @@
 }
 
 .spotdetail-toolbar {
-	background-color: white;
-	border-top: 2px solid black;
-	padding-top: 3px;
+	background-color: #EEE;
+	/*border-top: 2px solid black;*/
+	/*padding-top: 3px;*/
 }
 
 .spotdetail-customer-name {
@@ -158,6 +193,10 @@
 	background-color: red;
 	float: left;
 	margin-right: 3px;
+	width: 20px;
+	height: 20px;
+	-webkit-mask-size: 20px;
+	-webkit-mask-image: url('../images/request.png');
 }
 
 .spotdetail-toolbar-button {
@@ -165,29 +204,69 @@
 	margin-left: 5px;
 }
 
+.spotdetail-status-panel {
+	background-color: #C3C3C3;
+	margin-bottom: 0.5em;
+	padding-bottom: 0.3em;
+	border-bottom-right-radius: 0.2em;
+	border-bottom-left-radius: 0.2em;
+	box-shadow: 3px 3px 0.5em 0.1em gray;
+}
+
 .spotdetail-status {
-	position: relative;
-	margin: 5px;	
-	top: 10px;	
-	/*float: left;*/
+
+	margin: 5px;
+
+	div {
+		padding: 3px;
+	}
+
+	div.key {
+		width: 120px;
+		float: left;
+		font-weight: bold;
+	}
+
+	div.value {
+		text-align: right;
+		display: inline-block;
+		/*padding: 3px;*/
+	}
+
+	div.order_placed{
+		border: 1px solid black;	
+		background-color: red;
+		/*padding: 3px;*/
+	}
+	div.payment_request{
+		border: 1px solid black;	
+		background-color: red;
+		/*padding: 3px;*/
+	}
+	div.checkedin{
+		border: 1px solid black;	
+		background-color: green;
+		/*padding: 3px;*/
+	}
+
 }
 
 .spotdetail-status .order_placed{
 	border: 1px solid black;	
 	background-color: red;
-	padding: 3px;
+	/*padding: 3px;*/
 }
 
 .spotdetail-status .payment_request{
 	border: 1px solid black;	
 	background-color: red;
-	padding: 3px;
+	/*padding: 3px;*/
 }
 
 .spotdetail-status .checkedin{
 	border: 1px solid black;	
 	background-color: green;
-	padding: 3px;
+	/*padding: 3px;*/
 }
 
 .spotdetail-statistics {
@@ -217,7 +296,7 @@
 }
 
 .spotdetailitem-customer-label {
-	background-color: white;
+	background-color: #EEEEEE;
 	text-align: center;
 	font-weight: bold;
 }

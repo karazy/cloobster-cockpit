@@ -6,17 +6,17 @@ Ext.define('EatSense.view.Login', {
 		fullscreen: true,
 		centered: true,
 		width: 400,
-		height: 320,
+		height: 340,
 		// top: '20%',
 		// left: '20%',
 		// right: '20%',
 		// bottom: '20%',
 		layout: {
 			type: 'card',
-			animation: 'fade'
+			animation: 'flip'
 		},
 		activeItem: 0,
-		floatingCls: 'loginbox',
+		cls: 'loginbox',
 		items: [
 		{
 			xtype: 'panel',
@@ -33,8 +33,14 @@ Ext.define('EatSense.view.Login', {
 					style : 'background-repeat:no-repeat; background-position:center center;',
 					height : 60,
 					width : 185,
-					cls: 'loginbox-field'
-				},	
+					// cls: 'loginbox-field'
+				},
+				{
+					xtype: 'label',
+					width: '100%',
+					html: 'Login to Cloobster Cockpit',
+					cls: 'loginbox-text'
+				},
 				{
 					xtype: 'textfield',
 					label: i10n.translate('login.field.user'),

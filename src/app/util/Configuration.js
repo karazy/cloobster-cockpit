@@ -2,13 +2,15 @@ Ext.define('EatSense.util.Configuration', {
 	alternateClassName: ['appConfig'],
 	statics: {
 		serviceUrl : '',
+		msgboxShortHideTimeout: 500,
 		msgboxHideTimeout: 1000,
 		msgboxHideLongTimeout: 1500,
 		currencyFormat: 'EURO',
 		version: 0.1,
 		//true means caching is disabled
 		disableCaching: false,
-		language: 'DE',
+		//if language is configured it will be used. otherwise system language
+		// language: 'EN',
 		channelReconnectTimeout: 15000,
 		channelReconnectTries: 20,
 		// Interval for channel ping messages.

@@ -152,7 +152,6 @@ Ext.define('EatSense.controller.Message', {
 		    }, 
 		    failure: function(response) {
 		    	if(appChannel.connectionStatus != 'CONNECTION_LOST') {
-		    		//TODO Notify user of the interrupted connection.
 		    		appChannel.setStatusHelper('CONNECTION_LOST');
 		    		appChannel.stopOnlinePing();
 		    		appChannel.clearMessageTimeout();
@@ -242,6 +241,9 @@ Ext.define('EatSense.controller.Message', {
 			this.refreshAll(false);
 		}
 	},
+	/**
+	* Show a message when connectivity problems occur.
+	*/
 	showConnectivityHint: function(message) {
 		var me =this,
 			msgBox = Ext.create('Ext.MessageBox', {

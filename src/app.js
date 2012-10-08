@@ -31,6 +31,7 @@ Ext.application({
         'EatSense.util.Localization',
         'EatSense.util.Channel',
 		//require custom types
+        'EatSense.override.CustomJsonWriter',
 		'EatSense.data.proxy.CustomRestProxy',
 		'EatSense.data.proxy.OperationImprovement',
         'EatSense.data.LockButton'],
@@ -50,8 +51,9 @@ Ext.application({
         var oldOnError = window.onerror,
             undefinedErrorCount = 0;
 
-        // Destroy the #appLoadingIndicator element
-        Ext.fly('appLoadingIndicator').destroy();
+        // Destroy the #appLoadingIndicator and #cloobsterLoadingText elements
+        Ext.fly('appLoadingWrapper').destroy();
+        // Ext.fly('cloobsterLoadingText').destroy();
 
     	console.log('launch cockpit ...');
 

@@ -20,7 +20,11 @@ Ext.define('EatSense.controller.Login', {
 		 	}
 		},		
 		refs: {
-			loginPanel: 'login',
+			loginPanel: {
+				selector: 'login',
+				xtype: 'login',
+				autoCreate: true
+			},
 			loginButton: 'login button[action=login]',
 			logoutButton: 'button[action=logout]',
 			loginField: 'textfield[name=login]',
@@ -330,11 +334,10 @@ Ext.define('EatSense.controller.Login', {
 
 		this.resetDefaultAjaxHeaders();
 
-		//TODO remove in a more reliable way!
 		//remove main view				
 		Ext.Viewport.remove(Ext.Viewport.down('main'));
-		//show main view				
-		// Ext.create('EatSense.view.Login');
+		
+		//console.log('Login.logout > Show loginview');
 		loginview.show();	
 
 	},

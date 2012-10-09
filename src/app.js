@@ -55,7 +55,7 @@ Ext.application({
         //register for software update messages
         messageCtr.on('eatSense.application', function(action, data) {
             if(action == 'update') {
-                this.confirmReload();
+                this.showApplicationUpdateMessage();
             }
         }, this);
 
@@ -133,14 +133,6 @@ Ext.application({
     */
     onUpdated: function() {
         console.log('update found');
-        this.confirmUpdate();
-    },
-    //Global utility methods
-    /**
-    * Show a confirmation window. Reload on yes.
-    * Used for Cockpit Updates.
-    */
-    confirmReload: function() {
         Ext.Msg.show({
             title: i10n.translate('update.ready'),
             message: i10n.translate('update.ready.message'),
@@ -161,6 +153,14 @@ Ext.application({
             }
         });
     },
+    /**
+    * Shows a message window explaning the update procedure to the customer.
+    *
+    */
+    showApplicationUpdateMessage: function() {
+        Ext.Msg.alert(i10n.translate('hint'), i10n.translate('update.available'));
+    },
+    //Global utility methods
     /**
     *   Gloabl handler that can be used to handle errors occuring from server requests.
     *   @param options

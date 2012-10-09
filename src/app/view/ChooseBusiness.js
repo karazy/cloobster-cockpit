@@ -20,7 +20,7 @@ Ext.define('EatSense.view.ChooseBusiness', {
 		{
 			xtype: 'list',
 			ui: 'round',
-			layout: 'fit',
+			// layout: 'fit',
 			allowDeselect: true,
 			store: 'businessStore',
 			itemTpl: new Ext.XTemplate(
@@ -36,6 +36,7 @@ Ext.define('EatSense.view.ChooseBusiness', {
 			text: i10n.translate('cancel'),
 			width: '100%',
 			// flex: 1
-		}]
+		}
+		]
 	}
 });

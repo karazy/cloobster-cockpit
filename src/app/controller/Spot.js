@@ -1707,7 +1707,7 @@ Ext.define('EatSense.controller.Spot', {
 	*/
 	infoButtonTapped: function(button) {
 
-		appHelper.showNotificationBox(i10n.translate('info'), i10n.translate('app.information', appConfig.version), "5%", "5%");
+		appHelper.showNotificationBox(i10n.translate('info'), i10n.translate('app.information', appConfig.version), "5%", "3%", true, true);
 
 	},
 	// end misc actions

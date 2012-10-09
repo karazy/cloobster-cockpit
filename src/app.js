@@ -49,11 +49,22 @@ Ext.application({
 	},
 	launch : function() {
         var oldOnError = window.onerror,
-            undefinedErrorCount = 0;
+            undefinedErrorCount = 0,
+            messageCtr = this.getApplication().getController('Message');
+
+        //register for software update messages
+        messageCtr.on('eatSense.application', function(action, data) {
+            if(action == 'update') {
+                this.showApplicationUpdateMessage();
+            }
+        }, this);
 
         // Destroy the #appLoadingIndicator and #cloobsterLoadingText elements
         Ext.fly('appLoadingWrapper').destroy();
-        // Ext.fly('cloobsterLoadingText').destroy();
+
+        //On some devices. Sometimes MsgBoxes disappear behind other floating panels.
+        //Give the message box a high zIndex to prevent hidden alerts!
+        Ext.Msg.defaultAllowedConfig.zIndex = 100;
 
     	console.log('launch cockpit ...');
 
@@ -117,6 +128,9 @@ Ext.application({
 	   	//if it fails will display the login mask
 	   	loginCtr.restoreCredentials();
 	},
+    /**
+    * Sencha update event when cache manifest indicates an update.
+    */
     onUpdated: function() {
         console.log('update found');
         Ext.Msg.show({
@@ -139,7 +153,13 @@ Ext.application({
             }
         });
     },
-
+    /**
+    * Shows a message window explaning the update procedure to the customer.
+    *
+    */
+    showApplicationUpdateMessage: function() {
+        Ext.Msg.alert(i10n.translate('hint'), i10n.translate('update.available'));
+    },
     //Global utility methods
     /**
     *   Gloabl handler that can be used to handle errors occuring from server requests.

@@ -86,6 +86,7 @@ Ext.define('EatSense.controller.Login', {
 	 	this.resetLoginFields = function() {
 	 		me.getLoginField().setValue("");
 	 		me.getPasswordField().setValue("");
+	 		me.getSavePassword().setValue(0);
 	 	};
 	},
 	/**
@@ -99,6 +100,8 @@ Ext.define('EatSense.controller.Login', {
 			spotCtr = this.getApplication().getController('Spot'),
 			messageCtr = this.getApplication().getController('Message'),
 			account = null,
+			//don't call get loginview to prevent creation
+			// loginview = this.getLoginPanel(),
 			businessId,
 			//create appState and force use of id=1 so that only one element gets stored
 			appState = Ext.create('EatSense.model.AppState', {id: '1'}),
@@ -178,12 +181,14 @@ Ext.define('EatSense.controller.Login', {
 		   	 } else {
 		   	 	//more than one local account exists. That should not happen!
 		   	 	me.clearAppState();
-		   	 	Ext.create('EatSense.view.Login');	
+		   	 	//auto creates the panel and shows it
+		   	 	me.getLoginPanel().show();	
 		   	 }
 	   	  } catch (e) {
 	   	 	console.log('Failed restoring cockpit state.');
 	   		me.clearAppState();
-	   	 	Ext.create('EatSense.view.Login');	   		
+	   	 	//auto creates the panel and shows it
+	   	 	me.getLoginPanel().show();	
 	   	 }
 	},
  	/**
@@ -203,7 +208,7 @@ Ext.define('EatSense.controller.Login', {
 			spotCtr = this.getApplication().getController('Spot'),
 			me = this,
 			errorMessage,
-			timestamp = new Date().getTime();		
+			timestamp = new Date().getTime();
 
 		if(Ext.String.trim(login).length == 0 || Ext.String.trim(password).length == 0) {
 			
@@ -300,7 +305,8 @@ Ext.define('EatSense.controller.Login', {
 			defRequestStore = Ext.data.StoreManager.lookup('defRequestStore'),			
 			spotDetail = this.getApplication().getController('Spot').getSpotDetail(),
 			business = this.getBusiness(),
-			loginview = this.getLoginPanel();
+			loginview = this.getLoginPanel(),
+			mainview;
 		
 		//make sure to close spot detail if it is still open
 		if(!spotDetail.isHidden()) {
@@ -313,7 +319,7 @@ Ext.define('EatSense.controller.Login', {
 		};
 
 		//clear stores
-		try {
+		try {			
 			spotStore.removeAll();		
 			checkInStore.removeAll();
 			areaStore.removeAll();
@@ -334,8 +340,10 @@ Ext.define('EatSense.controller.Login', {
 
 		this.resetDefaultAjaxHeaders();
 
-		//remove main view				
-		Ext.Viewport.remove(Ext.Viewport.down('main'));
+		//remove main view
+		mainview = Ext.Viewport.down('main');
+		Ext.Viewport.remove(mainview);
+		mainview.destroy();
 		
 		//console.log('Login.logout > Show loginview');
 		loginview.show();	
@@ -427,7 +435,7 @@ Ext.define('EatSense.controller.Login', {
 			appState = this.getAppState(),
 			spotCtr = this.getApplication().getController('Spot'),
 			messageCtr = this.getApplication().getController('Message'),
-			loginview = this.getLoginPanel(); 
+			loginview = this.getLoginPanel();
 
 		account.set('businessId', business.get('id'));
 		account.set('business', business.get('name'));

@@ -64,6 +64,7 @@ Ext.define('EatSense.controller.Spot', {
 				autoCreate: true
 			},
 			closeHistoryDetailButton: 'historydetailitem button[action=close]',
+			infoButton: 'main button[action=show-info]'
 		},
 
 		control : {
@@ -150,6 +151,9 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	closeHistoryDetailButton: {
 		 		tap: 'closeHistoryDetail'
+		 	},
+		 	infoButton: {
+		 		tap: 'infoButtonTapped'
 		 	}
 		},
 
@@ -217,6 +221,9 @@ Ext.define('EatSense.controller.Spot', {
 						'hideMessage':false
 					});
 			 	} else {
+			 		//clear filters, otherwise spots are not shown when logging out and switching accounts
+			 		spotStore.clearFilter(true);
+
 			 		//Create a custom tab for each service area
 			 		areaStore.each(function(area, index) {
 			 			areaFilter	= new Ext.util.Filter({
@@ -232,7 +239,7 @@ Ext.define('EatSense.controller.Spot', {
 			 				'areaFilter' : areaFilter
 			 			});
 
-			 			//atach change listener to carousel
+			 			//attach change listener to carousel
 			 			// carousel = tab.down('carousel');
 			 			// carousel.on('activeitemchange', this.spotCarouselItemChange, this);
 
@@ -349,7 +356,7 @@ Ext.define('EatSense.controller.Spot', {
 						'hideMessage':false
 					});
 			 	} else {
-			 		spotStore.clearFilter(true);					
+			 		spotStore.clearFilter(true);
 			 		spotStore.each(function(spot) {
 			 			//sets badge text depending on status
 			 			me.updateTabBadgeText(spot);
@@ -672,8 +679,11 @@ Ext.define('EatSense.controller.Spot', {
 			}			
 	},
 	/**
-	*	Updates spotdetail view when a checkIn change at this spot occurs.
-	*
+	* Updates spotdetail view when a checkIn change at this spot occurs.
+	* @param action
+	*	message action type eg. new, upadte, delete, confirm-orders
+	* @param updatedCheckIn
+	*	raw json object with new checkin data
 	*/
 	updateSpotDetailCheckInIncremental: function(action, updatedCheckIn) {
 		var		me = this,
@@ -684,13 +694,20 @@ Ext.define('EatSense.controller.Spot', {
 				dirtyCheckIn,
 				index,
 				listElement,
+				//the raw data object
+				origCheckIn = updatedCheckIn,
+				//convert to sencha model
 				updatedCheckIn = Ext.create('EatSense.model.CheckIn', updatedCheckIn),
 				requestCtr = this.getApplication().getController('Request'),
 				customerIndex;
-				
+
+		// console.log('Spot.updateSpotDetailCheckInIncremental > action=' + action + ' converted checkInId=' + updatedCheckIn.data.id + ' orig Id=' + origCheckIn.id + ' orig spotId=' + origCheckIn.spotId);
+		// console.log('Spot.updateSpotDetailCheckInIncremental > detail hidden: ' + detail.isHidden());
+		// console.log('Spot.updateSpotDetailCheckInIncremental > activeSpot: ' + me.getActiveSpot() + ' id: ' +me.getActiveSpot().get('id'));
+		// console.log('Spot.updateSpotDetailCheckInIncremental > updatedCheckIn.get("spotId"): ' + updatedCheckIn.get('spotId'));
 		//check if spot detail is visible and if it is the same spot the checkin belongs to
 		if(!detail.isHidden() && me.getActiveSpot()) {
-			if(updatedCheckIn.get('spotId') == me.getActiveSpot().get('id')) {
+			if(origCheckIn.spotId == me.getActiveSpot().get('id')) {
 				if(action == 'new') {
 					store.add(updatedCheckIn);
 					if(store.getCount() == 1) {
@@ -700,7 +717,6 @@ Ext.define('EatSense.controller.Spot', {
 					//make sure to load new request so they exist
 					requestCtr.loadRequests();
 				} else if (action == 'update' || action == 'confirm-orders') {
-					console.log('update checkin id %s with status %s', updatedCheckIn.id, updatedCheckIn.status);
 					dirtyCheckIn = store.getById(updatedCheckIn.get('id'));
 					if(dirtyCheckIn) {
 						//update existing checkin
@@ -725,12 +741,11 @@ Ext.define('EatSense.controller.Spot', {
 					} else {
 						Ext.Msg.alert(i10n.translate('error'), i10n.translate('errorGeneralCommunication'), Ext.emptyFn);
 					}
-				} else if (action == "delete") {
-					
+				} else if (action == 'delete') {					
 					dirtyCheckIn = store.getById(updatedCheckIn.get('id'));
-					console.log('Spot.updateSpotDetailCheckInIncremental > PRE delete checkin with get(id) ' + updatedCheckIn.get('id') + ' data.id ' + updatedCheckIn.data.id);
+					// console.log('Spot.updateSpotDetailCheckInIncremental > PRE delete checkin with get(id) ' + updatedCheckIn.get('id') + ' data.id ' + updatedCheckIn.data.id);
 					if(dirtyCheckIn) {
-						console.log('Spot.updateSpotDetailCheckInIncremental > POST delete checkin with id ' + updatedCheckIn.get('id'));
+						// console.log('Spot.updateSpotDetailCheckInIncremental > POST delete checkin with id ' + updatedCheckIn.get('id'));
 						customerIndex = store.indexOf(dirtyCheckIn);
 						store.remove(dirtyCheckIn);
 						//make sure to load new request so they exist
@@ -1314,7 +1329,7 @@ Ext.define('EatSense.controller.Spot', {
 				},
 				success: function(record, operation) {
 					//TODO refactor!
-					requestCtr.loadRequests();
+					// requestCtr.loadRequests();
 				},
 				failure: function(record, operation) { 
 					me.getApplication().handleServerError({
@@ -1691,6 +1706,15 @@ Ext.define('EatSense.controller.Spot', {
 			console.log('Spot.stopRequestRefreshTask > failed to stop');
 		}
 		
+	},
+	/**
+	* Tap event handler for info button.
+	* Shows a notification window.
+	*/
+	infoButtonTapped: function(button) {
+
+		appHelper.showNotificationBox(i10n.translate('info'), i10n.translate('app.information', appConfig.version), "5%", "3%", true, true);
+
 	},
 	// end misc actions
 

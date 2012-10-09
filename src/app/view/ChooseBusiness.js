@@ -3,24 +3,19 @@ Ext.define('EatSense.view.ChooseBusiness', {
 	xtype: 'choosebusiness',
 	config: {
 		layout: {
-				type: 'vbox',
-				// align: 'middle',
-				// pack: 'center'
+				type: 'vbox'
 			},
 		padding: '5',
 		items: [
 		{
 			xtype: 'label',
 			html: i10n.translate('login.choosebusiness.title'),
-			// docked: 'top',
 			cls: 'loginbox-text',
-			width: '100%',
-			// flex: 1
+			width: '100%'
 		},
 		{
 			xtype: 'list',
 			ui: 'round',
-			// layout: 'fit',
 			allowDeselect: true,
 			store: 'businessStore',
 			itemTpl: new Ext.XTemplate(
@@ -32,10 +27,8 @@ Ext.define('EatSense.view.ChooseBusiness', {
 			xtype: 'button',
 			action: 'cancel',
 			ui: 'action',
-			// docked: 'bottom',
 			text: i10n.translate('cancel'),
-			width: '100%',
-			// flex: 1
+			width: '100%'
 		}
 		]
 	}

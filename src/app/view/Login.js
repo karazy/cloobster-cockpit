@@ -7,10 +7,6 @@ Ext.define('EatSense.view.Login', {
 		centered: true,
 		width: 400,
 		height: 340,
-		// top: '20%',
-		// left: '20%',
-		// right: '20%',
-		// bottom: '20%',
 		layout: {
 			type: 'card',
 			animation: 'flip'
@@ -33,7 +29,6 @@ Ext.define('EatSense.view.Login', {
 					style : 'background-repeat:no-repeat; background-position:center center;',
 					height : 60,
 					width : 185,
-					// cls: 'loginbox-field'
 				},
 				{
 					xtype: 'label',

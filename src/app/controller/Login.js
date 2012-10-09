@@ -86,6 +86,7 @@ Ext.define('EatSense.controller.Login', {
 	 	this.resetLoginFields = function() {
 	 		me.getLoginField().setValue("");
 	 		me.getPasswordField().setValue("");
+	 		me.getSavePassword().setValue(0);
 	 	};
 	},
 	/**
@@ -99,7 +100,8 @@ Ext.define('EatSense.controller.Login', {
 			spotCtr = this.getApplication().getController('Spot'),
 			messageCtr = this.getApplication().getController('Message'),
 			account = null,
-			loginview = this.getLoginPanel(),
+			//don't call get loginview to prevent creation
+			// loginview = this.getLoginPanel(),
 			businessId,
 			//create appState and force use of id=1 so that only one element gets stored
 			appState = Ext.create('EatSense.model.AppState', {id: '1'}),
@@ -179,14 +181,14 @@ Ext.define('EatSense.controller.Login', {
 		   	 } else {
 		   	 	//more than one local account exists. That should not happen!
 		   	 	me.clearAppState();
-		   	 	// Ext.create('EatSense.view.Login');	
-		   	 	loginview.show();	
+		   	 	//auto creates the panel and shows it
+		   	 	me.getLoginPanel().show();	
 		   	 }
 	   	  } catch (e) {
 	   	 	console.log('Failed restoring cockpit state.');
 	   		me.clearAppState();
-	   	 	// Ext.create('EatSense.view.Login');
-	   	 	loginview.show();	
+	   	 	//auto creates the panel and shows it
+	   	 	me.getLoginPanel().show();	
 	   	 }
 	},
  	/**
@@ -206,7 +208,7 @@ Ext.define('EatSense.controller.Login', {
 			spotCtr = this.getApplication().getController('Spot'),
 			me = this,
 			errorMessage,
-			timestamp = new Date().getTime();		
+			timestamp = new Date().getTime();
 
 		if(Ext.String.trim(login).length == 0 || Ext.String.trim(password).length == 0) {
 			

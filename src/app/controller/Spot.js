@@ -679,8 +679,11 @@ Ext.define('EatSense.controller.Spot', {
 			}			
 	},
 	/**
-	*	Updates spotdetail view when a checkIn change at this spot occurs.
-	*
+	* Updates spotdetail view when a checkIn change at this spot occurs.
+	* @param action
+	*	message action type eg. new, upadte, delete, confirm-orders
+	* @param updatedCheckIn
+	*	raw json object with new checkin data
 	*/
 	updateSpotDetailCheckInIncremental: function(action, updatedCheckIn) {
 		var		me = this,
@@ -691,7 +694,9 @@ Ext.define('EatSense.controller.Spot', {
 				dirtyCheckIn,
 				index,
 				listElement,
+				//the raw data object
 				origCheckIn = updatedCheckIn,
+				//convert to sencha model
 				updatedCheckIn = Ext.create('EatSense.model.CheckIn', updatedCheckIn),
 				requestCtr = this.getApplication().getController('Request'),
 				customerIndex;
@@ -702,7 +707,7 @@ Ext.define('EatSense.controller.Spot', {
 		console.log('Spot.updateSpotDetailCheckInIncremental > updatedCheckIn.get("spotId"): ' + updatedCheckIn.get('spotId'));
 		//check if spot detail is visible and if it is the same spot the checkin belongs to
 		if(!detail.isHidden() && me.getActiveSpot()) {
-			if(updatedCheckIn.get('spotId') == me.getActiveSpot().get('id')) {
+			if(origCheckIn.spotId == me.getActiveSpot().get('id')) {
 				if(action == 'new') {
 					store.add(updatedCheckIn);
 					if(store.getCount() == 1) {
@@ -737,8 +742,7 @@ Ext.define('EatSense.controller.Spot', {
 					} else {
 						Ext.Msg.alert(i10n.translate('error'), i10n.translate('errorGeneralCommunication'), Ext.emptyFn);
 					}
-				} else if (action == 'delete') {
-					
+				} else if (action == 'delete') {					
 					dirtyCheckIn = store.getById(updatedCheckIn.get('id'));
 					console.log('Spot.updateSpotDetailCheckInIncremental > PRE delete checkin with get(id) ' + updatedCheckIn.get('id') + ' data.id ' + updatedCheckIn.data.id);
 					if(dirtyCheckIn) {

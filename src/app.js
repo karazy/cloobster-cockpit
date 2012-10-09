@@ -68,6 +68,18 @@ Ext.application({
 
     	console.log('launch cockpit ...');
 
+        if(Ext.os.deviceType.toLowerCase() == 'desktop') {
+            Ext.create('Ext.MessageBox', {
+                modal: false,
+                // 'title': i10n.translate('hint'),
+                'message' : i10n.translate('general.help.scrolling'),
+                buttons: [],
+                top: '10px',
+                right: '80px',
+                style: 'font-size:0.6em;'
+            }).show();
+        }
+
         if(appConfig.debug) {        
             (function() {
                 var exLog = console.log,

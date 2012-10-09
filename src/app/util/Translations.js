@@ -67,6 +67,10 @@ Ext.define('EatSense.util.Translations',{
 			"DE" :  "cloobster Cockpit Version: {0}",
 			"EN" :  "cloobster Cockpit Version: {0}"
 		},
+		"general.help.scrolling" : {
+			"DE" :  "Kein Touch Gerät: Zum scrollen Maustaste gedrückt halten und ziehen!",
+			"EN" :  "No touch device: To scroll, hold mouse down and drag!"
+		},
 		//tabbar
 		"spotsTitle" : {
 			"DE" :  "Spots",

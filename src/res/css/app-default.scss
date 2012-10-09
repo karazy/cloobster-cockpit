@@ -1,3 +1,14 @@
+ /* Sencha Variables. */
+ /* General base color for style. */
+$base-color: #6699cc;
+/* Used for action buttons and active items. */
+$active-color: #ff9933; 
+
+$list-active-color: #6699cc;
+
+/* The blue cloobster color */
+$cloobster-font-color: #1E4776;
+
 @import 'sencha-touch/default/all';
 
 @include sencha-panel;
@@ -21,6 +32,9 @@
 @include pictos-iconmask('time');
 @include pictos-iconmask('volume_mute');
 @include pictos-iconmask('volume');
+@include pictos-iconmask('info_plain2');
+/*custom icons in res folder! */
+@include pictos-iconmask('exit');
 
 @CHARSET "UTF-8";
 
@@ -131,12 +145,23 @@
 
 }
 
+/* Login */
 .loginbox {
-	background-color: rgb(100,100,200);	
+	background-color: $cloobster-font-color !important;
 }
 
 .loginbox-field {
 	margin-bottom: 0.5em;
+}
+
+/* Login choose business */
+.loginbox-text {
+	text-align: center;
+	color: $cloobster-font-color;
+	
+	h1 {
+		font-size: 1.2em;
+	}
 }
 
 .spotdetail {

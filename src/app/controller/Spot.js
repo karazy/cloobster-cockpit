@@ -56,8 +56,7 @@ Ext.define('EatSense.controller.Spot', {
 			requestDataview: 'spotcard #requestDataview',
 			showSpotViewButton: 'spotcard button[action=show-spotview]',
 			showRequestViewButton: 'spotcard button[action=show-requestview]',
-			forwardRequestViewButton: 'spotcard button[action=show-forward-requestview]',
-			backHistoryViewButton: 'spotcard button[action=show-back-historyview]',
+			showHistoryViewButton: 'spotcard button[action=show-historyview]',
 			historyDataview: 'spotcard #historyDataview',
 			historyDetail: {
 				selector: 'historydetailitem',
@@ -65,6 +64,7 @@ Ext.define('EatSense.controller.Spot', {
 				autoCreate: true
 			},
 			closeHistoryDetailButton: 'historydetailitem button[action=close]',
+			infoButton: 'main button[action=show-info]'
 		},
 
 		control : {
@@ -137,6 +137,9 @@ Ext.define('EatSense.controller.Spot', {
 		 	showRequestViewButton: {
 		 		tap: 'showRequestView'
 		 	},
+		 	showHistoryViewButton: {
+		 		tap: 'showHistoryView'
+		 	},
 		 	forwardRequestViewButton: {
 		 		tap: 'forwardRequestView'
 		 	},
@@ -148,6 +151,9 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	closeHistoryDetailButton: {
 		 		tap: 'closeHistoryDetail'
+		 	},
+		 	infoButton: {
+		 		tap: 'infoButtonTapped'
 		 	}
 		},
 
@@ -173,6 +179,9 @@ Ext.define('EatSense.controller.Spot', {
 		//refresh all is only active when push communication is out of order
 		messageCtr.on('eatSense.refresh-all', this.loadSpots, this);
 
+		//update request view when pus communication isn't working
+		messageCtr.on('eatSense.refresh-all', this.updateRequests, this);
+
 		messageCtr.on('eatSense.business', this.updateBusinessIncremental, this);
 
 		loginCtr.on('eatSense.read-only', this.lockActions, this);
@@ -197,11 +206,11 @@ Ext.define('EatSense.controller.Spot', {
 		var me = this,
 			areaStore = Ext.StoreManager.lookup('areaStore'),
 			spotStore = Ext.StoreManager.lookup('spotStore'),
-			defRequestStore = Ext.StoreManager.lookup('defRequestStore'),
 			tabPanel = this.getMainview(),
 			tab,
 			carousel,
-			areaFilter;
+			areaFilter,
+			delayedTask;
 
 		areaStore.load({
 			callback: function(records, operation, success) {
@@ -212,6 +221,9 @@ Ext.define('EatSense.controller.Spot', {
 						'hideMessage':false
 					});
 			 	} else {
+			 		//clear filters, otherwise spots are not shown when logging out and switching accounts
+			 		spotStore.clearFilter(true);
+
 			 		//Create a custom tab for each service area
 			 		areaStore.each(function(area, index) {
 			 			areaFilter	= new Ext.util.Filter({
@@ -227,7 +239,7 @@ Ext.define('EatSense.controller.Spot', {
 			 				'areaFilter' : areaFilter
 			 			});
 
-			 			//atach change listener to carousel
+			 			//attach change listener to carousel
 			 			// carousel = tab.down('carousel');
 			 			// carousel.on('activeitemchange', this.spotCarouselItemChange, this);
 
@@ -243,15 +255,7 @@ Ext.define('EatSense.controller.Spot', {
 			 		me.loadRequests();
 			 		me.loadHistory();
 
-			 		//update elapsed time in request view
-			 		var task = function(delay) {
-						Ext.create('Ext.util.DelayedTask', function() {
-			    			me.getMainview().getActiveItem().down('#requestDataview').refresh();
-			    			task(delay);
-						}).delay(delay);
-					}
-		
-					task(appConfig.requestTimeCalcRefreshInterval);
+			 		me.startRequestRefreshTask();
 			 	}			
 			 }
 		});
@@ -271,7 +275,7 @@ Ext.define('EatSense.controller.Spot', {
 		store.load({
 			params: {
 				'areaId' : this.getActiveArea().getId(),
-				//simply load everything
+				//don't filter
 				// 'type': ['ORDER', 'BILL']
 			},
 			callback: function(records, operation, success) {
@@ -284,7 +288,6 @@ Ext.define('EatSense.controller.Spot', {
 						me.getMainview().getActiveItem().down('#requestListDescPanel').setHidden(false);
 					};
 					
-					// dataview.refresh();
 				} else {
 					me.getApplication().handleServerError({
 						'error': operation.error, 
@@ -353,7 +356,7 @@ Ext.define('EatSense.controller.Spot', {
 						'hideMessage':false
 					});
 			 	} else {
-			 		spotStore.clearFilter(true);					
+			 		spotStore.clearFilter(true);
 			 		spotStore.each(function(spot) {
 			 			//sets badge text depending on status
 			 			me.updateTabBadgeText(spot);
@@ -463,13 +466,7 @@ Ext.define('EatSense.controller.Spot', {
 	*/
 	showCustomerDetail: function(dataview, record, options) {
 		var me = this,
-			loginCtr = this.getApplication().getController('Login'),
-			orderStore = Ext.StoreManager.lookup('orderStore'),
-			billStore = Ext.StoreManager.lookup('billStore'),				
-			detail = me.getSpotDetail(),
-			restaurantId = loginCtr.getAccount().get('businessId'),
-			bill,
-			paidButton = this.getPaidSpotDetailButton();
+			loginCtr = this.getApplication().getController('Login');
 		
 		if(!record) {
 			return;
@@ -485,6 +482,7 @@ Ext.define('EatSense.controller.Spot', {
 	/**
 	* @private
 	* Loads all checkins for selected spot.
+	* This method is only active during refresh-all.
 	*/
 	refreshActiveSpotCheckIns: function() {
 		var me = this,
@@ -681,8 +679,11 @@ Ext.define('EatSense.controller.Spot', {
 			}			
 	},
 	/**
-	*	Updates spotdetail view when a checkIn change at this spot occurs.
-	*
+	* Updates spotdetail view when a checkIn change at this spot occurs.
+	* @param action
+	*	message action type eg. new, upadte, delete, confirm-orders
+	* @param updatedCheckIn
+	*	raw json object with new checkin data
 	*/
 	updateSpotDetailCheckInIncremental: function(action, updatedCheckIn) {
 		var		me = this,
@@ -693,13 +694,20 @@ Ext.define('EatSense.controller.Spot', {
 				dirtyCheckIn,
 				index,
 				listElement,
+				//the raw data object
+				origCheckIn = updatedCheckIn,
+				//convert to sencha model
 				updatedCheckIn = Ext.create('EatSense.model.CheckIn', updatedCheckIn),
 				requestCtr = this.getApplication().getController('Request'),
 				customerIndex;
-				
+
+		console.log('Spot.updateSpotDetailCheckInIncremental > action=' + action + ' converted checkInId=' + updatedCheckIn.data.id + ' orig Id=' + origCheckIn.id + ' orig spotId=' + origCheckIn.spotId);
+		console.log('Spot.updateSpotDetailCheckInIncremental > detail hidden: ' + detail.isHidden());
+		console.log('Spot.updateSpotDetailCheckInIncremental > activeSpot: ' + me.getActiveSpot() + ' id: ' +me.getActiveSpot().get('id'));
+		console.log('Spot.updateSpotDetailCheckInIncremental > updatedCheckIn.get("spotId"): ' + updatedCheckIn.get('spotId'));
 		//check if spot detail is visible and if it is the same spot the checkin belongs to
 		if(!detail.isHidden() && me.getActiveSpot()) {
-			if(updatedCheckIn.get('spotId') == me.getActiveSpot().get('id')) {
+			if(origCheckIn.spotId == me.getActiveSpot().get('id')) {
 				if(action == 'new') {
 					store.add(updatedCheckIn);
 					if(store.getCount() == 1) {
@@ -734,11 +742,11 @@ Ext.define('EatSense.controller.Spot', {
 					} else {
 						Ext.Msg.alert(i10n.translate('error'), i10n.translate('errorGeneralCommunication'), Ext.emptyFn);
 					}
-				} else if (action == "delete") {
+				} else if (action == 'delete') {					
 					dirtyCheckIn = store.getById(updatedCheckIn.get('id'));
-
+					console.log('Spot.updateSpotDetailCheckInIncremental > PRE delete checkin with get(id) ' + updatedCheckIn.get('id') + ' data.id ' + updatedCheckIn.data.id);
 					if(dirtyCheckIn) {
-						console.log('delete checkin with id ' + updatedCheckIn.get('id'));
+						console.log('Spot.updateSpotDetailCheckInIncremental > POST delete checkin with id ' + updatedCheckIn.get('id'));
 						customerIndex = store.indexOf(dirtyCheckIn);
 						store.remove(dirtyCheckIn);
 						//make sure to load new request so they exist
@@ -1322,7 +1330,7 @@ Ext.define('EatSense.controller.Spot', {
 				},
 				success: function(record, operation) {
 					//TODO refactor!
-					requestCtr.loadRequests();
+					// requestCtr.loadRequests();
 				},
 				failure: function(record, operation) { 
 					me.getApplication().handleServerError({
@@ -1345,6 +1353,9 @@ Ext.define('EatSense.controller.Spot', {
 
 		}
 
+		//deselect items
+		list.deselectAll();
+		//hide dialog
 		list.getParent().hide();
 		//prevent list selection
 		return false;
@@ -1354,23 +1365,18 @@ Ext.define('EatSense.controller.Spot', {
 	* only spots and requests of this area are shown.
 	*/
 	areaChanged: function(container, newTab, oldTab) {
-		var spotStore = Ext.StoreManager.lookup('spotStore'),
-			defRequestStore = Ext.StoreManager.lookup('defRequestStore');
+		var spotStore = Ext.StoreManager.lookup('spotStore');
 
 		console.log('tab changed');
 		if(!oldTab || newTab.getId() != oldTab.getId()) {
 			if(spotStore.getFilters().length > 0 && oldTab && oldTab.getAreaFilter()) {
 				spotStore.getData().removeFilters([oldTab.getAreaFilter()]);
 			};
-			// if(defRequestStore.getFilters().length > 0 && oldTab && oldTab.getAreaFilter()) {
-			// 	defRequestStore.getData().removeFilters([oldTab.getAreaFilter()]);
-			// };
 
 			spotStore.filter(newTab.getAreaFilter());
-			// defRequestStore.filter(newTab.getAreaFilter());
 			//Bug? Call filter again, because sometimes it isn't filtered directly.
 			spotStore.filter();
-			// defRequestStore.filter();
+
 			this.setActiveArea(newTab.getArea());
 			this.updateRequests();
 			this.loadHistory();
@@ -1565,8 +1571,12 @@ Ext.define('EatSense.controller.Spot', {
 	*
 	*/
 	showSpotView: function() {
-		var container = this.getMainview().getActiveItem();
+		var container = this.getMainview().getActiveItem(),
+			spotFilterButton = container.down('button[action=show-filter]'),
+			requestSortButton = container.down('button[action=show-request-sort]');;
 		
+		spotFilterButton.show();
+		requestSortButton.hide();
 		// container.getLayout().setAnimation({
 		// 	type : 'slide',
 		// 	direction : 'right'
@@ -1581,8 +1591,12 @@ Ext.define('EatSense.controller.Spot', {
 	showRequestView: function() {
 		var me = this,
 			container = this.getMainview().getActiveItem(),
-			requestDataview = this.getRequestDataview();
+			requestDataview = this.getRequestDataview(),
+			spotFilterButton = container.down('button[action=show-filter]'),
+			requestSortButton = container.down('button[action=show-request-sort]');
 
+		spotFilterButton.hide();
+		requestSortButton.show();
 		// container.getLayout().setAnimation({
 		// 	type : 'slide',
 		// 	direction : 'left'
@@ -1591,34 +1605,18 @@ Ext.define('EatSense.controller.Spot', {
 		container.setActiveItem(1);
 	},
 	/**
-	* Action for request view forward button.
+	* Action for show history view button.
 	*
 	*/
-	forwardRequestView: function() {
-		var me = this,
-			container = this.getMainview().getActiveItem();
-
-		// container.getLayout().setAnimation({
-		// 	type : 'slide',
-		// 	direction : 'left'
-		// });
-		//switch to request view
-		container.setActiveItem(2);
-	},
-	/**
-	* Action for history view back button.
-	*/
-	backHistoryView: function() {
+	showHistoryView: function() {
 		var me = this,
 			container = this.getMainview().getActiveItem(),
-			requestDataview = this.getRequestDataview();
+			spotFilterButton = container.down('button[action=show-filter]'),
+			requestSortButton = container.down('button[action=show-request-sort]');
 
-		// container.getLayout().setAnimation({
-		// 	type : 'slide',
-		// 	direction : 'right'
-		// });
-		//switch to request view
-		container.setActiveItem(1);
+		spotFilterButton.hide();
+		requestSortButton.hide();
+		container.setActiveItem(2);
 	},
 	/**
 	* Filter method.
@@ -1670,7 +1668,55 @@ Ext.define('EatSense.controller.Spot', {
 			console.log(e);
 		}
 	},
+	/**
+	* Start a task running all appConfig.requestTimeCalcRefreshInterval ms
+	* which refreshes elapsed time for request items in request view.
+	*
+	*/
+	startRequestRefreshTask: function() {
+		var me = this,
+			task;
+		//update elapsed time in request view
+ 		task = function(delay) {
 
+			delayedTask = Ext.create('Ext.util.DelayedTask', function() {
+				if(me.getMainview().getActiveItem() && me.getMainview().getActiveItem().down('#requestDataview')) {
+					// console.log('Spot.loadAreas > run task');
+					me.getMainview().getActiveItem().down('#requestDataview').refresh();
+				} else {
+					console.log('Spot.loadAreas > could not refresh request view times. Try again in ' + e);
+				}
+    			task(delay);
+			});
+
+			me.setRefreshRequestTask(delayedTask);
+
+			delayedTask.delay(delay);
+		}
+
+		task(appConfig.requestTimeCalcRefreshInterval);
+	},
+	/**
+	* Stops the request refresh task.
+	* @see Spot.startRequestRefreshTask
+	*/
+	stopRequestRefreshTask: function() {
+		try {
+			this.getRefreshRequestTask().cancel();
+		} catch(e) {
+			console.log('Spot.stopRequestRefreshTask > failed to stop');
+		}
+		
+	},
+	/**
+	* Tap event handler for info button.
+	* Shows a notification window.
+	*/
+	infoButtonTapped: function(button) {
+
+		appHelper.showNotificationBox(i10n.translate('info'), i10n.translate('app.information', appConfig.version), "5%", "3%", true, true);
+
+	},
 	// end misc actions
 
 	//start complete checkin logic
@@ -1727,7 +1773,8 @@ Ext.define('EatSense.controller.Spot', {
 			loginCtr = this.getApplication().getController('Login'),
 			errMsg,
 			orderStore = Ext.StoreManager.lookup('orderStore'),
-			logPrefix = 'Spot.showCompleteCheckInDialog > ';
+			logPrefix = 'Spot.showCompleteCheckInDialog > ',
+			notificationCtr = this.getApplication().getController('Notification');
 
 
 		list.deselectAll();
@@ -1777,6 +1824,10 @@ Ext.define('EatSense.controller.Spot', {
 					// delete billRawData.paymentMethod.bill_id;
 					// delete billRawData.paymentMethod.xindex;
 
+					if(notificationCtr) {
+						notificationCtr.addCompletedCheckIn(me.getActiveCustomer().get('id'));
+					}
+
 					//do it the manual way
 					Ext.Ajax.request({
 						url: appConfig.serviceUrl+'/b/businesses/'+loginCtr.getAccount().get('businessId')+'/bills/',
@@ -1786,9 +1837,9 @@ Ext.define('EatSense.controller.Spot', {
 			    	    success: function(response) {
 			    	    				    	    	
 			    	    },
-			    	    failure: function(response) {
-			    	    	// completeButton.setDisabled(false);
-
+			    	    failure: function(response) {			    	    	
+			    	    	//422 Unprocessable Entity (WebDAV; RFC 4918)
+							//The request was well-formed but was unable to be followed due to semantic errors
 			    	    	if(response.status == 422) {
 			    	    		
 			    	    		errMsg = i10n.translate('completecheckin.error.noorders');
@@ -1802,6 +1853,8 @@ Ext.define('EatSense.controller.Spot', {
 								'forceLogout': {403: true},
 								'message': errMsg || null
 							});
+
+							notificationCtr.removeCompletedCheckIn(me.getActiveCustomer().get('id'));
 				   	    }
 					});
 					

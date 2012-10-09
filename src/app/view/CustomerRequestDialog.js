@@ -24,7 +24,7 @@ Ext.define('EatSense.view.CustomerRequestDialog', {
 			allowDeselect: true,
 		},{
 			xtype: 'toolbar',
-			docked: 'bottom',
+			docked: 'top',
 			baseCls: 'spotdetail-toolbar',
 			layout: {
 				type: 'hbox',

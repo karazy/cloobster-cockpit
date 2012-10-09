@@ -4,6 +4,23 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Cloobster</title>
 <style type="text/css">
+        
+      #appLoadingWrapper {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        margin-top: -15px;
+      }
+
+       #cloobsterLoadingText {
+          color: #1E4776;
+          font-size: 20px;
+          font-weight: bold;
+          position: relative;
+          top: 15px;
+          width: 100%;
+          text-align: center;
+       }
         /**
         * Example of an initial loading indicator.
         * It is recommended to keep this as minimal as possible to provide instant feedback
@@ -11,9 +28,7 @@
         */
 
        #appLoadingIndicator {
-           position: absolute;
-           top: 50%;
-           margin-top: -15px;
+           position: relative;           
            text-align: center;
            width: 100%;
            height: 30px;
@@ -24,7 +39,7 @@
        }
 
        #appLoadingIndicator > * {
-           background-color: #000000;
+           background-color: #ff9933;
            display: inline-block;
            height: 30px;
            -webkit-border-radius: 15px;
@@ -44,16 +59,20 @@
                opacity: 0.8
            }
        }
+
 </style>
 <script type="text/javascript" charset="utf-8" src="/_ah/channel/jsapi"></script>
 <!-- The line below must be kept intact for Sencha Command to build your application -->
 <script id="microloader" type="text/javascript" src="sdk/microloader/development.js"></script>
 </head>
 <body>
+  <div id="appLoadingWrapper">
     <div id="appLoadingIndicator">
         <div></div>
         <div></div>
         <div></div>
     </div>
+    <div id="cloobsterLoadingText">Loading Cloobster Cockpit ...</div>
+  </div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 Ext.define('EatSense.view.Spot', {
 	extend: 'Ext.Panel',
-	requires: ['Ext.plugin.ListPaging', 'EatSense.view.SpotItem', 'EatSense.view.SpotDetail', 'EatSense.view.RequestItem', 'EatSense.view.HistoryItem'],
+	requires: ['Ext.plugin.ListPaging', 'EatSense.view.SpotItem', 'EatSense.view.SpotDetail', 'EatSense.view.RequestItem', 'EatSense.view.HistoryItem',
+	'Ext.SegmentedButton'],
 	xtype: 'spotcard',
 	config: {
 		title: i10n.translate('spotsTitle'),
@@ -17,71 +18,51 @@ Ext.define('EatSense.view.Spot', {
 		areaFilter : null,
 		activeItem : 0,
 		items: [
-						// {
-						// 	xtype: 'titlebar',
-						// 	docked: 'top',
-						// 	// title: i10n.translate('spot.filterbar.spotview'),
-						// 	items: [
-							
-						// 	{
-						// 		xtype: 'segmentedbutton',
-						// 		items: [
-						// 			{	
-						// 				text: i10n.translate('spot.filterbar.requestview'),
-						// 				// action: 'show-requestview',
-						// 			},
-						// 			{
-						// 				text: i10n.translate('spot.filterbar.spotview'),
-						// 				// action: 'show-spotview',
-						// 			},
-						// 			{
-						// 				text: i10n.translate('spot.filterbar.historyview'),
-						// 			}
-						// 		]
-						// 	},
-						// 	{	
-						// 		text: i10n.translate('spot.filter.title'),
-						// 		action: 'show-filter',
-						// 		align: 'right',
-						// 		ui: 'action'
-						// 	},
-						// 	{	
-						// 		text: i10n.translate('request.sort.title'),
-						// 		action: 'show-request-sort',
-						// 		align: 'right',
-						// 		ui: 'action'
-						// 	}						
-						// 	]
-						// },
-					{
-						xtype: 'panel',
-						layout: 'fit',
-						items: [
 						{
 							xtype: 'titlebar',
 							docked: 'top',
-							title: i10n.translate('spot.filterbar.spotview'),
+							// title: i10n.translate('spot.filterbar.spotview'),
 							items: [
+							
 							{
-								text: i10n.translate('spot.filterbar.requestview'),
-								// ui: 'forward',
-								action: 'show-requestview',
-								align: 'left'
-							},
-							{
-								text: i10n.translate('spot.filterbar.historyview'),
-								// ui: 'forward',
-								action: 'show-forward-requestview',
-								align: 'left'
+								xtype: 'segmentedbutton',
+								ui: 'action',
+								items: [									
+									{
+										text: i10n.translate('spot.filterbar.spotview'),
+										action: 'show-spotview',
+										pressed: true
+									},
+									{	
+										text: i10n.translate('spot.filterbar.requestview'),
+										action: 'show-requestview'
+
+									},
+									{
+										text: i10n.translate('spot.filterbar.historyview'),
+										action: 'show-historyview'
+									}
+								]
 							},
 							{	
 								text: i10n.translate('spot.filter.title'),
 								action: 'show-filter',
 								align: 'right',
 								ui: 'action'
-							}					
+							},
+							{	
+								text: i10n.translate('request.sort.title'),
+								action: 'show-request-sort',
+								align: 'right',
+								ui: 'action',
+								hidden: true
+							}						
 							]
 						},
+					{
+						xtype: 'panel',
+						layout: 'fit',
+						items: [
 						{
 							xtype: 'dataview',
 							itemId: 'spotsview',
@@ -97,31 +78,6 @@ Ext.define('EatSense.view.Spot', {
 						xtype: 'panel',
 						layout: 'fit',
 						items: [
-						{
-							xtype: 'titlebar',
-							docked: 'top',
-							title: i10n.translate('spot.filterbar.requestview'),
-							items: [
-							{
-								text: i10n.translate('spot.filterbar.spotview'),
-								ui: 'normal',
-								action: 'show-spotview',
-								align: 'left'
-							},
-							{
-								text: i10n.translate('spot.filterbar.historyview'),
-								ui: 'normal',
-								action: 'show-forward-requestview',
-								align: 'left'
-							},
-							{	
-								text: i10n.translate('request.sort.title'),
-								action: 'show-request-sort',
-								align: 'right',
-								ui: 'action'
-							}							
-							]
-						},
 						{
 							xtype: 'panel',
 							itemId: 'requestListDescPanel',
@@ -146,25 +102,6 @@ Ext.define('EatSense.view.Spot', {
 						xtype: 'panel',
 						layout: 'fit',
 						items: [
-						{
-							xtype: 'titlebar',
-							docked: 'top',
-							title: i10n.translate('spot.filterbar.historyview'),
-							items: [
-							{
-								text: i10n.translate('spot.filterbar.spotview'),
-								ui: 'normal',
-								action: 'show-spotview',
-								align: 'left'
-							},
-							{
-								text: i10n.translate('spot.filterbar.requestview'),
-								ui: 'normal',
-								action: 'show-back-historyview',
-								align: 'left'
-							}
-							]
-						},
 						{
 							xtype: 'dataview',
 							itemId: 'historyDataview',

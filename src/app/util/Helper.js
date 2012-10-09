@@ -92,18 +92,23 @@ Ext.define('EatSense.util.Helper', {
 	*
 	*
 	*/
-	showNotificationBox: function(title, message, topPos, leftPos) {
+	showNotificationBox: function(title, message, topPos, leftPos, toggleTop, toggleLeft) {
 		var me =this,
-			msgBox = Ext.create('Ext.MessageBox');
+			msgBox,
+			config = {
+				modal: false,
+				'title': i10n.translate(title),
+				'message' : i10n.translate(message),
+				buttons: []
+			},
+			topOrBottom = (toggleTop) ? 'bottom' : 'top',
+			leftOrRight = (toggleLeft) ? 'right' : 'left';
 
-		msgBox = Ext.create('Ext.MessageBox', {
-			modal: false,
-			'title': i10n.translate(title),
-			'message' : i10n.translate(message),
-			buttons: [],
-			top: topPos,
-			left: leftPos
-		});
+		config[topOrBottom] = topPos;
+		config[leftOrRight] = leftPos;
+
+
+		msgBox = Ext.create('Ext.MessageBox', config);
 
 		// msgBox.showBy(this.getActivateSoundButton(), "tl-tr?");
 		msgBox.show();

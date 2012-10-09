@@ -225,7 +225,7 @@ Ext.define('EatSense.controller.Message', {
 			statusLabel.setLabelCls('status-indicator-'+connectionStatus);
 		}		
 
-		if((previousStatus == 'DISCONNECTED' || previousStatus == 'RECONNECT') && connectionStatus == 'ONLINE') {
+		if((previousStatus != 'INITIALIZING') && connectionStatus == 'ONLINE') {
 			console.log('handleStatus: back online ... refresh all data');
 			this.fireEvent(this.getEvtPrefix()+'.refresh-all');
 			this.refreshAll(false);
@@ -241,6 +241,9 @@ Ext.define('EatSense.controller.Message', {
 			this.refreshAll(false);
 		}
 	},
+	/**
+	* Show a message when connectivity problems occur.
+	*/
 	showConnectivityHint: function(message) {
 		var me =this,
 			msgBox = Ext.create('Ext.MessageBox', {

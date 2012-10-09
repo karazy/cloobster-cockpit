@@ -13,14 +13,18 @@ Ext.define('EatSense.controller.Login', {
 				tap: 'showLogoutDialog'
 			},
 		 	businessList: {
-		 		itemtap: 'chooseBusiness'
+		 		select: 'chooseBusiness'
 		 	},
 		 	cancelLoginButton: {
 	 			tap: 'cancelLogin'
 		 	}
 		},		
 		refs: {
-			loginPanel: 'login',
+			loginPanel: {
+				selector: 'login',
+				xtype: 'login',
+				autoCreate: true
+			},
 			loginButton: 'login button[action=login]',
 			logoutButton: 'button[action=logout]',
 			loginField: 'textfield[name=login]',
@@ -82,6 +86,7 @@ Ext.define('EatSense.controller.Login', {
 	 	this.resetLoginFields = function() {
 	 		me.getLoginField().setValue("");
 	 		me.getPasswordField().setValue("");
+	 		me.getSavePassword().setValue(0);
 	 	};
 	},
 	/**
@@ -95,6 +100,8 @@ Ext.define('EatSense.controller.Login', {
 			spotCtr = this.getApplication().getController('Spot'),
 			messageCtr = this.getApplication().getController('Message'),
 			account = null,
+			//don't call get loginview to prevent creation
+			// loginview = this.getLoginPanel(),
 			businessId,
 			//create appState and force use of id=1 so that only one element gets stored
 			appState = Ext.create('EatSense.model.AppState', {id: '1'}),
@@ -174,12 +181,14 @@ Ext.define('EatSense.controller.Login', {
 		   	 } else {
 		   	 	//more than one local account exists. That should not happen!
 		   	 	me.clearAppState();
-		   	 	Ext.create('EatSense.view.Login');	
+		   	 	//auto creates the panel and shows it
+		   	 	me.getLoginPanel().show();	
 		   	 }
 	   	  } catch (e) {
 	   	 	console.log('Failed restoring cockpit state.');
 	   		me.clearAppState();
-	   	 	Ext.create('EatSense.view.Login');	   		
+	   	 	//auto creates the panel and shows it
+	   	 	me.getLoginPanel().show();	
 	   	 }
 	},
  	/**
@@ -193,17 +202,25 @@ Ext.define('EatSense.controller.Login', {
 		console.log('login');
 
 		var me = this,
+			loginview = this.getLoginPanel(),
 			login = this.getLoginField().getValue(),
 			password = this.getPasswordField().getValue(),				
 			spotCtr = this.getApplication().getController('Spot'),
 			me = this,
-			errorMessage;
+			errorMessage,
+			timestamp = new Date().getTime();
 
 		if(Ext.String.trim(login).length == 0 || Ext.String.trim(password).length == 0) {
 			
 			Ext.Msg.alert(i10n.translate('error'), i10n.translate('needCredentials')); 
 			return;
 		}
+
+		loginview.setMasked({
+			xtype: 'loadmask',
+			message: i10n.translate('loadingMsg')
+		});
+
 		//Generate a token via a POST. Getting the account in response is a covenient shortcut, compared to explicitly loading the account
 		Ext.Ajax.request({
     	    url: appConfig.serviceUrl+'/accounts/tokens',
@@ -213,8 +230,11 @@ Ext.define('EatSense.controller.Login', {
 				'login': login,
 				'password': password
 			},
+			//submit a timestamp to prevent iOS6 from caching the POST request
+			jsonData: timestamp,
     	    scope: this,
     	    success: function(response) {
+    	    	loginview.unmask();
     	    	me.setAccount(Ext.create('EatSense.model.Account', Ext.decode(response.responseText)));
 				//generate clientId for channel
 				me.getAccount().set('clientId', me.getAccount().get('login') + new Date().getTime());
@@ -228,6 +248,7 @@ Ext.define('EatSense.controller.Login', {
 				me.showBusinesses();
     	    },
     	    failure: function(response) {
+    	    	loginview.unmask();
 				me.resetDefaultAjaxHeaders();
 
 				if(response.status) {
@@ -273,11 +294,19 @@ Ext.define('EatSense.controller.Login', {
 	*	
 	*/
 	logout: function() {
-		console.log('Logout Controller -> logout');
+		console.log('Login.logout');
 		var spotStore = Ext.data.StoreManager.lookup('spotStore'),
 			checkInStore = Ext.data.StoreManager.lookup('checkInStore'),
+			areaStore = Ext.data.StoreManager.lookup('areaStore'),
+			historyStore = Ext.data.StoreManager.lookup('historyStore'),
+			billStore = Ext.data.StoreManager.lookup('billStore'),
+			businessStore = Ext.data.StoreManager.lookup('businessStore'),
+			requestStore = Ext.data.StoreManager.lookup('requestStore'),
+			defRequestStore = Ext.data.StoreManager.lookup('defRequestStore'),			
 			spotDetail = this.getApplication().getController('Spot').getSpotDetail(),
-			business = this.getBusiness();
+			business = this.getBusiness(),
+			loginview = this.getLoginPanel(),
+			mainview;
 		
 		//make sure to close spot detail if it is still open
 		if(!spotDetail.isHidden()) {
@@ -289,9 +318,21 @@ Ext.define('EatSense.controller.Login', {
 			this.fireEvent('eatSense.unlock');
 		};
 
-		spotStore.removeAll();
-		checkInStore.removeAll();
+		//clear stores
+		try {			
+			spotStore.removeAll();		
+			checkInStore.removeAll();
+			areaStore.removeAll();
+			historyStore.removeAll();
+			billStore.removeAll();
+			businessStore.removeAll();
+			requestStore.removeAll();
+			defRequestStore.removeAll();
+		}catch(e) {
+			console.log('Login.logout > error clearing all stores. ' + e);
+		}
 
+		this.getApplication().getController('Spot').stopRequestRefreshTask();
 
 		appChannel.closeChannel();
 		//remove all stored credentials
@@ -299,11 +340,13 @@ Ext.define('EatSense.controller.Login', {
 
 		this.resetDefaultAjaxHeaders();
 
-		//TODO remove in a more reliable way!
-		//remove main view				
-		Ext.Viewport.remove(Ext.Viewport.down('main'));
-		//show main view				
-		Ext.create('EatSense.view.Login');		
+		//remove main view
+		mainview = Ext.Viewport.down('main');
+		Ext.Viewport.remove(mainview);
+		mainview.destroy();
+		
+		//console.log('Login.logout > Show loginview');
+		loginview.show();	
 
 	},
 	/**
@@ -345,7 +388,7 @@ Ext.define('EatSense.controller.Login', {
 			spotCtr = this.getApplication().getController('Spot'),
 			loginPanel = this.getLoginPanel();
 
-		Ext.create('EatSense.view.ChooseBusiness');
+		// Ext.create('EatSense.view.ChooseBusiness');
 
 		this.getBusinessList().getStore().load({
 			// params: {
@@ -364,8 +407,7 @@ Ext.define('EatSense.controller.Login', {
 			 			loginPanel.setActiveItem(1);
 			 		} else if(records.length == 1){
 			 			me.setBusinessId(records[0]);					
-			 		} 
-
+			 		}
 			 	} else {
 			 		//TODO user can't log in because he is not assigned to a business
 			 		loginPanel.setActiveItem(0);
@@ -392,7 +434,8 @@ Ext.define('EatSense.controller.Login', {
 			account = this.getAccount(),
 			appState = this.getAppState(),
 			spotCtr = this.getApplication().getController('Spot'),
-			messageCtr = this.getApplication().getController('Message'); 
+			messageCtr = this.getApplication().getController('Message'),
+			loginview = this.getLoginPanel();
 
 		account.set('businessId', business.get('id'));
 		account.set('business', business.get('name'));
@@ -406,7 +449,11 @@ Ext.define('EatSense.controller.Login', {
 
 		me.saveAppState();
 
-		Ext.Viewport.remove(Ext.Viewport.down('login'));
+		//hide loginview, reset values
+		loginview.hide();
+		loginview.setActiveItem(0);
+		me.resetLoginFields();
+
 		Ext.create('EatSense.view.Main');
 		spotCtr.loadAreas();
 
@@ -421,7 +468,8 @@ Ext.define('EatSense.controller.Login', {
 	*	Event handler for choose business list tap.
 	*	
 	*/
-	chooseBusiness: function(dv, index, target, record) {		
+	chooseBusiness: function(dv, record) {		
+		dv.deselectAll(true);
 		this.setBusinessId(record);		
 	},
 	/**

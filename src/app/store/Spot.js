@@ -3,5 +3,11 @@ Ext.define('EatSense.store.Spot', {
 	config: {
 		model: 'EatSense.model.Spot',
 		storeId: 'spotStore',
-	}			
+		sorters: [
+		{
+			property: 'name',
+			direction: 'ASC'
+		}
+		]
+	}	
 });

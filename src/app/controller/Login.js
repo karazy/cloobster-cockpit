@@ -317,9 +317,7 @@ Ext.define('EatSense.controller.Login', {
 		};
 
 		//clear stores
-		try {
-			//clear filters, otherwise spots are not shown when logging out and switching accounts
-			spotStore.clearFilter(true);	
+		try {			
 			spotStore.removeAll();		
 			checkInStore.removeAll();
 			areaStore.removeAll();

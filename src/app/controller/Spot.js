@@ -217,6 +217,9 @@ Ext.define('EatSense.controller.Spot', {
 						'hideMessage':false
 					});
 			 	} else {
+			 		//clear filters, otherwise spots are not shown when logging out and switching accounts
+			 		spotStore.clearFilter(true);
+
 			 		//Create a custom tab for each service area
 			 		areaStore.each(function(area, index) {
 			 			areaFilter	= new Ext.util.Filter({
@@ -232,7 +235,7 @@ Ext.define('EatSense.controller.Spot', {
 			 				'areaFilter' : areaFilter
 			 			});
 
-			 			//atach change listener to carousel
+			 			//attach change listener to carousel
 			 			// carousel = tab.down('carousel');
 			 			// carousel.on('activeitemchange', this.spotCarouselItemChange, this);
 

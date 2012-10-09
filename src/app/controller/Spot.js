@@ -349,7 +349,7 @@ Ext.define('EatSense.controller.Spot', {
 						'hideMessage':false
 					});
 			 	} else {
-			 		spotStore.clearFilter(true);					
+			 		spotStore.clearFilter(true);
 			 		spotStore.each(function(spot) {
 			 			//sets badge text depending on status
 			 			me.updateTabBadgeText(spot);
@@ -1316,7 +1316,7 @@ Ext.define('EatSense.controller.Spot', {
 				},
 				success: function(record, operation) {
 					//TODO refactor!
-					requestCtr.loadRequests();
+					// requestCtr.loadRequests();
 				},
 				failure: function(record, operation) { 
 					me.getApplication().handleServerError({

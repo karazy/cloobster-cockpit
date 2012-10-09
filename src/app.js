@@ -61,7 +61,9 @@ Ext.application({
 
         // Destroy the #appLoadingIndicator and #cloobsterLoadingText elements
         Ext.fly('appLoadingWrapper').destroy();
-        // Ext.fly('cloobsterLoadingText').destroy();
+
+        //Give the message box a high zIndex to prevent hidden alerts!
+        Ext.Msg.defaultAllowedConfig.zIndex = 100;
 
     	console.log('launch cockpit ...');
 

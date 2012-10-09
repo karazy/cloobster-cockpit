@@ -697,6 +697,9 @@ Ext.define('EatSense.controller.Spot', {
 				customerIndex;
 
 		console.log('Spot.updateSpotDetailCheckInIncremental > action=' + action + ' converted checkInId=' + updatedCheckIn.data.id + ' orig Id=' + origCheckIn.id);
+		console.log('Spot.updateSpotDetailCheckInIncremental > detail hidden: ' + detail.isHidden());
+		console.log('Spot.updateSpotDetailCheckInIncremental > activeSpot: ' + me.getActiveSpot() + ' id: ' +me.getActiveSpot().get('id'));
+		console.log('Spot.updateSpotDetailCheckInIncremental > updatedCheckIn.get("spotId"): ' + updatedCheckIn.get('spotId'));
 		//check if spot detail is visible and if it is the same spot the checkin belongs to
 		if(!detail.isHidden() && me.getActiveSpot()) {
 			if(updatedCheckIn.get('spotId') == me.getActiveSpot().get('id')) {

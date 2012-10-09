@@ -62,6 +62,7 @@ Ext.application({
         // Destroy the #appLoadingIndicator and #cloobsterLoadingText elements
         Ext.fly('appLoadingWrapper').destroy();
 
+        //On some devices. Sometimes MsgBoxes disappear behind other floating panels.
         //Give the message box a high zIndex to prevent hidden alerts!
         Ext.Msg.defaultAllowedConfig.zIndex = 100;
 

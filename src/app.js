@@ -67,7 +67,7 @@ Ext.application({
         Ext.Msg.defaultAllowedConfig.zIndex = 100;
 
     	console.log('launch cockpit ...');
-
+        //if not a touch device show message
         if(Ext.os.deviceType.toLowerCase() == 'desktop') {
             Ext.create('Ext.MessageBox', {
                 modal: false,
@@ -75,7 +75,7 @@ Ext.application({
                 'message' : i10n.translate('general.help.scrolling'),
                 buttons: [],
                 top: '10px',
-                right: '80px',
+                right: '110px',
                 style: 'font-size:0.6em;'
             }).show();
         }

@@ -210,7 +210,8 @@ Ext.define('EatSense.controller.Spot', {
 			tab,
 			carousel,
 			areaFilter,
-			delayedTask;
+			delayedTask,
+			areaName;
 
 		areaStore.load({
 			callback: function(records, operation, success) {
@@ -234,7 +235,8 @@ Ext.define('EatSense.controller.Spot', {
 						});
 
 			 			tab = Ext.create('EatSense.view.Spot', {
-			 				title: area.get('name'),
+			 				//BUGFIX enclosing divs area for chrome cutting of the titles
+			 				title: '<div>' + area.get('name') + '</div>',
 			 				'area': area,
 			 				'areaFilter' : areaFilter
 			 			});
@@ -413,8 +415,9 @@ Ext.define('EatSense.controller.Spot', {
 		messageCtr.on('eatSense.refresh-all', this.refreshActiveSpotCheckIns, this);
 		
 		
-		me.setActiveSpot(data);		
-		titlebar.setTitle(data.get('name'));
+		me.setActiveSpot(data);	
+		//BUGFIX enclosing divs area for chrome cutting of the titles
+		titlebar.setTitle('<div>' + data.get('name') + '</div>');
 
 		//load checkins and orders and set lists
 		checkInStore.load({

@@ -64,6 +64,7 @@ Ext.define('EatSense.controller.Spot', {
 				autoCreate: true
 			},
 			closeHistoryDetailButton: 'historydetailitem button[action=close]',
+			infoButton: 'main button[action=show-info]'
 		},
 
 		control : {
@@ -150,6 +151,9 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	closeHistoryDetailButton: {
 		 		tap: 'closeHistoryDetail'
+		 	},
+		 	infoButton: {
+		 		tap: 'infoButtonTapped'
 		 	}
 		},
 
@@ -1696,6 +1700,15 @@ Ext.define('EatSense.controller.Spot', {
 			console.log('Spot.stopRequestRefreshTask > failed to stop');
 		}
 		
+	},
+	/**
+	* Tap event handler for info button.
+	* Shows a notification window.
+	*/
+	infoButtonTapped: function(button) {
+
+		appHelper.showNotificationBox(i10n.translate('info'), i10n.translate('app.information', appConfig.version), "5%", "5%");
+
 	},
 	// end misc actions
 

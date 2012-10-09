@@ -43,6 +43,10 @@ Ext.define('EatSense.util.Translations',{
 			"DE" :  "Nein",
 			"EN" :  "No"
 		},
+		"info" : {
+			"DE" :  "Information",
+			"EN" : "Information"
+		},
 		"comment" : {
 			"DE" :  "Kommentar",
 			"EN" :  "Comment"
@@ -54,6 +58,10 @@ Ext.define('EatSense.util.Translations',{
 		"update.ready.message" : {
 			"DE" :  "Ein Update ist verfgübar.<br/>Anwendung neu laden?",
 			"EN" :  "Update available.<br/>Reload application?"
+		},
+		"app.information" : {
+			"DE" :  "Cloopster Cockpit Version: {0}",
+			"EN" :  "Cloopster Cockpit Version: {0}"
 		},
 		//tabbar
 		"spotsTitle" : {

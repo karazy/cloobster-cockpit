@@ -6,7 +6,7 @@ Ext.define('EatSense.util.Configuration', {
 		msgboxHideTimeout: 1000,
 		msgboxHideLongTimeout: 1500,
 		currencyFormat: 'EURO',
-		version: "2.0.0.3",
+		version: "2.0.4",
 		//true means caching is disabled
 		disableCaching: false,
 		//if language is configured it will be used. otherwise system language

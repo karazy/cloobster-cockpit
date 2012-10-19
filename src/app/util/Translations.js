@@ -51,6 +51,10 @@ Ext.define('EatSense.util.Translations',{
 			"DE" :  "Kommentar",
 			"EN" :  "Comment"
 		},
+		"update.available" : {
+			"DE" :  "Für cloobster Cockpit ist ein Update verfügbar.<br/>Laden Sie die Anwendung neu und bestätigen Sie anschliessend die Update Nachricht.",
+			"EN" : "An update is available for cloobster Cockpit.<br/> Reload the app and confirm the update message afterwards."
+		},
 		"update.ready" : {
 			"DE" :  "Update",
 			"EN" :  "Update"
@@ -62,6 +66,10 @@ Ext.define('EatSense.util.Translations',{
 		"app.information" : {
 			"DE" :  "cloobster Cockpit Version: {0}",
 			"EN" :  "cloobster Cockpit Version: {0}"
+		},
+		"general.help.scrolling" : {
+			"DE" :  "Kein Touch Gerät: Zum scrollen Maustaste gedrückt halten und ziehen!",
+			"EN" :  "No touch device: To scroll, hold mouse down and drag!"
 		},
 		//tabbar
 		"spotsTitle" : {

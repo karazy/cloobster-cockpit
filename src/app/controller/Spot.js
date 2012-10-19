@@ -210,7 +210,8 @@ Ext.define('EatSense.controller.Spot', {
 			tab,
 			carousel,
 			areaFilter,
-			delayedTask;
+			delayedTask,
+			areaName;
 
 		areaStore.load({
 			callback: function(records, operation, success) {
@@ -234,7 +235,8 @@ Ext.define('EatSense.controller.Spot', {
 						});
 
 			 			tab = Ext.create('EatSense.view.Spot', {
-			 				title: area.get('name'),
+			 				//BUGFIX enclosing divs area for chrome cutting of the titles
+			 				title: '<div>' + area.get('name') + '</div>',
 			 				'area': area,
 			 				'areaFilter' : areaFilter
 			 			});
@@ -413,8 +415,9 @@ Ext.define('EatSense.controller.Spot', {
 		messageCtr.on('eatSense.refresh-all', this.refreshActiveSpotCheckIns, this);
 		
 		
-		me.setActiveSpot(data);		
-		titlebar.setTitle(data.get('name'));
+		me.setActiveSpot(data);	
+		//BUGFIX enclosing divs area for chrome cutting of the titles
+		titlebar.setTitle('<div>' + data.get('name') + '</div>');
 
 		//load checkins and orders and set lists
 		checkInStore.load({
@@ -701,10 +704,10 @@ Ext.define('EatSense.controller.Spot', {
 				requestCtr = this.getApplication().getController('Request'),
 				customerIndex;
 
-		console.log('Spot.updateSpotDetailCheckInIncremental > action=' + action + ' converted checkInId=' + updatedCheckIn.data.id + ' orig Id=' + origCheckIn.id + ' orig spotId=' + origCheckIn.spotId);
-		console.log('Spot.updateSpotDetailCheckInIncremental > detail hidden: ' + detail.isHidden());
-		console.log('Spot.updateSpotDetailCheckInIncremental > activeSpot: ' + me.getActiveSpot() + ' id: ' +me.getActiveSpot().get('id'));
-		console.log('Spot.updateSpotDetailCheckInIncremental > updatedCheckIn.get("spotId"): ' + updatedCheckIn.get('spotId'));
+		// console.log('Spot.updateSpotDetailCheckInIncremental > action=' + action + ' converted checkInId=' + updatedCheckIn.data.id + ' orig Id=' + origCheckIn.id + ' orig spotId=' + origCheckIn.spotId);
+		// console.log('Spot.updateSpotDetailCheckInIncremental > detail hidden: ' + detail.isHidden());
+		// console.log('Spot.updateSpotDetailCheckInIncremental > activeSpot: ' + me.getActiveSpot() + ' id: ' +me.getActiveSpot().get('id'));
+		// console.log('Spot.updateSpotDetailCheckInIncremental > updatedCheckIn.get("spotId"): ' + updatedCheckIn.get('spotId'));
 		//check if spot detail is visible and if it is the same spot the checkin belongs to
 		if(!detail.isHidden() && me.getActiveSpot()) {
 			if(origCheckIn.spotId == me.getActiveSpot().get('id')) {
@@ -717,7 +720,6 @@ Ext.define('EatSense.controller.Spot', {
 					//make sure to load new request so they exist
 					requestCtr.loadRequests();
 				} else if (action == 'update' || action == 'confirm-orders') {
-					console.log('update checkin id %s with status %s', updatedCheckIn.id, updatedCheckIn.status);
 					dirtyCheckIn = store.getById(updatedCheckIn.get('id'));
 					if(dirtyCheckIn) {
 						//update existing checkin
@@ -744,9 +746,9 @@ Ext.define('EatSense.controller.Spot', {
 					}
 				} else if (action == 'delete') {					
 					dirtyCheckIn = store.getById(updatedCheckIn.get('id'));
-					console.log('Spot.updateSpotDetailCheckInIncremental > PRE delete checkin with get(id) ' + updatedCheckIn.get('id') + ' data.id ' + updatedCheckIn.data.id);
+					// console.log('Spot.updateSpotDetailCheckInIncremental > PRE delete checkin with get(id) ' + updatedCheckIn.get('id') + ' data.id ' + updatedCheckIn.data.id);
 					if(dirtyCheckIn) {
-						console.log('Spot.updateSpotDetailCheckInIncremental > POST delete checkin with id ' + updatedCheckIn.get('id'));
+						// console.log('Spot.updateSpotDetailCheckInIncremental > POST delete checkin with id ' + updatedCheckIn.get('id'));
 						customerIndex = store.indexOf(dirtyCheckIn);
 						store.remove(dirtyCheckIn);
 						//make sure to load new request so they exist

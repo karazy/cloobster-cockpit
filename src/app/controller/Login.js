@@ -143,6 +143,7 @@ Ext.define('EatSense.controller.Login', {
 						EatSense.model.Business.load(businessId, {
 							success: function(record) {
 								me.setBusiness(record);
+								me.setCurrency(me.getBusiness());
 								Ext.create('EatSense.view.Main');
 								spotCtr.loadAreas();
 								messageCtr.openChannel();
@@ -416,7 +417,7 @@ Ext.define('EatSense.controller.Login', {
 							'forceLogout': false, 
 							'hideMessage':false
 						}); 
-			 	}				
+			 	}	
 			 },
 			 scope: this
 		});
@@ -441,6 +442,8 @@ Ext.define('EatSense.controller.Login', {
 		account.set('business', business.get('name'));
 
 		me.setBusiness(business);
+
+		me.setCurrency(business);
 
 		appState.set('businessId', business.get('id'));
 		
@@ -480,6 +483,27 @@ Ext.define('EatSense.controller.Login', {
 		if(status == appConstants.FORCE_LOGOUT) {
 			this.logout();
 		}
+	},
+	/**
+	* @private
+	* Sets the currency in appconfig used by the given business.
+	* If no valid currency is given, fallback to default
+	* @param business
+	*	Business whos currency will be used.
+	*/
+	setCurrency: function(business) {
+		try {
+          if(appConstants.Currency[business.get('currency')]) {
+            //if the business currency is available in app set it
+            appConfig.currencyFormat = business.get('currency');
+          } else {
+          	//if no valid currency exists make sure to always use default!
+          	appConfig.currencyFormat = appConfig.currencyDefaultFormat;
+          }
+        } catch(e) {
+          console.log('CheckIn.loadBusiness > failed setting currency');
+          appConfig.currencyFormat = appConfig.currencyDefaultFormat;
+        }
 	},
 	/**
 	*

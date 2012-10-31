@@ -21,8 +21,8 @@ Ext.define('EatSense.util.Constants', {
 		},
 		//regular expressions for different currencies
 		Currency : {
-			EURO: '$1,$2 €',
-			US_DOLLAR: '\$ $1.$2'
+			EUR: '$1,$2 €',
+			USD: '\$ $1.$2'
 		},
 		//general date format
 		DateTimeFormat : {

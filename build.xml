@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="CloobsterCockpit" default="production" basedir=".">
 	<property name="sdkDir">src</property>
-	<target name="production">
+	
+	<target name="production" depends="setversion">
 		<exec executable="${sencha.cmd}" dir="${sdkDir}">
 			<arg line="app build production"/>
 		</exec>
 	</target>
 	
-	<target name="testing">
+	<target name="testing" depends="setversion">
 		<exec executable="${sencha.cmd}" dir="${sdkDir}">
 			<arg line="app build testing"/>
 		</exec>
+	</target>
+	
+	<target name="setversion">
+		<echo message="Setting version number" />
+		<exec executable="${git.cmd}" dir="${basedir}" outputproperty="build.commit" vmlauncher="${git.vmlauncher}">
+		    <arg value="describe"/>
+		    <arg value="--always"/>
+		</exec>
+		<echo message="Commit version: ${build.commit}" />
+		<replaceregexp file="${basedir}/src/app/util/Configuration.js" match="(version:) .*" replace="\1 '${build.commit}'," byline="true">
+		</replaceregexp>
 	</target>
 </project>

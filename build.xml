@@ -3,13 +3,13 @@
 	<property name="sdkDir">src</property>
 	
 	<target name="production" depends="setversion">
-		<exec executable="${sencha.cmd}" dir="${sdkDir}">
+		<exec executable="${sencha.old.cmd}" dir="${sdkDir}">
 			<arg line="app build production"/>
 		</exec>
 	</target>
 	
 	<target name="testing" depends="setversion">
-		<exec executable="${sencha.cmd}" dir="${sdkDir}">
+		<exec executable="${sencha.old.cmd}" dir="${sdkDir}">
 			<arg line="app build testing"/>
 		</exec>
 	</target>

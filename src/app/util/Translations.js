@@ -445,8 +445,8 @@ Ext.define('EatSense.util.Translations',{
 			"EN" :  "Data error... Connection to server has failed."
 		},
 		"errorPermission" : {
-			"DE" :  "Sitzung ist ungültig.",
-			"EN" :  "Session is invalid."
+			"DE" :  "Sitzung ist ungültig. Bitte neu einloggen.",
+			"EN" :  "Session is invalid. Please login again."
 		},
 		"errorCommunication" : {
 			"DE" :  "Es scheint zur Zeit ein Problem mit der Verbindung zu geben.<br/>Bitte überprüfen Sie die Netzwerkverbindung.",

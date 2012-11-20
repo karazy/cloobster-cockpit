@@ -162,6 +162,15 @@ Ext.define('EatSense.controller.Message', {
 		    		});
 		    	}
 		    	console.log('online check request failed with code: ' + response.status);
+
+		    	me.getApplication().handleServerError({
+					'error': {
+						'status' : response.status,
+						'statusText': response.statusText
+					}, 
+					'forceLogout': {403 : true}, 
+					'hideMessage': false
+				});
 		    }
 		});
 	},

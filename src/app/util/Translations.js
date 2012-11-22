@@ -174,8 +174,8 @@ Ext.define('EatSense.util.Translations',{
 		},
 		//spot details
 		"spotdetail.checkin.complete" : {
-			"DE" :  "Rechnung",
-			"EN" :  "Bill"
+			"DE" :  "2. Rechnung",
+			"EN" :  "2. Bill"
 		},
 		"completecheckin.title" : {
 			"DE" :  "Vorgang abschliessen",
@@ -259,12 +259,12 @@ Ext.define('EatSense.util.Translations',{
 			"EN" :  "Delete client"
 		},
 		"confirmAllOrdersButton" : {
-			"DE" :  "Best. annehmen",
-			"EN" :  "Confirm all"
+			"DE" :  "1. Annehmen",
+			"EN" :  "1. Confirm"
 		},
 		"paidButton" : {
-			"DE" :  "Bezahlt",
-			"EN" :  "Bill settled"
+			"DE" :  "3. Bezahlt",
+			"EN" :  "3. Bill settled"
 		},
 		"spotSelectionTitle" : {
 			"DE" :  "Spot auswählen",

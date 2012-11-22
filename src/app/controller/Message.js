@@ -169,7 +169,8 @@ Ext.define('EatSense.controller.Message', {
 						'statusText': response.statusText
 					}, 
 					'forceLogout': {403 : true}, 
-					'hideMessage': false
+					//hide message, because a notification is shown
+					'hideMessage': {0 : true}
 				});
 		    }
 		});

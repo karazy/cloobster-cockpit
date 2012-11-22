@@ -183,7 +183,7 @@ Ext.application({
     *       true to logout on all errors 
     *       OR
     *       {errorCode : true|false} e.g. {403: true, 404: false}
-    *       hideMessage: true if you don't want do display an error message
+    *       hideMessage: true if you don't want do display an error message or map with errorcodes {403: true, 404: false}
     *       message: message to show. If no message is set a default message will be displayed.
     *       can be either a common message for all status codes or a specialized message
     *       {403: 'message 1', 404: 'message 2'}
@@ -239,7 +239,7 @@ Ext.application({
             }
         };
 
-        if(!hideMessage) {
+        if(!hideMessage || (hideMessage && hideMessage[code] && hideMessage[code] !== true)) {
             Ext.Msg.alert(i10n.translate('errorTitle'), errMsg, function() {
                 appHelper.toggleAlertActive(false);
             }); 

@@ -99,16 +99,16 @@ Ext.define('EatSense.util.Translations',{
 			"EN" :  "Log out?"
 		},
 		"noBusinessAssigned" : {
-			"DE" :  "Dein Benutzer ist keinem Betrieb zugewiesen.",
-			"EN" :  "User is not assigned to any company."
+			"DE" :  "Dein Benutzer ist keiner Location zugewiesen.",
+			"EN" :  "User is not assigned to any location."
 		},
 		"restoreCredentialsErr" : {
 			"DE" :  "Login mit gespeicherten Daten fehlgeschlagen.",
 			"EN" :  "Login has failed."
 		},
 		"login.choosebusiness.title" : {
-			"DE" :  "<h1>Business auswählen</h1><p>In welchem Business wollen Sie einloggen?</p>",
-			"EN" :  "<h1>Select business.</h1><p>Which business do you want to login?</p>"
+			"DE" :  "<h1>Locations auswählen</h1><p>In welcher Location wollen Sie einloggen?</p>",
+			"EN" :  "<h1>Select location.</h1><p>Which location do you want to login?</p>"
 		},
 		"login.field.user" : {
 			"DE" :  "Benutzername",
@@ -141,7 +141,7 @@ Ext.define('EatSense.util.Translations',{
 			"EN" :  "(Deleted)"
 		},
 		"spot.locked" : {
-			"DE" :  "Dieses Restaurant wurde gelöscht.<br/>Es können keine Aktionen mehr durchgeführt werden.",
+			"DE" :  "Diese Location wurde gelöscht.<br/>Es können keine Aktionen mehr durchgeführt werden.",
 			"EN" :  "This location has been deleted.<br/>You cannot edit this location."
 		},
 		"spot.filter.none" : {

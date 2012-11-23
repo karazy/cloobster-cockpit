@@ -9794,6 +9794,18 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-mask-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAADYUlEQVRoBe2ay2oUQRSG7cQbGtQIUTDeGRU3oiIGRJEsBF0pKAgqkpUvIC59C30CwYA3RLxsXbgUXCnqQkxEF0ZFRUHjZfx+6IbGzkzXzNSp6pA+8FGdqUqd+k9Vn56eqqTZbM4LYUmSLMHPOmjAYpiCp/CFMfymDGMSbA1KRuAK/ARFOGOC64uwynoMWf8hxJ5A0GROZCY2K39Rdw3WZIOyLE0FI+I4vIG/kAmcqdSSvg4DlmLVdx9OTCy9Z8/R+WpISpz0Uz8Kh0va9VxtJpiR7YCNIDEupkS2n0CVBcelr5ZtLAUrK89v6blYocAMwawVnA08K4sSi5900rb43w6fWM7we/x/ByUpF1Pieguu7V36LLSxFPwMby9Bjx0X+0aju2TS2SmYcf9BwCWYAD2W2pmCchMet2vkpU4BtYRBngLNdqtn8TR1V2HYchxZ34kurI0nzXZ8nIQxWA9KTp/hIdyGG4xD97u5BREsFYheQLEWBvQn/IAPCP1EGcyCCQ6mqMSRZZYucR2nes4J7uSrn8mUpPf2LjofBSWuy9zXZpk0yD2MKCUpBXdhyhbKfbAHdoPeqJTU7sFp9JY9t2nWnXmfYbRJ1FJQNl6RlnpzasBOkMjloCDkTVlbX1ZMzZvgVOgBRnsEhmEzbIWZxPFxHPMmmOFrZvUCfz6OFDevPrO0Eo1ZsnGTU97Kp+BybxVo4XNJ643nEWyDDdAAJa9KmbcZ5lEyDXfgKAoPwVl4DmaPGPru2LwJzntG9BTc4rNx+Jqvi31tIjgn6gHXeg2sTDKzFvwasdpeqYxZC/6IUtfftIIExVrw/18fg4hq58RacDvfUepqwVHCHtBpPcMBgx3FVT3DUcIe0Gk9wwGDHcVVPcNRwh7QaT3DAYMdxVU9w1HCHtBpPcMBgx3FVT3DUcIe0GmVZlj7w5vA9Hcwa8ErESAhLqaxLOMHfNM9YmvB2mfSsWBX62efeci1cTftrAUfY1CD4LJM1UZHH8bAzlhC3o4eMkoFUDuSOupwBiZBm2nZ3nFZqeX8CvS/6kO3Q5/PMXo71MJS1PLVCYC9MAI6dbcIujFtz7yDJ6At2PuIfkHZs2k2fNlBOroAOt/RqylQythCwdNxJi+Cfd7DWroWe8Fe+/UpGL3Vtzkn+B9suHSTygXzFAAAAABJRU5ErkJggg==');
 }
 
+/* line 20, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
+.x-tab .x-button-icon.delete1,
+.x-button .x-button-icon.x-icon-mask.delete1 {
+  -webkit-mask-image: url('data:image/png;base64,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');
+}
+
+/* line 20, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
+.x-tab .x-button-icon.move,
+.x-button .x-button-icon.x-icon-mask.move {
+  -webkit-mask-image: url('data:image/png;base64,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');
+}
+
 /*custom icons in res folder! */
 /* line 20, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
 .x-tab .x-button-icon.exit,
@@ -9801,16 +9813,80 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-mask-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAB7CAAAewgFu0HU+AAAAB3RJTUUH3AkcCiYsQmaWswAAASpJREFUaN7tms0NwjAMhZ2oA5QVWKBLlFU6Ti6IOXIBxBBInJDYghHMpeKEhGiD7cTvSbk1iT/5t1WJIAiCIFXxvD6qawz0q6In2FaA+ZeHoyfY2oF5yaboCbZWYF6zOXqCrQ2YSxwSPcHWAswlD1sNnI/nsRZYIqJgzaB/s7UyS7sZLfWA+37znMOoxJKN8xU5XMpYRg4jhwFsAzjnPFoClihavOCuJooWe8xhbgY4ny67GqCDoleDt8FDxdOdslEsFGWmBg/2BkwppcnKYMJSaxiGa+F7F1Vp6cIS8HrY8NtS8AQcPHlYtA93AsawFdgSHn63gbQ/TJY9q/EBQLodmmlLQbNgRE+w0sDqsJLAJmClgM3AYpYG8I+63R9b68D45QEhDUEQZEgvVK5jjdkuW9sAAAAASUVORK5CYII=');
 }
 
+/* line 128, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_toolbar.scss */
+.x-toolbar-gray {
+  background-image: none;
+  background-color: #c3c3c3;
+  border-color: #444444;
+}
+/* line 132, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_toolbar.scss */
+.x-toolbar-gray .x-title {
+  color: black;
+  text-shadow: rgba(255, 255, 255, 0.25) 0 0.08em 0;
+}
+/* line 137, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_toolbar.scss */
+.x-toolbar-gray.x-docked-top {
+  border-bottom-color: #444444;
+}
+/* line 141, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_toolbar.scss */
+.x-toolbar-gray.x-docked-bottom {
+  border-top-color: #444444;
+}
+/* line 145, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_toolbar.scss */
+.x-toolbar-gray.x-docked-left {
+  border-right-color: #444444;
+}
+/* line 149, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_toolbar.scss */
+.x-toolbar-gray.x-docked-right {
+  border-left-color: #444444;
+}
+/* line 32, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
+.x-toolbar-gray .x-button, .x-toolbar .x-toolbar-gray .x-button, .x-toolbar-gray .x-field-select .x-component-outer, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer, .x-toolbar-gray .x-field-select .x-component-outer:before, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before {
+  border: 1px solid #838383;
+  border-top-color: #909090;
+  color: black;
+}
+/* line 37, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
+.x-toolbar-gray .x-button.x-button-back:before, .x-toolbar-gray .x-button.x-button-forward:before, .x-toolbar .x-toolbar-gray .x-button.x-button-back:before, .x-toolbar .x-toolbar-gray .x-button.x-button-forward:before, .x-toolbar-gray .x-field-select .x-component-outer.x-button-back:before, .x-toolbar-gray .x-field-select .x-component-outer.x-button-forward:before, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-back:before, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-forward:before, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-back:before, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-forward:before, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-back:before, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-forward:before {
+  background: #838383;
+}
+/* line 41, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
+.x-toolbar-gray .x-button, .x-toolbar-gray .x-button.x-button-back:after, .x-toolbar-gray .x-button.x-button-forward:after, .x-toolbar .x-toolbar-gray .x-button, .x-toolbar .x-toolbar-gray .x-button.x-button-back:after, .x-toolbar .x-toolbar-gray .x-button.x-button-forward:after, .x-toolbar-gray .x-field-select .x-component-outer, .x-toolbar-gray .x-field-select .x-component-outer.x-button-back:after, .x-toolbar-gray .x-field-select .x-component-outer.x-button-forward:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-back:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-forward:after, .x-toolbar-gray .x-field-select .x-component-outer:before, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-back:after, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-forward:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-back:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-forward:after {
+  background-image: none;
+  background-color: #b6b6b6;
+}
+/* line 45, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
+.x-toolbar-gray .x-button .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-gray .x-button .x-button-icon.x-icon-mask, .x-toolbar-gray .x-field-select .x-component-outer .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer .x-button-icon.x-icon-mask, .x-toolbar-gray .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask {
+  background-image: none;
+  background-color: black;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #262626), color-stop(3%, #0d0d0d), color-stop(100%, #000000));
+  background-image: -webkit-linear-gradient(top, #262626, #0d0d0d 3%, #000000);
+  background-image: linear-gradient(top, #262626, #0d0d0d 3%, #000000);
+}
+/* line 50, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
+.x-toolbar-gray .x-button.x-button-pressing, .x-toolbar-gray .x-button.x-button-pressing:after, .x-toolbar-gray .x-button.x-button-pressed, .x-toolbar-gray .x-button.x-button-pressed:after, .x-toolbar-gray .x-button.x-button-active, .x-toolbar-gray .x-button.x-button-active:after, .x-toolbar .x-toolbar-gray .x-button.x-button-pressing, .x-toolbar .x-toolbar-gray .x-button.x-button-pressing:after, .x-toolbar .x-toolbar-gray .x-button.x-button-pressed, .x-toolbar .x-toolbar-gray .x-button.x-button-pressed:after, .x-toolbar .x-toolbar-gray .x-button.x-button-active, .x-toolbar .x-toolbar-gray .x-button.x-button-active:after, .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressing, .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressed, .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar-gray .x-field-select .x-component-outer.x-button-active, .x-toolbar-gray .x-field-select .x-component-outer.x-button-active:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressing, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressed, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-active, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-active:after, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressing, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressing:after, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressed, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressed:after, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-active, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-active:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressing, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressing:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressed, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressed:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-active, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-active:after {
+  background-image: none;
+  background-color: #afafaf;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #959595), color-stop(10%, #a2a2a2), color-stop(65%, #afafaf), color-stop(100%, #b0b0b0));
+  background-image: -webkit-linear-gradient(top, #959595, #a2a2a2 10%, #afafaf 65%, #b0b0b0);
+  background-image: linear-gradient(top, #959595, #a2a2a2 10%, #afafaf 65%, #b0b0b0);
+}
+/* line 159, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_toolbar.scss */
+.x-toolbar-gray .x-form-label {
+  color: black;
+  text-shadow: rgba(255, 255, 255, 0.25) 0 0.08em 0;
+}
+
 @CHARSET "UTF-8";
 @CHARSET "UTF-8";
 /* general */
-/* line 45, app-default.scss */
+/* line 49, app-default.scss */
 .font-bold {
   font-weight: bold;
 }
 
 /* Class for dialogs like spot selection or complete checkin */
-/* line 52, app-default.scss */
+/* line 56, app-default.scss */
 .general-dialog .description {
   background-color: #EEEEEE;
   font-size: 0.8em;
@@ -9818,14 +9894,14 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* spot view */
-/* line 62, app-default.scss */
+/* line 66, app-default.scss */
 .spot {
   float: left;
   width: 150px;
   margin: 10px;
 }
 
-/* line 68, app-default.scss */
+/* line 72, app-default.scss */
 .spotitem {
   height: 130px;
   border: solid 1px;
@@ -9839,46 +9915,46 @@ input[type="search"]::-webkit-search-cancel-button {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(3%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
 }
 
-/* line 81, app-default.scss */
+/* line 85, app-default.scss */
 .spot div {
   width: 100%;
 }
 
-/* line 86, app-default.scss */
+/* line 90, app-default.scss */
 .spot h2 {
   text-align: center;
   font-size: 1.5em;
 }
 
-/* line 91, app-default.scss */
+/* line 95, app-default.scss */
 .spot p {
   text-align: center;
 }
 
-/* line 96, app-default.scss */
+/* line 100, app-default.scss */
 .spot-filter-panel {
   /*	-webkit-box-shadow: 0em 0em 0em 0.3 #888;
   	box-shadow: 0em 0em 0em 0.3 #888;*/
 }
 
-/* line 101, app-default.scss */
+/* line 105, app-default.scss */
 .spot-filter-label {
   text-align: center;
   font-size: 1.5em;
 }
 
-/* line 106, app-default.scss */
+/* line 110, app-default.scss */
 .spotitem-pressed {
   /*background-color: rgb(100,100,100) !important;*/
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.5)), color-stop(97%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0)));
 }
 
-/* line 111, app-default.scss */
+/* line 115, app-default.scss */
 .spotSelected {
   background-color: #6464c8;
 }
 
-/* line 117, app-default.scss */
+/* line 121, app-default.scss */
 .spotitem-checkedin {
   background-color: #64ff64;
   /*	background-color: #c9de96; // Old browsers
@@ -9886,24 +9962,24 @@ input[type="search"]::-webkit-search-cancel-button {
   	@include background-image(linear-gradient(top,  #c9de96 0%,#8ab66b 44%,#398235 100%));*/
 }
 
-/* line 127, app-default.scss */
+/* line 131, app-default.scss */
 .spotitem-placed {
   background-color: #c86464;
 }
 
 @-webkit-keyframes blinker {
-  /* line 132, app-default.scss */
+  /* line 136, app-default.scss */
   from {
     opacity: 1.0;
   }
 
-  /* line 133, app-default.scss */
+  /* line 137, app-default.scss */
   to {
     opacity: 0.0;
   }
 }
 
-/* line 136, app-default.scss */
+/* line 140, app-default.scss */
 .spotitem-request {
   background-color: #c86464;
   -webkit-animation-name: blinker;
@@ -9913,28 +9989,28 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* Login */
-/* line 149, app-default.scss */
+/* line 153, app-default.scss */
 .loginbox {
   background-color: #1e4776 !important;
 }
 
-/* line 153, app-default.scss */
+/* line 157, app-default.scss */
 .loginbox-field {
   margin-bottom: 0.5em;
 }
 
 /* Login choose business */
-/* line 158, app-default.scss */
+/* line 162, app-default.scss */
 .loginbox-text {
   text-align: center;
   color: #1e4776;
 }
-/* line 162, app-default.scss */
+/* line 166, app-default.scss */
 .loginbox-text h1 {
   font-size: 1.2em;
 }
 
-/* line 167, app-default.scss */
+/* line 171, app-default.scss */
 .spotdetail {
   background-color: white;
   border: 2px solid grey;
@@ -9942,25 +10018,25 @@ input[type="search"]::-webkit-search-cancel-button {
   /*padding: 8px;*/
 }
 
-/* line 174, app-default.scss */
+/* line 178, app-default.scss */
 .spotdetail-titlebar {
   border-top-left-radius: 0.3em;
   border-top-right-radius: 0.3em;
 }
 
-/* line 179, app-default.scss */
+/* line 183, app-default.scss */
 .spotdetail-toolbar {
   background-color: #EEE;
   /*border-top: 2px solid black;*/
   /*padding-top: 3px;*/
 }
 
-/* line 185, app-default.scss */
+/* line 189, app-default.scss */
 .spotdetail-customer-name {
   word-break: break-word;
 }
 
-/* line 193, app-default.scss */
+/* line 197, app-default.scss */
 .spotdetail-customer-flag {
   background-color: red;
   float: left;
@@ -9971,13 +10047,13 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-mask-image: url("../images/request.png");
 }
 
-/* line 203, app-default.scss */
+/* line 207, app-default.scss */
 .spotdetail-toolbar-button {
   margin-right: 5px;
   margin-left: 5px;
 }
 
-/* line 208, app-default.scss */
+/* line 212, app-default.scss */
 .spotdetail-status-panel {
   background-color: #C3C3C3;
   margin-bottom: 0.5em;
@@ -9987,67 +10063,67 @@ input[type="search"]::-webkit-search-cancel-button {
   box-shadow: 3px 3px 0.5em 0.1em gray;
 }
 
-/* line 217, app-default.scss */
+/* line 221, app-default.scss */
 .spotdetail-status {
   margin: 5px;
 }
-/* line 221, app-default.scss */
+/* line 225, app-default.scss */
 .spotdetail-status div {
   padding: 3px;
 }
-/* line 225, app-default.scss */
+/* line 229, app-default.scss */
 .spotdetail-status div.key {
   width: 120px;
   float: left;
   font-weight: bold;
 }
-/* line 231, app-default.scss */
+/* line 235, app-default.scss */
 .spotdetail-status div.value {
   text-align: right;
   display: inline-block;
   /*padding: 3px;*/
 }
-/* line 237, app-default.scss */
+/* line 241, app-default.scss */
 .spotdetail-status div.order_placed {
   border: 1px solid black;
   background-color: red;
   /*padding: 3px;*/
 }
-/* line 242, app-default.scss */
+/* line 246, app-default.scss */
 .spotdetail-status div.payment_request {
   border: 1px solid black;
   background-color: red;
   /*padding: 3px;*/
 }
-/* line 247, app-default.scss */
+/* line 251, app-default.scss */
 .spotdetail-status div.checkedin {
   border: 1px solid black;
   background-color: green;
   /*padding: 3px;*/
 }
 
-/* line 255, app-default.scss */
+/* line 259, app-default.scss */
 .spotdetail-status .order_placed {
   border: 1px solid black;
   background-color: red;
   /*padding: 3px;*/
 }
 
-/* line 261, app-default.scss */
+/* line 265, app-default.scss */
 .spotdetail-status .payment_request {
   border: 1px solid black;
   background-color: red;
   /*padding: 3px;*/
 }
 
-/* line 267, app-default.scss */
+/* line 271, app-default.scss */
 .spotdetail-status .checkedin {
   border: 1px solid black;
   background-color: green;
   /*padding: 3px;*/
 }
 
-/* line 273, app-default.scss */
+/* line 277, app-default.scss */
 .spotdetail-statistics {
   position: relative;
   top: 10px;
@@ -10061,7 +10137,7 @@ input[type="search"]::-webkit-search-cancel-button {
   min-width: 40px;
 }
 
-/* line 286, app-default.scss */
+/* line 290, app-default.scss */
 .spotdetail-close {
   background-color: black;
   border-radius: 1em;
@@ -10075,14 +10151,14 @@ input[type="search"]::-webkit-search-cancel-button {
   top: 3px;
 }
 
-/* line 299, app-default.scss */
+/* line 303, app-default.scss */
 .spotdetailitem-customer-label {
   background-color: #EEEEEE;
   text-align: center;
   font-weight: bold;
 }
 
-/* line 305, app-default.scss */
+/* line 309, app-default.scss */
 .spotdetailitem-flag {
   width: 10%;
   top: 0;
@@ -10093,14 +10169,14 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-left: 5px;
 }
 
-/* line 316, app-default.scss */
+/* line 320, app-default.scss */
 .spotdetailitem-order {
   /*width: 70%;*/
   margin-bottom: 20px;
   font-size: 0.8em;
 }
 
-/* line 322, app-default.scss */
+/* line 326, app-default.scss */
 .spotdetailitem-order h2 {
   font-weight: bold;
   /*float: left;*/
@@ -10108,34 +10184,34 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-right: 10px;
 }
 
-/* line 329, app-default.scss */
+/* line 333, app-default.scss */
 .spotdetailitem-order h4 {
   font-size: 1em;
 }
 
-/* line 333, app-default.scss */
+/* line 337, app-default.scss */
 .spotdetailitem-order h3 {
   font-size: 1em;
   font-weight: bold;
 }
 
-/* line 338, app-default.scss */
+/* line 342, app-default.scss */
 .spotdetailitem-order-cancel {
   text-decoration: line-through;
 }
 
-/* line 342, app-default.scss */
+/* line 346, app-default.scss */
 .spotdetailitem-order-cancel h2 {
   text-decoration: line-through;
 }
 
-/* line 346, app-default.scss */
+/* line 350, app-default.scss */
 .x-button-icon.spotdetailitem-confirm, .x-button .x-button-icon.x-icon-mask.spotdetailitem-confirm {
   -webkit-mask-image: url("../images/check_icon.png");
   /*background-image: url('../images/check_icon.png');*/
 }
 
-/* line 351, app-default.scss */
+/* line 355, app-default.scss */
 .spotdetailitem-order div:nth-of-type(1) {
   /*position: absolute; 
   right: 0; 
@@ -10144,13 +10220,13 @@ input[type="search"]::-webkit-search-cancel-button {
   	padding-right: 5px;*/
 }
 
-/* line 359, app-default.scss */
+/* line 363, app-default.scss */
 .spotdetailitem-order .choices {
   clear: both;
   text-align: left;
 }
 
-/* line 364, app-default.scss */
+/* line 368, app-default.scss */
 .spotdetailitem-confirm {
   top: 0;
   /*position: absolute;*/
@@ -10158,7 +10234,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 10%;*/
 }
 
-/* line 371, app-default.scss */
+/* line 375, app-default.scss */
 .spotdetailitem-cancel {
   /*width: 10%;*/
   top: 0;
@@ -10167,18 +10243,18 @@ input[type="search"]::-webkit-search-cancel-button {
   /*float: left;*/
 }
 
-/* line 378, app-default.scss */
+/* line 382, app-default.scss */
 .cancel-all {
   -webkit-mask-image: url("res/images/forbidden.png");
 }
 
 /* request view */
-/* line 384, app-default.scss */
+/* line 388, app-default.scss */
 .requestitem-container {
   margin: 0.3em;
 }
 
-/* line 388, app-default.scss */
+/* line 392, app-default.scss */
 .requestitem-wrapper {
   /*border: 1px solid #C3C3C3;*/
   /*background-color: #c3c3c3;*/
@@ -10187,7 +10263,7 @@ input[type="search"]::-webkit-search-cancel-button {
   color: black;
 }
 
-/* line 396, app-default.scss */
+/* line 400, app-default.scss */
 .requestitem-spot {
   border: 1px solid #000;
   background-color: #4975A2;
@@ -10198,7 +10274,7 @@ input[type="search"]::-webkit-search-cancel-button {
   word-break: break-word;
 }
 
-/* line 406, app-default.scss */
+/* line 410, app-default.scss */
 .requestitem-customer {
   border: 1px solid #000;
   background-color: #C6D7E9;
@@ -10213,7 +10289,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 65%;*/
 }
 
-/* line 420, app-default.scss */
+/* line 424, app-default.scss */
 .requestitem-time {
   border: 1px solid #000;
   background-color: #DFE8CB;
@@ -10227,13 +10303,13 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 25%;*/
 }
 
-/* line 433, app-default.scss */
+/* line 437, app-default.scss */
 .requestitem-wrapper-pressed {
   /*background-color: #F5B800;*/
   color: white;
 }
 
-/* line 438, app-default.scss */
+/* line 442, app-default.scss */
 .requestitem-alert {
   -webkit-animation-name: blinker;
   -webkit-animation-iteration-count: infinite;
@@ -10242,12 +10318,12 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* history view */
-/* line 446, app-default.scss */
+/* line 450, app-default.scss */
 .historyitem-container {
   margin: 0.3em;
 }
 
-/* line 450, app-default.scss */
+/* line 454, app-default.scss */
 .historyitem-wrapper {
   /*border: 1px solid #C3C3C3;*/
   /*background-color: #c3c3c3;*/
@@ -10256,7 +10332,7 @@ input[type="search"]::-webkit-search-cancel-button {
   color: black;
 }
 
-/* line 458, app-default.scss */
+/* line 462, app-default.scss */
 .historyitem-spot {
   border: 1px solid #000;
   background-color: #4975A2;
@@ -10267,7 +10343,7 @@ input[type="search"]::-webkit-search-cancel-button {
   word-break: break-word;
 }
 
-/* line 468, app-default.scss */
+/* line 472, app-default.scss */
 .historyitem-customer {
   border: 1px solid #000;
   background-color: #C6D7E9;
@@ -10282,7 +10358,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 20%;*/
 }
 
-/* line 482, app-default.scss */
+/* line 486, app-default.scss */
 .historyitem-time {
   border: 1px solid #000;
   background-color: #DFE8CB;
@@ -10297,7 +10373,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 15%;*/
 }
 
-/* line 496, app-default.scss */
+/* line 500, app-default.scss */
 .historyitem-total {
   border: 1px solid #000;
   background-color: #D0F5A9;
@@ -10310,12 +10386,12 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 10%;*/
 }
 
-/* line 508, app-default.scss */
+/* line 512, app-default.scss */
 .historyitem-wrapper-pressed {
   color: white;
 }
 
-/* line 512, app-default.scss */
+/* line 516, app-default.scss */
 .history-info-panel {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -10324,7 +10400,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: #C3C3C3;
 }
 
-/* line 520, app-default.scss */
+/* line 524, app-default.scss */
 .history-info-panel .row {
   display: -webkit-box;
   -webkit-box-orient: horizontal;
@@ -10332,13 +10408,13 @@ input[type="search"]::-webkit-search-cancel-button {
   /*	-webkit-box-pack: end;*/
 }
 
-/* line 527, app-default.scss */
+/* line 531, app-default.scss */
 .history-info-panel .row > div {
   /*-webkit-box-flex: 1;*/
   width: 50%;
 }
 
-/* line 532, app-default.scss */
+/* line 536, app-default.scss */
 .history-detail-list-title {
   font-size: 1.2em;
   font-weight: bold;
@@ -10347,7 +10423,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* connections status indicator in bottom toolbar */
-/* line 544, app-default.scss */
+/* line 548, app-default.scss */
 .status-indicator-ONLINE .status {
   width: 1.2em;
   height: 1.2em;
@@ -10358,7 +10434,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 558, app-default.scss */
+/* line 562, app-default.scss */
 .status-indicator-TIMEOUT .status {
   width: 1.2em;
   height: 1.2em;
@@ -10369,7 +10445,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 570, app-default.scss */
+/* line 574, app-default.scss */
 .status-indicator-RECONNECT .status {
   width: 1.2em;
   height: 1.2em;
@@ -10380,7 +10456,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 582, app-default.scss */
+/* line 586, app-default.scss */
 .status-indicator-INITIALIZING .status {
   width: 1.2em;
   height: 1.2em;
@@ -10391,7 +10467,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 594, app-default.scss */
+/* line 598, app-default.scss */
 .status-indicator-CONNECTION_LOST .status {
   width: 1.2em;
   height: 1.2em;
@@ -10402,7 +10478,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 606, app-default.scss */
+/* line 610, app-default.scss */
 .status-indicator-DISCONNECTED .status {
   width: 1.2em;
   height: 1.2em;
@@ -10414,20 +10490,20 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* Volume Button */
-/* line 619, app-default.scss */
+/* line 623, app-default.scss */
 .volume_mute {
   background-image: none !important;
   background-color: #FA5858 !important;
 }
 
-/* line 624, app-default.scss */
+/* line 628, app-default.scss */
 .volume {
   background-image: none !important;
   background-color: #64FF64 !important;
 }
 
 /* Lock button */
-/* line 631, app-default.scss */
+/* line 635, app-default.scss */
 .locked-button .x-button-icon {
   -webkit-mask-image: url("/cockpit/res/images/lock_closed.png");
   background-color: black;

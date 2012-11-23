@@ -315,9 +315,9 @@ Ext.define('EatSense.controller.Login', {
 			spotDetail.hide();
 		};
 
-		if(business.get('trash')) {
-			this.fireEvent('eatSense.unlock');
-		};
+		//always unlock buttons
+		this.fireEvent('eatSense.unlock');
+
 
 		//clear stores
 		try {			
@@ -463,7 +463,7 @@ Ext.define('EatSense.controller.Login', {
 		if(business.get('trash') == true) {
 			//activate readonly mode
 			this.fireEvent('eatSense.read-only');
-		};
+		}
 
 		messageCtr.openChannel();		
 	},

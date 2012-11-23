@@ -33,8 +33,12 @@ $cloobster-font-color: #1E4776;
 @include pictos-iconmask('volume_mute');
 @include pictos-iconmask('volume');
 @include pictos-iconmask('info_plain2');
+@include pictos-iconmask('delete1');
+@include pictos-iconmask('move');
 /*custom icons in res folder! */
 @include pictos-iconmask('exit');
+
+@include sencha-toolbar-ui('gray', #C3C3C3, 'none');
 
 @CHARSET "UTF-8";
 

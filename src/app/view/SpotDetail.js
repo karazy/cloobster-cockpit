@@ -180,18 +180,28 @@ Ext.define('EatSense.view.SpotDetail', {
 					]
 				},
 				{
-					xtype: 'panel',
-					layout: {
-						type: 'hbox',
-						align: 'center'
-					},
-					margin: '5 0 5 0',
+					xtype: 'toolbar',
+					// layout: {
+					// 	type: 'hbox',
+					// 	align: 'center'
+					// },
+					// margin: '5 0 5 0',
+					ui: 'gray',
+					border: 0,
+					docked: 'bottom',
 					defaults: {
 						ui: 'action',
 						cls: 'spotdetail-toolbar-button',
 						xtype: 'lockbutton',
 					},
 					items: [
+					{
+						xtype: 'lockbutton',
+						action: 'confirm-all',
+						disabled: true,
+						text: i10n.translate('confirmAllOrdersButton'),
+						ui: 'action',
+					},
 					{
 						text: i10n.translate('spotdetail.checkin.complete'),
 						action: 'complete-checkin',
@@ -205,23 +215,23 @@ Ext.define('EatSense.view.SpotDetail', {
 						ui: 'action'
 					},
 					{
-						text: i10n.translate('switchSpotButton'),
-						action: 'switch-spot',
-						disabled: true
+						xtype: 'spacer'
 					},
 					{
-						text: i10n.translate('cancelAllOrdersButton'),
+						// text: i10n.translate('cancelAllOrdersButton'),
 						action: 'cancel-all',
 						disabled: true,
-						ui: 'action'
+						ui: 'action',
+						iconCls: 'trash',
+						iconMask: true
 					},
 					{
-						xtype: 'lockbutton',
-						action: 'confirm-all',
+						// text: i10n.translate('switchSpotButton'),
+						action: 'switch-spot',
 						disabled: true,
-						text: i10n.translate('confirmAllOrdersButton'),
-						ui: 'action',
-					}
+						iconMask: true,
+						iconCls: 'move'
+					}								
 					]
 				},
 				]

@@ -59,6 +59,7 @@ Ext.define('EatSense.controller.Message', {
 	*			type	- a type like spot
 	*			action	- an action like update, new ... 
 	*			content - the data
+	*			silent - true to only process, but don't notify
 	*/
 	broadcastMessage: function(message) {
 		var 	me = this,
@@ -79,7 +80,7 @@ Ext.define('EatSense.controller.Message', {
 			console.log('broadcast message type '+message.type+', action '+message.action);
 
 			//fire event based on the message
-			me.fireEvent(evtPrefix+message.type.toLowerCase(), message.action, message.content);
+			me.fireEvent(evtPrefix+message.type.toLowerCase(), message.action, message.content, message);
 		}
 	},
 	/**

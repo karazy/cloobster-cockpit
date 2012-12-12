@@ -175,7 +175,7 @@ Ext.define('EatSense.controller.Spot', {
 		var messageCtr = this.getApplication().getController('Message'),
 			loginCtr = this.getApplication().getController('Login');
 		
-		//messageCtr.on('eatSense.spot', this.updateSpotIncremental, this);
+		messageCtr.on('eatSense.spot', this.updateSpotIncremental, this);
 		//refresh all is only active when push communication is out of order
 		messageCtr.on('eatSense.refresh-all', this.loadSpots, this);
 

@@ -175,7 +175,7 @@ Ext.define('EatSense.controller.Spot', {
 		var messageCtr = this.getApplication().getController('Message'),
 			loginCtr = this.getApplication().getController('Login');
 		
-		messageCtr.on('eatSense.spot', this.updateSpotIncremental, this);
+		//messageCtr.on('eatSense.spot', this.updateSpotIncremental, this);
 		//refresh all is only active when push communication is out of order
 		messageCtr.on('eatSense.refresh-all', this.loadSpots, this);
 
@@ -267,8 +267,10 @@ Ext.define('EatSense.controller.Spot', {
 	},
 	/**
 	* Loads all requests displayed in request list view
+	* @param callback
+	*	(optional) gets called when requests are loaded
 	*/
-	loadRequests: function() {
+	loadRequests: function(callback) {
 		var me = this,
 			store = Ext.StoreManager.lookup('defRequestStore'),
 			mainview = this.getMainview();
@@ -289,6 +291,10 @@ Ext.define('EatSense.controller.Spot', {
 					} else {
 						me.getMainview().getActiveItem().down('#requestListDescPanel').setHidden(false);
 					};
+
+					if(appHelper.isFunction(callback)) {
+						callback();
+					}
 					
 				} else {
 					me.getApplication().handleServerError({
@@ -416,7 +422,7 @@ Ext.define('EatSense.controller.Spot', {
 		
 		
 		me.setActiveSpot(data);	
-		//BUGFIX enclosing divs area for chrome cutting of the titles
+		//TODO enclosing divs area for chrome cutting of the titles, fixed in 2.1
 		titlebar.setTitle('<div>' + data.get('name') + '</div>');
 
 		//load checkins and orders and set lists
@@ -427,8 +433,17 @@ Ext.define('EatSense.controller.Spot', {
 			},
 			 callback: function(records, operation, success) {
 			 	if(success) { 		
-			 		requestCtr.loadRequests();
-			 		if(records.length > 0) {
+			 		requestCtr.loadRequests(function()
+			 		{
+			 			try {
+			 				spotStatusData = me.getLocalSpotStatusData(me.getActiveSpot().get('id'), checkInStore, requestStore);
+			 				me.updateSpotIncremental('update', spotStatusData);	
+				 		} catch(e) {
+				 			console.log('Spot.showSpotDetails: failed to update spot status');
+				 		}	
+			 		});			 		
+
+			 		if(records.length > 0) {			 						 		
 			 			if(!checkInId) {
 			 				//selects the first customer. select event of list gets fired and calls showCustomerDetail	 	
 			 				me.getSpotDetailCustomerList().select(0);
@@ -448,7 +463,7 @@ Ext.define('EatSense.controller.Spot', {
 						'hideMessage':false
 						// 'message': i10n.translate('errorSpotDetailCheckInLoading')
 					});
-			 	}				
+			 	}			
 			 },
 			 scope: this
 		});
@@ -1864,6 +1879,61 @@ Ext.define('EatSense.controller.Spot', {
 			}
 		});
 
+	},
+	/**
+	* Returns a spot status data object based on the local status.
+	* Attention!! Only checkInCount is set. To set satus for each checkIn we would have to load its orders.
+	* Added on 12.12.2012 as solution to Ticket 318
+	*
+	* @return
+	*	spotData as raw json object
+	*/
+	getLocalSpotStatusData: function(id, checkInStore, requestStore) {
+		var spotStatus = {},
+			statusCompare = {},
+			// 	appConstants.CALL_WAITER : 100,
+			// 	appConstants.PAYMENT_REQUEST : 50,
+			// 	appConstants.ORDER_PLACED : 10
+			// },
+			newStatus,
+			currentStatus = 0;
+
+		statusCompare[appConstants.CALL_WAITER] = 100;
+		statusCompare[appConstants.PAYMENT_REQUEST] = 50;
+		statusCompare[appConstants.ORDER_PLACED] = 10;
+		statusCompare[appConstants.CHECKEDIN] = 1;
+
+		if(!checkInStore) {
+			console.log('Spot.getLocalSpotStatusData: no checkInStore provided');
+		}
+
+		if(!id) {
+			console.log('Spot.getLocalSpotStatusData: no id provided');
+		}
+
+		spotStatus.id = id;
+		spotStatus.checkInCount = checkInStore.getCount();
+
+		if(checkInStore.getCount() > 0) {
+			spotStatus.status = appConstants.CHECKEDIN;
+		}
+
+		if(requestStore.getCount() > 0) {
+			spotStatus.status = appConstants.Request.CALL_WAITER;
+		} else {
+			checkInStore.each(function(checkIn, index) {
+				if(checkIn.get('status') && statusCompare[checkIn.get('status')]) {
+					newStatus = statusCompare[checkIn.get('status')] || 0;
+					// currentStatus = statusCompare[spotStatus.status] || 0;
+					if(newStatus > currentStatus) {
+						currentStatus = newStatus;
+						spotStatus.status = checkIn.get('status');
+					}
+				}
+			});
+		}
+	
+		return spotStatus;		
 	}
 
 

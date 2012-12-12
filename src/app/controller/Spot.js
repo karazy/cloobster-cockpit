@@ -1924,7 +1924,6 @@ Ext.define('EatSense.controller.Spot', {
 			checkInStore.each(function(checkIn, index) {
 				if(checkIn.get('status') && statusCompare[checkIn.get('status')]) {
 					newStatus = statusCompare[checkIn.get('status')] || 0;
-					// currentStatus = statusCompare[spotStatus.status] || 0;
 					if(newStatus > currentStatus) {
 						currentStatus = newStatus;
 						spotStatus.status = checkIn.get('status');

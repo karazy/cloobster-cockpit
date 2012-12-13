@@ -9,7 +9,7 @@ Ext.define('EatSense.util.Configuration', {
 		currencyDefaultFormat: 'EUR',
 		//default format is EUR, can be changed during runtime depending on business
 		currencyFormat: 'EUR',
-		version: 'v2.0.0.3-6-ge51faeb',
+		version: '/usr/share/ant/bin/antRun: line 24: exec: ${git.cmd}: not found',
 		//true means caching is disabled
 		disableCaching: false,
 		//if language is configured it will be used. otherwise system language

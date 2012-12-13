@@ -25,10 +25,11 @@ Ext.define('EatSense.controller.Request',{
 		},	
 	},
 	/**
-	*	Loads all customer request for the active spot.
-	*
+	* Loads all customer request for the active spot.
+	* @param callback
+	*	(optional) function that gets called after requests are loaded
 	*/
-	loadRequests: function() {
+	loadRequests: function(callback) {
 		var 	me = this,
 				loginCtr = this.getApplication().getController('Login'),
 				spotCtr = this.getApplication().getController('Spot'),
@@ -57,7 +58,11 @@ Ext.define('EatSense.controller.Request',{
 			 				request.getData(true);
 			 			});
 			 			me.showCustomerRequestMessages(records);
-			 		}		
+			 		}
+
+			 		if(appHelper.isFunction(callback)) {
+						callback();
+					}		
 			 	} else {
 			 		me.getApplication().handleServerError({
 						'error': operation.error, 

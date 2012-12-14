@@ -185,7 +185,12 @@ Ext.define('EatSense.controller.Notification', {
 	*
 	*
 	*/
-	processRequest: function(action, data) {
+	processRequest: function(action, data, message) {
+
+		if(message.silent == true) {
+			//don't notify
+			return;
+		}
 
 		if(action == "new") {
 			this.startAudioNotification();	
@@ -195,8 +200,13 @@ Ext.define('EatSense.controller.Notification', {
 	*
 	*
 	*/
-	processBill: function(action, data) {
+	processBill: function(action, data, message) {
 		var completedId = this.removeCompletedCheckIn(data.checkInId);
+
+		if(message.silent == true) {
+			//don't notify
+			return;
+		}
 
 		if(action == "new" && !completedId) {
 			this.startAudioNotification();	
@@ -206,7 +216,11 @@ Ext.define('EatSense.controller.Notification', {
 	*
 	*
 	*/
-	processCheckIn: function(action, data) {
+	processCheckIn: function(action, data, message) {
+		if(message.silent == true) {
+			//don't notify
+			return;
+		}
 
 		if(action == "update-orders") {
 			this.startAudioNotification();

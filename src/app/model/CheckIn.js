@@ -3,18 +3,18 @@ Ext.define('EatSense.model.CheckIn', {
 	// requires: ['EatSense.model.PaymentMethod'],
 	config : {
 		idProperty : 'id',
-		fields : [ 
+		fields : [
 		{
 			name : 'id',
-		}, 
+		},
 		{
 			name : 'nickname',
 			type : 'string'
-		}, 
+		},
 		{
 			name : 'status',
 			type : 'string'
-		}, 
+		},
 		{
 			name: 'spotId'
 		},

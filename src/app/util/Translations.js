@@ -119,8 +119,8 @@ Ext.define('EatSense.util.Translations',{
 			"EN" :  "Password"
 		},
 		"business.status.deleted" : {
-			"DE" :  "inaktiv",
-			"EN" :  "inactive"
+			"DE" :  "gelöscht",
+			"EN" :  "deleted"
 		},
 		//area
 		"area.request.new.badge" : {

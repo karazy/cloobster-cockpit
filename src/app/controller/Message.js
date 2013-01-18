@@ -93,8 +93,18 @@ Ext.define('EatSense.controller.Message', {
 	requestNewToken: function(successCallback, connectionCallback) {
 		var me = this,
 			account = this.getApplication().getController('Login').getAccount(),
-			clientId = account.get('id') + '-' + new Date().getTime(),
+			appState = this.getApplication().getController('Login').getAppState(),
+			// clientId = account.get('id') + '-' + new Date().getTime(),
+			clientId,
 			businessId = account.get('businessId');
+
+		if(!appState.get('clientId')) {
+			clientId = account.get('id') + '-' + new Date().getTime() + '-0';
+		} else {
+			clientId = this.increasedClientIdCounter(appState.get('clientId'));
+
+		}
+		appState.set('clientId', clientId);
 		
 		account.set('clientId', clientId);
 		console.log('requestNewToken: clientId ' + clientId);
@@ -129,7 +139,8 @@ Ext.define('EatSense.controller.Message', {
 	*/
 	checkOnline: function(disconnectCallback, connectedCallback) {
 		var account = this.getApplication().getController('Login').getAccount(),
-			clientId = account.get('clientId'),
+			appState = this.getApplication().getController('Login').getAppState(),
+			clientId = appState.get('clientId'),
 			me = this;
 		
 		console.log('checkOnline: clientId ' + clientId);
@@ -289,5 +300,42 @@ Ext.define('EatSense.controller.Message', {
 			appChannel.closeChannel();
 			this.openChannel();
 		}
+	},	
+	/**
+	* Extracts the counter digit at the end of the given client id.
+	* ClientId is used for channel communication.
+	* A clientId has the following structure:
+	*	accountId-timestamp-counter
+	* @param {String} clientId
+	*	clientId to increase.
+	* @return increased clientId
+	*/
+	increasedClientIdCounter: function(clientId) {
+		var counterSeperatorIndex,
+			counter,
+			trimmedClientId;
+
+		if(!clientId) {
+			return -1;
+		}
+
+		counterSeperatorIndex = clientId.lastIndexOf('-');
+		
+		if(counterSeperatorIndex == -1) {
+			return -1;
+		}
+
+		counter = clientId.slice(counterSeperatorIndex+1, clientId.length);
+		trimmedClientId = clientId.slice(0, counterSeperatorIndex+1);
+		counter = parseInt(counter);
+		
+		if(typeof counter == "number") {
+			counter++;
+		} else {
+			return -1;
+		}
+
+		return trimmedClientId + counter;
+
 	}
 });

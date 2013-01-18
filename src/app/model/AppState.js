@@ -17,6 +17,10 @@ Ext.define('EatSense.model.AppState', {
 			{
 				name : 'businessId',
 				type : 'string'
+			},
+			{
+				name : 'clientId',
+				type : 'string'
 			}
 		]
 	}

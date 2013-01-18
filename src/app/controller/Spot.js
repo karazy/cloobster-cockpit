@@ -670,7 +670,7 @@ Ext.define('EatSense.controller.Spot', {
 			return;
 		};
 
-		console.log('updateTabBadgeIncremental spot '+ updatedSpot.get('id') + ' name ' + updatedSpot.get('name') + ' status: ' + status);
+		// console.log('updateTabBadgeIncremental spot '+ updatedSpot.get('id') + ' name ' + updatedSpot.get('name') + ' status: ' + status);
 
 		Ext.Array.each(tabs, function(tab, index) {
 			//don't applay new flag if tab to update is active

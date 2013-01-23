@@ -122,7 +122,9 @@ Ext.define('EatSense.view.SpotDetail', {
 								'<div class="key">Check-In:</div><div class="value">{[this.formatTime(values.checkInTime)]}</div>',
 								{
 									formatTime: function(time) {
-										return Ext.util.Format.date(time, 'H:i');
+										var dateFormat = appConstants.DateTimeFormat[appConfig.language];
+										
+										return Ext.util.Format.date(time, dateFormat);
 									}
 								}
 							)

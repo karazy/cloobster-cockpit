@@ -233,7 +233,8 @@ Ext.define('EatSense.controller.Login', {
     	    headers: {
 				//provide credentials, they will be added to request header
 				'login': login,
-				'password': password
+				'password': password,
+				'cloobster-api' : appConfig.cloobsterApi
 			},
 			//submit a timestamp to prevent iOS6 from caching the POST request
 			jsonData: timestamp,

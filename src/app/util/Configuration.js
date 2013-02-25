@@ -26,6 +26,9 @@ Ext.define('EatSense.util.Configuration', {
 		requestTimeCalcRefreshInterval: 60000,
 		audioNotificationFile: 'res/sounds/simple.mp3',
 		/* Number of times the notification plays. */
-		audioNotificationIterations: 5
+		audioNotificationIterations: 5,
+		//version indicator of the backend api, will be increased when the api changes
+		//in such a way that an old cloobster version is not compatible anymore
+		cloobsterApi: 2
 	}
 });

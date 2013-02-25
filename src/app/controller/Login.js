@@ -127,7 +127,8 @@ Ext.define('EatSense.controller.Login', {
 		   		 //Set default headers so that always credentials are send
 				Ext.Ajax.setDefaultHeaders({
 					'X-Auth': appState.get('accessToken'),
-					'pathId' : appState.get('businessId')
+					'pathId' : appState.get('businessId'),
+					'cloobster-api' : appConfig.cloobsterApi
 				});
 
 				//check if saved credentials are valid
@@ -246,7 +247,8 @@ Ext.define('EatSense.controller.Login', {
 
 				//Set default headers so that always credentials are send
 				Ext.Ajax.setDefaultHeaders({
-					'X-Auth': me.getAccount().get('accessToken')
+					'X-Auth': me.getAccount().get('accessToken'),
+					'cloobster-api' : appConfig.cloobsterApi
 				});
 
 				me.getAppState().set('accessToken', me.getAccount().get('accessToken'));

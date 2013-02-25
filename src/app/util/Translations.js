@@ -437,8 +437,8 @@ Ext.define('EatSense.util.Translations',{
 			"EN" :  "Error"
 		},		
 		"errorMsg" : {
-			"DE" :  "Entschuldigung! Ein Fehler ist aufgetreten.<br/>Wir kümmern uns darum!",
-			"EN" :  "We apologize! An error has occurred.<br/>We'll fix it as soon as possible."
+			"DE" :  "Ein Fehler ist aufgetreten.<br/>Es wird empfohlen das Cockpit neu zuladen.",
+			"EN" :  "An error has occurred.<br/>We recommend reloading the cockpit."
 		},
 		"errorResource" : {
 			"DE" :  "Daten konnten nicht vom Server geladen werden.",

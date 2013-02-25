@@ -213,6 +213,9 @@ Ext.application({
                 case 400: 
                   defaultErrorKey = 'errorResource';
                   break;
+                case 460:
+                  defaultErrorKey = 'error.apiversion';
+                  break;
                 case 0:
                   defaultErrorKey = 'errorCommunication';
                     break;

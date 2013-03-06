@@ -1945,8 +1945,8 @@ Ext.define('EatSense.controller.Spot', {
 		//TODO deal with read only mode?
 		if(action == 'inactive') {
 			Ext.Msg.show({
-				title: i10n.translate('hint'),
-				message: i10n.translate('checkins.inactive.message'),
+				title: i10n.translate('checkins.inactive.message.title'),
+				message: i10n.translate('checkins.inactive.message.text'),
 				buttons: [{
 					text: i10n.translate('yes'),
 					itemId: 'yes',
@@ -1960,7 +1960,7 @@ Ext.define('EatSense.controller.Spot', {
 				fn: function(btnId, value, opt) {
 					if(btnId=='yes') {
 						//load inactive checkins
-						me.loadInactiveCheckIns();
+						me.loadAndShowInactiveCheckIns();
 					}
 				}
 			});			
@@ -1970,7 +1970,7 @@ Ext.define('EatSense.controller.Spot', {
 	* Loads inactive checkins and displays them in SpotDetail view.
 	*
 	*/
-	loadInactiveCheckIns: function() {
+	loadAndShowInactiveCheckIns: function() {
 		var	me = this,
 			loginCtr = this.getApplication().getController('Login'),
 			messageCtr = this.getApplication().getController('Message'),

@@ -401,7 +401,19 @@ Ext.define('EatSense.util.Translations',{
 			"DE" :  "Möchten Sie Audio Benachrichtigungen für eintreffende Ereignisse aktivieren?",
 			"EN" :  "Do you want to enable alerts for incoming orders?"
 		},
-
+		//inactive checkins
+		"checkins.inactive.message.title" : {
+			"DE" :  "Inaktive Check-Ins abarbeiten?",
+			"EN" : "Process inactive Check-ins?"
+		},
+		"checkins.inactive.message.text" : {
+			"DE" :  "Es liegen inaktive (> 24h) Check-Ins vor. Möchten Sie diese nun bearbeiten?",
+			"EN" : "Inactive  (> 24h) Check-Ins exist to you want to process them now?"
+		},
+		"checkins.inactive.title" : {
+			"DE" :  "Inaktive Check-Ins",
+			"EN" : "Inactive Check-Ins"
+		},
 		//constants
 		"ORDER_PLACED" : {
 			"DE" :  "Neue Bestellung!",

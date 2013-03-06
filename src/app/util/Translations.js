@@ -403,8 +403,8 @@ Ext.define('EatSense.util.Translations',{
 		},
 		//inactive checkins
 		"checkins.inactive.message.title" : {
-			"DE" :  "Inaktive Check-Ins abarbeiten?",
-			"EN" : "Process inactive Check-ins?"
+			"DE" :  "Inaktive Check-Ins",
+			"EN" : "Inactive Check-ins"
 		},
 		"checkins.inactive.message.text" : {
 			"DE" :  "Es liegen inaktive (> 24h) Check-Ins vor. Möchten Sie diese nun bearbeiten?",

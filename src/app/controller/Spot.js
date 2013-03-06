@@ -64,7 +64,8 @@ Ext.define('EatSense.controller.Spot', {
 				autoCreate: true
 			},
 			closeHistoryDetailButton: 'historydetailitem button[action=close]',
-			infoButton: 'main button[action=show-info]'
+			infoButton: 'main button[action=show-info]',
+			inactiveCheckInButton: 'main button[action=inactive-checkins]'
 		},
 
 		control : {
@@ -154,6 +155,9 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	infoButton: {
 		 		tap: 'infoButtonTapped'
+		 	},
+		 	inactiveCheckInButton: {
+		 		tap: 'loadAndShowInactiveCheckIns'
 		 	}
 		},
 
@@ -1996,10 +2000,12 @@ Ext.define('EatSense.controller.Spot', {
 
 		messageCtr.on('eatSense.request', processMessage, requestCtr);
 
-		spotDetail.on({
+		detail.on({
 			'hide': cleanup, 
 			scope: this
 		});
+
+		detail.hideRequestsPanel();
 
 
 		function processCheckInMessage(action, data) {
@@ -2013,6 +2019,7 @@ Ext.define('EatSense.controller.Spot', {
 		}
 
 		function cleanup() {
+			detail.showRequestsPanel();
 			messageCtr.un('eatSense.checkin', processCheckInMessage, this);
 			messageCtr.un('eatSense.order', processMessage, this);
 			messageCtr.un('eatSense.bill', processMessage, this);

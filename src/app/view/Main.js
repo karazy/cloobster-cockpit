@@ -26,6 +26,11 @@ Ext.define('EatSense.view.Main', {
 			},
 			{
 				xtype: 'button',
+				action: 'inactive-checkins',
+				text: i10n.translate('checkins.inactive.title')
+			},
+			{
+				xtype: 'button',
 				action: 'show-info',
 				iconMask: true,
 				iconCls: 'info_plain2'

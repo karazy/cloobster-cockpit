@@ -248,5 +248,21 @@ Ext.define('EatSense.view.SpotDetail', {
 			]
 		}
 		]
+	},
+
+	hideRequestsPanel: function() {
+		var panel = this.down('customerrequest');
+
+		if(panel) {
+			panel.hide();
+		}
+	},
+
+	showRequestsPanel: function() {
+		var panel = this.down('customerrequest');
+
+		if(panel) {
+			panel.show();
+		}
 	}
 });

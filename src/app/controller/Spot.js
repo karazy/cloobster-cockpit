@@ -2009,12 +2009,12 @@ Ext.define('EatSense.controller.Spot', {
 
 
 		function processCheckInMessage(action, data) {
-			checkInWithActivity = this.getCheckinInStore(data.id);
+			checkInWithActivity = me.getCheckinInStore(data.id);
 			removeCheckIn(checkInWithActivity);
 		}
 
 		function processMessage(action, data) {
-			checkInWithActivity = this.getCheckinInStore(data.checkInId);
+			checkInWithActivity = me.getCheckinInStore(data.checkInId);
 			removeCheckIn(checkInWithActivity);
 		}
 

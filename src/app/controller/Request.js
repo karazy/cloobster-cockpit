@@ -95,6 +95,11 @@ Ext.define('EatSense.controller.Request',{
 		assocCheckIn = checkInStore.getById(requestModel.get('checkInId'));
 		requestModel.setCheckIn(assocCheckIn);
 
+		if(!spotCtr.getActiveSpot()) {
+			console.log('Request.processCustomerRequest: no active spot exists. (inactive checkin view open?)');
+			return;
+		}
+
 		if(!detail.isHidden() && spotCtr.getActiveCustomer()) {
 			//only show if the correct spot is active
 			if(request.spotId == spotCtr.getActiveSpot().get('id')) {

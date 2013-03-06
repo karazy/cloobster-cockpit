@@ -194,6 +194,8 @@ Ext.define('EatSense.controller.Spot', {
 		messageCtr.on('eatSense.checkin', this.updateRequests, this);
 
 		messageCtr.on('eatSense.checkin', this.updateHistory, this);
+
+		messageCtr.on('eatSense.checkin', this.processInactiveCheckins, this);
 	},
 
 	// start load and show data
@@ -417,7 +419,7 @@ Ext.define('EatSense.controller.Spot', {
 		messageCtr.on('eatSense.order', this.updateSpotDetailOrderIncremental, this);
 		messageCtr.on('eatSense.bill', this.updateSpotDetailBillIncremental, this);
 		messageCtr.on('eatSense.request', requestCtr.processCustomerRequest, requestCtr);
-		//refresh all is only active when psuh communication is out of order
+		//refresh all is only active when push communication is out of order
 		messageCtr.on('eatSense.refresh-all', this.refreshActiveSpotCheckIns, this);
 		
 		
@@ -825,8 +827,6 @@ Ext.define('EatSense.controller.Spot', {
 	*/
 	updateHistory: function(action, data) {
 
-		//TODO only load requests if it belongs to the active area!
-		//currently not possible
 		if(action == 'delete' && data.status == appConstants.COMPLETE) {
 			this.loadHistory();	
 		}
@@ -1933,6 +1933,146 @@ Ext.define('EatSense.controller.Spot', {
 		}
 	
 		return spotStatus;		
+	},
+	/**
+	* If action is inactive, ask user if he wants to process
+	* inactive checkins.
+	* @param {String} action
+	* @param {Object} data
+	*/
+	processInactiveCheckins: function(action, data) {
+		var me = this;
+		//TODO deal with read only mode?
+		if(action == 'inactive') {
+			Ext.Msg.show({
+				title: i10n.translate('hint'),
+				message: i10n.translate('checkins.inactive.message'),
+				buttons: [{
+					text: i10n.translate('yes'),
+					itemId: 'yes',
+					ui: 'action'
+				}, {
+					text:  i10n.translate('no'),
+					itemId: 'no',
+					ui: 'action'
+				}],
+				scope: this,
+				fn: function(btnId, value, opt) {
+					if(btnId=='yes') {
+						//load inactive checkins
+						me.loadInactiveCheckIns();
+					}
+				}
+			});			
+		}	
+	},
+	/**
+	* Loads inactive checkins and displays them in SpotDetail view.
+	*
+	*/
+	loadInactiveCheckIns: function() {
+		var	me = this,
+			loginCtr = this.getApplication().getController('Login'),
+			messageCtr = this.getApplication().getController('Message'),
+			requestCtr = this.getApplication().getController('Request'),
+			detail = me.getSpotDetail(),
+			checkInList = detail.down('#checkInList'),		
+			// data = spot,
+			checkInStore = Ext.StoreManager.lookup('checkInStore'),
+			restaurantId = loginCtr.getAccount().get('businessId'),
+			titlebar = detail.down('titlebar'),
+			checkInWithActivity;
+
+
+		//TODO listen for checkin events. if an event occurs checkin
+		//one of the checkins isn't inactive anymore
+
+		//add listeners for channel messages
+		messageCtr.on('eatSense.checkin', processCheckInMessage, this);
+
+		messageCtr.on('eatSense.order', processMessage, this);
+
+		messageCtr.on('eatSense.bill', processMessage, this);
+
+		messageCtr.on('eatSense.request', processMessage, requestCtr);
+
+		spotDetail.on({
+			'hide': cleanup, 
+			scope: this
+		});
+
+
+		function processCheckInMessage(action, data) {
+			checkInWithActivity = this.getCheckinInStore(data.id);
+			removeCheckIn(checkInWithActivity);
+		}
+
+		function processMessage(action, data) {
+			checkInWithActivity = this.getCheckinInStore(data.checkInId);
+			removeCheckIn(checkInWithActivity);
+		}
+
+		function cleanup() {
+			messageCtr.un('eatSense.checkin', processCheckInMessage, this);
+			messageCtr.un('eatSense.order', processMessage, this);
+			messageCtr.un('eatSense.bill', processMessage, this);
+			messageCtr.un('eatSense.request', processMessage, requestCtr);
+		}
+		
+		function removeCheckIn(checkIn) {
+			if(checkIn) {
+				checkInStore.remove(checkIn);
+			}			
+		}
+		
+		// me.setActiveSpot(data);	
+		//TODO enclosing divs area for chrome cutting of the titles, fixed in 2.1
+		titlebar.setTitle('<div>' + i10n.translate('checkins.inactive.title') + '</div>');
+
+		//load checkins and orders and set lists
+		checkInStore.load({
+			params: {
+				pathId: restaurantId,
+				inactive: true
+			},
+			 callback: function(records, operation, success) {
+			 	if(success) {
+			 		if(records.length > 0) {
+						//selects the first customer. select event of list gets fired and calls showCustomerDetail	 	
+			 			me.getSpotDetailCustomerList().select(0);	
+			 		}
+			 	} else {
+			 		me.getApplication().handleServerError({
+						'error': operation.error, 
+						'forceLogout': {403: true},
+						'hideMessage':false
+					});
+			 	}			
+			 },
+			 scope: this
+		});
+
+		//show detail view
+		Ext.Viewport.add(detail);
+		detail.show();
+	},
+	/**
+	* Checks if given checkInId has a record in checkInstore.
+	* @param {String} checkInId
+	* @return checkIn if one is found. null otherwise
+	*/
+	getCheckinInStore: function(checkInId) {
+		var checkInStore = Ext.StoreManager.lookup('checkInStore'),
+			foundCheckIn = null;
+
+		if(!checkInId) {
+			console.log('Spot.getCheckinInStore: no id given');
+			return;
+		}
+
+		foundCheckIn = checkInStore.getById(checkInId);
+
+		return foundCheckIn;
 	}
 
 

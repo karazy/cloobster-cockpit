@@ -1998,67 +1998,15 @@ Ext.define('EatSense.controller.Spot', {
 	loadAndShowInactiveCheckIns: function() {
 		var	me = this,
 			loginCtr = this.getApplication().getController('Login'),
-			messageCtr = this.getApplication().getController('Message'),
-			requestCtr = this.getApplication().getController('Request'),
 			detail = me.getSpotDetail(),
-			checkInList = detail.down('#checkInList'),		
-			// data = spot,
 			checkInStore = Ext.StoreManager.lookup('checkInStore'),
 			restaurantId = loginCtr.getAccount().get('businessId'),
-			titlebar = detail.down('titlebar'),
-			checkInWithActivity;
-
-
-		//TODO listen for checkin events. if an event occurs checkin
-		//one of the checkins isn't inactive anymore
-
-		//add listeners for channel messages
-		// messageCtr.on('eatSense.checkin', processCheckInMessage, this);
-
-		// messageCtr.on('eatSense.order', processMessage, this);
-
-		// messageCtr.on('eatSense.bill', processMessage, this);
-
-		// messageCtr.on('eatSense.request', processMessage, requestCtr);
-
-		// detail.on({
-		// 	'hide': cleanup, 
-		// 	scope: this
-		// });
+			titlebar = detail.down('titlebar');
 		
 		//don't show request panel for inactice checkin view
 		detail.hideRequestsPanel();
 
-
-		// function processCheckInMessage(action, data) {
-		// 	checkInWithActivity = me.getCheckinInStore(data.id);
-		// 	if(checkInWithActivity.get('lastActivity') != data.lastActivity) {
-		// 		removeCheckIn(checkInWithActivity);
-		// 	}
-		// }
-
-		// function processMessage(action, data) {
-		// 	checkInWithActivity = me.getCheckinInStore(data.checkInId);
-		// 	if(checkInWithActivity.get('lastActivity') != data.lastActivity) {
-		// 		removeCheckIn(checkInWithActivity);	
-		// 	}
-		// }
-
-		// function cleanup() {
-		// 	detail.showRequestsPanel();
-		// 	messageCtr.un('eatSense.checkin', processCheckInMessage, this);
-		// 	messageCtr.un('eatSense.order', processMessage, this);
-		// 	messageCtr.un('eatSense.bill', processMessage, this);
-		// 	messageCtr.un('eatSense.request', processMessage, requestCtr);
-		// }
 		
-		// function removeCheckIn(checkIn) {
-		// 	if(checkIn) {
-		// 		checkInStore.remove(checkIn);
-		// 	}			
-		// }
-		
-		// me.setActiveSpot(data);	
 		//TODO enclosing divs area for chrome cutting of the titles, fixed in 2.1
 		titlebar.setTitle('<div>' + i10n.translate('checkins.inactive.title') + '</div>');
 

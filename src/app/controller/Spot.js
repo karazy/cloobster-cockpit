@@ -86,6 +86,7 @@ Ext.define('EatSense.controller.Spot', {
 		 	},
 		 	spotDetail: {
 		 		hide: 'hideSpotDetail',
+		 		show: 'showSpotDetail'
 		 	},
 		 	paidSpotDetailButton: {
 		 		tap: 'confirmPayment'
@@ -405,7 +406,7 @@ Ext.define('EatSense.controller.Spot', {
 		console.log('showSpotDetails');
 		var	me = this,
 			loginCtr = this.getApplication().getController('Login'),
-			messageCtr = this.getApplication().getController('Message'),
+			// messageCtr = this.getApplication().getController('Message'),
 			requestCtr = this.getApplication().getController('Request'),
 			detail = me.getSpotDetail(),
 			checkInList = detail.down('#checkInList'),
@@ -419,12 +420,12 @@ Ext.define('EatSense.controller.Spot', {
 			checkInToSelect;
 
 		//add listeners for channel messages
-		messageCtr.on('eatSense.checkin', this.updateSpotDetailCheckInIncremental, this);
-		messageCtr.on('eatSense.order', this.updateSpotDetailOrderIncremental, this);
-		messageCtr.on('eatSense.bill', this.updateSpotDetailBillIncremental, this);
-		messageCtr.on('eatSense.request', requestCtr.processCustomerRequest, requestCtr);
-		//refresh all is only active when push communication is out of order
-		messageCtr.on('eatSense.refresh-all', this.refreshActiveSpotCheckIns, this);
+		// messageCtr.on('eatSense.checkin', this.updateSpotDetailCheckInIncremental, this);
+		// messageCtr.on('eatSense.order', this.updateSpotDetailOrderIncremental, this);
+		// messageCtr.on('eatSense.bill', this.updateSpotDetailBillIncremental, this);
+		// messageCtr.on('eatSense.request', requestCtr.processCustomerRequest, requestCtr);
+		// //refresh all is only active when push communication is out of order
+		// messageCtr.on('eatSense.refresh-all', this.refreshActiveSpotCheckIns, this);
 		
 		
 		me.setActiveSpot(data);	
@@ -720,19 +721,21 @@ Ext.define('EatSense.controller.Spot', {
 				listElement,
 				//the raw data object
 				origCheckIn = updatedCheckIn,
+				checkInFromStore,
 				//convert to sencha model
 				updatedCheckIn = Ext.create('EatSense.model.CheckIn', updatedCheckIn),
 				requestCtr = this.getApplication().getController('Request'),
 				customerIndex;
 
-		// console.log('Spot.updateSpotDetailCheckInIncremental > action=' + action + ' converted checkInId=' + updatedCheckIn.data.id + ' orig Id=' + origCheckIn.id + ' orig spotId=' + origCheckIn.spotId);
-		// console.log('Spot.updateSpotDetailCheckInIncremental > detail hidden: ' + detail.isHidden());
-		// console.log('Spot.updateSpotDetailCheckInIncremental > activeSpot: ' + me.getActiveSpot() + ' id: ' +me.getActiveSpot().get('id'));
-		// console.log('Spot.updateSpotDetailCheckInIncremental > updatedCheckIn.get("spotId"): ' + updatedCheckIn.get('spotId'));
-		//check if spot detail is visible and if it is the same spot the checkin belongs to
-		if(!detail.isHidden() && me.getActiveSpot()) {
-			if(origCheckIn.spotId == me.getActiveSpot().get('id')) {
-				if(action == 'new') {
+
+		//check if spot detail is visible
+		if(!detail.isHidden()) {		
+		// checkInFromStore = this.getCheckinInStore(origCheckIn.id);	
+			//only proceed if a checkIn was found
+			// if(checkInFromStore) {			
+			if(action == 'new') {
+				//only add if this belongs to active spot
+				if(me.getActiveSpot() && origCheckIn.spotId == me.getActiveSpot().get('id')) {
 					store.add(updatedCheckIn);
 					if(store.getCount() == 1) {
 						//only one checkIn exists so set this checkIn as selected
@@ -740,70 +743,71 @@ Ext.define('EatSense.controller.Spot', {
 					}
 					//make sure to load new request so they exist
 					requestCtr.loadRequests();
-				} else if (action == 'update' || action == 'confirm-orders') {
-					dirtyCheckIn = store.getById(updatedCheckIn.get('id'));
-					if(dirtyCheckIn) {
-						//update existing checkin
-						dirtyCheckIn.setData(updatedCheckIn.getData());
+				}					
+			} else if (action == 'update' || action == 'confirm-orders') {
+				dirtyCheckIn = store.getById(updatedCheckIn.get('id'));
+				if(dirtyCheckIn) {
+					//update existing checkin
+					dirtyCheckIn.setData(updatedCheckIn.getData());
 
-						//always refresh list to flag incoming orders on non active customers
-						me.getSpotDetailCustomerList().refresh();
+					//always refresh list to flag incoming orders on non active customers
+					me.getSpotDetailCustomerList().refresh();
 
-						if(me.getActiveCustomer() && me.getActiveCustomer().get('id') == updatedCheckIn.get('id')) {
-							//update status only if this is the active customer
-							me.updateCustomerStatusPanel(updatedCheckIn);
-							if(action == 'confirm-orders') {
-								orders.queryBy(function(order){
-									if(order.get('status') == appConstants.Order.PLACED) {
-										return true;
-									}
-								}).each(function(order) {
-									order.set('status', appConstants.Order.RECEIVED);
-								});
-							}
-						}
-					} else {
-						Ext.Msg.alert(i10n.translate('error'), i10n.translate('errorGeneralCommunication'), Ext.emptyFn);
-					}
-				} else if (action == 'delete') {					
-					dirtyCheckIn = store.getById(updatedCheckIn.get('id'));
-					// console.log('Spot.updateSpotDetailCheckInIncremental > PRE delete checkin with get(id) ' + updatedCheckIn.get('id') + ' data.id ' + updatedCheckIn.data.id);
-					if(dirtyCheckIn) {
-						// console.log('Spot.updateSpotDetailCheckInIncremental > POST delete checkin with id ' + updatedCheckIn.get('id'));
-						customerIndex = store.indexOf(dirtyCheckIn);
-						store.remove(dirtyCheckIn);
-						//make sure to load new request so they exist
-						requestCtr.loadRequests();	
-
-						//clear status panel if deleted checkin is activeCustomer or select another checkin
-						if(me.getActiveCustomer() && updatedCheckIn.get('id') == me.getActiveCustomer().get('id')) {
-							if(store.getCount() > 0) {
-								if(store.getAt(customerIndex)) {
-									customerList.select(customerIndex);	
-								} else {
-									customerList.select(customerIndex-1);
-								}
-								
-							} else {
-								me.setSpotdetailButtonsActive(false);
-								orders.removeAll();
-								me.setActiveCustomer(null);
-								me.setActiveBill(null);
-								me.updateCustomerStatusPanel();
-								me.updateCustomerTotal();
-								me.updateCustomerPaymentMethod();
-							}
-						}						
-					}
-				} else if(action = 'update-orders') {
-					//update all orders
 					if(me.getActiveCustomer() && me.getActiveCustomer().get('id') == updatedCheckIn.get('id')) {
-							//select customer whos orders where updated							
-							// me.getSpotDetailCustomerList().select(me.getActiveCustomer());
-							me.refreshActiveCustomerOrders();
+						//update status only if this is the active customer
+						me.updateCustomerStatusPanel(updatedCheckIn);
+						if(action == 'confirm-orders') {
+							orders.queryBy(function(order){
+								if(order.get('status') == appConstants.Order.PLACED) {
+									return true;
+								}
+							}).each(function(order) {
+								order.set('status', appConstants.Order.RECEIVED);
+							});
+						}
 					}
+				} else {
+					Ext.Msg.alert(i10n.translate('error'), i10n.translate('errorGeneralCommunication'), Ext.emptyFn);
+				}
+			} else if (action == 'delete') {					
+				dirtyCheckIn = store.getById(updatedCheckIn.get('id'));
+				// console.log('Spot.updateSpotDetailCheckInIncremental > PRE delete checkin with get(id) ' + updatedCheckIn.get('id') + ' data.id ' + updatedCheckIn.data.id);
+				if(dirtyCheckIn) {
+					// console.log('Spot.updateSpotDetailCheckInIncremental > POST delete checkin with id ' + updatedCheckIn.get('id'));
+					customerIndex = store.indexOf(dirtyCheckIn);
+					store.remove(dirtyCheckIn);
+					//make sure to load new request so they exist
+					requestCtr.loadRequests();	
+
+					//clear status panel if deleted checkin is activeCustomer or select another checkin
+					if(me.getActiveCustomer() && updatedCheckIn.get('id') == me.getActiveCustomer().get('id')) {
+						if(store.getCount() > 0) {
+							if(store.getAt(customerIndex)) {
+								customerList.select(customerIndex);	
+							} else {
+								customerList.select(customerIndex-1);
+							}
+							
+						} else {
+							me.setSpotdetailButtonsActive(false);
+							orders.removeAll();
+							me.setActiveCustomer(null);
+							me.setActiveBill(null);
+							me.updateCustomerStatusPanel();
+							me.updateCustomerTotal();
+							me.updateCustomerPaymentMethod();
+						}
+					}						
+				}
+			} else if(action = 'update-orders') {
+				//update all orders
+				if(me.getActiveCustomer() && me.getActiveCustomer().get('id') == updatedCheckIn.get('id')) {
+						//select customer whos orders where updated							
+						// me.getSpotDetailCustomerList().select(me.getActiveCustomer());
+						me.refreshActiveCustomerOrders();
 				}
 			}
+			// }
 		}
 	},
 	/**
@@ -848,8 +852,8 @@ Ext.define('EatSense.controller.Spot', {
 				completeButton = this.getCompleteCheckInButton(),
 				bill;
 
-				//check if spot detail is visible and if it is the same spot the checkin belongs to
-		if(!detail.isHidden() && me.getActiveSpot()) {
+		//check if spot detail is visible
+		if(!detail.isHidden()) {
 			if(me.getActiveCustomer() && billData.checkInId == me.getActiveCustomer().get('id')) {
 				bill = Ext.create('EatSense.model.Bill');
 				bill.setData(billData);
@@ -883,7 +887,7 @@ Ext.define('EatSense.controller.Spot', {
 				totalLabel = detail.down('#total');
 		//Be careful! updatedOrder is not yet a model
 
-		//check if spot detail is visible and if it is the same spot the checkin belongs to
+		//check if spot detail is visible
 		//and if the order belongs to current selected checkin		
 		if(!detail.isHidden() && me.getActiveCustomer()) {
 			if(updatedOrder.checkInId == me.getActiveCustomer().get('id')) {
@@ -1514,6 +1518,23 @@ Ext.define('EatSense.controller.Spot', {
 	},
 
 	/**
+	* @private
+	* Show event handler. Adds event listeners from message controller.
+	*/
+	showSpotDetail: function(spotdetail) {
+		var	messageCtr = this.getApplication().getController('Message'),
+			requestCtr = this.getApplication().getController('Request');
+
+		//add listeners for channel messages
+		messageCtr.on('eatSense.checkin', this.updateSpotDetailCheckInIncremental, this);
+		messageCtr.on('eatSense.order', this.updateSpotDetailOrderIncremental, this);
+		messageCtr.on('eatSense.bill', this.updateSpotDetailBillIncremental, this);
+		messageCtr.on('eatSense.request', requestCtr.processCustomerRequest, requestCtr);
+		//refresh all is only active when push communication is out of order
+		messageCtr.on('eatSense.refresh-all', this.refreshActiveSpotCheckIns, this);
+	},
+
+	/**
 	* Activated for deleted businesses so that only the current state can be viewed.
 	* But no actions are allowed.
 	*/
@@ -1992,49 +2013,50 @@ Ext.define('EatSense.controller.Spot', {
 		//one of the checkins isn't inactive anymore
 
 		//add listeners for channel messages
-		messageCtr.on('eatSense.checkin', processCheckInMessage, this);
+		// messageCtr.on('eatSense.checkin', processCheckInMessage, this);
 
-		messageCtr.on('eatSense.order', processMessage, this);
+		// messageCtr.on('eatSense.order', processMessage, this);
 
-		messageCtr.on('eatSense.bill', processMessage, this);
+		// messageCtr.on('eatSense.bill', processMessage, this);
 
-		messageCtr.on('eatSense.request', processMessage, requestCtr);
+		// messageCtr.on('eatSense.request', processMessage, requestCtr);
 
-		detail.on({
-			'hide': cleanup, 
-			scope: this
-		});
-
+		// detail.on({
+		// 	'hide': cleanup, 
+		// 	scope: this
+		// });
+		
+		//don't show request panel for inactice checkin view
 		detail.hideRequestsPanel();
 
 
-		function processCheckInMessage(action, data) {
-			checkInWithActivity = me.getCheckinInStore(data.id);
-			if(checkInWithActivity.get('lastActivity') != data.lastActivity) {
-				removeCheckIn(checkInWithActivity);
-			}
-		}
+		// function processCheckInMessage(action, data) {
+		// 	checkInWithActivity = me.getCheckinInStore(data.id);
+		// 	if(checkInWithActivity.get('lastActivity') != data.lastActivity) {
+		// 		removeCheckIn(checkInWithActivity);
+		// 	}
+		// }
 
-		function processMessage(action, data) {
-			checkInWithActivity = me.getCheckinInStore(data.checkInId);
-			if(checkInWithActivity.get('lastActivity') != data.lastActivity) {
-				removeCheckIn(checkInWithActivity);	
-			}
-		}
+		// function processMessage(action, data) {
+		// 	checkInWithActivity = me.getCheckinInStore(data.checkInId);
+		// 	if(checkInWithActivity.get('lastActivity') != data.lastActivity) {
+		// 		removeCheckIn(checkInWithActivity);	
+		// 	}
+		// }
 
-		function cleanup() {
-			detail.showRequestsPanel();
-			messageCtr.un('eatSense.checkin', processCheckInMessage, this);
-			messageCtr.un('eatSense.order', processMessage, this);
-			messageCtr.un('eatSense.bill', processMessage, this);
-			messageCtr.un('eatSense.request', processMessage, requestCtr);
-		}
+		// function cleanup() {
+		// 	detail.showRequestsPanel();
+		// 	messageCtr.un('eatSense.checkin', processCheckInMessage, this);
+		// 	messageCtr.un('eatSense.order', processMessage, this);
+		// 	messageCtr.un('eatSense.bill', processMessage, this);
+		// 	messageCtr.un('eatSense.request', processMessage, requestCtr);
+		// }
 		
-		function removeCheckIn(checkIn) {
-			if(checkIn) {
-				checkInStore.remove(checkIn);
-			}			
-		}
+		// function removeCheckIn(checkIn) {
+		// 	if(checkIn) {
+		// 		checkInStore.remove(checkIn);
+		// 	}			
+		// }
 		
 		// me.setActiveSpot(data);	
 		//TODO enclosing divs area for chrome cutting of the titles, fixed in 2.1
@@ -2068,8 +2090,9 @@ Ext.define('EatSense.controller.Spot', {
 		detail.show();
 	},
 	/**
-	* Checks if given checkInId has a record in checkInstore.
+	* Try to load checkIn from store.
 	* @param {String} checkInId
+	*	Id of checkIn
 	* @return checkIn if one is found. null otherwise
 	*/
 	getCheckinInStore: function(checkInId) {
@@ -2078,7 +2101,7 @@ Ext.define('EatSense.controller.Spot', {
 
 		if(!checkInId) {
 			console.log('Spot.getCheckinInStore: no id given');
-			return;
+			return null;
 		}
 
 		foundCheckIn = checkInStore.getById(checkInId);

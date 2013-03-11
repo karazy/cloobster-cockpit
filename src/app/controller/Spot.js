@@ -171,7 +171,10 @@ Ext.define('EatSense.controller.Spot', {
 		//contains active area
 		activeArea : null,
 
-		refreshRequestTask: null
+		refreshRequestTask: null,
+
+		/** If true will display spot and area name for each checkin */
+		displayCheckInLocation: false
 	},
 
 	init: function() {
@@ -935,16 +938,65 @@ Ext.define('EatSense.controller.Spot', {
 				detail = me.getSpotDetail(),
 				statusLabel = detail.down('#statusLabel'),
 				checkInTimeLabel = detail.down('#checkInTime'),
+				displayCheckInLocation = this.getDisplayCheckInLocation(),
+				spotLabel,
+				areaLabel,
+				spotStore,
+				areaStore,
+				areaFilters,
+				spotFilters,
+				spot,
+				area,
 				sum = 0;
+
+		spotLabel = detail.down('#spotLabel');
+		areaLabel = detail.down('#areaLabel');
 
 		if(checkIn) {
 			//render order status					
 			statusLabel.getTpl().overwrite(statusLabel.element, checkIn.getData());
 			checkInTimeLabel.getTpl().overwrite(checkInTimeLabel.element, {'checkInTime': checkIn.get('checkInTime')});
+			if(displayCheckInLocation === true) {
+				//show checkIn location info				
+				spotStore = Ext.StoreManager.lookup('spotStore');
+				areaStore = Ext.StoreManager.lookup('areaStore');
+
+				areaStore.suspendEvents();
+				spotStore.suspendEvents();
+				areaFilters = areaStore.getFilters();
+				areaStore.clearFilter(true);
+				spotFilters = spotStore.getFilters();
+				spotStore.clearFilter(true);
+
+				spot = spotStore.getById(checkIn.get('spotId'));
+				if(spot) {
+					spotLabel.setHidden(false);
+					spotLabel.getTpl().overwrite(spotLabel.element, {'spotName' : spot.get('name')});
+
+					area = areaStore.getById(spot.get('areaId'));
+					if(area) {
+						areaLabel.setHidden(false);
+						areaLabel.getTpl().overwrite(areaLabel.element, {'areaName' : area.get('name')});
+					}
+				}
+
+				spotStore.setFilters(spotFilters);
+				spotStore.filter();
+				areaStore.setFilters(areaFilters);			
+				areaStore.filter();
+				areaStore.resumeEvents();
+				spotStore.resumeEvents();
+			}
+
 		} else {
 			//pass dummy objects with no data
-			statusLabel.getTpl().overwrite(statusLabel.element, {status: ''});
+			statusLabel.getTpl().overwrite(statusLabel.element, {'spotName': ''});
 			checkInTimeLabel.getTpl().overwrite(checkInTimeLabel.element, {'checkInTime' : ''});
+
+			spotLabel.setHidden(true);
+			spotLabel.getTpl().overwrite(spotLabel.element, {'status': ''});
+			areaLabel.setHidden(true);
+			areaLabel.getTpl().overwrite(areaLabel.element, {'areaName' : ''});
 		}
 	},
 	/**
@@ -1509,6 +1561,8 @@ Ext.define('EatSense.controller.Spot', {
 		//disable all buttons
 		this.setSpotdetailButtonsActive(false);
 
+		this.setDisplayCheckInLocation(false);
+
 		messageCtr.un('eatSense.checkin', this.updateSpotDetailCheckInIncremental, this);
 		messageCtr.un('eatSense.order', this.updateSpotDetailOrderIncremental, this);
 		messageCtr.un('eatSense.request', requestCtr.updateSpotDetailOrderIncremental, requestCtr);
@@ -2009,6 +2063,8 @@ Ext.define('EatSense.controller.Spot', {
 		
 		//TODO enclosing divs area for chrome cutting of the titles, fixed in 2.1
 		titlebar.setTitle('<div>' + i10n.translate('checkins.inactive.title') + '</div>');
+
+		this.setDisplayCheckInLocation(true);
 
 		//load checkins and orders and set lists
 		checkInStore.load({

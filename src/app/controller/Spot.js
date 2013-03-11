@@ -1564,6 +1564,7 @@ Ext.define('EatSense.controller.Spot', {
 		//disable all buttons
 		this.setSpotdetailButtonsActive(false);
 
+		spotdetail.showRequestsPanel();
 		this.setDisplayCheckInLocation(false);
 
 		messageCtr.un('eatSense.checkin', this.updateSpotDetailCheckInIncremental, this);

@@ -37,6 +37,7 @@ $cloobster-font-color: #1E4776;
 @include pictos-iconmask('move');
 /*custom icons in res folder! */
 @include pictos-iconmask('exit');
+@include pictos-iconmask('time');
 
 @include sencha-toolbar-ui('gray', #C3C3C3, 'none');
 

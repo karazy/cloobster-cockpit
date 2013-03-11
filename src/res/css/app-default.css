@@ -9906,11 +9906,11 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 130px;
   border: solid 1px;
   border-color: black;
-  border-radius: 0.2em;
+  border-radius: 3px;
   background-color: grey;
   padding: 3px;
   word-break: break-word;
-  box-shadow: 3px 3px 0.5em 0.1em gray;
+  /*box-shadow: 3px 3px 0.5em 0.1em gray;*/
   /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(3%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
 }

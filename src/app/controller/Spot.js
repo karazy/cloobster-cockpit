@@ -943,7 +943,7 @@ Ext.define('EatSense.controller.Spot', {
 				areaLabel,
 				spotStore,
 				areaStore,
-				areaFilters,
+				// areaFilters,
 				spotFilters,
 				spot,
 				area,
@@ -961,10 +961,13 @@ Ext.define('EatSense.controller.Spot', {
 				spotStore = Ext.StoreManager.lookup('spotStore');
 				areaStore = Ext.StoreManager.lookup('areaStore');
 
-				areaStore.suspendEvents();
+				//clear area and spot filters to get the records by Id
+
+				//areaStore has currently no filters set
+				// areaStore.suspendEvents();
 				spotStore.suspendEvents();
 				areaFilters = areaStore.getFilters();
-				areaStore.clearFilter(true);
+				// areaStore.clearFilter(true);
 				spotFilters = spotStore.getFilters();
 				spotStore.clearFilter(true);
 
@@ -982,9 +985,9 @@ Ext.define('EatSense.controller.Spot', {
 
 				spotStore.setFilters(spotFilters);
 				spotStore.filter();
-				areaStore.setFilters(areaFilters);			
-				areaStore.filter();
-				areaStore.resumeEvents();
+				// areaStore.setFilters(areaFilters);			
+				// areaStore.filter();
+				// areaStore.resumeEvents();
 				spotStore.resumeEvents();
 			}
 
@@ -994,9 +997,9 @@ Ext.define('EatSense.controller.Spot', {
 			checkInTimeLabel.getTpl().overwrite(checkInTimeLabel.element, {'checkInTime' : ''});
 
 			spotLabel.setHidden(true);
-			spotLabel.getTpl().overwrite(spotLabel.element, {'status': ''});
+			// spotLabel.getTpl().overwrite(spotLabel.element, {'status': ''});
 			areaLabel.setHidden(true);
-			areaLabel.getTpl().overwrite(areaLabel.element, {'areaName' : ''});
+			// areaLabel.getTpl().overwrite(areaLabel.element, {'areaName' : ''});
 		}
 	},
 	/**

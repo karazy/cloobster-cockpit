@@ -292,12 +292,12 @@ Ext.define('EatSense.util.Translations',{
 		},
 		//requests
 		"requestMsgboxTitle" : {
-			"DE" :  "VIP Calls",
-			"EN" :  "VIP calls"
+			"DE" :  "Service Calls",
+			"EN" :  "Service Calls"
 		},
 		"requestDismiss" : {
 			"DE" :  "Alle löschen",
-			"EN" :  "Cancel VIP calls"
+			"EN" :  "Delete all"
 		},
 		"spot.filterbar.spotview" : {
 			"DE" :  "Spotansicht",

@@ -289,5 +289,15 @@ Ext.define('EatSense.view.SpotDetail', {
 		if(panel) {
 			panel.show();
 		}
+	},
+
+	isRequestPanelHidden: function() {
+		var panel = this.down('customerrequest');
+
+		if(panel) {
+			return panel.getHidden();
+		}
+
+		return false;
 	}
 });

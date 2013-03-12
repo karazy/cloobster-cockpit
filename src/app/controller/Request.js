@@ -41,6 +41,11 @@ Ext.define('EatSense.controller.Request',{
 		//empty the store
 		requestStore.removeAll();
 
+		if(!spotCtr.getActiveSpot()) {
+			console.log('Request.loadRequests: no activeSpot. Maybe inactive checkins view is open.');
+			return;
+		}
+
 		//check if customer requests for this spot exist and display them
 		requestStore.load({
 			params: {

@@ -779,8 +779,10 @@ Ext.define('EatSense.controller.Spot', {
 					// console.log('Spot.updateSpotDetailCheckInIncremental > POST delete checkin with id ' + updatedCheckIn.get('id'));
 					customerIndex = store.indexOf(dirtyCheckIn);
 					store.remove(dirtyCheckIn);
-					//make sure to load new request so they exist
-					requestCtr.loadRequests();	
+					//make sure to reload requests so stale ones are removed
+					if(!detail.isRequestPanelHidden()) {
+						requestCtr.loadRequests();
+					}					
 
 					//clear status panel if deleted checkin is activeCustomer or select another checkin
 					if(me.getActiveCustomer() && updatedCheckIn.get('id') == me.getActiveCustomer().get('id')) {

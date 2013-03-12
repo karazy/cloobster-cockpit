@@ -476,10 +476,6 @@ Ext.define('EatSense.util.Translations',{
 			"DE" :  "Updates im Hintergrund nicht funktionsfähig.",
 			"EN" :  "Updates have been successful."
 		},
-		"error.apiversion" : {
-			"DE" :  "Die Version Ihres Cockpits ist veraltet. Bitte laden das Cockpit neu.",
-			"EN" : "Your cockpit version is old. Please reload the cockpit."
-		},
 		"error.version" : {
 			"DE" :  "Die Version Ihres Cockpits ist veraltet. Bitte laden das Cockpit neu.",
 			"EN" : "Your cockpit version is old. Please reload the cockpit."

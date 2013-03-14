@@ -271,10 +271,7 @@ Ext.define('EatSense.controller.Login', {
 				(!errorMessage || errorMessage == "") ?	errorMessage = i10n.translate('wrongCredentials') : errorMessage;
 
     	    	me.getApplication().handleServerError({
-						'error': {
-							'status': response.status,
-							'statusText': response.statusText
-						}, 
+						'error': response, 
 						'forceLogout': false, 
 						'hideMessage':false,
 						'message': errorMessage

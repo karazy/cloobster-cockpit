@@ -1092,10 +1092,7 @@ Ext.define('EatSense.controller.Spot', {
     	    failure: function(response) {
     	    	order.set('status', prevStatus);
     	    	me.getApplication().handleServerError({
-						'error': {
-							'status': response.status,
-							'statusText': response.statusText
-						}, 
+						'error': response, 
 						'forceLogout': {403: true}, 
 						'hideMessage':false
 						// 'message': i10n.translate('errorSpotDetailOrderSave')
@@ -1229,10 +1226,7 @@ Ext.define('EatSense.controller.Spot', {
 			    	    failure: function(response) {
 			    	    	order.set('status', prevStatus);
 		    	    		me.getApplication().handleServerError({
-								'error': {
-									'status': response.status,
-									'statusText': response.statusText
-								}, 
+								'error': response, 
 								'forceLogout': {403: true}, 
 							});
 				   	    }
@@ -1354,10 +1348,7 @@ Ext.define('EatSense.controller.Spot', {
 	    	    },
 	    	    failure: function(response) {
 	    	    	me.getApplication().handleServerError({
-							'error': {
-								'status': response.status,
-								'statusText': response.statusText
-							}, 
+							'error': response, 
 							'forceLogout': {403: true}, 
 							'hideMessage':false
 					});
@@ -1948,10 +1939,7 @@ Ext.define('EatSense.controller.Spot', {
 			    	    	};
 
 		    	    		me.getApplication().handleServerError({
-								'error': {
-									'status': response.status,
-									'statusText': response.statusText
-								}, 
+								'error': response, 
 								'forceLogout': {403: true},
 								'message': errMsg || null
 							});

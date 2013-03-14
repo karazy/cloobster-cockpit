@@ -123,10 +123,7 @@ Ext.define('EatSense.controller.Message', {
 		    failure: function(response) {
 		    	//just log don't show message or force logout!
 		    	me.getApplication().handleServerError({
-					'error': {
-						'status' : response.status,
-						'statusText': response.statusText
-					}, 
+					'error': response, 
 					'forceLogout': false, 
 					'hideMessage':true, 
 				});
@@ -176,10 +173,7 @@ Ext.define('EatSense.controller.Message', {
 		    	console.log('online check request failed with code: ' + response.status);
 
 		    	me.getApplication().handleServerError({
-					'error': {
-						'status' : response.status,
-						'statusText': response.statusText
-					}, 
+					'error': response, 
 					'forceLogout': {403 : true}, 
 					//hide message, because a notification is shown
 					'hideMessage': {0 : true}

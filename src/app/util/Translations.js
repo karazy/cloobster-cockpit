@@ -479,6 +479,10 @@ Ext.define('EatSense.util.Translations',{
 		"error.version" : {
 			"DE" :  "Die Version Ihres Cockpits ist veraltet. Bitte laden das Cockpit neu.",
 			"EN" : "Your cockpit version is old. Please reload the cockpit."
+		},
+		"error.appengine" : {
+			"DE" :  "Es liegt eine Serverstörung vor. Wir arbeiten an einer Lösung.",
+			"EN" : "Currently server errors exist. We are working on a solution."
 		}
 	}
 	}

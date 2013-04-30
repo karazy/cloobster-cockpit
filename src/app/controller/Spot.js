@@ -770,7 +770,7 @@ Ext.define('EatSense.controller.Spot', {
 						}
 					}
 				} else {
-					Ext.Msg.alert(i10n.translate('error'), i10n.translate('errorGeneralCommunication'), Ext.emptyFn);
+					console.log('Spot.updateSpotDetailCheckInIncremental: no checkin for open spot found');
 				}
 			} else if (action == 'delete') {					
 				dirtyCheckIn = store.getById(updatedCheckIn.get('id'));

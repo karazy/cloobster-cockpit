@@ -18,11 +18,21 @@ Ext.define('EatSense.view.Main', {
 			docked: 'bottom',
 			items: [
 			{
-			xtype: 'label',
-			itemId: 'info'
+				xtype: 'label',
+				itemId: 'info',
+				style: {
+					'color' : 'white'
+				}
 			},
 			{
 				xtype: 'spacer'
+			},
+			{
+				xtype: 'button',
+				action: 'inactive-checkins',
+				iconCls: 'time',
+				iconMask: true,
+				text: i10n.translate('checkins.inactive.title')
 			},
 			{
 				xtype: 'button',

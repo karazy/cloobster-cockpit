@@ -21,7 +21,7 @@ Ext.define('EatSense.view.SpotDetailItem', {
 			width: '70%',	
 			tpl: new Ext.XTemplate(
 				"<h2>{amount} x {productName} - {[this.formatPrice(values.priceCalculated)]}</h2>" +
-				"<h4>Uhrzeit: {[values.orderTime.toLocaleTimeString()]}</h4>"+
+				"<h4>{[this.formatTime(values.orderTime)]}</h4>"+
 				"<div class='choices'>"+
 					"<tpl for='choices'>" +				
 						"<tpl if='this.checkSelections(values, xindex)'>" +
@@ -56,6 +56,11 @@ Ext.define('EatSense.view.SpotDetailItem', {
 				},
 				formatPrice: function(price) {
 					return appHelper.formatPrice(price);
+				},
+				formatTime: function(time) {
+					var dateFormat = appConstants.DateTimeFormat[appConfig.language];
+					
+					return Ext.util.Format.date(time, dateFormat);
 				}
 			})
 		},

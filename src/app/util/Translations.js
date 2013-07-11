@@ -119,8 +119,8 @@ Ext.define('EatSense.util.Translations',{
 			"EN" :  "Password"
 		},
 		"business.status.deleted" : {
-			"DE" :  "inaktiv",
-			"EN" :  "inactive"
+			"DE" :  "gelöscht",
+			"EN" :  "deleted"
 		},
 		//area
 		"area.request.new.badge" : {
@@ -292,12 +292,12 @@ Ext.define('EatSense.util.Translations',{
 		},
 		//requests
 		"requestMsgboxTitle" : {
-			"DE" :  "VIP Calls",
-			"EN" :  "VIP calls"
+			"DE" :  "Service Calls",
+			"EN" :  "Service Calls"
 		},
 		"requestDismiss" : {
 			"DE" :  "Alle löschen",
-			"EN" :  "Cancel VIP calls"
+			"EN" :  "Delete all"
 		},
 		"spot.filterbar.spotview" : {
 			"DE" :  "Spotansicht",
@@ -401,7 +401,19 @@ Ext.define('EatSense.util.Translations',{
 			"DE" :  "Möchten Sie Audio Benachrichtigungen für eintreffende Ereignisse aktivieren?",
 			"EN" :  "Do you want to enable alerts for incoming orders?"
 		},
-
+		//inactive checkins
+		"checkins.inactive.message.title" : {
+			"DE" :  "Inaktive Check-Ins",
+			"EN" : "Inactive Check-ins"
+		},
+		"checkins.inactive.message.text" : {
+			"DE" :  "Es liegen inaktive (> 24h) Check-Ins vor. Möchten Sie diese nun bearbeiten?",
+			"EN" : "Inactive  (> 24h) Check-Ins exist to you want to process them now?"
+		},
+		"checkins.inactive.title" : {
+			"DE" :  "Inaktive Check-Ins",
+			"EN" : "Inactive Check-Ins"
+		},
 		//constants
 		"ORDER_PLACED" : {
 			"DE" :  "Neue Bestellung!",
@@ -437,8 +449,8 @@ Ext.define('EatSense.util.Translations',{
 			"EN" :  "Error"
 		},		
 		"errorMsg" : {
-			"DE" :  "Entschuldigung! Ein Fehler ist aufgetreten.<br/>Wir kümmern uns darum!",
-			"EN" :  "We apologize! An error has occurred.<br/>We'll fix it as soon as possible."
+			"DE" :  "Ein Fehler ist aufgetreten.<br/>Es wird empfohlen das Cockpit neu zuladen.",
+			"EN" :  "An error has occurred.<br/>We recommend reloading the cockpit."
 		},
 		"errorResource" : {
 			"DE" :  "Daten konnten nicht vom Server geladen werden.",
@@ -464,6 +476,14 @@ Ext.define('EatSense.util.Translations',{
 			"DE" :  "Updates im Hintergrund nicht funktionsfähig.",
 			"EN" :  "Updates have been successful."
 		},
+		"error.version" : {
+			"DE" :  "Die Version Ihres Cockpits ist veraltet. Bitte laden das Cockpit neu.",
+			"EN" : "Your cockpit version is old. Please reload the cockpit."
+		},
+		"error.appengine" : {
+			"DE" :  "Es liegt eine Serverstörung vor. Wir arbeiten an einer Lösung.",
+			"EN" : "Currently server errors exist. We are working on a solution."
+		}
 	}
 	}
 });

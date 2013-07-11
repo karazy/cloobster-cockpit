@@ -122,7 +122,9 @@ Ext.define('EatSense.view.SpotDetail', {
 								'<div class="key">Check-In:</div><div class="value">{[this.formatTime(values.checkInTime)]}</div>',
 								{
 									formatTime: function(time) {
-										return Ext.util.Format.date(time, 'H:i');
+										var dateFormat = appConstants.DateTimeFormat[appConfig.language];
+										
+										return Ext.util.Format.date(time, dateFormat);
 									}
 								}
 							)
@@ -156,7 +158,7 @@ Ext.define('EatSense.view.SpotDetail', {
 						xtype: 'label',
 						itemId: 'statusLabel',
 						cls: 'spotdetail-status',
-						tpl: new Ext.XTemplate('<div class="key">Status:</div><div class="value {[values.status.toLowerCase()]}">{[this.translateStatus(values.status)]}</div>',
+						tpl: new Ext.XTemplate('<div class="key">Status:</div><tpl if="status"><div class="value {[values.status.toLowerCase()]}">{[this.translateStatus(values.status)]}</div></tpl>',
 							{
 								translateStatus: function(status) {
 									return i10n.translate(status);
@@ -177,6 +179,31 @@ Ext.define('EatSense.view.SpotDetail', {
 							}
 						)
 					}
+					]
+				},
+				{
+					xtype: 'panel',
+					layout: {
+						type: 'hbox',
+						align: 'start'
+					},
+					width: '100%',
+					defaults: {
+						width: '50%'
+					},
+					items: [
+						{
+							xtype: 'label',
+							itemId: 'spotLabel',
+							cls: 'spotdetail-status',
+							tpl: new Ext.XTemplate('<div class="key">Spot:</div><div class="value">{[values.spotName]}</div>')
+						},
+						{
+							xtype: 'label',
+							itemId: 'areaLabel',
+							cls: 'spotdetail-status',
+							tpl: new Ext.XTemplate('<div class="key">Area:</div><div class="value">{[values.areaName]}</div>')
+						}
 					]
 				},
 				{
@@ -246,5 +273,31 @@ Ext.define('EatSense.view.SpotDetail', {
 			]
 		}
 		]
+	},
+
+	hideRequestsPanel: function() {
+		var panel = this.down('customerrequest');
+
+		if(panel) {
+			panel.hide();
+		}
+	},
+
+	showRequestsPanel: function() {
+		var panel = this.down('customerrequest');
+
+		if(panel) {
+			panel.show();
+		}
+	},
+
+	isRequestPanelHidden: function() {
+		var panel = this.down('customerrequest');
+
+		if(panel) {
+			return panel.getHidden();
+		}
+
+		return false;
 	}
 });

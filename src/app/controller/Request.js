@@ -41,6 +41,11 @@ Ext.define('EatSense.controller.Request',{
 		//empty the store
 		requestStore.removeAll();
 
+		if(!spotCtr.getActiveSpot()) {
+			console.log('Request.loadRequests: no activeSpot. Maybe inactive checkins view is open.');
+			return;
+		}
+
 		//check if customer requests for this spot exist and display them
 		requestStore.load({
 			params: {
@@ -94,6 +99,11 @@ Ext.define('EatSense.controller.Request',{
 		requestModel.phantom = false;
 		assocCheckIn = checkInStore.getById(requestModel.get('checkInId'));
 		requestModel.setCheckIn(assocCheckIn);
+
+		if(!spotCtr.getActiveSpot()) {
+			console.log('Request.processCustomerRequest: no active spot exists. (inactive checkin view open?)');
+			return;
+		}
 
 		if(!detail.isHidden() && spotCtr.getActiveCustomer()) {
 			//only show if the correct spot is active

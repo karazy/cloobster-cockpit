@@ -74,9 +74,11 @@ Ext.define('EatSense.controller.Login', {
 				//set dirty so that store.sync does its work
 				me.getAppState().setDirty();
 				appStateStore.add(me.getAppState());
+				appStateStore.setAutoSync(true);
 				appStateStore.sync();
 			} else {
 				appStateStore.removeAll();
+				appStateStore.setAutoSync(false);
 				appStateStore.sync();
 			};
 	 	};
@@ -115,6 +117,7 @@ Ext.define('EatSense.controller.Login', {
 		   		console.log('app state found');		   		
 
 		   		this.setAppState(appStateStore.first());
+		   		appStateStore.setAutoSync(true);
 		   		appState = this.getAppState();
 
 		   		//save token
@@ -124,7 +127,8 @@ Ext.define('EatSense.controller.Login', {
 		   		 //Set default headers so that always credentials are send
 				Ext.Ajax.setDefaultHeaders({
 					'X-Auth': appState.get('accessToken'),
-					'pathId' : appState.get('businessId')
+					'pathId' : appState.get('businessId'),
+					'cloobster-api' : appConfig.cloobsterApi
 				});
 
 				//check if saved credentials are valid
@@ -135,7 +139,7 @@ Ext.define('EatSense.controller.Login', {
 						account = record;
 						me.setAccount(record);
 						//generate clientId for channel
-						account.set('clientId', record.get('login') + new Date().getTime());
+						// account.set('clientId', record.get('login') + '-' + new Date().getTime());
 						account.set('accessToken', token);
 						//restore businessId on Account
 						account.set('businessId', businessId);
@@ -229,7 +233,8 @@ Ext.define('EatSense.controller.Login', {
     	    headers: {
 				//provide credentials, they will be added to request header
 				'login': login,
-				'password': password
+				'password': password,
+				'cloobster-api' : appConfig.cloobsterApi
 			},
 			//submit a timestamp to prevent iOS6 from caching the POST request
 			jsonData: timestamp,
@@ -237,12 +242,14 @@ Ext.define('EatSense.controller.Login', {
     	    success: function(response) {
     	    	loginview.unmask();
     	    	me.setAccount(Ext.create('EatSense.model.Account', Ext.decode(response.responseText)));
-				//generate clientId for channel
-				me.getAccount().set('clientId', me.getAccount().get('login') + new Date().getTime());
+				//generate clientId for channel				
+				// me.getAccount().set('clientId', me.getAccount().get('login') + '-' + new Date().getTime());
+				// me.getAppState().set('cliendId', clientId);
 
 				//Set default headers so that always credentials are send
 				Ext.Ajax.setDefaultHeaders({
-					'X-Auth': me.getAccount().get('accessToken')
+					'X-Auth': me.getAccount().get('accessToken'),
+					'cloobster-api' : appConfig.cloobsterApi
 				});
 
 				me.getAppState().set('accessToken', me.getAccount().get('accessToken'));
@@ -264,10 +271,7 @@ Ext.define('EatSense.controller.Login', {
 				(!errorMessage || errorMessage == "") ?	errorMessage = i10n.translate('wrongCredentials') : errorMessage;
 
     	    	me.getApplication().handleServerError({
-						'error': {
-							'status': response.status,
-							'statusText': response.statusText
-						}, 
+						'error': response, 
 						'forceLogout': false, 
 						'hideMessage':false,
 						'message': errorMessage
@@ -336,6 +340,13 @@ Ext.define('EatSense.controller.Login', {
 		this.getApplication().getController('Spot').stopRequestRefreshTask();
 
 		appChannel.closeChannel();
+
+		//signal a logout 
+		Ext.Ajax.request({
+		    url: appConfig.serviceUrl+'/b/businesses/'+this.getAppState().get('businessId')+'/channels/'+this.getAppState().get('clientId'),
+		    method: 'DELETE'
+		});
+
 		//remove all stored credentials
 		this.clearAppState();
 

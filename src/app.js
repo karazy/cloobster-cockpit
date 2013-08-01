@@ -199,7 +199,7 @@ Ext.application({
                defaultErrorKey = null;
 
         if(error && typeof error.status == 'number') {
-            console.log('handle error: '+ error.status + ' ' + error.statusText);
+            console.log('handle error: '+ code);
             if(!hideMessage) {
                 appHelper.toggleAlertActive(true);
             }
@@ -213,9 +213,16 @@ Ext.application({
                 case 400: 
                   defaultErrorKey = 'errorResource';
                   break;
+                case 460:
+                  defaultErrorKey = 'error.version';
+                  break;
                 case 0:
                   defaultErrorKey = 'errorCommunication';
                     break;
+                case 503:
+                  //AppEngine problems
+                  defaultErrorKey = 'error.appengine';
+                  break;
                 default:
                   code = 500
                   defaultErrorKey = 'errorMsg';

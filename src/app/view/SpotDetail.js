@@ -140,7 +140,7 @@ Ext.define('EatSense.view.SpotDetail', {
 									}
 								}
 							)
-						}
+						}						
 					]
 				},
 				{
@@ -178,6 +178,12 @@ Ext.define('EatSense.view.SpotDetail', {
 								}
 							}
 						)
+					},
+					{
+						xtype: 'label',
+						itemId: 'accountDetail',
+						cls: 'spotdetail-status',
+						tpl: new Ext.XTemplate('<div class="key">E-Mail:</div><div class="value">{email}</div>')
 					}
 					]
 				},

@@ -55,11 +55,14 @@ Ext.define('EatSense.view.HistoryDetailItem', {
 				},
 				tpl: new Ext.XTemplate(
 					'<div class="row">'+
-					'<div><span class="font-bold">'+i10n.translate('history.detail.info.spot')+'</span> {spotName}</div>'+
-					'<div><span class="font-bold">'+i10n.translate('history.detail.info.nickname')+'</span> {nickname}</div>'+
+						'<div><span class="font-bold">'+i10n.translate('history.detail.info.spot')+'</span> {spotName}</div>'+
+						'<div><span class="font-bold">'+i10n.translate('history.detail.info.billtime')+'</span> {[this.formatTime(values.billTime)]}</div>'+	
 					'</div><div class="row">'+
-					'<div><span class="font-bold">'+i10n.translate('history.detail.info.billtime')+'</span> {[this.formatTime(values.billTime)]}</div>'+
-					'<div><span class="font-bold">'+i10n.translate('history.detail.info.billtotal')+'</span> {[this.formatPrice(values.billTotal)]} - {paymentMethod}</div>'+
+						'<div><span class="font-bold">'+i10n.translate('history.detail.info.nickname')+'</span> {nickname}</div>'+
+						'<div><span class="font-bold">E-Mail</span> {email}</div>'+
+					'</div>'+
+					'</div><div class="row">'+
+						'<div><span class="font-bold">'+i10n.translate('history.detail.info.billtotal')+'</span> {[this.formatPrice(values.billTotal)]} - {paymentMethod}</div>'+						
 					'</div>'
 					,
 					{

@@ -94,7 +94,7 @@ Ext.define('EatSense.view.HistoryItem', {
 			this.remove(oldItem);
 		}
 	},
-		/**
+	/**
 	*	Overrides the private updateRecord method. Does some special actions
 	*	which could not be done in dataMap.
 	*

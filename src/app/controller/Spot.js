@@ -401,12 +401,14 @@ Ext.define('EatSense.controller.Spot', {
 
 		if(!checkInId) {
 			console.error('Spot.loadAccountByCheckIn: no checkInId given');
-			return null;
+			callback(false);
+			return;
 		}
 
 		if(!callback) {
 			console.error('Spot.loadAccountByCheckIn: no callback given');
-			return null;
+			callback(false);
+			return;
 		}
 
 		Ext.Ajax.request({
@@ -1572,10 +1574,18 @@ Ext.define('EatSense.controller.Spot', {
 			checkInStore = Ext.StoreManager.lookup('checkInStore'),
 			titlebar = detail.down('titlebar'),
 			orderStore = detail.down('dataview').getStore();
-		
-		// titlebar.setTitle(data.get('name'));
+				
 
-		infoPanel.getTpl().overwrite(infoPanel.element, history.getData());
+		//load account data
+		this.loadAccountByCheckIn(history.get('checkInId'), loadAccountSuccess);
+
+		function loadAccountSuccess(success, account) {
+			if(success) {
+				infoPanel.getTpl().overwrite(infoPanel.element, Ext.merge({}, history.getData(), {'email': account.email}));
+			} else {
+				infoPanel.getTpl().overwrite(infoPanel.element, Ext.merge({}, history.getData(), {'email': i10n.translate('spotdetail.account.anonymous')}));
+			}
+		}
 
 		orderStore.load({
 			params: {

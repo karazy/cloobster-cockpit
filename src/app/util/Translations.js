@@ -68,8 +68,8 @@ Ext.define('EatSense.util.Translations',{
 			"EN" :  "cloobster Cockpit Version: {0}"
 		},
 		"general.help.scrolling" : {
-			"DE" :  "Kein Touch Gerät: Zum scrollen Maustaste gedrückt halten und ziehen!",
-			"EN" :  "No touch device: To scroll, hold mouse down and drag!"
+			"DE" :  "Kein Touch Gerät: Zum scrollen Maustaste gedrückt halten und ziehen.",
+			"EN" :  "No touch device: To scroll, hold mouse down and drag."
 		},
 		//tabbar
 		"spotsTitle" : {
@@ -200,12 +200,15 @@ Ext.define('EatSense.util.Translations',{
 		"spotdetail.buttongroup.checkin" : {
 			"DE" :  "Check-In",
 			"EN" :  "Check-in"
-		},
+		},		
 		"spotdetail.buttongroup.customer" : {
 			"DE" :  "Gast",
 			"EN" :  "Customer"
 		},
-
+		"spotdetail.account.anonymous" : {
+			"DE" :  "Anonymer Check-In",
+			"EN" : "Anonymous Check-In"
+		},
 		"spotDetailCustomerLabel" : {
 			"DE" :  "Gäste",
 			"EN" :  "Customers"

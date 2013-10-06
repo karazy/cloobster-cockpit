@@ -1,6 +1,3 @@
-/* Sencha Variables. */
-/* General base color for style. */
-/* Used for action buttons and active items. */
 /* The blue cloobster color */
 /* line 3, ../../sdk/resources/themes/stylesheets/sencha-touch/default/core/_reset.scss */
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3,
@@ -602,200 +599,200 @@ input, textarea {
   font-size: .8em;
   padding: 1.2em;
 }
-/* line 33, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 33, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html body {
   line-height: 1.5;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
   color: #333333;
   font-size: 75%;
 }
-/* line 51, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 51, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html h1, .x-html h2, .x-html h3, .x-html h4, .x-html h5, .x-html h6 {
   font-weight: normal;
   color: #222222;
 }
-/* line 52, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 52, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html h1 img, .x-html h2 img, .x-html h3 img, .x-html h4 img, .x-html h5 img, .x-html h6 img {
   margin: 0;
 }
-/* line 53, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 53, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html h1 {
   font-size: 3em;
   line-height: 1;
   margin-bottom: 0.50em;
 }
-/* line 54, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 54, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html h2 {
   font-size: 2em;
   margin-bottom: 0.75em;
 }
-/* line 55, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 55, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html h3 {
   font-size: 1.5em;
   line-height: 1;
   margin-bottom: 1.00em;
 }
-/* line 56, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 56, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html h4 {
   font-size: 1.2em;
   line-height: 1.25;
   margin-bottom: 1.25em;
 }
-/* line 57, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 57, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html h5 {
   font-size: 1em;
   font-weight: bold;
   margin-bottom: 1.50em;
 }
-/* line 58, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 58, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html h6 {
   font-size: 1em;
   font-weight: bold;
 }
-/* line 59, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 59, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html p {
   margin: 0 0 1.5em;
 }
-/* line 60, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 60, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html p .left {
   display: inline;
   float: left;
   margin: 1.5em 1.5em 1.5em 0;
   padding: 0;
 }
-/* line 61, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 61, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html p .right {
   display: inline;
   float: right;
   margin: 1.5em 0 1.5em 1.5em;
   padding: 0;
 }
-/* line 62, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 62, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html a {
   text-decoration: underline;
   color: #0066cc;
 }
-/* line 18, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 18, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 .x-html a:visited {
   color: #004c99;
 }
-/* line 21, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 21, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 .x-html a:focus {
   color: #0099ff;
 }
-/* line 24, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 24, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 .x-html a:hover {
   color: #0099ff;
 }
-/* line 27, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 27, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 .x-html a:active {
   color: #bf00ff;
 }
-/* line 63, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 63, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html blockquote {
   margin: 1.5em;
   color: #666666;
   font-style: italic;
 }
-/* line 64, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 64, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html strong, .x-html dfn {
   font-weight: bold;
 }
-/* line 65, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 65, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html em, .x-html dfn {
   font-style: italic;
 }
-/* line 66, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 66, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html sup, .x-html sub {
   line-height: 0;
 }
-/* line 67, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 67, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html abbr, .x-html acronym {
   border-bottom: 1px dotted #666666;
 }
-/* line 68, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 68, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html address {
   margin: 0 0 1.5em;
   font-style: italic;
 }
-/* line 69, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 69, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html del {
   color: #666666;
 }
-/* line 70, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 70, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html pre {
   margin: 1.5em 0;
   white-space: pre;
 }
-/* line 71, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 71, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html pre, .x-html code, .x-html tt {
   font: 1em "andale mono", "lucida console", monospace;
   line-height: 1.5;
 }
-/* line 72, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 72, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html li ul, .x-html li ol {
   margin: 0;
 }
-/* line 73, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 73, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html ul, .x-html ol {
   margin: 0 1.5em 1.5em 0;
   padding-left: 1.5em;
 }
-/* line 74, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 74, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html ul {
   list-style-type: disc;
 }
-/* line 75, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 75, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html ol {
   list-style-type: decimal;
 }
-/* line 76, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 76, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html dl {
   margin: 0 0 1.5em 0;
 }
-/* line 77, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 77, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html dl dt {
   font-weight: bold;
 }
-/* line 78, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 78, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html dd {
   margin-left: 1.5em;
 }
-/* line 79, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 79, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html table {
   margin-bottom: 1.4em;
   width: 100%;
 }
-/* line 80, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 80, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html th {
   font-weight: bold;
 }
-/* line 81, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 81, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html thead th {
   background: #c3d9ff;
 }
-/* line 82, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 82, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html th, .x-html td, .x-html caption {
   padding: 4px 10px 4px 5px;
 }
-/* line 85, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 85, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html table.striped tr:nth-child(even) td,
 .x-html table tr.even td {
   background: #e5ecf9;
 }
-/* line 86, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 86, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html tfoot {
   font-style: italic;
 }
-/* line 87, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 87, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html caption {
   background: #eeeeee;
 }
-/* line 88, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 88, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html .quiet {
   color: #666666;
 }
-/* line 89, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 89, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html .loud {
   color: #111111;
 }
@@ -6249,13 +6246,13 @@ audio {
 }
 /* line 50, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_panel.scss */
 .x-anchor.x-anchor-top {
-  margin-left: -0.816em;
+  margin-left: -0.8155em;
   margin-top: -0.7em;
 }
 /* line 55, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_panel.scss */
 .x-anchor.x-anchor-bottom {
   -webkit-transform: rotate(180deg);
-  margin-left: 0.816em;
+  margin-left: 0.8155em;
   margin-top: 0.6em;
 }
 /* line 61, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_panel.scss */
@@ -6280,8 +6277,8 @@ audio {
 .x-button {
   -webkit-background-clip: padding;
   background-clip: padding-box;
-  -webkit-border-radius: 0.4em;
-  border-radius: 0.4em;
+  -webkit-border-radius: 0.2em;
+  border-radius: 0.2em;
   display: -webkit-box;
   display: box;
   -webkit-box-align: center;
@@ -6306,17 +6303,11 @@ audio {
 .x-button, .x-button.x-button-back:after, .x-button.x-button-forward:after, .x-toolbar .x-button, .x-toolbar .x-button.x-button-back:after, .x-toolbar .x-button.x-button-forward:after {
   background-image: none;
   background-color: #cccccc;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f2f2f2), color-stop(3%, #d9d9d9), color-stop(100%, #bfbfbf));
-  background-image: -webkit-linear-gradient(top, #f2f2f2, #d9d9d9 3%, #bfbfbf);
-  background-image: linear-gradient(top, #f2f2f2, #d9d9d9 3%, #bfbfbf);
 }
 /* line 45, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
 .x-button .x-button-icon.x-icon-mask, .x-toolbar .x-button .x-button-icon.x-icon-mask {
   background-image: none;
   background-color: black;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #262626), color-stop(3%, #0d0d0d), color-stop(100%, #000000));
-  background-image: -webkit-linear-gradient(top, #262626, #0d0d0d 3%, #000000);
-  background-image: linear-gradient(top, #262626, #0d0d0d 3%, #000000);
 }
 /* line 50, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
 .x-button.x-button-pressing, .x-button.x-button-pressing:after, .x-button.x-button-pressed, .x-button.x-button-pressed:after, .x-button.x-button-active, .x-button.x-button-active:after, .x-toolbar .x-button.x-button-pressing, .x-toolbar .x-button.x-button-pressing:after, .x-toolbar .x-button.x-button-pressed, .x-toolbar .x-button.x-button-pressed:after, .x-toolbar .x-button.x-button-active, .x-toolbar .x-button.x-button-active:after {
@@ -6449,54 +6440,54 @@ audio {
 .x-button-forward:before, .x-button-forward:after, .x-button-back:before, .x-button-back:after {
   content: "";
   position: absolute;
-  width: 0.773em;
+  width: 0.77253em;
   height: 1.8em;
   top: -0.1em;
   left: auto;
   z-index: 2;
-  -webkit-mask: 0.145em 0 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAABGCAYAAADb7SQ4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAiNJREFUeNrEWb9LQlEUvj5BcHoQvMnVKXD1D3CLwqBJbHJsazQaWoSCxgbHJiMIAiNok6AhCDdXVycnJ8EQOgeOYaG+d39998KH+HyP753zzjnfd325xfdSgVeV8B6BScuEV0IRSbxHeCMk/AVFXCA8ScQKSXxPqK0fQBBfE5r/D+Y8VzUT9jb94DPimqRYIYkrhGcpKhhxIqTxrpNcExdlQJTTTnRJnCc8ykhUSOIOoZ71ZFfEZ4S2zgUu+rguxZRHEnPbfKRVsOtUl0RtYpOLTYljIS2Z3nVk2DY9SbNCEt8RDm0rUpe4La1jvXSqmtum72raZI24KuNQIYl/nSGSOJb0Jq61M0pxhjwK9304hUjHGSKILzc5Q5drUzttdYY+I97pDH1FzG0zNFUb04gTG4kzJS5kdYauiZtZnaFr4ooKsCIVaDHxKAQxt1NBnGIVHfGCcEQYh3jGU8KBfMKLiyM+lgzAq/qT0ArVTg+Ei1B9fEPoovV4fcfQd2HedScX39GprwGTNjJn0maTELN6IuSzECLB6T5x2eM66jQgnIeSxa60GnS3uL56tr7b1Ai0JPVwYi6yho2U2lgfKym19VxjMRHzEGbvS9K+RBPzetGVUpf29lZHSl2/DMnLvwh1ZMQrKW3Ic4fvJOZS6ZMQW5hpmpT63DvtlFLfm7bBNruM2C2yXb7y3U6ZpRS5P/4jpUjihRTbCJ3q1eL3GMMfAQYAJmB6SBO619IAAAAASUVORK5CYII=') no-repeat;
-  -webkit-mask-size: 0.773em 1.8em;
+  -webkit-mask: -0.055em 0 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAABGCAYAAADb7SQ4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAiNJREFUeNrEWb9LQlEUvj5BcHoQvMnVKXD1D3CLwqBJbHJsazQaWoSCxgbHJiMIAiNok6AhCDdXVycnJ8EQOgeOYaG+d39998KH+HyP753zzjnfd325xfdSgVeV8B6BScuEV0IRSbxHeCMk/AVFXCA8ScQKSXxPqK0fQBBfE5r/D+Y8VzUT9jb94DPimqRYIYkrhGcpKhhxIqTxrpNcExdlQJTTTnRJnCc8ykhUSOIOoZ71ZFfEZ4S2zgUu+rguxZRHEnPbfKRVsOtUl0RtYpOLTYljIS2Z3nVk2DY9SbNCEt8RDm0rUpe4La1jvXSqmtum72raZI24KuNQIYl/nSGSOJb0Jq61M0pxhjwK9304hUjHGSKILzc5Q5drUzttdYY+I97pDH1FzG0zNFUb04gTG4kzJS5kdYauiZtZnaFr4ooKsCIVaDHxKAQxt1NBnGIVHfGCcEQYh3jGU8KBfMKLiyM+lgzAq/qT0ArVTg+Ei1B9fEPoovV4fcfQd2HedScX39GprwGTNjJn0maTELN6IuSzECLB6T5x2eM66jQgnIeSxa60GnS3uL56tr7b1Ai0JPVwYi6yho2U2lgfKym19VxjMRHzEGbvS9K+RBPzetGVUpf29lZHSl2/DMnLvwh1ZMQrKW3Ic4fvJOZS6ZMQW5hpmpT63DvtlFLfm7bBNruM2C2yXb7y3U6ZpRS5P/4jpUjihRTbCJ3q1eL3GMMfAQYAJmB6SBO619IAAAAASUVORK5CYII=') no-repeat;
+  -webkit-mask-size: 0.77253em 1.8em;
   overflow: hidden;
 }
 
 /* line 180, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_buttons.scss */
 .x-button-back,
 .x-toolbar .x-button-back {
-  margin-left: 0.828em;
+  margin-left: 1.02753em;
   padding-left: .4em;
 }
 /* line 183, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_buttons.scss */
 .x-button-back:before,
 .x-toolbar .x-button-back:before {
-  left: -0.693em;
+  left: -0.89253em;
 }
 /* line 186, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_buttons.scss */
 .x-button-back:after,
 .x-toolbar .x-button-back:after {
-  left: -0.628em;
+  left: -0.82753em;
 }
 
 /* line 192, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_buttons.scss */
 .x-button-forward,
 .x-toolbar .x-button-forward {
-  margin-right: 0.828em;
+  margin-right: 1.02753em;
   padding-right: .4em;
 }
 /* line 195, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_buttons.scss */
 .x-button-forward:before, .x-button-forward:after,
 .x-toolbar .x-button-forward:before,
 .x-toolbar .x-button-forward:after {
-  -webkit-mask: -0.145em 0 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAABGCAYAAADb7SQ4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAXlJREFUaN7lmTFqAlEQhh8EhFSCYJXW1law9QAewMrWAwQWAmmtbPcGHiCQ1gPYCla2QsDKSsgmQecvFqImu2/fzry/2OLb9mt23vwz47Kvn5MwEFxM8DkLB6HHEIOd0GGIwUpoMcRgyRKDOUsMJizxpzBiiMFR6DPEeZl1GWKwFh4ZYvAmPDDEqmVWVQxmLPG3MGaIVcosVAz2whNDDDZCmyEG7yFlpiEGKUsMEpb4XKXMtMXeiVVb7J1YLcRgW1ZmVuLSxGopLkys1mLwwhL/mVhjie8Sayxx3kp7DPFVYo0tzhNriyEGU5Z40TjxtDE/F6WcDowHBE/msDFNImG0xZQRBAonDCvxhhH2vKZIZ9Ds+7EDfaWFnKZ4xhja5owxdcnYCAQv1p1Gi4sprn08cZbDt6ZYZasXIn5mLFHTjLCvVt1V+4rVt/M+4r3FPaJMbHaBKRKb3pyKxKZXtv/Er4yjZpRL6q042u34tzh4xV9H/FHnqBHKBQeEd6aqqwD6AAAAAElFTkSuQmCC') no-repeat;
+  -webkit-mask: 0.055em 0 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAABGCAYAAADb7SQ4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAXlJREFUaN7lmTFqAlEQhh8EhFSCYJXW1law9QAewMrWAwQWAmmtbPcGHiCQ1gPYCla2QsDKSsgmQecvFqImu2/fzry/2OLb9mt23vwz47Kvn5MwEFxM8DkLB6HHEIOd0GGIwUpoMcRgyRKDOUsMJizxpzBiiMFR6DPEeZl1GWKwFh4ZYvAmPDDEqmVWVQxmLPG3MGaIVcosVAz2whNDDDZCmyEG7yFlpiEGKUsMEpb4XKXMtMXeiVVb7J1YLcRgW1ZmVuLSxGopLkys1mLwwhL/mVhjie8Sayxx3kp7DPFVYo0tzhNriyEGU5Z40TjxtDE/F6WcDowHBE/msDFNImG0xZQRBAonDCvxhhH2vKZIZ9Ds+7EDfaWFnKZ4xhja5owxdcnYCAQv1p1Gi4sprn08cZbDt6ZYZasXIn5mLFHTjLCvVt1V+4rVt/M+4r3FPaJMbHaBKRKb3pyKxKZXtv/Er4yjZpRL6q042u34tzh4xV9H/FHnqBHKBQeEd6aqqwD6AAAAAElFTkSuQmCC') no-repeat;
 }
 /* line 198, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_buttons.scss */
 .x-button-forward:before,
 .x-toolbar .x-button-forward:before {
-  right: -0.693em;
+  right: -0.89253em;
 }
 /* line 201, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_buttons.scss */
 .x-button-forward:after,
 .x-toolbar .x-button-forward:after {
-  right: -0.628em;
+  right: -0.82753em;
 }
 
 /* line 209, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_buttons.scss */
@@ -6552,17 +6543,17 @@ audio {
 }
 /* line 247, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_buttons.scss */
 .x-segmentedbutton .x-button.x-first {
-  -webkit-border-top-left-radius: 0.4em;
-  border-top-left-radius: 0.4em;
-  -webkit-border-bottom-left-radius: 0.4em;
-  border-bottom-left-radius: 0.4em;
+  -webkit-border-top-left-radius: 0.2em;
+  border-top-left-radius: 0.2em;
+  -webkit-border-bottom-left-radius: 0.2em;
+  border-bottom-left-radius: 0.2em;
 }
 /* line 250, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_buttons.scss */
 .x-segmentedbutton .x-button.x-last {
-  -webkit-border-top-right-radius: 0.4em;
-  border-top-right-radius: 0.4em;
-  -webkit-border-bottom-right-radius: 0.4em;
-  border-bottom-right-radius: 0.4em;
+  -webkit-border-top-right-radius: 0.2em;
+  border-top-right-radius: 0.2em;
+  -webkit-border-bottom-right-radius: 0.2em;
+  border-bottom-right-radius: 0.2em;
 }
 /* line 255, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_buttons.scss */
 .x-segmentedbutton .x-button:not(:first-child) {
@@ -6593,13 +6584,10 @@ audio {
   line-height: 1.2em;
   font-size: .6em;
   right: 0px;
-  top: -0.2em;
+  top: -.2em;
   max-width: 95%;
   background-image: none;
   background-color: #cc0000;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ff1a1a), color-stop(3%, #e60000), color-stop(100%, #b30000));
-  background-image: -webkit-linear-gradient(top, #ff1a1a, #e60000 3%, #b30000);
-  background-image: linear-gradient(top, #ff1a1a, #e60000 3%, #b30000);
   display: inline-block;
 }
 
@@ -6725,17 +6713,11 @@ audio {
 .x-button.x-button-action, .x-button.x-button-action.x-button-back:after, .x-button.x-button-action.x-button-forward:after, .x-toolbar .x-button.x-button-action, .x-toolbar .x-button.x-button-action.x-button-back:after, .x-toolbar .x-button.x-button-action.x-button-forward:after, .x-button.x-button-action-round, .x-button.x-button-action-round.x-button-back:after, .x-button.x-button-action-round.x-button-forward:after, .x-toolbar .x-button.x-button-action-round, .x-toolbar .x-button.x-button-action-round.x-button-back:after, .x-toolbar .x-button.x-button-action-round.x-button-forward:after, .x-button.x-button-action-small, .x-button.x-button-action-small.x-button-back:after, .x-button.x-button-action-small.x-button-forward:after, .x-toolbar .x-button.x-button-action-small, .x-toolbar .x-button.x-button-action-small.x-button-back:after, .x-toolbar .x-button.x-button-action-small.x-button-forward:after {
   background-image: none;
   background-color: #ff9933;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffbf80), color-stop(3%, #ffa64d), color-stop(100%, #ff8c1a));
-  background-image: -webkit-linear-gradient(top, #ffbf80, #ffa64d 3%, #ff8c1a);
-  background-image: linear-gradient(top, #ffbf80, #ffa64d 3%, #ff8c1a);
 }
 /* line 45, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
 .x-button.x-button-action .x-button-icon.x-icon-mask, .x-toolbar .x-button.x-button-action .x-button-icon.x-icon-mask, .x-button.x-button-action-round .x-button-icon.x-icon-mask, .x-toolbar .x-button.x-button-action-round .x-button-icon.x-icon-mask, .x-button.x-button-action-small .x-button-icon.x-icon-mask, .x-toolbar .x-button.x-button-action-small .x-button-icon.x-icon-mask {
   background-image: none;
   background-color: black;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d2600), color-stop(3%, #1a0d00), color-stop(100%, #000000));
-  background-image: -webkit-linear-gradient(top, #4d2600, #1a0d00 3%, #000000);
-  background-image: linear-gradient(top, #4d2600, #1a0d00 3%, #000000);
 }
 /* line 50, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
 .x-button.x-button-action.x-button-pressing, .x-button.x-button-action.x-button-pressing:after, .x-button.x-button-action.x-button-pressed, .x-button.x-button-action.x-button-pressed:after, .x-button.x-button-action.x-button-active, .x-button.x-button-action.x-button-active:after, .x-toolbar .x-button.x-button-action.x-button-pressing, .x-toolbar .x-button.x-button-action.x-button-pressing:after, .x-toolbar .x-button.x-button-action.x-button-pressed, .x-toolbar .x-button.x-button-action.x-button-pressed:after, .x-toolbar .x-button.x-button-action.x-button-active, .x-toolbar .x-button.x-button-action.x-button-active:after, .x-button.x-button-action-round.x-button-pressing, .x-button.x-button-action-round.x-button-pressing:after, .x-button.x-button-action-round.x-button-pressed, .x-button.x-button-action-round.x-button-pressed:after, .x-button.x-button-action-round.x-button-active, .x-button.x-button-action-round.x-button-active:after, .x-toolbar .x-button.x-button-action-round.x-button-pressing, .x-toolbar .x-button.x-button-action-round.x-button-pressing:after, .x-toolbar .x-button.x-button-action-round.x-button-pressed, .x-toolbar .x-button.x-button-action-round.x-button-pressed:after, .x-toolbar .x-button.x-button-action-round.x-button-active, .x-toolbar .x-button.x-button-action-round.x-button-active:after, .x-button.x-button-action-small.x-button-pressing, .x-button.x-button-action-small.x-button-pressing:after, .x-button.x-button-action-small.x-button-pressed, .x-button.x-button-action-small.x-button-pressed:after, .x-button.x-button-action-small.x-button-active, .x-button.x-button-action-small.x-button-active:after, .x-toolbar .x-button.x-button-action-small.x-button-pressing, .x-toolbar .x-button.x-button-action-small.x-button-pressing:after, .x-toolbar .x-button.x-button-action-small.x-button-pressed, .x-toolbar .x-button.x-button-action-small.x-button-pressed:after, .x-toolbar .x-button.x-button-action-small.x-button-active, .x-toolbar .x-button.x-button-action-small.x-button-active:after {
@@ -6760,17 +6742,11 @@ audio {
 .x-button.x-button-confirm, .x-button.x-button-confirm.x-button-back:after, .x-button.x-button-confirm.x-button-forward:after, .x-toolbar .x-button.x-button-confirm, .x-toolbar .x-button.x-button-confirm.x-button-back:after, .x-toolbar .x-button.x-button-confirm.x-button-forward:after, .x-button.x-button-confirm-round, .x-button.x-button-confirm-round.x-button-back:after, .x-button.x-button-confirm-round.x-button-forward:after, .x-toolbar .x-button.x-button-confirm-round, .x-toolbar .x-button.x-button-confirm-round.x-button-back:after, .x-toolbar .x-button.x-button-confirm-round.x-button-forward:after, .x-button.x-button-confirm-small, .x-button.x-button-confirm-small.x-button-back:after, .x-button.x-button-confirm-small.x-button-forward:after, .x-toolbar .x-button.x-button-confirm-small, .x-toolbar .x-button.x-button-confirm-small.x-button-back:after, .x-toolbar .x-button.x-button-confirm-small.x-button-forward:after {
   background-image: none;
   background-color: #6c9804;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a2e306), color-stop(3%, #7eb105), color-stop(100%, #5b7f03));
-  background-image: -webkit-linear-gradient(top, #a2e306, #7eb105 3%, #5b7f03);
-  background-image: linear-gradient(top, #a2e306, #7eb105 3%, #5b7f03);
 }
 /* line 45, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
 .x-button.x-button-confirm .x-button-icon.x-icon-mask, .x-toolbar .x-button.x-button-confirm .x-button-icon.x-icon-mask, .x-button.x-button-confirm-round .x-button-icon.x-icon-mask, .x-toolbar .x-button.x-button-confirm-round .x-button-icon.x-icon-mask, .x-button.x-button-confirm-small .x-button-icon.x-icon-mask, .x-toolbar .x-button.x-button-confirm-small .x-button-icon.x-icon-mask {
   background-image: none;
   background-color: white;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(3%, #ffffff), color-stop(100%, #f7fee6));
-  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff 3%, #f7fee6);
-  background-image: linear-gradient(top, #ffffff, #ffffff 3%, #f7fee6);
 }
 /* line 50, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
 .x-button.x-button-confirm.x-button-pressing, .x-button.x-button-confirm.x-button-pressing:after, .x-button.x-button-confirm.x-button-pressed, .x-button.x-button-confirm.x-button-pressed:after, .x-button.x-button-confirm.x-button-active, .x-button.x-button-confirm.x-button-active:after, .x-toolbar .x-button.x-button-confirm.x-button-pressing, .x-toolbar .x-button.x-button-confirm.x-button-pressing:after, .x-toolbar .x-button.x-button-confirm.x-button-pressed, .x-toolbar .x-button.x-button-confirm.x-button-pressed:after, .x-toolbar .x-button.x-button-confirm.x-button-active, .x-toolbar .x-button.x-button-confirm.x-button-active:after, .x-button.x-button-confirm-round.x-button-pressing, .x-button.x-button-confirm-round.x-button-pressing:after, .x-button.x-button-confirm-round.x-button-pressed, .x-button.x-button-confirm-round.x-button-pressed:after, .x-button.x-button-confirm-round.x-button-active, .x-button.x-button-confirm-round.x-button-active:after, .x-toolbar .x-button.x-button-confirm-round.x-button-pressing, .x-toolbar .x-button.x-button-confirm-round.x-button-pressing:after, .x-toolbar .x-button.x-button-confirm-round.x-button-pressed, .x-toolbar .x-button.x-button-confirm-round.x-button-pressed:after, .x-toolbar .x-button.x-button-confirm-round.x-button-active, .x-toolbar .x-button.x-button-confirm-round.x-button-active:after, .x-button.x-button-confirm-small.x-button-pressing, .x-button.x-button-confirm-small.x-button-pressing:after, .x-button.x-button-confirm-small.x-button-pressed, .x-button.x-button-confirm-small.x-button-pressed:after, .x-button.x-button-confirm-small.x-button-active, .x-button.x-button-confirm-small.x-button-active:after, .x-toolbar .x-button.x-button-confirm-small.x-button-pressing, .x-toolbar .x-button.x-button-confirm-small.x-button-pressing:after, .x-toolbar .x-button.x-button-confirm-small.x-button-pressed, .x-toolbar .x-button.x-button-confirm-small.x-button-pressed:after, .x-toolbar .x-button.x-button-confirm-small.x-button-active, .x-toolbar .x-button.x-button-confirm-small.x-button-active:after {
@@ -6795,17 +6771,11 @@ audio {
 .x-button.x-button-decline, .x-button.x-button-decline.x-button-back:after, .x-button.x-button-decline.x-button-forward:after, .x-toolbar .x-button.x-button-decline, .x-toolbar .x-button.x-button-decline.x-button-back:after, .x-toolbar .x-button.x-button-decline.x-button-forward:after, .x-button.x-button-decline-round, .x-button.x-button-decline-round.x-button-back:after, .x-button.x-button-decline-round.x-button-forward:after, .x-toolbar .x-button.x-button-decline-round, .x-toolbar .x-button.x-button-decline-round.x-button-back:after, .x-toolbar .x-button.x-button-decline-round.x-button-forward:after, .x-button.x-button-decline-small, .x-button.x-button-decline-small.x-button-back:after, .x-button.x-button-decline-small.x-button-forward:after, .x-toolbar .x-button.x-button-decline-small, .x-toolbar .x-button.x-button-decline-small.x-button-back:after, .x-toolbar .x-button.x-button-decline-small.x-button-forward:after {
   background-image: none;
   background-color: #c70505;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f91f1f), color-stop(3%, #e00606), color-stop(100%, #ae0404));
-  background-image: -webkit-linear-gradient(top, #f91f1f, #e00606 3%, #ae0404);
-  background-image: linear-gradient(top, #f91f1f, #e00606 3%, #ae0404);
 }
 /* line 45, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
 .x-button.x-button-decline .x-button-icon.x-icon-mask, .x-toolbar .x-button.x-button-decline .x-button-icon.x-icon-mask, .x-button.x-button-decline-round .x-button-icon.x-icon-mask, .x-toolbar .x-button.x-button-decline-round .x-button-icon.x-icon-mask, .x-button.x-button-decline-small .x-button-icon.x-icon-mask, .x-toolbar .x-button.x-button-decline-small .x-button-icon.x-icon-mask {
   background-image: none;
   background-color: white;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(3%, #ffffff), color-stop(100%, #fee6e6));
-  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff 3%, #fee6e6);
-  background-image: linear-gradient(top, #ffffff, #ffffff 3%, #fee6e6);
 }
 /* line 50, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
 .x-button.x-button-decline.x-button-pressing, .x-button.x-button-decline.x-button-pressing:after, .x-button.x-button-decline.x-button-pressed, .x-button.x-button-decline.x-button-pressed:after, .x-button.x-button-decline.x-button-active, .x-button.x-button-decline.x-button-active:after, .x-toolbar .x-button.x-button-decline.x-button-pressing, .x-toolbar .x-button.x-button-decline.x-button-pressing:after, .x-toolbar .x-button.x-button-decline.x-button-pressed, .x-toolbar .x-button.x-button-decline.x-button-pressed:after, .x-toolbar .x-button.x-button-decline.x-button-active, .x-toolbar .x-button.x-button-decline.x-button-active:after, .x-button.x-button-decline-round.x-button-pressing, .x-button.x-button-decline-round.x-button-pressing:after, .x-button.x-button-decline-round.x-button-pressed, .x-button.x-button-decline-round.x-button-pressed:after, .x-button.x-button-decline-round.x-button-active, .x-button.x-button-decline-round.x-button-active:after, .x-toolbar .x-button.x-button-decline-round.x-button-pressing, .x-toolbar .x-button.x-button-decline-round.x-button-pressing:after, .x-toolbar .x-button.x-button-decline-round.x-button-pressed, .x-toolbar .x-button.x-button-decline-round.x-button-pressed:after, .x-toolbar .x-button.x-button-decline-round.x-button-active, .x-toolbar .x-button.x-button-decline-round.x-button-active:after, .x-button.x-button-decline-small.x-button-pressing, .x-button.x-button-decline-small.x-button-pressing:after, .x-button.x-button-decline-small.x-button-pressed, .x-button.x-button-decline-small.x-button-pressed:after, .x-button.x-button-decline-small.x-button-active, .x-button.x-button-decline-small.x-button-active:after, .x-toolbar .x-button.x-button-decline-small.x-button-pressing, .x-toolbar .x-button.x-button-decline-small.x-button-pressing:after, .x-toolbar .x-button.x-button-decline-small.x-button-pressed, .x-toolbar .x-button.x-button-decline-small.x-button-pressed:after, .x-toolbar .x-button.x-button-decline-small.x-button-active, .x-toolbar .x-button.x-button-decline-small.x-button-active:after {
@@ -6823,9 +6793,6 @@ audio {
   height: auto;
   background-image: none;
   background-color: rgba(26, 51, 77, 0.9);
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(45, 89, 134, 0.9)), color-stop(3%, rgba(32, 64, 96, 0.9)), color-stop(100%, rgba(19, 38, 57, 0.9)));
-  background-image: -webkit-linear-gradient(top, rgba(45, 89, 134, 0.9), rgba(32, 64, 96, 0.9) 3%, rgba(19, 38, 57, 0.9));
-  background-image: linear-gradient(top, rgba(45, 89, 134, 0.9), rgba(32, 64, 96, 0.9) 3%, rgba(19, 38, 57, 0.9));
   -webkit-border-radius: 0;
   border-radius: 0;
 }
@@ -6939,9 +6906,6 @@ audio {
   height: 2.5em;
   background-image: none;
   background-color: rgba(242, 127, 13, 0.3);
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(246, 166, 85, 0.3)), color-stop(3%, rgba(244, 140, 37, 0.3)), color-stop(100%, rgba(218, 115, 11, 0.3)));
-  background-image: -webkit-linear-gradient(top, rgba(246, 166, 85, 0.3), rgba(244, 140, 37, 0.3) 3%, rgba(218, 115, 11, 0.3));
-  background-image: linear-gradient(top, rgba(246, 166, 85, 0.3), rgba(244, 140, 37, 0.3) 3%, rgba(218, 115, 11, 0.3));
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 0.2em 0.2em;
 }
 
@@ -6957,9 +6921,6 @@ audio {
   z-index: 2;
   background-image: none;
   background-color: #70a6db;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #adcceb), color-stop(3%, #85b2e0), color-stop(100%, #5c99d6));
-  background-image: -webkit-linear-gradient(top, #adcceb, #85b2e0 3%, #5c99d6);
-  background-image: linear-gradient(top, #adcceb, #85b2e0 3%, #5c99d6);
   border-top: 1px solid #70a6db;
   border-bottom: 1px solid #2e73b8;
   -webkit-box-shadow: 0px 0.1em 0.3em rgba(0, 0, 0, 0.3);
@@ -7121,9 +7082,6 @@ audio {
 .x-tabbar-light {
   background-image: none;
   background-color: #7099c2;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a6bfd9), color-stop(3%, #82a6c9), color-stop(100%, #5e8cba));
-  background-image: -webkit-linear-gradient(top, #a6bfd9, #82a6c9 3%, #5e8cba);
-  background-image: linear-gradient(top, #a6bfd9, #82a6c9 3%, #5e8cba);
   border-top-color: #5e8cba;
   border-bottom-color: #4573a1;
 }
@@ -7149,9 +7107,6 @@ audio {
 .x-tabbar-light.x-docked-bottom .x-tab .x-button-icon {
   background-image: none;
   background-color: #3d668f;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5e8cba), color-stop(3%, #4573a1), color-stop(100%, #36597d));
-  background-image: -webkit-linear-gradient(top, #5e8cba, #4573a1 3%, #36597d);
-  background-image: linear-gradient(top, #5e8cba, #4573a1 3%, #36597d);
 }
 /* line 259, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_tabs.scss */
 .x-tabbar-light.x-docked-bottom .x-tab-active {
@@ -7168,9 +7123,6 @@ audio {
 .x-tabbar-light.x-docked-bottom .x-tab-active .x-button-icon {
   background-image: none;
   background-color: #ffcc99;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fff2e5), color-stop(3%, #ffd9b3), color-stop(100%, #ffbf80));
-  background-image: -webkit-linear-gradient(top, #fff2e5, #ffd9b3 3%, #ffbf80);
-  background-image: linear-gradient(top, #fff2e5, #ffd9b3 3%, #ffbf80);
 }
 
 /* line 276, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_tabs.scss */
@@ -7187,9 +7139,6 @@ audio {
 .x-tabbar-dark {
   background-image: none;
   background-color: #336699;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #538cc6), color-stop(3%, #3973ac), color-stop(100%, #2d5986));
-  background-image: -webkit-linear-gradient(top, #538cc6, #3973ac 3%, #2d5986);
-  background-image: linear-gradient(top, #538cc6, #3973ac 3%, #2d5986);
   border-top-color: #2d5986;
   border-bottom-color: #204060;
 }
@@ -7215,9 +7164,6 @@ audio {
 .x-tabbar-dark.x-docked-bottom .x-tab .x-button-icon {
   background-image: none;
   background-color: #6699cc;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #9fbfdf), color-stop(3%, #79a6d2), color-stop(100%, #538cc6));
-  background-image: -webkit-linear-gradient(top, #9fbfdf, #79a6d2 3%, #538cc6);
-  background-image: linear-gradient(top, #9fbfdf, #79a6d2 3%, #538cc6);
 }
 /* line 259, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_tabs.scss */
 .x-tabbar-dark.x-docked-bottom .x-tab-active {
@@ -7234,9 +7180,6 @@ audio {
 .x-tabbar-dark.x-docked-bottom .x-tab-active .x-button-icon {
   background-image: none;
   background-color: #ffe6cc;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(3%, #fff2e5), color-stop(100%, #ffd9b3));
-  background-image: -webkit-linear-gradient(top, #ffffff, #fff2e5 3%, #ffd9b3);
-  background-image: linear-gradient(top, #ffffff, #fff2e5 3%, #ffd9b3);
 }
 
 /* line 276, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_tabs.scss */
@@ -7253,10 +7196,7 @@ audio {
 .x-tabbar-neutral {
   background-image: none;
   background-color: #e0e0e0;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(3%, #ededed), color-stop(100%, #d3d3d3));
-  background-image: -webkit-linear-gradient(top, #ffffff, #ededed 3%, #d3d3d3);
-  background-image: linear-gradient(top, #ffffff, #ededed 3%, #d3d3d3);
-  border-top-color: #d3d3d3;
+  border-top-color: lightgrey;
   border-bottom-color: #bababa;
 }
 /* line 236, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_tabs.scss */
@@ -7281,14 +7221,11 @@ audio {
 .x-tabbar-neutral.x-docked-bottom .x-tab .x-button-icon {
   background-image: none;
   background-color: #adadad;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d3d3d3), color-stop(3%, #bababa), color-stop(100%, #a0a0a0));
-  background-image: -webkit-linear-gradient(top, #d3d3d3, #bababa 3%, #a0a0a0);
-  background-image: linear-gradient(top, #d3d3d3, #bababa 3%, #a0a0a0);
 }
 /* line 259, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_tabs.scss */
 .x-tabbar-neutral.x-docked-bottom .x-tab-active {
   background-image: none;
-  background-color: #d3d3d3;
+  background-color: lightgrey;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #bababa), color-stop(10%, #c7c7c7), color-stop(65%, #d3d3d3), color-stop(100%, #d5d5d5));
   background-image: -webkit-linear-gradient(top, #bababa, #c7c7c7 10%, #d3d3d3 65%, #d5d5d5);
   background-image: linear-gradient(top, #bababa, #c7c7c7 10%, #d3d3d3 65%, #d5d5d5);
@@ -7300,15 +7237,12 @@ audio {
 .x-tabbar-neutral.x-docked-bottom .x-tab-active .x-button-icon {
   background-image: none;
   background-color: #7a7a7a;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a0a0a0), color-stop(3%, #878787), color-stop(100%, #6d6d6d));
-  background-image: -webkit-linear-gradient(top, #a0a0a0, #878787 3%, #6d6d6d);
-  background-image: linear-gradient(top, #a0a0a0, #878787 3%, #6d6d6d);
 }
 
 /* line 276, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_tabs.scss */
 .x-tabbar-neutral.x-docked-top .x-tab-active {
   background-image: none;
-  background-color: #d3d3d3;
+  background-color: lightgrey;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #bababa), color-stop(10%, #c7c7c7), color-stop(65%, #d3d3d3), color-stop(100%, #d5d5d5));
   background-image: -webkit-linear-gradient(top, #bababa, #c7c7c7 10%, #d3d3d3 65%, #d5d5d5);
   background-image: linear-gradient(top, #bababa, #c7c7c7 10%, #d3d3d3 65%, #d5d5d5);
@@ -7400,9 +7334,6 @@ audio {
 .x-toolbar-dark {
   background-image: none;
   background-color: #407fbf;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #79a6d2), color-stop(3%, #538cc6), color-stop(100%, #3973ac));
-  background-image: -webkit-linear-gradient(top, #79a6d2, #538cc6 3%, #3973ac);
-  background-image: linear-gradient(top, #79a6d2, #538cc6 3%, #3973ac);
   border-color: black;
 }
 /* line 132, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_toolbar.scss */
@@ -7464,9 +7395,6 @@ audio {
 .x-toolbar-dark .x-field-select .x-component-outer:before.x-button-forward:after {
   background-image: none;
   background-color: #3973ac;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #6699cc), color-stop(3%, #407fbf), color-stop(100%, #336699));
-  background-image: -webkit-linear-gradient(top, #6699cc, #407fbf 3%, #336699);
-  background-image: linear-gradient(top, #6699cc, #407fbf 3%, #336699);
 }
 /* line 45, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
 .x-toolbar-dark .x-button .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-dark .x-button .x-button-icon.x-icon-mask,
@@ -7476,9 +7404,6 @@ audio {
 .x-toolbar-dark .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask {
   background-image: none;
   background-color: white;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(3%, #ffffff), color-stop(100%, #ecf2f9));
-  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff 3%, #ecf2f9);
-  background-image: linear-gradient(top, #ffffff, #ffffff 3%, #ecf2f9);
 }
 /* line 50, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
 .x-toolbar-dark .x-button.x-button-pressing, .x-toolbar-dark .x-button.x-button-pressing:after, .x-toolbar-dark .x-button.x-button-pressed, .x-toolbar-dark .x-button.x-button-pressed:after, .x-toolbar-dark .x-button.x-button-active, .x-toolbar-dark .x-button.x-button-active:after, .x-toolbar .x-toolbar-dark .x-button.x-button-pressing, .x-toolbar .x-toolbar-dark .x-button.x-button-pressing:after, .x-toolbar .x-toolbar-dark .x-button.x-button-pressed, .x-toolbar .x-toolbar-dark .x-button.x-button-pressed:after, .x-toolbar .x-toolbar-dark .x-button.x-button-active, .x-toolbar .x-toolbar-dark .x-button.x-button-active:after,
@@ -7522,9 +7447,6 @@ audio {
 .x-toolbar-light {
   background-image: none;
   background-color: #6699cc;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #9fbfdf), color-stop(3%, #79a6d2), color-stop(100%, #538cc6));
-  background-image: -webkit-linear-gradient(top, #9fbfdf, #79a6d2 3%, #538cc6);
-  background-image: linear-gradient(top, #9fbfdf, #79a6d2 3%, #538cc6);
   border-color: #0d1a26;
 }
 /* line 132, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_toolbar.scss */
@@ -7549,33 +7471,79 @@ audio {
   border-left-color: #0d1a26;
 }
 /* line 32, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-light .x-button, .x-toolbar .x-toolbar-light .x-button, .x-toolbar-light .x-field-select .x-component-outer, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer, .x-toolbar-light .x-field-select .x-component-outer:before, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer:before {
+.x-toolbar-light .x-button, .x-toolbar .x-toolbar-light .x-button,
+.x-toolbar-light .x-field-select .x-component-outer, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer,
+.x-toolbar-light .x-field-select .x-component-outer:before, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer:before {
   border: 1px solid #2d5986;
   border-top-color: #336699;
   color: white;
 }
 /* line 37, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-light .x-button.x-button-back:before, .x-toolbar-light .x-button.x-button-forward:before, .x-toolbar .x-toolbar-light .x-button.x-button-back:before, .x-toolbar .x-toolbar-light .x-button.x-button-forward:before, .x-toolbar-light .x-field-select .x-component-outer.x-button-back:before, .x-toolbar-light .x-field-select .x-component-outer.x-button-forward:before, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-back:before, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-forward:before, .x-toolbar-light .x-field-select .x-component-outer:before.x-button-back:before, .x-toolbar-light .x-field-select .x-component-outer:before.x-button-forward:before, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer:before.x-button-back:before, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer:before.x-button-forward:before {
+.x-toolbar-light .x-button.x-button-back:before, .x-toolbar-light .x-button.x-button-forward:before, .x-toolbar .x-toolbar-light .x-button.x-button-back:before, .x-toolbar .x-toolbar-light .x-button.x-button-forward:before,
+.x-toolbar-light .x-field-select .x-component-outer.x-button-back:before,
+.x-toolbar-light .x-field-select .x-component-outer.x-button-forward:before, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer.x-button-back:before, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer.x-button-forward:before,
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-back:before,
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-forward:before, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-back:before, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-forward:before {
   background: #2d5986;
 }
 /* line 41, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-light .x-button, .x-toolbar-light .x-button.x-button-back:after, .x-toolbar-light .x-button.x-button-forward:after, .x-toolbar .x-toolbar-light .x-button, .x-toolbar .x-toolbar-light .x-button.x-button-back:after, .x-toolbar .x-toolbar-light .x-button.x-button-forward:after, .x-toolbar-light .x-field-select .x-component-outer, .x-toolbar-light .x-field-select .x-component-outer.x-button-back:after, .x-toolbar-light .x-field-select .x-component-outer.x-button-forward:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-back:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-forward:after, .x-toolbar-light .x-field-select .x-component-outer:before, .x-toolbar-light .x-field-select .x-component-outer:before.x-button-back:after, .x-toolbar-light .x-field-select .x-component-outer:before.x-button-forward:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer:before, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer:before.x-button-back:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer:before.x-button-forward:after {
+.x-toolbar-light .x-button, .x-toolbar-light .x-button.x-button-back:after, .x-toolbar-light .x-button.x-button-forward:after, .x-toolbar .x-toolbar-light .x-button, .x-toolbar .x-toolbar-light .x-button.x-button-back:after, .x-toolbar .x-toolbar-light .x-button.x-button-forward:after,
+.x-toolbar-light .x-field-select .x-component-outer,
+.x-toolbar-light .x-field-select .x-component-outer.x-button-back:after,
+.x-toolbar-light .x-field-select .x-component-outer.x-button-forward:after, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer.x-button-back:after, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer.x-button-forward:after,
+.x-toolbar-light .x-field-select .x-component-outer:before,
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-back:after,
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-forward:after, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer:before, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-back:after, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-forward:after {
   background-image: none;
   background-color: #538cc6;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #8cb2d9), color-stop(3%, #6699cc), color-stop(100%, #407fbf));
-  background-image: -webkit-linear-gradient(top, #8cb2d9, #6699cc 3%, #407fbf);
-  background-image: linear-gradient(top, #8cb2d9, #6699cc 3%, #407fbf);
 }
 /* line 45, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-light .x-button .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-light .x-button .x-button-icon.x-icon-mask, .x-toolbar-light .x-field-select .x-component-outer .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer .x-button-icon.x-icon-mask, .x-toolbar-light .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask {
+.x-toolbar-light .x-button .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-light .x-button .x-button-icon.x-icon-mask,
+.x-toolbar-light .x-field-select .x-component-outer .x-button-icon.x-icon-mask, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer .x-button-icon.x-icon-mask,
+.x-toolbar-light .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask {
   background-image: none;
   background-color: black;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #132639), color-stop(3%, #060d13), color-stop(100%, #000000));
-  background-image: -webkit-linear-gradient(top, #132639, #060d13 3%, #000000);
-  background-image: linear-gradient(top, #132639, #060d13 3%, #000000);
 }
 /* line 50, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-light .x-button.x-button-pressing, .x-toolbar-light .x-button.x-button-pressing:after, .x-toolbar-light .x-button.x-button-pressed, .x-toolbar-light .x-button.x-button-pressed:after, .x-toolbar-light .x-button.x-button-active, .x-toolbar-light .x-button.x-button-active:after, .x-toolbar .x-toolbar-light .x-button.x-button-pressing, .x-toolbar .x-toolbar-light .x-button.x-button-pressing:after, .x-toolbar .x-toolbar-light .x-button.x-button-pressed, .x-toolbar .x-toolbar-light .x-button.x-button-pressed:after, .x-toolbar .x-toolbar-light .x-button.x-button-active, .x-toolbar .x-toolbar-light .x-button.x-button-active:after, .x-toolbar-light .x-field-select .x-component-outer.x-button-pressing, .x-toolbar-light .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar-light .x-field-select .x-component-outer.x-button-pressed, .x-toolbar-light .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar-light .x-field-select .x-component-outer.x-button-active, .x-toolbar-light .x-field-select .x-component-outer.x-button-active:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-pressing, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-pressed, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-active, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-active:after, .x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressing, .x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressing:after, .x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressed, .x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressed:after, .x-toolbar-light .x-field-select .x-component-outer:before.x-button-active, .x-toolbar-light .x-field-select .x-component-outer:before.x-button-active:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressing, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressing:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressed, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressed:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer:before.x-button-active, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer:before.x-button-active:after {
+.x-toolbar-light .x-button.x-button-pressing, .x-toolbar-light .x-button.x-button-pressing:after, .x-toolbar-light .x-button.x-button-pressed, .x-toolbar-light .x-button.x-button-pressed:after, .x-toolbar-light .x-button.x-button-active, .x-toolbar-light .x-button.x-button-active:after, .x-toolbar .x-toolbar-light .x-button.x-button-pressing, .x-toolbar .x-toolbar-light .x-button.x-button-pressing:after, .x-toolbar .x-toolbar-light .x-button.x-button-pressed, .x-toolbar .x-toolbar-light .x-button.x-button-pressed:after, .x-toolbar .x-toolbar-light .x-button.x-button-active, .x-toolbar .x-toolbar-light .x-button.x-button-active:after,
+.x-toolbar-light .x-field-select .x-component-outer.x-button-pressing,
+.x-toolbar-light .x-field-select .x-component-outer.x-button-pressing:after,
+.x-toolbar-light .x-field-select .x-component-outer.x-button-pressed,
+.x-toolbar-light .x-field-select .x-component-outer.x-button-pressed:after,
+.x-toolbar-light .x-field-select .x-component-outer.x-button-active,
+.x-toolbar-light .x-field-select .x-component-outer.x-button-active:after, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer.x-button-pressing, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer.x-button-pressed, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer.x-button-active, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer.x-button-active:after,
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressing,
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressing:after,
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressed,
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressed:after,
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-active,
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-active:after, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressing, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressing:after, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressed, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-pressed:after, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-active, .x-toolbar
+.x-toolbar-light .x-field-select .x-component-outer:before.x-button-active:after {
   background-image: none;
   background-color: #4785c2;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #366ba1), color-stop(10%, #3c78b4), color-stop(65%, #4785c2), color-stop(100%, #4986c2));
@@ -7592,9 +7560,6 @@ audio {
 .x-toolbar-neutral {
   background-image: none;
   background-color: #e0e0e0;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(3%, #ededed), color-stop(100%, #d3d3d3));
-  background-image: -webkit-linear-gradient(top, #ffffff, #ededed 3%, #d3d3d3);
-  background-image: linear-gradient(top, #ffffff, #ededed 3%, #d3d3d3);
   border-color: #616161;
 }
 /* line 132, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_toolbar.scss */
@@ -7619,33 +7584,79 @@ audio {
   border-left-color: #616161;
 }
 /* line 32, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-neutral .x-button, .x-toolbar .x-toolbar-neutral .x-button, .x-toolbar-neutral .x-field-select .x-component-outer, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer, .x-toolbar-neutral .x-field-select .x-component-outer:before, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer:before {
+.x-toolbar-neutral .x-button, .x-toolbar .x-toolbar-neutral .x-button,
+.x-toolbar-neutral .x-field-select .x-component-outer, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer,
+.x-toolbar-neutral .x-field-select .x-component-outer:before, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer:before {
   border: 1px solid #a0a0a0;
   border-top-color: #adadad;
   color: black;
 }
 /* line 37, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-neutral .x-button.x-button-back:before, .x-toolbar-neutral .x-button.x-button-forward:before, .x-toolbar .x-toolbar-neutral .x-button.x-button-back:before, .x-toolbar .x-toolbar-neutral .x-button.x-button-forward:before, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-back:before, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-forward:before, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-back:before, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-forward:before, .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-back:before, .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-forward:before, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-back:before, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-forward:before {
+.x-toolbar-neutral .x-button.x-button-back:before, .x-toolbar-neutral .x-button.x-button-forward:before, .x-toolbar .x-toolbar-neutral .x-button.x-button-back:before, .x-toolbar .x-toolbar-neutral .x-button.x-button-forward:before,
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-back:before,
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-forward:before, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-back:before, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-forward:before,
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-back:before,
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-forward:before, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-back:before, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-forward:before {
   background: #a0a0a0;
 }
 /* line 41, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-neutral .x-button, .x-toolbar-neutral .x-button.x-button-back:after, .x-toolbar-neutral .x-button.x-button-forward:after, .x-toolbar .x-toolbar-neutral .x-button, .x-toolbar .x-toolbar-neutral .x-button.x-button-back:after, .x-toolbar .x-toolbar-neutral .x-button.x-button-forward:after, .x-toolbar-neutral .x-field-select .x-component-outer, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-back:after, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-forward:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-back:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-forward:after, .x-toolbar-neutral .x-field-select .x-component-outer:before, .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-back:after, .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-forward:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer:before, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-back:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-forward:after {
+.x-toolbar-neutral .x-button, .x-toolbar-neutral .x-button.x-button-back:after, .x-toolbar-neutral .x-button.x-button-forward:after, .x-toolbar .x-toolbar-neutral .x-button, .x-toolbar .x-toolbar-neutral .x-button.x-button-back:after, .x-toolbar .x-toolbar-neutral .x-button.x-button-forward:after,
+.x-toolbar-neutral .x-field-select .x-component-outer,
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-back:after,
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-forward:after, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-back:after, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-forward:after,
+.x-toolbar-neutral .x-field-select .x-component-outer:before,
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-back:after,
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-forward:after, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer:before, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-back:after, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-forward:after {
   background-image: none;
-  background-color: #d3d3d3;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fafafa), color-stop(3%, #e0e0e0), color-stop(100%, #c7c7c7));
-  background-image: -webkit-linear-gradient(top, #fafafa, #e0e0e0 3%, #c7c7c7);
-  background-image: linear-gradient(top, #fafafa, #e0e0e0 3%, #c7c7c7);
+  background-color: lightgrey;
 }
 /* line 45, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-neutral .x-button .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-neutral .x-button .x-button-icon.x-icon-mask, .x-toolbar-neutral .x-field-select .x-component-outer .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer .x-button-icon.x-icon-mask, .x-toolbar-neutral .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask {
+.x-toolbar-neutral .x-button .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-neutral .x-button .x-button-icon.x-icon-mask,
+.x-toolbar-neutral .x-field-select .x-component-outer .x-button-icon.x-icon-mask, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer .x-button-icon.x-icon-mask,
+.x-toolbar-neutral .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask {
   background-image: none;
   background-color: black;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #262626), color-stop(3%, #0d0d0d), color-stop(100%, #000000));
-  background-image: -webkit-linear-gradient(top, #262626, #0d0d0d 3%, #000000);
-  background-image: linear-gradient(top, #262626, #0d0d0d 3%, #000000);
 }
 /* line 50, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-neutral .x-button.x-button-pressing, .x-toolbar-neutral .x-button.x-button-pressing:after, .x-toolbar-neutral .x-button.x-button-pressed, .x-toolbar-neutral .x-button.x-button-pressed:after, .x-toolbar-neutral .x-button.x-button-active, .x-toolbar-neutral .x-button.x-button-active:after, .x-toolbar .x-toolbar-neutral .x-button.x-button-pressing, .x-toolbar .x-toolbar-neutral .x-button.x-button-pressing:after, .x-toolbar .x-toolbar-neutral .x-button.x-button-pressed, .x-toolbar .x-toolbar-neutral .x-button.x-button-pressed:after, .x-toolbar .x-toolbar-neutral .x-button.x-button-active, .x-toolbar .x-toolbar-neutral .x-button.x-button-active:after, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressing, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressed, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-active, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-active:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressing, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressed, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-active, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-active:after, .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressing, .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressing:after, .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressed, .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressed:after, .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-active, .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-active:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressing, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressing:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressed, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressed:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-active, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-active:after {
+.x-toolbar-neutral .x-button.x-button-pressing, .x-toolbar-neutral .x-button.x-button-pressing:after, .x-toolbar-neutral .x-button.x-button-pressed, .x-toolbar-neutral .x-button.x-button-pressed:after, .x-toolbar-neutral .x-button.x-button-active, .x-toolbar-neutral .x-button.x-button-active:after, .x-toolbar .x-toolbar-neutral .x-button.x-button-pressing, .x-toolbar .x-toolbar-neutral .x-button.x-button-pressing:after, .x-toolbar .x-toolbar-neutral .x-button.x-button-pressed, .x-toolbar .x-toolbar-neutral .x-button.x-button-pressed:after, .x-toolbar .x-toolbar-neutral .x-button.x-button-active, .x-toolbar .x-toolbar-neutral .x-button.x-button-active:after,
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressing,
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressing:after,
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressed,
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressed:after,
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-active,
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-active:after, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressing, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressed, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-active, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer.x-button-active:after,
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressing,
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressing:after,
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressed,
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressed:after,
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-active,
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-active:after, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressing, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressing:after, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressed, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-pressed:after, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-active, .x-toolbar
+.x-toolbar-neutral .x-field-select .x-component-outer:before.x-button-active:after {
   background-image: none;
   background-color: #cccccc;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #b2b2b2), color-stop(10%, #bfbfbf), color-stop(65%, #cccccc), color-stop(100%, #cdcdcd));
@@ -7885,9 +7896,6 @@ audio {
   -webkit-mask-size: 1.7em;
   background-image: none;
   background-color: #ff9933;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffbf80), color-stop(3%, #ffa64d), color-stop(100%, #ff8c1a));
-  background-image: -webkit-linear-gradient(top, #ffbf80, #ffa64d 3%, #ff8c1a);
-  background-image: linear-gradient(top, #ffbf80, #ffa64d 3%, #ff8c1a);
   width: 1.7em;
   height: 1.7em;
 }
@@ -7917,9 +7925,6 @@ audio {
 .x-list .x-list-item.x-item-selected .x-list-item-label {
   background-image: none;
   background-color: #6699cc;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #9fbfdf), color-stop(3%, #79a6d2), color-stop(100%, #538cc6));
-  background-image: -webkit-linear-gradient(top, #9fbfdf, #79a6d2 3%, #538cc6);
-  background-image: linear-gradient(top, #9fbfdf, #79a6d2 3%, #538cc6);
   color: black;
   text-shadow: rgba(255, 255, 255, 0.25) 0 0.08em 0;
 }
@@ -7947,9 +7952,6 @@ audio {
 .x-list-normal .x-list-header {
   background-image: none;
   background-color: #adcceb;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ebf2fa), color-stop(3%, #c2d9f0), color-stop(100%, #99bfe6));
-  background-image: -webkit-linear-gradient(top, #ebf2fa, #c2d9f0 3%, #99bfe6);
-  background-image: linear-gradient(top, #ebf2fa, #c2d9f0 3%, #99bfe6);
   color: #337fcc;
   text-shadow: rgba(255, 255, 255, 0.25) 0 0.08em 0;
   border-top: 1px solid #adcceb;
@@ -7993,9 +7995,6 @@ audio {
   -webkit-mask-size: 1.5em;
   background-image: none;
   background-color: #94b2d1;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c9d9e8), color-stop(3%, #a6bfd9), color-stop(100%, #82a6c9));
-  background-image: -webkit-linear-gradient(top, #c9d9e8, #a6bfd9 3%, #82a6c9);
-  background-image: linear-gradient(top, #c9d9e8, #a6bfd9 3%, #82a6c9);
   width: 1.5em;
   height: 1.5em;
   bottom: 0.5em;
@@ -8871,7 +8870,7 @@ html, body {
   right: 1.1em;
   -webkit-mask-size: 1.4em;
   -webkit-mask-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAE+klEQVRoBe2aS28URxRGsY0h2FmwCQuEWLHjvUNgZAQ4PMwrEkIRIGEgySKwB8QvYIvEP+ANO0CwsJAA88wGBEKBZJUVQkJCQrwJ5nxN31Z5pnpc7e4ZT9vT0peqqanquqfurVvlIW3Dw8NTJtPTPplgxdoCnugeb3m45eEJtgJTJwJPGw8cP8V6TfmC4/Z/H9uEAAZsIdqHZiMBn2UNbvigSw8M2AIAD6PtqBPpmYe+8t1NoL9GLfYf3bTKKhiWo9PoA9KV0dUgn/tRh8tXWg/Hnj0KUB8yz1JNnjXUuhFd264A/f0O7dKXpQ7EIiTPfkKuVyvrSlx3US+KPF26cMbwxeg8Gg3W4LWHFd6rUUepQprQnI/Rh9A25AtjmqseHVkK7w59UxpgYFdg7wH0CwqFpWvyrKI23GZ7OWluwgqwOnqOobVoWh4Tm97DwCpBHUFp2TiUX3v5QVMnLQzMmqAsUVWWyta3UX/TAmOcwjjk6KmE830W7GbU0ZTAGKYEJdj3yAcQ2qYw1jmsG9e0KF8122UDw/SHwFX0EYWC+fpZGG/hPcn1sqk8jGHas+dQ6KXCB6o2g91IPfKsObZpgDGsqAT1hXdpz25A7QZqZU1gBsxFSh5zbEA9yniOU5R5PSvvCnYTSsLYtdkLTGf9uKdD/gS6gI6jPndgUXXe24OKSFAK4zsoSVA+G6uAGaC758/oBrIs+Zb6rbg9up35Xpa1jffpUqEEldezysbJ0VPLjhHADOpEfUiw2gtuUtAKDiGtYNXeqDWJ7zveYQnqM3V3nqx1s2s97xmRoLzzWqMgkLLaTVQJa0ZoJe+hXjRmaMYKVlslr2dlp5wgu4PsiTyszmg5qgVr0CqvoZW2WFlKxhV5gxJsdIMKtYH+Eew6yksoNLy0soJeFzqR+vEI9gx6h9wFzFoPSlA+25g3SlChnnUNU3grkWmxRg0n+ihBnUR5w9j2bCbPGjzzR3sgbc+6gL66TV4zkTHHEqSfZSzr+94V0mbzKUF1GkSWknG5QktGyoj7qBdVeZo2S1Ch2yUNXOMVUcEJyrcQjOeP4vzQCu9BpBtOck5T70HybN4w1iJcR7ouem9QPjhfG+On7EBPUNrKhrYLWp7+FS1FCjtdKvJ6VvM/Q9o2uWC1AHq60QB6hELh0voJ+im6iHReF+FZwe5HP/g8lrXNzuEfeeFu9C9Kg8nSrr9lBZ9ljK/v37xjL5qRFSytf3K15KXy9EH0D/JN3ui2Qj1rC5AAq4FnJvoDPUSNBnTnUy4YQF1maFHlCOAYuouJFN6PkWtEo+ryrH5sL2TPVi5UFXAMrfDegxrtae3ZfWh6paFFffYCx9BKZLtQo/a0YLXIhSUo3yKlAsfQ8vSBBkALtrCjxwdqbTWBY2glst9REee0Lw/ULUEZpFuOChxD1yuRybNbUV0SlAtq9SDgGFp7ushEJlhdKuqWoAzSLYOBHeidGPkc+cIztE2wA6iuCcoFtXom4Bha4f0nGmv2FqyOnoaFscFG9rsfQusYq0T2G8qayASrbdEdOlfR/TJ72AzAaHla5/QD9BnVCucvfK/fjZXtx8WzZneu/+WBf53XOb0G6XetHjQXyfv2vKLyH7qLLqMhJn5DOW5PLmBZDfRUilloGUoD/ovvXgIrT4/rkxt4XK0fw+TtYxhT6iEt4FK7L8D4locDFqnUXSadh78Bx5bEl2CLG+8AAAAASUVORK5CYII=');
-  margin-top: -0.7em;
+  margin-top: -.7em;
 }
 
 /* line 311, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_form.scss */
@@ -8987,9 +8986,6 @@ html, body {
 .x-spinner.x-item-disabled .x-spinner-button .x-button-icon.x-icon-mask, .x-toolbar .x-spinner.x-item-disabled .x-spinner-button .x-button-icon.x-icon-mask {
   background-image: none;
   background-color: black;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #262626), color-stop(3%, #0d0d0d), color-stop(100%, #000000));
-  background-image: -webkit-linear-gradient(top, #262626, #0d0d0d 3%, #000000);
-  background-image: linear-gradient(top, #262626, #0d0d0d 3%, #000000);
 }
 /* line 50, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
 .x-spinner.x-item-disabled .x-spinner-button.x-button-pressing, .x-spinner.x-item-disabled .x-spinner-button.x-button-pressing:after, .x-spinner.x-item-disabled .x-spinner-button.x-button-pressed, .x-spinner.x-item-disabled .x-spinner-button.x-button-pressed:after, .x-spinner.x-item-disabled .x-spinner-button.x-button-active, .x-spinner.x-item-disabled .x-spinner-button.x-button-active:after, .x-toolbar .x-spinner.x-item-disabled .x-spinner-button.x-button-pressing, .x-toolbar .x-spinner.x-item-disabled .x-spinner-button.x-button-pressing:after, .x-toolbar .x-spinner.x-item-disabled .x-spinner-button.x-button-pressed, .x-toolbar .x-spinner.x-item-disabled .x-spinner-button.x-button-pressed:after, .x-toolbar .x-spinner.x-item-disabled .x-spinner-button.x-button-active, .x-toolbar .x-spinner.x-item-disabled .x-spinner-button.x-button-active:after {
@@ -9033,9 +9029,6 @@ html, body {
 .x-spinner .x-spinner-button .x-button-icon.x-icon-mask, .x-toolbar .x-spinner .x-spinner-button .x-button-icon.x-icon-mask {
   background-image: none;
   background-color: black;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #262626), color-stop(3%, #0d0d0d), color-stop(100%, #000000));
-  background-image: -webkit-linear-gradient(top, #262626, #0d0d0d 3%, #000000);
-  background-image: linear-gradient(top, #262626, #0d0d0d 3%, #000000);
 }
 /* line 50, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
 .x-spinner .x-spinner-button.x-button-pressing, .x-spinner .x-spinner-button.x-button-pressing:after, .x-spinner .x-spinner-button.x-button-pressed, .x-spinner .x-spinner-button.x-button-pressed:after, .x-spinner .x-spinner-button.x-button-active, .x-spinner .x-spinner-button.x-button-active:after, .x-toolbar .x-spinner .x-spinner-button.x-button-pressing, .x-toolbar .x-spinner .x-spinner-button.x-button-pressing:after, .x-toolbar .x-spinner .x-spinner-button.x-button-pressed, .x-toolbar .x-spinner .x-spinner-button.x-button-pressed:after, .x-toolbar .x-spinner .x-spinner-button.x-button-active, .x-toolbar .x-spinner .x-spinner-button.x-button-active:after {
@@ -9096,7 +9089,7 @@ html, body {
 /* line 462, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_form.scss */
 .x-select-overlay .x-item-selected .x-list-item-label:before {
   background-color: rgba(0, 0, 0, 0.3);
-  margin-top: -0.8em;
+  margin-top: -.8em;
 }
 /* line 467, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_form.scss */
 .x-select-overlay .x-item-selected .x-list-item-label:after {
@@ -9148,9 +9141,6 @@ html, body {
   border-radius: 0.925em;
   background-image: none;
   background-color: #dddddd;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(3%, #eaeaea), color-stop(100%, #d0d0d0));
-  background-image: -webkit-linear-gradient(top, #ffffff, #eaeaea 3%, #d0d0d0);
-  background-image: linear-gradient(top, #ffffff, #eaeaea 3%, #d0d0d0);
   -webkit-background-clip: padding;
   background-clip: padding-box;
 }
@@ -9162,9 +9152,6 @@ html, body {
 .x-thumb.x-dragging:before {
   background-image: none;
   background-color: #d0d0d0;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f7f7f7), color-stop(3%, #dddddd), color-stop(100%, #c4c4c4));
-  background-image: -webkit-linear-gradient(top, #f7f7f7, #dddddd 3%, #c4c4c4);
-  background-image: linear-gradient(top, #f7f7f7, #dddddd 3%, #c4c4c4);
 }
 
 /* line 81, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_form-sliders.scss */
@@ -9173,7 +9160,7 @@ html, body {
   position: absolute;
   width: auto;
   height: 0.8em;
-  top: 0.737em;
+  top: 0.7375em;
   left: 0;
   right: 0;
   margin: 0 0.925em;
@@ -9268,7 +9255,7 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-top: -1.1em;
   position: absolute;
   top: 50%;
-  right: -0.5em;
+  right: -.5em;
 }
 
 /* line 529, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_form.scss */
@@ -9372,7 +9359,7 @@ input[type="search"]::-webkit-search-cancel-button {
   right: 0.7em;
   -webkit-mask-size: 1em;
   -webkit-mask-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpGRTdGMTE3NDA3MjA2ODExOTJDQUMyNUQwRUE4NjdEQiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoxQTFBMDFDQ0I5NEYxMURGQUU1RjlGMEFERUNDQTVEMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoyMkRCMDIxMkI5NEUxMURGQUU1RjlGMEFERUNDQTVEMCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjMwRTE0QzVBNDIyMjY4MTFCQ0ZCOTAzOTcwNzcyRkVCIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkZFN0YxMTc0MDcyMDY4MTE5MkNBQzI1RDBFQTg2N0RCIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+HfrH/AAAAeVJREFUeNrs2cFHBGEUAPA3zYqIiIhOnTpFRHSKrp26RqeuEV077R/QqWtE166dOkVERHRa9hQRnZalFcv0Hk/W1Mx+38z3vvlm5j3eZW+/9+abne+9KEkSaFPMQMtCwQpWsIIVrGAFK1jBClawgo2ik/4hiqJGwLKuvfpIc5xSkWqYr5hzU1s/mRNxXTPsJ+ZqluvXlwOmSj3XBDvG3M1rpAmYYoUrFzr4ZNqTawqm2MH8Dhh7ZXJUbcAUx4FinzBnJcAUl4FhP/jIgRSYKvkYCJaO2LbNv08RMMUy5nsA4COTLy0XYIqtil9iF6aflq7AwBWuAvuQ9ZKSBgNX2ieWjtKSzeXBNZgqfe8J+4W5aXtbcg0GrvibB/BhkeuhBJhigzsghT0veh+WAlMcCGHvMOMQwcCdcIntYy6WmXhIg2PuiAvsEHO97IhHGgzckb4D8L6LmZYPMHBnhiWwXVdDPF9g4A4Vwd66nFr6BAN3ygbbw1yoMzjmjplgB5hrrufSvsHAHesZDOD2JAbxVYCBOzfIAZ9JbR6qAgN3cPwP9kZy1VIlGLiTdluCmoOBO/pnS9Bk8DzmS3pL4BMcpZEe1qX0GI/atC4dQYXRMa1MU0IX4gpWsIIVrGAFK1jBCnYUPwIMAPUPAyFL+nRdAAAAAElFTkSuQmCC');
-  margin-top: -0.5em;
+  margin-top: -.5em;
 }
 
 /* line 623, ../../sdk/resources/themes/stylesheets/sencha-touch/default/widgets/_form.scss */
@@ -9847,30 +9834,79 @@ input[type="search"]::-webkit-search-cancel-button {
   border-left-color: #444444;
 }
 /* line 32, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-gray .x-button, .x-toolbar .x-toolbar-gray .x-button, .x-toolbar-gray .x-field-select .x-component-outer, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer, .x-toolbar-gray .x-field-select .x-component-outer:before, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before {
+.x-toolbar-gray .x-button, .x-toolbar .x-toolbar-gray .x-button,
+.x-toolbar-gray .x-field-select .x-component-outer, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer,
+.x-toolbar-gray .x-field-select .x-component-outer:before, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer:before {
   border: 1px solid #838383;
   border-top-color: #909090;
   color: black;
 }
 /* line 37, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-gray .x-button.x-button-back:before, .x-toolbar-gray .x-button.x-button-forward:before, .x-toolbar .x-toolbar-gray .x-button.x-button-back:before, .x-toolbar .x-toolbar-gray .x-button.x-button-forward:before, .x-toolbar-gray .x-field-select .x-component-outer.x-button-back:before, .x-toolbar-gray .x-field-select .x-component-outer.x-button-forward:before, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-back:before, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-forward:before, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-back:before, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-forward:before, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-back:before, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-forward:before {
+.x-toolbar-gray .x-button.x-button-back:before, .x-toolbar-gray .x-button.x-button-forward:before, .x-toolbar .x-toolbar-gray .x-button.x-button-back:before, .x-toolbar .x-toolbar-gray .x-button.x-button-forward:before,
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-back:before,
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-forward:before, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-back:before, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-forward:before,
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-back:before,
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-forward:before, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-back:before, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-forward:before {
   background: #838383;
 }
 /* line 41, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-gray .x-button, .x-toolbar-gray .x-button.x-button-back:after, .x-toolbar-gray .x-button.x-button-forward:after, .x-toolbar .x-toolbar-gray .x-button, .x-toolbar .x-toolbar-gray .x-button.x-button-back:after, .x-toolbar .x-toolbar-gray .x-button.x-button-forward:after, .x-toolbar-gray .x-field-select .x-component-outer, .x-toolbar-gray .x-field-select .x-component-outer.x-button-back:after, .x-toolbar-gray .x-field-select .x-component-outer.x-button-forward:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-back:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-forward:after, .x-toolbar-gray .x-field-select .x-component-outer:before, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-back:after, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-forward:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-back:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-forward:after {
+.x-toolbar-gray .x-button, .x-toolbar-gray .x-button.x-button-back:after, .x-toolbar-gray .x-button.x-button-forward:after, .x-toolbar .x-toolbar-gray .x-button, .x-toolbar .x-toolbar-gray .x-button.x-button-back:after, .x-toolbar .x-toolbar-gray .x-button.x-button-forward:after,
+.x-toolbar-gray .x-field-select .x-component-outer,
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-back:after,
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-forward:after, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-back:after, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-forward:after,
+.x-toolbar-gray .x-field-select .x-component-outer:before,
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-back:after,
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-forward:after, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer:before, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-back:after, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-forward:after {
   background-image: none;
   background-color: #b6b6b6;
 }
 /* line 45, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-gray .x-button .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-gray .x-button .x-button-icon.x-icon-mask, .x-toolbar-gray .x-field-select .x-component-outer .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer .x-button-icon.x-icon-mask, .x-toolbar-gray .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask {
+.x-toolbar-gray .x-button .x-button-icon.x-icon-mask, .x-toolbar .x-toolbar-gray .x-button .x-button-icon.x-icon-mask,
+.x-toolbar-gray .x-field-select .x-component-outer .x-button-icon.x-icon-mask, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer .x-button-icon.x-icon-mask,
+.x-toolbar-gray .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer:before .x-button-icon.x-icon-mask {
   background-image: none;
   background-color: black;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #262626), color-stop(3%, #0d0d0d), color-stop(100%, #000000));
-  background-image: -webkit-linear-gradient(top, #262626, #0d0d0d 3%, #000000);
-  background-image: linear-gradient(top, #262626, #0d0d0d 3%, #000000);
 }
 /* line 50, ../../sdk/resources/themes/stylesheets/sencha-touch/default/_mixins.scss */
-.x-toolbar-gray .x-button.x-button-pressing, .x-toolbar-gray .x-button.x-button-pressing:after, .x-toolbar-gray .x-button.x-button-pressed, .x-toolbar-gray .x-button.x-button-pressed:after, .x-toolbar-gray .x-button.x-button-active, .x-toolbar-gray .x-button.x-button-active:after, .x-toolbar .x-toolbar-gray .x-button.x-button-pressing, .x-toolbar .x-toolbar-gray .x-button.x-button-pressing:after, .x-toolbar .x-toolbar-gray .x-button.x-button-pressed, .x-toolbar .x-toolbar-gray .x-button.x-button-pressed:after, .x-toolbar .x-toolbar-gray .x-button.x-button-active, .x-toolbar .x-toolbar-gray .x-button.x-button-active:after, .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressing, .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressed, .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar-gray .x-field-select .x-component-outer.x-button-active, .x-toolbar-gray .x-field-select .x-component-outer.x-button-active:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressing, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressed, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-active, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer.x-button-active:after, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressing, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressing:after, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressed, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressed:after, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-active, .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-active:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressing, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressing:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressed, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressed:after, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-active, .x-toolbar .x-toolbar-gray .x-field-select .x-component-outer:before.x-button-active:after {
+.x-toolbar-gray .x-button.x-button-pressing, .x-toolbar-gray .x-button.x-button-pressing:after, .x-toolbar-gray .x-button.x-button-pressed, .x-toolbar-gray .x-button.x-button-pressed:after, .x-toolbar-gray .x-button.x-button-active, .x-toolbar-gray .x-button.x-button-active:after, .x-toolbar .x-toolbar-gray .x-button.x-button-pressing, .x-toolbar .x-toolbar-gray .x-button.x-button-pressing:after, .x-toolbar .x-toolbar-gray .x-button.x-button-pressed, .x-toolbar .x-toolbar-gray .x-button.x-button-pressed:after, .x-toolbar .x-toolbar-gray .x-button.x-button-active, .x-toolbar .x-toolbar-gray .x-button.x-button-active:after,
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-pressing,
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-pressing:after,
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-pressed,
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-pressed:after,
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-active,
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-active:after, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-pressing, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-pressed, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-active, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer.x-button-active:after,
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressing,
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressing:after,
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressed,
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressed:after,
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-active,
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-active:after, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressing, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressing:after, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressed, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-pressed:after, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-active, .x-toolbar
+.x-toolbar-gray .x-field-select .x-component-outer:before.x-button-active:after {
   background-image: none;
   background-color: #afafaf;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #959595), color-stop(10%, #a2a2a2), color-stop(65%, #afafaf), color-stop(100%, #b0b0b0));
@@ -9918,7 +9954,7 @@ input[type="search"]::-webkit-search-cancel-button {
   word-break: break-word;
   /*box-shadow: 3px 3px 0.5em 0.1em gray;*/
   /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(3%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
+  /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(3%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.5)));*/
 }
 
 /* line 86, app-default.scss */
@@ -9951,8 +9987,8 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* line 111, app-default.scss */
 .spotitem-pressed {
-  /*background-color: rgb(100,100,100) !important;*/
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.5)), color-stop(97%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0)));
+  background-color: lightgray !important;
+  /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.5)), color-stop(97%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0)));*/
 }
 
 /* line 116, app-default.scss */
@@ -10064,72 +10100,63 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: #C3C3C3;
   margin-bottom: 0.5em;
   padding-bottom: 0.3em;
-  border-bottom-right-radius: 0.2em;
-  border-bottom-left-radius: 0.2em;
-  box-shadow: 3px 3px 0.5em 0.1em gray;
 }
 
-/* line 222, app-default.scss */
+/* line 219, app-default.scss */
 .spotdetail-status {
   margin: 5px;
 }
-/* line 226, app-default.scss */
+/* line 223, app-default.scss */
 .spotdetail-status div {
   padding: 3px;
 }
-/* line 230, app-default.scss */
+/* line 227, app-default.scss */
 .spotdetail-status div.key {
   width: 120px;
   float: left;
   font-weight: bold;
 }
-/* line 236, app-default.scss */
+/* line 233, app-default.scss */
 .spotdetail-status div.value {
   text-align: right;
-  display: inline-block;
-  /*padding: 3px;*/
+  display: inline;
+  word-break: break-word;
 }
-/* line 242, app-default.scss */
+/* line 239, app-default.scss */
 .spotdetail-status div.order_placed {
   border: 1px solid black;
   background-color: red;
-  /*padding: 3px;*/
 }
-/* line 247, app-default.scss */
+/* line 243, app-default.scss */
 .spotdetail-status div.payment_request {
   border: 1px solid black;
   background-color: red;
-  /*padding: 3px;*/
 }
-/* line 252, app-default.scss */
+/* line 247, app-default.scss */
 .spotdetail-status div.checkedin {
   border: 1px solid black;
   background-color: green;
-  /*padding: 3px;*/
 }
 
-/* line 260, app-default.scss */
+/* line 254, app-default.scss */
 .spotdetail-status .order_placed {
   border: 1px solid black;
   background-color: red;
-  /*padding: 3px;*/
 }
 
-/* line 266, app-default.scss */
+/* line 259, app-default.scss */
 .spotdetail-status .payment_request {
   border: 1px solid black;
   background-color: red;
-  /*padding: 3px;*/
 }
 
-/* line 272, app-default.scss */
+/* line 264, app-default.scss */
 .spotdetail-status .checkedin {
   border: 1px solid black;
   background-color: green;
-  /*padding: 3px;*/
 }
 
-/* line 278, app-default.scss */
+/* line 269, app-default.scss */
 .spotdetail-statistics {
   position: relative;
   top: 10px;
@@ -10143,7 +10170,7 @@ input[type="search"]::-webkit-search-cancel-button {
   min-width: 40px;
 }
 
-/* line 291, app-default.scss */
+/* line 282, app-default.scss */
 .spotdetail-close {
   background-color: black;
   border-radius: 1em;
@@ -10157,14 +10184,14 @@ input[type="search"]::-webkit-search-cancel-button {
   top: 3px;
 }
 
-/* line 304, app-default.scss */
+/* line 295, app-default.scss */
 .spotdetailitem-customer-label {
   background-color: #EEEEEE;
   text-align: center;
   font-weight: bold;
 }
 
-/* line 310, app-default.scss */
+/* line 301, app-default.scss */
 .spotdetailitem-flag {
   width: 10%;
   top: 0;
@@ -10175,14 +10202,14 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-left: 5px;
 }
 
-/* line 321, app-default.scss */
+/* line 312, app-default.scss */
 .spotdetailitem-order {
   /*width: 70%;*/
   margin-bottom: 20px;
   font-size: 0.8em;
 }
 
-/* line 327, app-default.scss */
+/* line 318, app-default.scss */
 .spotdetailitem-order h2 {
   font-weight: bold;
   /*float: left;*/
@@ -10190,34 +10217,34 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-right: 10px;
 }
 
-/* line 334, app-default.scss */
+/* line 325, app-default.scss */
 .spotdetailitem-order h4 {
   font-size: 1em;
 }
 
-/* line 338, app-default.scss */
+/* line 329, app-default.scss */
 .spotdetailitem-order h3 {
   font-size: 1em;
   font-weight: bold;
 }
 
-/* line 343, app-default.scss */
+/* line 334, app-default.scss */
 .spotdetailitem-order-cancel {
   text-decoration: line-through;
 }
 
-/* line 347, app-default.scss */
+/* line 338, app-default.scss */
 .spotdetailitem-order-cancel h2 {
   text-decoration: line-through;
 }
 
-/* line 351, app-default.scss */
+/* line 342, app-default.scss */
 .x-button-icon.spotdetailitem-confirm, .x-button .x-button-icon.x-icon-mask.spotdetailitem-confirm {
   -webkit-mask-image: url("../images/check_icon.png");
   /*background-image: url('../images/check_icon.png');*/
 }
 
-/* line 356, app-default.scss */
+/* line 347, app-default.scss */
 .spotdetailitem-order div:nth-of-type(1) {
   /*position: absolute; 
   right: 0; 
@@ -10226,13 +10253,13 @@ input[type="search"]::-webkit-search-cancel-button {
   	padding-right: 5px;*/
 }
 
-/* line 364, app-default.scss */
+/* line 355, app-default.scss */
 .spotdetailitem-order .choices {
   clear: both;
   text-align: left;
 }
 
-/* line 369, app-default.scss */
+/* line 360, app-default.scss */
 .spotdetailitem-confirm {
   top: 0;
   /*position: absolute;*/
@@ -10240,7 +10267,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 10%;*/
 }
 
-/* line 376, app-default.scss */
+/* line 367, app-default.scss */
 .spotdetailitem-cancel {
   /*width: 10%;*/
   top: 0;
@@ -10249,18 +10276,18 @@ input[type="search"]::-webkit-search-cancel-button {
   /*float: left;*/
 }
 
-/* line 383, app-default.scss */
+/* line 374, app-default.scss */
 .cancel-all {
   -webkit-mask-image: url("res/images/forbidden.png");
 }
 
 /* request view */
-/* line 389, app-default.scss */
+/* line 380, app-default.scss */
 .requestitem-container {
   margin: 0.3em;
 }
 
-/* line 393, app-default.scss */
+/* line 384, app-default.scss */
 .requestitem-wrapper {
   /*border: 1px solid #C3C3C3;*/
   /*background-color: #c3c3c3;*/
@@ -10269,7 +10296,7 @@ input[type="search"]::-webkit-search-cancel-button {
   color: black;
 }
 
-/* line 401, app-default.scss */
+/* line 392, app-default.scss */
 .requestitem-spot {
   border: 1px solid #000;
   background-color: #4975A2;
@@ -10280,7 +10307,7 @@ input[type="search"]::-webkit-search-cancel-button {
   word-break: break-word;
 }
 
-/* line 411, app-default.scss */
+/* line 402, app-default.scss */
 .requestitem-customer {
   border: 1px solid #000;
   background-color: #C6D7E9;
@@ -10295,7 +10322,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 65%;*/
 }
 
-/* line 425, app-default.scss */
+/* line 416, app-default.scss */
 .requestitem-time {
   border: 1px solid #000;
   background-color: #DFE8CB;
@@ -10309,13 +10336,13 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 25%;*/
 }
 
-/* line 438, app-default.scss */
+/* line 429, app-default.scss */
 .requestitem-wrapper-pressed {
   /*background-color: #F5B800;*/
   color: white;
 }
 
-/* line 443, app-default.scss */
+/* line 434, app-default.scss */
 .requestitem-alert {
   -webkit-animation-name: blinker;
   -webkit-animation-iteration-count: infinite;
@@ -10324,12 +10351,12 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* history view */
-/* line 451, app-default.scss */
+/* line 442, app-default.scss */
 .historyitem-container {
   margin: 0.3em;
 }
 
-/* line 455, app-default.scss */
+/* line 446, app-default.scss */
 .historyitem-wrapper {
   /*border: 1px solid #C3C3C3;*/
   /*background-color: #c3c3c3;*/
@@ -10338,7 +10365,7 @@ input[type="search"]::-webkit-search-cancel-button {
   color: black;
 }
 
-/* line 463, app-default.scss */
+/* line 454, app-default.scss */
 .historyitem-spot {
   border: 1px solid #000;
   background-color: #4975A2;
@@ -10349,7 +10376,7 @@ input[type="search"]::-webkit-search-cancel-button {
   word-break: break-word;
 }
 
-/* line 473, app-default.scss */
+/* line 464, app-default.scss */
 .historyitem-customer {
   border: 1px solid #000;
   background-color: #C6D7E9;
@@ -10364,7 +10391,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 20%;*/
 }
 
-/* line 487, app-default.scss */
+/* line 478, app-default.scss */
 .historyitem-time {
   border: 1px solid #000;
   background-color: #DFE8CB;
@@ -10379,7 +10406,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 15%;*/
 }
 
-/* line 501, app-default.scss */
+/* line 492, app-default.scss */
 .historyitem-total {
   border: 1px solid #000;
   background-color: #D0F5A9;
@@ -10392,12 +10419,12 @@ input[type="search"]::-webkit-search-cancel-button {
   /*width: 10%;*/
 }
 
-/* line 513, app-default.scss */
+/* line 504, app-default.scss */
 .historyitem-wrapper-pressed {
   color: white;
 }
 
-/* line 517, app-default.scss */
+/* line 508, app-default.scss */
 .history-info-panel {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -10406,7 +10433,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: #C3C3C3;
 }
 
-/* line 525, app-default.scss */
+/* line 516, app-default.scss */
 .history-info-panel .row {
   display: -webkit-box;
   -webkit-box-orient: horizontal;
@@ -10414,13 +10441,13 @@ input[type="search"]::-webkit-search-cancel-button {
   /*	-webkit-box-pack: end;*/
 }
 
-/* line 532, app-default.scss */
+/* line 523, app-default.scss */
 .history-info-panel .row > div {
   /*-webkit-box-flex: 1;*/
   width: 50%;
 }
 
-/* line 537, app-default.scss */
+/* line 528, app-default.scss */
 .history-detail-list-title {
   font-size: 1.2em;
   font-weight: bold;
@@ -10429,7 +10456,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* connections status indicator in bottom toolbar */
-/* line 549, app-default.scss */
+/* line 540, app-default.scss */
 .status-indicator-ONLINE .status {
   width: 1.2em;
   height: 1.2em;
@@ -10440,7 +10467,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 563, app-default.scss */
+/* line 554, app-default.scss */
 .status-indicator-TIMEOUT .status {
   width: 1.2em;
   height: 1.2em;
@@ -10451,7 +10478,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 575, app-default.scss */
+/* line 566, app-default.scss */
 .status-indicator-RECONNECT .status {
   width: 1.2em;
   height: 1.2em;
@@ -10462,7 +10489,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 587, app-default.scss */
+/* line 578, app-default.scss */
 .status-indicator-INITIALIZING .status {
   width: 1.2em;
   height: 1.2em;
@@ -10473,7 +10500,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 599, app-default.scss */
+/* line 590, app-default.scss */
 .status-indicator-CONNECTION_LOST .status {
   width: 1.2em;
   height: 1.2em;
@@ -10484,7 +10511,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 1px solid black;
 }
 
-/* line 611, app-default.scss */
+/* line 602, app-default.scss */
 .status-indicator-DISCONNECTED .status {
   width: 1.2em;
   height: 1.2em;
@@ -10496,20 +10523,20 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* Volume Button */
-/* line 624, app-default.scss */
+/* line 615, app-default.scss */
 .volume_mute {
   background-image: none !important;
   background-color: #FA5858 !important;
 }
 
-/* line 629, app-default.scss */
+/* line 620, app-default.scss */
 .volume {
   background-image: none !important;
   background-color: #64FF64 !important;
 }
 
 /* Lock button */
-/* line 636, app-default.scss */
+/* line 627, app-default.scss */
 .locked-button .x-button-icon {
   -webkit-mask-image: url("/cockpit/res/images/lock_closed.png");
   background-color: black;

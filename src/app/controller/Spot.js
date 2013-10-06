@@ -170,6 +170,7 @@ Ext.define('EatSense.controller.Spot', {
 		activeBill : null,
 		//contains active area
 		activeArea : null,
+		activeCustomerAccount: null,
 
 		refreshRequestTask: null,
 
@@ -388,6 +389,52 @@ Ext.define('EatSense.controller.Spot', {
 
 	},
 
+	/**
+	* Loads account data for given id
+	* @param checkInId
+	* @param callback
+	* @return
+	*	The account.
+	*/
+	loadAccountByCheckIn: function(checkInId, callback) {
+		var loginCtr = this.getApplication().getController('Login');
+
+		if(!checkInId) {
+			console.error('Spot.loadAccountByCheckIn: no checkInId given');
+			return null;
+		}
+
+		if(!callback) {
+			console.error('Spot.loadAccountByCheckIn: no callback given');
+			return null;
+		}
+
+		Ext.Ajax.request({
+			url: appConfig.serviceUrl+'/b/businesses/'+loginCtr.getAccount().get('businessId')+'/checkins/'+checkInId+'/account',
+			success: function(response) {
+				if(!response.responseText) {
+					callback(false);
+				}
+
+				var account = Ext.JSON.decode(response.responseText);
+				
+				callback(true, account);
+			},
+			failure: function(response) {
+				if(callback) {
+					callback(false);
+				}
+				this.getApplication().handleServerError({
+					'error': response, 
+					'forceLogout': {403: true}, 
+					'hideMessage': {404: true}
+				});
+			},
+			scope: this
+		});
+
+	},
+
 
 	/**
 	* Event handler for SpotItem tap.
@@ -500,12 +547,23 @@ Ext.define('EatSense.controller.Spot', {
 			return;
 		}
 
-		me.setActiveCustomer(record);
+		me.setActiveCustomer(record);		
 		// me.getSpotDetail().fireEvent('eatSense.customer-update', false);
 		me.setSpotdetailButtonsActive(true);
 
 		this.refreshActiveCustomerOrders();
 		this.refreshActiveCustomerPayment();
+
+		this.loadAccountByCheckIn(record.get('id'), loadAccountSuccess);
+
+		function loadAccountSuccess(success, account) {
+			if(success) {
+				me.setActiveCustomerAccount(account);
+			} else {
+				me.setActiveCustomerAccount(null);
+			}
+			me.updateCustomerAccountPanel(account);
+		}
 	},
 	/**
 	* @private
@@ -940,6 +998,7 @@ Ext.define('EatSense.controller.Spot', {
 				detail = me.getSpotDetail(),
 				statusLabel = detail.down('#statusLabel'),
 				checkInTimeLabel = detail.down('#checkInTime'),
+				accountLabel,
 				displayCheckInLocation = this.getDisplayCheckInLocation(),
 				spotLabel,
 				areaLabel,
@@ -953,6 +1012,7 @@ Ext.define('EatSense.controller.Spot', {
 
 		spotLabel = detail.down('#spotLabel');
 		areaLabel = detail.down('#areaLabel');
+		accountLabel = detail.down('#accountDetail');
 
 		if(checkIn) {
 			//render order status					
@@ -1002,6 +1062,27 @@ Ext.define('EatSense.controller.Spot', {
 			// spotLabel.getTpl().overwrite(spotLabel.element, {'status': ''});
 			areaLabel.setHidden(true);
 			// areaLabel.getTpl().overwrite(areaLabel.element, {'areaName' : ''});
+		}			
+	},
+	/**
+	*	Updates the account panel of selected customer in spotdetail view.
+	*   @param account
+	*		contains account information 
+	*/
+	updateCustomerAccountPanel: function(account) {
+		var 	me = this,
+				detail = me.getSpotDetail(),
+				accountLabel;
+
+		accountLabel = detail.down('#accountDetail');
+
+		if(accountLabel) {
+			if(account) {
+				accountLabel.getTpl().overwrite(accountLabel.element, account);
+			} else {
+				accountLabel.getTpl().overwrite(accountLabel.element, {'email': i10n.translate('spotdetail.account.anonymous')});
+				// accountLabel.setHtml('<div>'+i10n.translate('spotdetail.account.anonymous')+'</div>');
+			}
 		}
 	},
 	/**

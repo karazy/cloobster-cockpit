@@ -9,7 +9,7 @@ Ext.define('EatSense.util.Configuration', {
 		currencyDefaultFormat: 'EUR',
 		//default format is EUR, can be changed during runtime depending on business
 		currencyFormat: 'EUR',
-		version: 'v2.1-18-gae4ac6c',
+		version: 'v2.1-6-g4f36197',
 		//true means caching is disabled
 		disableCaching: false,
 		//if language is configured it will be used. otherwise system language

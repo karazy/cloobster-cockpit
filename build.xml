@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="CloobsterCockpit" default="production" basedir=".">
-	<property name="sdkDir">src</property>
+	<property name="sdkDir">src</property>	
 	
 	<target name="production" depends="setversion">
 		<exec executable="${sencha.old.cmd}" dir="${sdkDir}">
+			<env key="SENCHA_SDK_TOOLS_2_0_0_BETA3" value="${SENCHA_SDK_TOOLS_2_0_0_BETA3}"/>
 			<arg line="app build production"/>
 		</exec>
 	</target>
 	
 	<target name="testing" depends="setversion">
 		<exec executable="${sencha.old.cmd}" dir="${sdkDir}">
+			<env key="SENCHA_SDK_TOOLS_2_0_0_BETA3" value="${SENCHA_SDK_TOOLS_2_0_0_BETA3}"/>
 			<arg line="app build testing"/>
 		</exec>
 	</target>

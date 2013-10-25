@@ -1069,7 +1069,7 @@ Ext.define('EatSense.controller.Spot', {
 	/**
 	*	Updates the account panel of selected customer in spotdetail view.
 	*   @param account
-	*		contains account information 
+	*		contains account information, if no account provided clears the field
 	*/
 	updateCustomerAccountPanel: function(account) {
 		var 	me = this,
@@ -1082,9 +1082,8 @@ Ext.define('EatSense.controller.Spot', {
 			if(account) {
 				accountLabel.getTpl().overwrite(accountLabel.element, account);
 			} else {
-				accountLabel.getTpl().overwrite(accountLabel.element, {'email': i10n.translate('spotdetail.account.anonymous')});
-				// accountLabel.setHtml('<div>'+i10n.translate('spotdetail.account.anonymous')+'</div>');
-			}
+				accountLabel.getTpl().overwrite(accountLabel.element, {'email': ''});
+			}	
 		}
 	},
 	/**
@@ -1642,6 +1641,7 @@ Ext.define('EatSense.controller.Spot', {
 		requestStore.removeAll(true);
 		this.updateCustomerStatusPanel();
 		this.updateCustomerTotal();
+		this.updateCustomerAccountPanel();
 		this.setActiveSpot(null);
 		this.setActiveCustomer(null);
 		this.setActiveBill(null);
